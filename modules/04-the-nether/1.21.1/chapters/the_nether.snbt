@@ -210,7 +210,7 @@
 			]
 			title: "Blaze Rods"
 			x: 4.5d
-			y: 0.0d
+			y: 1.5d
 		}
 		{
 			dependencies: ["7B04010300030000"]
@@ -247,7 +247,7 @@
 			]
 			title: "Nether Wart"
 			x: 4.5d
-			y: 1.5d
+			y: 3.0d
 		}
 		{
 			dependencies: ["7B04010300030000"]

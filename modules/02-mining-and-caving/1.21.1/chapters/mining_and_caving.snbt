@@ -244,7 +244,7 @@
 			]
 			title: "Redstone Dust"
 			x: 4.5d
-			y: 0.0d
+			y: -3.0d
 		}
 		{
 			dependencies: ["7B02010300050000"]
@@ -522,7 +522,7 @@
 			]
 			title: "Spot the Vein"
 			x: 6.0d
-			y: -1.5d
+			y: 3.0d
 		}
 	]
 	subtitle: "Down, and further down"

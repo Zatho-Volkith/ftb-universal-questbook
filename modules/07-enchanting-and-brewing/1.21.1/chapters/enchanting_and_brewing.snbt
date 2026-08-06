@@ -350,7 +350,7 @@
 			]
 			title: "Potion of Strength"
 			x: 7.5d
-			y: 1.5d
+			y: 3.0d
 		}
 		{
 			description: [

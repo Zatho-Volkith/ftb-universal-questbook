@@ -616,14 +616,64 @@ def check_chapter_groups(modules: list[LoadedModule], report: Report) -> None:
                 )
 
 
+#: Half-width of the box a quest icon occupies, in grid units. FTB draws a
+#: default-shape quest about one unit across, so a dependency line passing
+#: within this of another quest's centre visually runs underneath it.
+_ICON_CLEARANCE = 0.55
+
+#: How far along a dependency line to bother looking. Both ends are anchored
+#: to a quest by definition, so only the middle stretch can be ambiguous.
+_LINE_INTERIOR = (0.08, 0.92)
+
+
+def _passes_under(start: tuple[float, float], end: tuple[float, float],
+                  point: tuple[float, float]) -> bool:
+    """Does the segment start->end run under a quest sitting at point?"""
+    dx, dy = end[0] - start[0], end[1] - start[1]
+    length_sq = dx * dx + dy * dy
+    if not length_sq:
+        return False
+    along = ((point[0] - start[0]) * dx + (point[1] - start[1]) * dy) / length_sq
+    if not _LINE_INTERIOR[0] < along < _LINE_INTERIOR[1]:
+        return False
+    return (abs(start[0] + along * dx - point[0]) < _ICON_CLEARANCE
+            and abs(start[1] + along * dy - point[1]) < _ICON_CLEARANCE)
+
+
+def _implied_by_siblings(quest_deps: list[str], target: str,
+                         deps: dict[str, list[str]]) -> bool:
+    """Is `target` already reachable through one of the quest's other deps?
+
+    If so, FTB still draws the edge, so it is a line across the chapter that
+    tells the player nothing they did not already know.
+    """
+    seen: set[str] = set()
+    stack = [d for d in quest_deps if d != target]
+    while stack:
+        node = stack.pop()
+        if node in seen:
+            continue
+        seen.add(node)
+        stack.extend(deps.get(node, []))
+    return target in seen
+
+
 def check_layout(modules: list[LoadedModule], report: Report) -> None:
     for module in modules:
         for path, tree in module.chapters.items():
             rel = str(path.relative_to(REPO_ROOT))
+            quests = [q for q in tree.get("quests") or [] if isinstance(q, dict)]
+
             positions: dict[tuple[float, float], str] = {}
-            for quest in tree.get("quests") or []:
-                if not isinstance(quest, dict):
-                    continue
+            place: dict[str, tuple[float, float]] = {}
+            title: dict[str, str] = {}
+            deps: dict[str, list[str]] = {}
+
+            for quest in quests:
+                qid = str(quest.get("id"))
+                title[qid] = str(quest.get("title") or qid)
+                deps[qid] = [str(d) for d in quest.get("dependencies") or []]
+
                 x, y = quest.get("x"), quest.get("y")
                 if x is None or y is None:
                     continue
@@ -631,6 +681,7 @@ def check_layout(modules: list[LoadedModule], report: Report) -> None:
                     float(x.value if isinstance(x, snbt.Num) else x),
                     float(y.value if isinstance(y, snbt.Num) else y),
                 )
+                place[qid] = key
                 if key in positions:
                     report.warn(
                         f"{rel} :: quest {quest.get('id')}",
@@ -639,6 +690,31 @@ def check_layout(modules: list[LoadedModule], report: Report) -> None:
                     )
                 else:
                     positions[key] = str(quest.get("id"))
+
+            # A dependency line drawn under an unrelated quest reads as though
+            # that quest were part of the chain. In a wide chapter this is the
+            # difference between a readable tree and a plate of spaghetti.
+            for qid in title:
+                local = [d for d in deps[qid] if d in title]
+                for dep in local:
+                    if _implied_by_siblings(local, dep, deps):
+                        report.warn(
+                            f"{rel} :: quest {title[qid]!r}",
+                            f"depends on {title[dep]!r}, which another of its "
+                            f"dependencies already requires -- the edge is "
+                            f"redundant and draws a line across the chapter"
+                        )
+                    if qid not in place or dep not in place:
+                        continue
+                    for other in title:
+                        if other in (qid, dep) or other not in place:
+                            continue
+                        if _passes_under(place[dep], place[qid], place[other]):
+                            report.warn(
+                                f"{rel} :: quest {title[qid]!r}",
+                                f"its dependency line from {title[dep]!r} passes "
+                                f"under {title[other]!r} -- move one of them"
+                            )
 
 
 # --------------------------------------------------------------------------

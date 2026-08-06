@@ -75,7 +75,7 @@
 			]
 			title: "Golden Fields"
 			x: 1.5d
-			y: 0.0d
+			y: -1.5d
 		}
 		{
 			dependencies: ["7B03010300020000"]
@@ -253,7 +253,7 @@
 			]
 			title: "Melons and Pumpkins"
 			x: 1.5d
-			y: -1.5d
+			y: -3.0d
 		}
 		{
 			dependencies: ["7B03010300040000"]
@@ -483,7 +483,7 @@
 			]
 			title: "Open Country"
 			x: 4.5d
-			y: -1.5d
+			y: -3.0d
 		}
 		{
 			description: ["Ten pairs fed and paired off.", "", "A herd you breed is a herd that never runs out."]

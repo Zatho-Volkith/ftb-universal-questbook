@@ -315,7 +315,7 @@
 			]
 			title: "Onions and Rice"
 			x: 3.0d
-			y: 1.5d
+			y: -3.0d
 		}
 		{
 			dependencies: ["7B20010300070000"]

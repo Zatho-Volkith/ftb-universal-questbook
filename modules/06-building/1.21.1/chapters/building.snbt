@@ -267,8 +267,8 @@
 				}
 			]
 			title: "Lanterns"
-			x: 4.5d
-			y: -1.5d
+			x: 3.0d
+			y: -3.0d
 		}
 		{
 			dependencies: ["7B06010300010000"]
@@ -305,8 +305,8 @@
 				}
 			]
 			title: "Bookshelves"
-			x: 4.5d
-			y: 0.0d
+			x: 1.5d
+			y: 3.0d
 		}
 		{
 			dependencies: ["7B06010300050000"]
@@ -336,8 +336,8 @@
 				}
 			]
 			title: "Paintings"
-			x: 4.5d
-			y: 1.5d
+			x: 3.0d
+			y: 3.0d
 		}
 		{
 			description: [
@@ -396,7 +396,7 @@
 				}
 			]
 			title: "Study the Craft"
-			x: 6.0d
+			x: 4.5d
 			y: 0.0d
 		}
 		{
@@ -425,7 +425,7 @@
 				}
 			]
 			title: "Time Served"
-			x: 6.0d
+			x: 4.5d
 			y: -1.5d
 		}
 	]

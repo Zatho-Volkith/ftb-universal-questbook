@@ -90,6 +90,22 @@ def _(root):
     edit(root / CHAPTER, "x: 3.0d\n\t\t\ty: 1.5d", "x: 4.5d\n\t\t\ty: 1.5d")
 
 
+@case("dependency line drawn under a quest", r"passes under")
+def _(root):
+    # Park 'Somewhere to Sleep' exactly halfway along the line from
+    # 'A Place to Work' to 'Something to Eat'.
+    edit(root / CHAPTER, "x: 1.5d\n\t\t\ty: 3.0d", "x: 2.25d\n\t\t\ty: 0.75d")
+
+
+@case("redundant dependency", r"already requires")
+def _(root):
+    # 'The Stone Age' needs 'First Tools', which needs 'A Place to Work'.
+    # Naming the latter as well adds nothing but a line across the chapter.
+    edit(root / CHAPTER,
+         'dependencies: ["7B01010300030000"]',
+         'dependencies: ["7B01010300030000", "7B01010300020000"]')
+
+
 @case("broken SNBT", r"could not parse")
 def _(root):
     path = root / TABLE

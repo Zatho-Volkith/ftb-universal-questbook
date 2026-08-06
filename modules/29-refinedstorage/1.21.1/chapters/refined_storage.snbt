@@ -162,7 +162,7 @@
 			]
 			title: "Machine Casing"
 			x: 1.5d
-			y: 1.5d
+			y: 3.0d
 		}
 		{
 			dependencies: ["7B29010300020000"]
@@ -350,7 +350,7 @@
 			]
 			title: "Cores"
 			x: 4.5d
-			y: 1.5d
+			y: -3.0d
 		}
 		{
 			dependencies: ["7B29010300080000", "7B29010300040000"]
@@ -424,7 +424,7 @@
 			]
 			title: "Disk Drive"
 			x: 7.5d
-			y: -1.5d
+			y: 1.5d
 		}
 		{
 			dependencies: ["7B29010300030000", "7B29010300040000"]
@@ -469,7 +469,7 @@
 				}
 			]
 			title: "Storage Disks"
-			x: 7.5d
+			x: 3.0d
 			y: 1.5d
 		}
 		{
@@ -592,7 +592,7 @@
 			]
 			title: "External Storage"
 			x: 6.0d
-			y: 1.5d
+			y: -3.0d
 		}
 		{
 			dependencies: ["7B290103000D0000"]
@@ -675,11 +675,11 @@
 				}
 			]
 			title: "Autocrafter"
-			x: 9.0d
-			y: 1.5d
+			x: 7.5d
+			y: -1.5d
 		}
 		{
-			dependencies: ["7B29010300080000", "7B290103000D0000"]
+			dependencies: ["7B290103000D0000"]
 			description: [
 				"The whole network, in your inventory."
 				""
