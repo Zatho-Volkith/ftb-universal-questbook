@@ -205,6 +205,7 @@ variant-collapsing would hide its progression, in which case rerun with
 | Material variants (Productive Bees, the Delights) | default | 45 beehive variants collapse to one node |
 | Tiered tech (Mekanism, EnderIO) | `--no-collapse` | basic → advanced → elite → ultimate are four goals, not one |
 | AE2 | default | its `1k`/`4k`/`64k` tiers are already protected |
+| Own tier vocabulary (Mystical Agriculture) | `--tier-words inferium prudentium …` | no built-in list can anticipate a mod's invented tier names |
 
 Two things it taught us, both worth knowing before pointing it at a new mod:
 

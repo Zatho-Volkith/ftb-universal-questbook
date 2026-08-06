@@ -292,8 +292,16 @@ _TIER_WORDS = {
 _TIER_PATTERN = re.compile(r"^\d+[kmgt]?$")
 
 
+#: Extra tier vocabulary supplied per run. Every mod invents its own --
+#: Mystical Agriculture tiers essences inferium -> prudentium -> tertium ->
+#: imperium -> supremium, and no built-in list can anticipate that. Pass
+#: --tier-words when --analyse shows a tier chain collapsing into one node.
+_EXTRA_TIER_WORDS: set[str] = set()
+
+
 def is_tier_token(token: str) -> bool:
-    return token in _TIER_WORDS or bool(_TIER_PATTERN.match(token))
+    return (token in _TIER_WORDS or token in _EXTRA_TIER_WORDS
+            or bool(_TIER_PATTERN.match(token)))
 
 
 def build_families(items: list[str], threshold: int = 3,
@@ -602,6 +610,10 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--max-quests", type=int, default=14)
     parser.add_argument("--group", default="", help="chapter group hex id")
     parser.add_argument("-o", "--output", type=Path)
+    parser.add_argument("--tier-words", nargs="*", default=None, metavar="WORD",
+                        help="extra words that mark a progression tier in this "
+                             "mod, e.g. --tier-words inferium prudentium "
+                             "tertium imperium supremium")
     parser.add_argument("--no-collapse", action="store_true",
                         help="do not merge variant families. Right for tiered "
                              "tech mods, where near-identical names are real "
@@ -622,6 +634,8 @@ def main(argv: list[str] | None = None) -> int:
     if not recipes:
         print(f"error: no {args.mod} recipes in {jar.name}", file=sys.stderr)
         return 1
+    if args.tier_words:
+        _EXTRA_TIER_WORDS.update(w.lower() for w in args.tier_words)
     collapse = not args.no_collapse
     deps, depth, dropped = build_graph(recipes, tags, args.mod, collapse)
 
