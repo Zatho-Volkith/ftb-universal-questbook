@@ -13,7 +13,7 @@
   "requires_modules": [
     "00-core"
   ],
-  "chapter_group": "mods",
+  "chapter_group": "adventure",
   "chapters": [
     {
       "number": 1,

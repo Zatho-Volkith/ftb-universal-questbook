@@ -478,6 +478,144 @@ def check_task_types(modules: list[LoadedModule], report: Report) -> None:
                         )
 
 
+#: Formatting codes FTB Library's TextComponentParser accepts after '&'.
+#: 0-9a-f are colours, k-o are styles, r resets.
+_FORMAT_CODES = set("0123456789abcdefklmnorABCDEFKLMNOR")
+
+#: Fields whose contents get run through the text parser and shown to players.
+_DISPLAY_FIELDS = ("title", "subtitle", "description", "text")
+
+
+def check_text_formatting(modules: list[LoadedModule], report: Report) -> None:
+    """Catch text FTB Library's parser will reject at render time.
+
+    `&` introduces a formatting code, so a plain ampersand in a title -- as in
+    "Mining & Caving" -- makes the parser give up and print
+
+        Invalid formatting! You must escape whitespace after & with \\&!
+
+    over the chapter name. Nothing fails to load and nothing appears in the
+    server log; you only see it in-game, which is exactly the kind of bug this
+    linter exists to catch first. A literal ampersand must be written `\\&`.
+
+    `{` opens a substitution and has the same problem.
+    """
+    def inspect(text: str, where: str) -> None:
+        i = 0
+        while i < len(text):
+            char = text[i]
+            if char == "\\":
+                i += 2          # escaped; skip whatever follows
+                continue
+            if char == "&":
+                if i + 1 >= len(text):
+                    report.error(where, "text ends with '&'; the parser needs a "
+                                        "formatting code after it, or write '\\\\&'")
+                elif text[i + 1] not in _FORMAT_CODES:
+                    shown = text[i + 1]
+                    label = "whitespace" if shown.isspace() else f"{shown!r}"
+                    report.error(
+                        where,
+                        f"'&' followed by {label} -- FTB Library reads '&' as a "
+                        f"formatting code and will print an error over this text. "
+                        f"For a literal ampersand write '\\\\&' (which is "
+                        f"\"\\\\\\\\&\" inside an SNBT string)."
+                    )
+            elif char == "{":
+                report.error(where, "'{' opens a substitution in FTB's text "
+                                    "parser; write '\\\\{' for a literal brace")
+            i += 1
+
+    for module in modules:
+        for path, tree in list(module.chapters.items()) + list(module.reward_tables.items()):
+            rel = str(path.relative_to(REPO_ROOT))
+            for trail, node in walk(tree):
+                for field_name in _DISPLAY_FIELDS:
+                    value = node.get(field_name)
+                    where = f"{rel} :: {trail}.{field_name}" if trail != "<root>" \
+                        else f"{rel} :: {field_name}"
+                    if isinstance(value, str):
+                        inspect(value, where)
+                    elif isinstance(value, list):
+                        for i, line in enumerate(value):
+                            if isinstance(line, str):
+                                inspect(line, f"{where}[{i}]")
+
+
+def check_chapter_groups(modules: list[LoadedModule], report: Report) -> None:
+    """Chapter group, manifest and category registry must all agree.
+
+    Three things have to line up: the `group:` hex ID inside the chapter file,
+    the `chapter_group` key in module.json, and the group actually defined by
+    00-core. A chapter naming a group nobody registered renders in a broken
+    state, and it is easy to miss because nothing errors on load.
+    """
+    library_path = REPO_ROOT / "library.json"
+    categories_path = DATA_DIR / "mod-categories.json"
+    if not library_path.exists():
+        return
+
+    library = json.loads(library_path.read_text(encoding="utf-8"))
+    groups = {g["key"]: g["id"] for g in library.get("chapter_groups", [])}
+    if not groups:
+        return
+
+    registry = {}
+    if categories_path.exists():
+        payload = json.loads(categories_path.read_text(encoding="utf-8"))
+        registry = {mod: payload["categories"][cat]["group"]
+                    for mod, cat in payload.get("mods", {}).items()
+                    if cat in payload.get("categories", {})}
+
+    for module in modules:
+        key = module.manifest.get("chapter_group")
+        manifest_rel = f"modules/{module.slug}/module.json"
+
+        if key is not None and key not in groups:
+            report.error(manifest_rel,
+                         f"chapter_group {key!r} is not defined in library.json "
+                         f"(known: {', '.join(sorted(groups))})")
+            continue
+
+        for path, tree in module.chapters.items():
+            rel = str(path.relative_to(REPO_ROOT))
+            declared = tree.get("group")
+            if key is None:
+                continue
+            if declared != groups[key]:
+                report.error(
+                    rel,
+                    f"chapter's group is {declared!r} but module.json says "
+                    f"{key!r} ({groups[key]}). Installing this would file the "
+                    f"chapter under the wrong heading, or none at all."
+                )
+
+        # Cross-check against the category registry: the mod this module is
+        # actually about should agree with the group it claims.
+        own_mods = list(module.manifest.get("requires_mods") or [])
+        parent_slug = module.extends
+        if parent_slug:
+            parent = next((m for m in modules if m.slug == parent_slug), None)
+            if parent:
+                parent_mods = set(parent.manifest.get("requires_mods") or [])
+                own_mods = [m for m in own_mods if m not in parent_mods] or own_mods
+        if own_mods and key:
+            expected = registry.get(own_mods[0])
+            if expected and expected != key:
+                report.warn(
+                    manifest_rel,
+                    f"mod {own_mods[0]!r} is classified as {expected!r} in "
+                    f"tools/data/mod-categories.json but this module uses "
+                    f"chapter_group {key!r}. Update whichever is wrong."
+                )
+            elif not expected and own_mods[0] not in registry:
+                report.warn(
+                    manifest_rel,
+                    f"mod {own_mods[0]!r} is not in mod-categories.json, so "
+                    f"nothing can classify it automatically. Add it."
+                )
+
+
 def check_layout(modules: list[LoadedModule], report: Report) -> None:
     for module in modules:
         for path, tree in module.chapters.items():
@@ -537,6 +675,8 @@ def main(argv: list[str] | None = None) -> int:
     check_dependencies(modules, report)
     check_reward_tables(modules, report)
     check_task_types(modules, report)
+    check_text_formatting(modules, report)
+    check_chapter_groups(modules, report)
     check_layout(modules, report)
     if known:
         check_items(modules, known, sources, report)

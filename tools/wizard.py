@@ -47,6 +47,21 @@ import snbt     # noqa: E402
 MC_VERSION = "1.21.1"
 
 
+def _chapter_groups() -> dict:
+    """{key: (order_index, title)} from library.json, for display grouping."""
+    for base in (HERE, HERE.parent):
+        path = base / "library.json"
+        if path.exists():
+            import json
+            data = json.loads(path.read_text(encoding="utf-8"))
+            return {g["key"]: (g.get("order_index", 99), g["title"])
+                    for g in data.get("chapter_groups", [])}
+    return {}
+
+
+GROUPS = _chapter_groups()
+
+
 # --------------------------------------------------------------------------
 # presentation
 # --------------------------------------------------------------------------
@@ -260,6 +275,15 @@ def step_find_instance() -> tuple[Path, dict]:
 # step 2: choose chapters
 # --------------------------------------------------------------------------
 
+def display_text(text: str) -> str:
+    """Undo FTB's text escapes so titles read normally in a terminal.
+
+    A literal ampersand is stored as `\\&` because FTB Library treats a bare
+    `&` as a formatting code. That escape is for the game's parser, not for us.
+    """
+    return text.replace("\\&", "&").replace("\\{", "{")
+
+
 def chapter_summary(module: install.Module) -> tuple[int, str]:
     """Quest count and chapter title for display."""
     total = 0
@@ -272,8 +296,8 @@ def chapter_summary(module: install.Module) -> tuple[int, str]:
             except snbt.SNBTError:
                 continue
             total += len(tree.get("quests") or [])
-            titles.append(tree.get("title") or path.stem)
-    name = module.manifest.get("name", module.slug)
+            titles.append(display_text(tree.get("title") or path.stem))
+    name = display_text(module.manifest.get("name", module.slug))
     return total, (titles[0] if len(titles) == 1 else name)
 
 
@@ -300,10 +324,18 @@ def step_choose(modules: dict[str, install.Module], mod_ids: set[str]) -> list[i
         # Show only the mods this addon needs beyond its parent's.
         extra = [m for m in module.requires_mods
                  if not parent or m not in parent.requires_mods]
+        key = module.manifest.get("chapter_group") or "mods"
+        order, label = GROUPS.get(key, (99, key.title()))
         rows.append({"module": module, "missing": missing, "quests": quests,
                      "title": title, "on": not missing,
                      "is_addon": parent is not None,
-                     "parent_slug": module.extends, "extra_mods": extra})
+                     "parent_slug": module.extends, "extra_mods": extra,
+                     "group_key": key, "group_order": order,
+                     "group_label": display_text(label)})
+
+    # book group first, then parent-before-addon within it
+    rows.sort(key=lambda r: (r["group_order"], r["module"].number,
+                             r["module"].chapter_number))
 
     index_of = {row["module"].slug: i for i, row in enumerate(rows)}
 
@@ -325,10 +357,17 @@ def step_choose(modules: dict[str, install.Module], mod_ids: set[str]) -> list[i
                     other["on"] = False
 
     def render() -> None:
+        # Grouped by the chapter group each one lands in, so the list mirrors
+        # how the book will actually be organised in game.
         print()
-        print(f"  {'#':<4}{'Chapter':<30}{'Quests':>6}  Requires")
-        print(dim("  " + "-" * 58))
+        seen_group = None
         for i, row in enumerate(rows, start=1):
+            group = row["group_label"]
+            if group != seen_group:
+                seen_group = group
+                print()
+                print(f"  {bold(group)}")
+                print(dim("  " + "-" * 58))
             mark = f"[{TICK}]" if row["on"] else "[ ]"
             if row["is_addon"]:
                 label = f"  └ {row['title']}"
@@ -336,7 +375,9 @@ def step_choose(modules: dict[str, install.Module], mod_ids: set[str]) -> list[i
             else:
                 label = row["title"]
                 needs = ", ".join(row["module"].requires_mods) or "vanilla"
-            body = f"{i:<4}{label:<30}{row['quests']:>6}  {needs}"
+            if len(label) > 29:          # keep the columns aligned
+                label = label[:28] + "…"
+            body = f"{i:<4}{label:<30}{row['quests']:>5}  {needs}"
             if row["missing"]:
                 print(dim(f"  [ ] {body}   (needs {', '.join(row['missing'])})"))
             elif row["on"]:
@@ -442,6 +483,18 @@ def step_install(quests_dir: Path, chosen: list[install.Module]) -> None:
         if groups_dir.is_dir():
             for source in sorted(groups_dir.glob("*.snbt")):
                 groups_to_add.extend(snbt.load(str(source)).get("chapter_groups", []))
+
+    # Only register groups the installed chapters actually use, so nobody ends
+    # up with empty headings for content they did not install.
+    referenced = set()
+    for module in chosen:
+        chapters_dir = module.version_root / "chapters"
+        if chapters_dir.is_dir():
+            for path in sorted(chapters_dir.glob("*.snbt")):
+                group = snbt.load(str(path)).get("group")
+                if isinstance(group, str) and group:
+                    referenced.add(group)
+    groups_to_add = [g for g in groups_to_add if g.get("id") in referenced]
 
     quests_dir.mkdir(parents=True, exist_ok=True)
     added, total = install.merge_chapter_groups(quests_dir, groups_to_add, False)

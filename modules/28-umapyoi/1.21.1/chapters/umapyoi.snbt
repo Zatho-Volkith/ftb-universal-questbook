@@ -2,7 +2,7 @@
 	default_hide_dependency_lines: false
 	default_quest_shape: ""
 	filename: "umapyoi"
-	group: "7B00000100000002"
+	group: "7B00000100000008"
 	icon: {
 		id: "umapyoi:uma_pedestal"
 	}

@@ -12,7 +12,7 @@
     "00-core",
     "30-quality-of-life"
   ],
-  "chapter_group": "mods",
+  "chapter_group": "qol",
   "version": "1.0.0",
   "mc_versions": [
     "1.21.1"

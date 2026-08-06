@@ -8,7 +8,7 @@
   "requires_modules": [
     "00-core"
   ],
-  "chapter_group": "vanilla",
+  "chapter_group": "qol",
   "version": "1.0.0",
   "mc_versions": [
     "1.21.1"

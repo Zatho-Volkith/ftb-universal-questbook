@@ -451,6 +451,25 @@ def main(argv: list[str] | None = None) -> int:
                 document = snbt.load(str(source))
                 groups_to_add.extend(document.get("chapter_groups", []))
 
+    # Register only the groups the installed chapters actually reference.
+    # 00-core defines every group the library knows about, but somebody
+    # installing two chapters should not end up with nine headings in their
+    # book, seven of them empty.
+    referenced: set[str] = set()
+    for module in chosen:
+        chapters_dir = module.version_root / "chapters"
+        if not chapters_dir.is_dir():
+            continue
+        for path in sorted(chapters_dir.glob("*.snbt")):
+            try:
+                group = snbt.load(str(path)).get("group")
+            except snbt.SNBTError:
+                continue
+            if isinstance(group, str) and group:
+                referenced.add(group)
+    groups_to_add = [g for g in groups_to_add
+                     if isinstance(g, dict) and g.get("id") in referenced]
+
     quests_dir.mkdir(parents=True, exist_ok=True)
     added, total = merge_chapter_groups(quests_dir, groups_to_add, args.dry_run)
     pruned = prune_lang_entries(

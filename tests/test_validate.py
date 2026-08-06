@@ -147,6 +147,19 @@ def _(root):
     edit(root / MINING, 'type: "checkmark"', 'type: "teleport"')
 
 
+@case("bare '&' in a title", r"'&' followed by whitespace")
+def _(root):
+    # FTB Library reads & as a formatting code and prints an error over the
+    # text. Nothing fails to load, so only in-game testing catches it -- which
+    # is precisely why the linter has to.
+    edit(root / MINING, 'title: "Mining \\\\& Caving"', 'title: "Mining & Caving"')
+
+
+@case("'&' at end of text", r"text ends with '&'")
+def _(root):
+    edit(root / MINING, 'subtitle: "Down, and further down"', 'subtitle: "Down and further&"')
+
+
 def run(root: Path) -> str:
     result = subprocess.run(
         [sys.executable, str(root / "tools" / "validate.py")],
