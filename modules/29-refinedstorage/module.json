@@ -1,0 +1,26 @@
+{
+  "id": "29-refinedstorage",
+  "module_number": 41,
+  "chapter_number": 1,
+  "name": "Refined Storage",
+  "description": "Quartz enriched iron through the processor tiers to the controller, disk drive, grid and autocrafter. Structure derived from the mod's own recipe graph.",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "requires_mods": [
+    "refinedstorage"
+  ],
+  "requires_modules": [
+    "00-core"
+  ],
+  "chapter_group": "storage",
+  "chapters": [
+    {
+      "number": 1,
+      "file": "refined_storage.snbt",
+      "title": "Refined Storage"
+    }
+  ],
+  "allowed_external_dependencies": []
+}

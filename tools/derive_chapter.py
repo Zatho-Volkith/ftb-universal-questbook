@@ -674,6 +674,10 @@ def main(argv: list[str] | None = None) -> int:
                   "only one.")
             print("  This is a tiered tech mod -- rerun with --no-collapse.")
 
+        tiers: dict[int, list[str]] = defaultdict(list)
+        for item in deps:
+            tiers[depth[item]].append(item)
+
         print("\ndepth   items  representative sample")
         for tier in sorted(tiers):
             sample = sorted({fam[i] for i in tiers[tier]})[:6]

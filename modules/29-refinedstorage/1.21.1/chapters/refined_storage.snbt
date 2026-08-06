@@ -1,0 +1,721 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "refined_storage"
+	group: "7B00000100000007"
+	icon: {
+		id: "refinedstorage:controller"
+	}
+	id: "7B29010200000001"
+	images: [ ]
+	order_index: 40
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"A Refined Storage network is one controller, some cable, and any"
+				"number of devices touching that cable."
+				""
+				"Storage lives on disks in a disk drive. Everything else -- grids,"
+				"importers, autocrafters -- is a way of getting items in or out."
+				""
+				"It needs power. Plan for that before you build the controller."
+			]
+			id: "7B29010300130000"
+			rewards: [
+				{
+					id: "7B2901050013000B"
+					type: "xp"
+					xp: 10
+				}
+			]
+			subtitle: "Read before you build"
+			tasks: [
+				{
+					id: "7B29010400130001"
+					type: "checkmark"
+				}
+			]
+			title: "How This Works"
+			x: -1.5d
+			y: 0.0d
+		}
+		{
+			description: [
+				"Iron and nether quartz, pressed together."
+				""
+				"Forty-five different things in this mod are built from it, so make"
+				"far more than eight. You will come back for it constantly."
+			]
+			id: "7B29010300010000"
+			rewards: [
+				{
+					id: "7B2901050001000B"
+					type: "xp"
+					xp: 20
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2901050001000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft the base material"
+			tasks: [
+				{
+					count: 8L
+					id: "7B29010400010001"
+					item: {
+						count: 1
+						id: "refinedstorage:quartz_enriched_iron"
+					}
+					type: "item"
+				}
+			]
+			title: "Quartz Enriched Iron"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B29010300010000"]
+			description: ["The same idea with copper.", "", "This one exists almost entirely to become cable."]
+			id: "7B29010300020000"
+			rewards: [
+				{
+					id: "7B2901050002000B"
+					type: "xp"
+					xp: 15
+				}
+			]
+			subtitle: "Craft the cable material"
+			tasks: [
+				{
+					count: 8L
+					id: "7B29010400020001"
+					item: {
+						count: 1
+						id: "refinedstorage:quartz_enriched_copper"
+					}
+					type: "item"
+				}
+			]
+			title: "Quartz Enriched Copper"
+			x: 1.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B29010300010000"]
+			description: ["Smelted from quartz.", "", "Every processor and every storage part needs it."]
+			id: "7B29010300030000"
+			rewards: [
+				{
+					id: "7B2901050003000B"
+					type: "xp"
+					xp: 15
+				}
+			]
+			subtitle: "Smelt silicon"
+			tasks: [
+				{
+					count: 8L
+					id: "7B29010400030001"
+					item: {
+						count: 1
+						id: "refinedstorage:silicon"
+					}
+					type: "item"
+				}
+			]
+			title: "Silicon"
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B29010300010000"]
+			description: ["The shell every device in the network is built inside.", "", "Cheap, and needed in quantity."]
+			id: "7B29010300040000"
+			rewards: [
+				{
+					id: "7B2901050004000B"
+					type: "xp"
+					xp: 20
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2901050004000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a machine casing"
+			tasks: [
+				{
+					count: 4L
+					id: "7B29010400040001"
+					item: {
+						count: 1
+						id: "refinedstorage:machine_casing"
+					}
+					type: "item"
+				}
+			]
+			title: "Machine Casing"
+			x: 1.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B29010300020000"]
+			description: [
+				"What makes a collection of blocks into a network."
+				""
+				"Devices only need to touch the cable, not each other. Run it"
+				"behind the wall and forget it is there."
+			]
+			id: "7B29010300050000"
+			rewards: [
+				{
+					id: "7B2901050005000B"
+					type: "xp"
+					xp: 20
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2901050005000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Craft cable"
+			tasks: [
+				{
+					count: 16L
+					id: "7B29010400050001"
+					item: {
+						count: 1
+						id: "refinedstorage:cable"
+					}
+					type: "item"
+				}
+			]
+			title: "Cable"
+			x: 3.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B29010300030000"]
+			description: [
+				"Processors are printed as raw boards, then smelted."
+				""
+				"Basic, improved and advanced are three separate tiers, and almost"
+				"everything worth building wants one of the upper two."
+			]
+			id: "7B29010300060000"
+			rewards: [
+				{
+					id: "7B2901050006000B"
+					type: "xp"
+					xp: 30
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2901050006000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Print your first processor"
+			tasks: [
+				{
+					count: 4L
+					id: "7B29010400060001"
+					item: {
+						count: 1
+						id: "refinedstorage:basic_processor"
+					}
+					type: "item"
+				}
+			]
+			title: "Basic Processor"
+			x: 3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B29010300060000"]
+			description: ["The middle tier. Importers, exporters and detectors run on these."]
+			id: "7B29010300070000"
+			rewards: [
+				{
+					id: "7B2901050007000B"
+					type: "xp"
+					xp: 35
+				}
+			]
+			subtitle: "Print an improved processor"
+			tasks: [
+				{
+					count: 4L
+					id: "7B29010400070001"
+					item: {
+						count: 1
+						id: "refinedstorage:improved_processor"
+					}
+					type: "item"
+				}
+			]
+			title: "Improved Processor"
+			x: 4.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B29010300070000"]
+			description: [
+				"The top tier, and the gate on everything that matters."
+				""
+				"The controller, the disk drive, the autocrafter and the wireless"
+				"grid all need one."
+			]
+			id: "7B29010300080000"
+			rewards: [
+				{
+					id: "7B2901050008000B"
+					type: "xp"
+					xp: 45
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2901050008000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Print an advanced processor"
+			tasks: [
+				{
+					count: 4L
+					id: "7B29010400080001"
+					item: {
+						count: 1
+						id: "refinedstorage:advanced_processor"
+					}
+					type: "item"
+				}
+			]
+			title: "Advanced Processor"
+			x: 6.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B29010300060000"]
+			description: [
+				"Two halves of the same idea: one puts things into the world, one"
+				"takes them out."
+				""
+				"Which core a device uses tells you which direction it moves items."
+			]
+			id: "7B29010300090000"
+			rewards: [
+				{
+					id: "7B2901050009000B"
+					type: "xp"
+					xp: 30
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2901050009000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft construction and destruction cores"
+			tasks: [
+				{
+					count: 2L
+					id: "7B29010400090001"
+					item: {
+						count: 1
+						id: "refinedstorage:construction_core"
+					}
+					type: "item"
+				}
+				{
+					count: 2L
+					id: "7B29010400090002"
+					item: {
+						count: 1
+						id: "refinedstorage:destruction_core"
+					}
+					type: "item"
+				}
+			]
+			title: "Cores"
+			x: 4.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B29010300080000", "7B29010300040000"]
+			description: [
+				"The heart of the network, and the thing that eats the power."
+				""
+				"One per network. A second controller does not extend a network --"
+				"it makes a separate one."
+			]
+			id: "7B290103000A0000"
+			rewards: [
+				{
+					id: "7B290105000A000B"
+					type: "xp"
+					xp: 80
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B290105000A000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Build the controller"
+			tasks: [
+				{
+					id: "7B290104000A0001"
+					item: {
+						count: 1
+						id: "refinedstorage:controller"
+					}
+					type: "item"
+				}
+			]
+			title: "The Controller"
+			x: 7.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B29010300080000", "7B29010300040000"]
+			description: [
+				"Eight disk bays. Without one, the network has nowhere to put"
+				"anything."
+				""
+				"Attach it to the cable, not to the controller."
+			]
+			id: "7B290103000B0000"
+			rewards: [
+				{
+					id: "7B290105000B000B"
+					type: "xp"
+					xp: 60
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B290105000B000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Build a disk drive"
+			tasks: [
+				{
+					id: "7B290104000B0001"
+					item: {
+						count: 1
+						id: "refinedstorage:disk_drive"
+					}
+					type: "item"
+				}
+			]
+			title: "Disk Drive"
+			x: 7.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B29010300030000", "7B29010300040000"]
+			description: [
+				"A part plus a housing makes a disk."
+				""
+				"1k is small. The tiers run 1k, 4k, 16k, 64k, and each is built"
+				"from four of the one below -- so the first 64k disk costs sixty-four"
+				"1k parts. Start early."
+			]
+			id: "7B290103000C0000"
+			rewards: [
+				{
+					id: "7B290105000C000B"
+					type: "xp"
+					xp: 50
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B290105000C000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft storage parts and a disk"
+			tasks: [
+				{
+					id: "7B290104000C0001"
+					item: {
+						count: 1
+						id: "refinedstorage:1k_storage_part"
+					}
+					type: "item"
+				}
+				{
+					id: "7B290104000C0002"
+					item: {
+						count: 1
+						id: "refinedstorage:1k_storage_disk"
+					}
+					type: "item"
+				}
+			]
+			title: "Storage Disks"
+			x: 7.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B290103000A0000"]
+			description: [
+				"The window into the network, and the first moment it feels worth"
+				"the effort."
+				""
+				"Search with the box, sort however you like, and never open a chest"
+				"again."
+			]
+			id: "7B290103000D0000"
+			rewards: [
+				{
+					id: "7B290105000D000B"
+					type: "xp"
+					xp: 50
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B290105000D000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Build a grid"
+			tasks: [
+				{
+					id: "7B290104000D0001"
+					item: {
+						count: 1
+						id: "refinedstorage:grid"
+					}
+					type: "item"
+				}
+			]
+			title: "The Grid"
+			x: 9.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B29010300050000", "7B29010300090000"]
+			description: [
+				"An importer pulls from a container into the network. An exporter"
+				"pushes the other way."
+				""
+				"Point an importer at a furnace output and the network empties it"
+				"for you."
+			]
+			id: "7B290103000E0000"
+			rewards: [
+				{
+					id: "7B290105000E000B"
+					type: "xp"
+					xp: 40
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B290105000E000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Move items automatically"
+			tasks: [
+				{
+					id: "7B290104000E0001"
+					item: {
+						count: 1
+						id: "refinedstorage:importer"
+					}
+					type: "item"
+				}
+				{
+					id: "7B290104000E0002"
+					item: {
+						count: 1
+						id: "refinedstorage:exporter"
+					}
+					type: "item"
+				}
+			]
+			title: "Importer and Exporter"
+			x: 6.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B29010300050000", "7B29010300090000"]
+			description: [
+				"Rather than moving items in, this shows an existing container's"
+				"contents as part of the network."
+				""
+				"The single best way to bring a room full of barrels online without"
+				"touching any of it."
+			]
+			id: "7B290103000F0000"
+			rewards: [
+				{
+					id: "7B290105000F000B"
+					type: "xp"
+					xp: 45
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B290105000F000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Expose a container to the network"
+			tasks: [
+				{
+					id: "7B290104000F0001"
+					item: {
+						count: 1
+						id: "refinedstorage:external_storage"
+					}
+					type: "item"
+				}
+			]
+			title: "External Storage"
+			x: 6.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B290103000D0000"]
+			description: [
+				"A grid you can craft in, pulling straight from network storage."
+				""
+				"Patterns record a recipe for the autocrafter to follow later."
+			]
+			id: "7B29010300100000"
+			rewards: [
+				{
+					id: "7B2901050010000B"
+					type: "xp"
+					xp: 60
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2901050010000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Build a crafting grid and a pattern"
+			tasks: [
+				{
+					id: "7B29010400100001"
+					item: {
+						count: 1
+						id: "refinedstorage:crafting_grid"
+					}
+					type: "item"
+				}
+				{
+					count: 4L
+					id: "7B29010400100002"
+					item: {
+						count: 1
+						id: "refinedstorage:pattern"
+					}
+					type: "item"
+				}
+			]
+			title: "Crafting Grid"
+			x: 10.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B29010300080000", "7B29010300090000"]
+			description: [
+				"Ask the network for something it does not have, and it makes it."
+				""
+				"Give it patterns for the intermediate steps too and it will chain"
+				"them -- request a block and watch it craft the ingots first."
+				""
+				"This is where Refined Storage stops being storage."
+			]
+			id: "7B29010300110000"
+			rewards: [
+				{
+					id: "7B2901050011000B"
+					type: "xp"
+					xp: 100
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2901050011000C"
+					table_id: 8863084092434939908L
+					type: "random"
+				}
+			]
+			subtitle: "Build an autocrafter"
+			tasks: [
+				{
+					id: "7B29010400110001"
+					item: {
+						count: 1
+						id: "refinedstorage:autocrafter"
+					}
+					type: "item"
+				}
+			]
+			title: "Autocrafter"
+			x: 9.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B29010300080000", "7B290103000D0000"]
+			description: [
+				"The whole network, in your inventory."
+				""
+				"It needs a wireless transmitter on the network to have any range,"
+				"and it needs charging."
+			]
+			id: "7B29010300120000"
+			rewards: [
+				{
+					id: "7B2901050012000B"
+					type: "xp"
+					xp: 90
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2901050012000C"
+					table_id: 8863084092434939908L
+					type: "random"
+				}
+			]
+			subtitle: "Build a wireless grid"
+			tasks: [
+				{
+					id: "7B29010400120001"
+					item: {
+						count: 1
+						id: "refinedstorage:wireless_grid"
+					}
+					type: "item"
+				}
+			]
+			title: "Wireless Grid"
+			x: 10.5d
+			y: -1.5d
+		}
+	]
+	subtitle: "One controller, some cable, and never open a chest again"
+	title: "Refined Storage"
+}
