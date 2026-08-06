@@ -1,0 +1,140 @@
+{
+	filename: "rare"
+	icon: {
+		id: "minecraft:diamond"
+	}
+	id: "7B00000600000003"
+	loot_size: 1
+	order_index: 3
+	rewards: [
+		{
+			count: 3
+			id: "7B00000700030001"
+			item: {
+				count: 1
+				id: "minecraft:diamond"
+			}
+			random_bonus: 3
+			weight: 15.0f
+		}
+		{
+			count: 2
+			id: "7B00000700030002"
+			item: {
+				count: 1
+				id: "minecraft:gold_block"
+			}
+			random_bonus: 1
+			weight: 10.0f
+		}
+		{
+			count: 4
+			id: "7B00000700030003"
+			item: {
+				count: 1
+				id: "minecraft:emerald"
+			}
+			random_bonus: 4
+			weight: 10.0f
+		}
+		{
+			id: "7B00000700030004"
+			item: {
+				count: 1
+				id: "minecraft:ender_chest"
+			}
+			weight: 8.0f
+		}
+		{
+			count: 2
+			id: "7B00000700030005"
+			item: {
+				count: 1
+				id: "minecraft:golden_apple"
+			}
+			random_bonus: 1
+			weight: 8.0f
+		}
+		{
+			id: "7B00000700030006"
+			item: {
+				count: 1
+				id: "minecraft:anvil"
+			}
+			weight: 7.0f
+		}
+		{
+			id: "7B00000700030007"
+			item: {
+				count: 1
+				id: "minecraft:enchanted_book"
+			}
+			weight: 7.0f
+		}
+		{
+			id: "7B00000700030008"
+			item: {
+				count: 1
+				id: "minecraft:diamond_block"
+			}
+			weight: 5.0f
+		}
+		{
+			count: 2
+			id: "7B00000700030009"
+			item: {
+				count: 1
+				id: "minecraft:shulker_shell"
+			}
+			random_bonus: 2
+			weight: 5.0f
+		}
+		{
+			count: 12
+			id: "7B0000070003000A"
+			item: {
+				count: 1
+				id: "minecraft:experience_bottle"
+			}
+			random_bonus: 12
+			weight: 5.0f
+		}
+		{
+			count: 6
+			id: "7B0000070003000B"
+			item: {
+				count: 1
+				id: "minecraft:amethyst_shard"
+			}
+			random_bonus: 6
+			weight: 5.0f
+		}
+		{
+			id: "7B0000070003000C"
+			item: {
+				count: 1
+				id: "minecraft:heart_of_the_sea"
+			}
+			weight: 3.0f
+		}
+		{
+			id: "7B0000070003000D"
+			item: {
+				count: 1
+				id: "minecraft:totem_of_undying"
+			}
+			weight: 3.0f
+		}
+		{
+			id: "7B0000070003000E"
+			item: {
+				count: 1
+				id: "minecraft:netherite_scrap"
+			}
+			random_bonus: 1
+			weight: 3.0f
+		}
+	]
+	title: "Rare Reward"
+	use_title: true
+}

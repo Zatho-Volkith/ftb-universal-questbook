@@ -1,0 +1,428 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "getting_started"
+	group: "7B00000100000001"
+	icon: {
+		id: "minecraft:crafting_table"
+	}
+	id: "7B01010200000001"
+	images: [ ]
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"Every world begins the same way: bare hands against a tree."
+				""
+				"Break a few logs to get started. You will need far more than this"
+				"before long, so find a forest you like."
+			]
+			id: "7B01010300010000"
+			rewards: [
+				{
+					id: "7B0101050001000B"
+					type: "xp"
+					xp: 10
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B0101050001000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Everything starts here"
+			tasks: [
+				{
+					count: 4L
+					id: "7B01010400010001"
+					item: {
+						count: 1
+						id: "minecraft:oak_log"
+					}
+					type: "item"
+				}
+			]
+			title: "Punch a Tree"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B01010300010000"]
+			description: [
+				"Four planks and you have a proper workbench."
+				""
+				"The 2x2 grid in your inventory will only take you so far."
+			]
+			id: "7B01010300020000"
+			rewards: [
+				{
+					count: 16
+					id: "7B0101050002000B"
+					item: {
+						count: 1
+						id: "minecraft:oak_planks"
+					}
+					type: "item"
+				}
+				{
+					id: "7B0101050002000C"
+					type: "xp"
+					xp: 10
+				}
+			]
+			subtitle: "Craft a crafting table"
+			tasks: [
+				{
+					id: "7B01010400020001"
+					item: {
+						count: 1
+						id: "minecraft:crafting_table"
+					}
+					type: "item"
+				}
+			]
+			title: "A Place to Work"
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B01010300020000"]
+			description: [
+				"Wood is a means to an end. That end is stone."
+				""
+				"Wooden tools are miserable, but they are the only thing standing"
+				"between you and every other tool in the game."
+			]
+			id: "7B01010300030000"
+			rewards: [
+				{
+					count: 8
+					id: "7B0101050003000B"
+					item: {
+						count: 1
+						id: "minecraft:stick"
+					}
+					type: "item"
+				}
+				{
+					id: "7B0101050003000C"
+					type: "xp"
+					xp: 10
+				}
+			]
+			subtitle: "Craft a wooden pickaxe"
+			tasks: [
+				{
+					id: "7B01010400030001"
+					item: {
+						count: 1
+						id: "minecraft:wooden_pickaxe"
+					}
+					type: "item"
+				}
+			]
+			title: "First Tools"
+			x: 3.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B01010300030000"]
+			description: [
+				"Stone tools last four times longer than wooden ones and cost"
+				"essentially nothing. There is never a reason to skip this step."
+			]
+			id: "7B01010300040000"
+			rewards: [
+				{
+					id: "7B0101050004000B"
+					item: {
+						count: 1
+						id: "minecraft:stone_pickaxe"
+					}
+					type: "item"
+				}
+				{
+					id: "7B0101050004000C"
+					type: "xp"
+					xp: 15
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B0101050004000D"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Gather cobblestone"
+			tasks: [
+				{
+					count: 32L
+					id: "7B01010400040001"
+					item: {
+						count: 1
+						id: "minecraft:cobblestone"
+					}
+					type: "item"
+				}
+			]
+			title: "The Stone Age"
+			x: 4.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B01010300040000"]
+			description: [
+				"Light is the difference between a mine and a grave."
+				""
+				"Place them as you dig. A tunnel you cannot see your way out of"
+				"is a tunnel you should not have dug."
+			]
+			id: "7B01010300050000"
+			rewards: [
+				{
+					count: 8
+					id: "7B0101050005000B"
+					item: {
+						count: 1
+						id: "minecraft:coal"
+					}
+					type: "item"
+				}
+				{
+					id: "7B0101050005000C"
+					type: "xp"
+					xp: 10
+				}
+			]
+			subtitle: "Craft torches"
+			tasks: [
+				{
+					count: 16L
+					id: "7B01010400050001"
+					item: {
+						count: 1
+						id: "minecraft:torch"
+					}
+					type: "item"
+				}
+			]
+			title: "Hold Back the Dark"
+			x: 6.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["7B01010300040000"]
+			description: [
+				"Iron is the real beginning of the game. Tools, armour, buckets,"
+				"hoppers, rails, anvils -- almost everything worth building runs"
+				"through it."
+				""
+				"Find it deep, or in the walls of any cave."
+			]
+			id: "7B01010300060000"
+			rewards: [
+				{
+					count: 4
+					id: "7B0101050006000B"
+					item: {
+						count: 1
+						id: "minecraft:iron_ingot"
+					}
+					type: "item"
+				}
+				{
+					id: "7B0101050006000C"
+					type: "xp"
+					xp: 25
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B0101050006000D"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Smelt your first iron"
+			tasks: [
+				{
+					count: 8L
+					id: "7B01010400060001"
+					item: {
+						count: 1
+						id: "minecraft:iron_ingot"
+					}
+					type: "item"
+				}
+			]
+			title: "The Iron Age"
+			x: 6.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B01010300040000"]
+			description: ["Eight cobblestone in a ring. It smelts ore, cooks food, and turns", "sand into glass."]
+			id: "7B01010300070000"
+			rewards: [
+				{
+					count: 8
+					id: "7B0101050007000B"
+					item: {
+						count: 1
+						id: "minecraft:charcoal"
+					}
+					type: "item"
+				}
+				{
+					id: "7B0101050007000C"
+					type: "xp"
+					xp: 10
+				}
+			]
+			subtitle: "Craft a furnace"
+			tasks: [
+				{
+					id: "7B01010400070001"
+					item: {
+						count: 1
+						id: "minecraft:furnace"
+					}
+					type: "item"
+				}
+			]
+			title: "Fire and Stone"
+			x: 4.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B01010300020000"]
+			description: [
+				"Hunger drains as you sprint, jump and mine. Let it empty and you"
+				"stop regenerating -- and then it gets worse."
+				""
+				"Cooked food restores far more than raw. Always cook it."
+			]
+			id: "7B01010300080000"
+			rewards: [
+				{
+					count: 8
+					id: "7B0101050008000B"
+					item: {
+						count: 1
+						id: "minecraft:bread"
+					}
+					type: "item"
+				}
+				{
+					id: "7B0101050008000C"
+					type: "xp"
+					xp: 10
+				}
+			]
+			subtitle: "Cook a meal"
+			tasks: [
+				{
+					count: 4L
+					id: "7B01010400080001"
+					item: {
+						count: 1
+						id: "minecraft:cooked_beef"
+					}
+					type: "item"
+				}
+			]
+			title: "Something to Eat"
+			x: 3.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B01010300020000"]
+			description: [
+				"A bed skips the night and, more importantly, sets your spawn."
+				""
+				"Sleep before you have somewhere safe to wake up and you will"
+				"learn this lesson the hard way."
+			]
+			id: "7B01010300090000"
+			rewards: [
+				{
+					count: 6
+					id: "7B0101050009000B"
+					item: {
+						count: 1
+						id: "minecraft:white_wool"
+					}
+					type: "item"
+				}
+				{
+					id: "7B0101050009000C"
+					type: "xp"
+					xp: 15
+				}
+			]
+			subtitle: "Craft a bed"
+			tasks: [
+				{
+					id: "7B01010400090001"
+					item: {
+						count: 1
+						id: "minecraft:white_bed"
+					}
+					type: "item"
+				}
+			]
+			title: "Somewhere to Sleep"
+			x: 1.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["7B01010300060000"]
+			description: [
+				"A shield blocks skeleton arrows, creeper blasts and most melee."
+				""
+				"It costs six planks and one iron ingot, and it will save your life"
+				"more often than any sword you craft."
+			]
+			id: "7B010103000A0000"
+			rewards: [
+				{
+					count: 2
+					id: "7B010105000A000B"
+					item: {
+						count: 1
+						id: "minecraft:iron_ingot"
+					}
+					type: "item"
+				}
+				{
+					id: "7B010105000A000C"
+					type: "xp"
+					xp: 20
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B010105000A000D"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a shield"
+			tasks: [
+				{
+					id: "7B010104000A0001"
+					item: {
+						count: 1
+						id: "minecraft:shield"
+					}
+					type: "item"
+				}
+			]
+			title: "Something to Hide Behind"
+			x: 7.5d
+			y: 1.5d
+		}
+	]
+	subtitle: "The first hour, in ten quests"
+	title: "Getting Started"
+}

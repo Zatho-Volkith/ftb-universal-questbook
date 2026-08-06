@@ -1,0 +1,23 @@
+{
+  "id": "01-getting-started",
+  "module_number": 1,
+  "name": "Getting Started",
+  "description": "A ten-quest opening chapter covering wood, stone, iron, light, food and shelter. Vanilla items only, so it works in any 1.21.1 pack.",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "requires_mods": [],
+  "requires_modules": [
+    "00-core"
+  ],
+  "chapter_group": "vanilla",
+  "chapters": [
+    {
+      "number": 1,
+      "file": "getting_started.snbt",
+      "title": "Getting Started"
+    }
+  ],
+  "allowed_external_dependencies": []
+}

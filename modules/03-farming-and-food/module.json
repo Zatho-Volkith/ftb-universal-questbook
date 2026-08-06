@@ -1,0 +1,23 @@
+{
+  "id": "03-farming-and-food",
+  "module_number": 3,
+  "name": "Farming and Food",
+  "description": "Every vanilla crop, animal breeding, and the food worth cooking.",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "requires_mods": [],
+  "requires_modules": [
+    "00-core"
+  ],
+  "chapter_group": "vanilla",
+  "chapters": [
+    {
+      "number": 1,
+      "file": "farming_and_food.snbt",
+      "title": "Farming & Food"
+    }
+  ],
+  "allowed_external_dependencies": []
+}

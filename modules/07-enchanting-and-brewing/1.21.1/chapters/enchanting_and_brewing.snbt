@@ -1,0 +1,358 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "enchanting_and_brewing"
+	group: "7B00000100000001"
+	icon: {
+		id: "minecraft:enchanting_table"
+	}
+	id: "7B07010200000001"
+	images: [ ]
+	order_index: 6
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"Fifteen bookshelves in a ring around the table, one block of air"
+				"between, and the altar reaches level thirty."
+				""
+				"Anything less and you are wasting lapis."
+			]
+			id: "7B07010300010000"
+			rewards: [
+				{
+					id: "7B0701050001000B"
+					type: "xp"
+					xp: 20
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B0701050001000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft bookshelves"
+			tasks: [
+				{
+					count: 15L
+					id: "7B07010400010001"
+					item: {
+						count: 1
+						id: "minecraft:bookshelf"
+					}
+					type: "item"
+				}
+			]
+			title: "A Library"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B07010300010000"]
+			description: ["Obsidian, diamonds and a book.", "", "The writing on top is decorative. Mostly."]
+			id: "7B07010300020000"
+			rewards: [
+				{
+					id: "7B0701050002000B"
+					type: "xp"
+					xp: 30
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B0701050002000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Craft an enchanting table"
+			tasks: [
+				{
+					id: "7B07010400020001"
+					item: {
+						count: 1
+						id: "minecraft:enchanting_table"
+					}
+					type: "item"
+				}
+			]
+			title: "The Table"
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B07010300010000"]
+			description: [
+				"Three per enchantment, and you will re-roll more often than you expect."
+				""
+				"Thirty-two is a start, not a stockpile."
+			]
+			id: "7B07010300030000"
+			rewards: [
+				{
+					id: "7B0701050003000B"
+					type: "xp"
+					xp: 15
+				}
+			]
+			subtitle: "Stock up on lapis"
+			tasks: [
+				{
+					count: 32L
+					id: "7B07010400030001"
+					item: {
+						count: 1
+						id: "minecraft:lapis_lazuli"
+					}
+					type: "item"
+				}
+			]
+			title: "Lapis Supply"
+			x: 1.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B07010300020000", "7B07010300030000"]
+			description: [
+				"Enchant books rather than tools. A bad roll on a book costs you"
+				"three lapis; a bad roll on a diamond pickaxe costs you the pickaxe."
+			]
+			id: "7B07010300040000"
+			rewards: [
+				{
+					id: "7B0701050004000B"
+					type: "xp"
+					xp: 40
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B0701050004000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Enchant a book"
+			tasks: [
+				{
+					id: "7B07010400040001"
+					item: {
+						count: 1
+						id: "minecraft:enchanted_book"
+					}
+					type: "item"
+				}
+			]
+			title: "First Enchantment"
+			x: 3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B07010300040000"]
+			description: [
+				"Thirty-one iron ingots, and it wears out."
+				""
+				"Combine books before applying them -- the cost compounds fast."
+			]
+			id: "7B07010300050000"
+			rewards: [
+				{
+					id: "7B0701050005000B"
+					type: "xp"
+					xp: 30
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B0701050005000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Craft an anvil"
+			tasks: [
+				{
+					id: "7B07010400050001"
+					item: {
+						count: 1
+						id: "minecraft:anvil"
+					}
+					type: "item"
+				}
+			]
+			title: "The Anvil"
+			x: 4.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B07010300010000"]
+			description: [
+				"Three cobblestone and a blaze rod."
+				""
+				"Which means brewing is gated behind the Nether, like everything else."
+			]
+			id: "7B07010300060000"
+			rewards: [
+				{
+					id: "7B0701050006000B"
+					type: "xp"
+					xp: 25
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B0701050006000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a brewing stand"
+			tasks: [
+				{
+					id: "7B07010400060001"
+					item: {
+						count: 1
+						id: "minecraft:brewing_stand"
+					}
+					type: "item"
+				}
+			]
+			title: "Brewing Stand"
+			x: 3.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B07010300060000"]
+			description: [
+				"Every useful potion begins as an awkward potion, and every awkward"
+				"potion begins as nether wart."
+				""
+				"It grows on soul sand in any dimension."
+			]
+			id: "7B07010300070000"
+			rewards: [
+				{
+					id: "7B0701050007000B"
+					type: "xp"
+					xp: 20
+				}
+			]
+			subtitle: "Stock nether wart"
+			tasks: [
+				{
+					count: 16L
+					id: "7B07010400070001"
+					item: {
+						count: 1
+						id: "minecraft:nether_wart"
+					}
+					type: "item"
+				}
+			]
+			title: "Nether Wart Farm"
+			x: 4.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B07010300070000"]
+			description: ["Brew three at once. There is never a reason to brew fewer."]
+			id: "7B07010300080000"
+			rewards: [
+				{
+					id: "7B0701050008000B"
+					type: "xp"
+					xp: 15
+				}
+			]
+			subtitle: "Gather glass bottles"
+			tasks: [
+				{
+					count: 3L
+					id: "7B07010400080001"
+					item: {
+						count: 1
+						id: "minecraft:glass_bottle"
+					}
+					type: "item"
+				}
+			]
+			title: "Bottles and Bases"
+			x: 6.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B07010300070000"]
+			description: [
+				"A melon slice and eight gold nuggets."
+				""
+				"Instant health, and it does the opposite to the undead."
+			]
+			id: "7B07010300090000"
+			rewards: [
+				{
+					id: "7B0701050009000B"
+					type: "xp"
+					xp: 25
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B0701050009000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Gather glistering melon"
+			tasks: [
+				{
+					count: 4L
+					id: "7B07010400090001"
+					item: {
+						count: 1
+						id: "minecraft:glistering_melon_slice"
+					}
+					type: "item"
+				}
+			]
+			title: "Potion of Healing"
+			x: 6.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["7B07010300070000"]
+			description: [
+				"Blaze powder is both the fuel for the stand and the ingredient"
+				"for strength."
+				""
+				"Bring back more rods than you think you need."
+			]
+			id: "7B070103000A0000"
+			rewards: [
+				{
+					id: "7B070105000A000B"
+					type: "xp"
+					xp: 30
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B070105000A000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Gather blaze powder"
+			tasks: [
+				{
+					count: 8L
+					id: "7B070104000A0001"
+					item: {
+						count: 1
+						id: "minecraft:blaze_powder"
+					}
+					type: "item"
+				}
+			]
+			title: "Potion of Strength"
+			x: 7.5d
+			y: 1.5d
+		}
+	]
+	subtitle: "Lapis, anvils and awkward potions"
+	title: "Enchanting & Brewing"
+}

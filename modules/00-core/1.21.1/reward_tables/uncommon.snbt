@@ -1,0 +1,157 @@
+{
+	filename: "uncommon"
+	icon: {
+		id: "minecraft:iron_ingot"
+	}
+	id: "7B00000600000002"
+	loot_size: 1
+	order_index: 2
+	rewards: [
+		{
+			count: 6
+			id: "7B00000700020001"
+			item: {
+				count: 1
+				id: "minecraft:iron_ingot"
+			}
+			random_bonus: 6
+			weight: 15.0f
+		}
+		{
+			count: 8
+			id: "7B00000700020002"
+			item: {
+				count: 1
+				id: "minecraft:redstone"
+			}
+			random_bonus: 8
+			weight: 12.0f
+		}
+		{
+			count: 4
+			id: "7B00000700020003"
+			item: {
+				count: 1
+				id: "minecraft:gold_ingot"
+			}
+			random_bonus: 4
+			weight: 10.0f
+		}
+		{
+			count: 6
+			id: "7B00000700020004"
+			item: {
+				count: 1
+				id: "minecraft:lapis_lazuli"
+			}
+			random_bonus: 6
+			weight: 10.0f
+		}
+		{
+			count: 3
+			id: "7B00000700020005"
+			item: {
+				count: 1
+				id: "minecraft:book"
+			}
+			random_bonus: 3
+			weight: 8.0f
+		}
+		{
+			count: 4
+			id: "7B00000700020006"
+			item: {
+				count: 1
+				id: "minecraft:obsidian"
+			}
+			random_bonus: 4
+			weight: 8.0f
+		}
+		{
+			count: 6
+			id: "7B00000700020007"
+			item: {
+				count: 1
+				id: "minecraft:glowstone_dust"
+			}
+			random_bonus: 6
+			weight: 8.0f
+		}
+		{
+			count: 2
+			id: "7B00000700020008"
+			item: {
+				count: 1
+				id: "minecraft:ender_pearl"
+			}
+			random_bonus: 2
+			weight: 6.0f
+		}
+		{
+			count: 4
+			id: "7B00000700020009"
+			item: {
+				count: 1
+				id: "minecraft:golden_carrot"
+			}
+			random_bonus: 4
+			weight: 6.0f
+		}
+		{
+			id: "7B0000070002000A"
+			item: {
+				count: 1
+				id: "minecraft:iron_block"
+			}
+			random_bonus: 1
+			weight: 5.0f
+		}
+		{
+			id: "7B0000070002000B"
+			item: {
+				count: 1
+				id: "minecraft:name_tag"
+			}
+			weight: 4.0f
+		}
+		{
+			id: "7B0000070002000C"
+			item: {
+				count: 1
+				id: "minecraft:saddle"
+			}
+			weight: 4.0f
+		}
+		{
+			count: 2
+			id: "7B0000070002000D"
+			item: {
+				count: 1
+				id: "minecraft:blaze_rod"
+			}
+			random_bonus: 1
+			weight: 4.0f
+		}
+		{
+			id: "7B0000070002000E"
+			item: {
+				count: 1
+				id: "minecraft:diamond"
+			}
+			random_bonus: 1
+			weight: 3.0f
+		}
+		{
+			count: 4
+			id: "7B0000070002000F"
+			item: {
+				count: 1
+				id: "minecraft:experience_bottle"
+			}
+			random_bonus: 4
+			weight: 3.0f
+		}
+	]
+	title: "Uncommon Reward"
+	use_title: true
+}

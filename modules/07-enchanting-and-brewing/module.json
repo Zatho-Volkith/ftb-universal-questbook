@@ -1,0 +1,23 @@
+{
+  "id": "07-enchanting-and-brewing",
+  "module_number": 7,
+  "name": "Enchanting and Brewing",
+  "description": "A level-thirty altar, the anvil, and the brewing stand chain.",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "requires_mods": [],
+  "requires_modules": [
+    "00-core"
+  ],
+  "chapter_group": "vanilla",
+  "chapters": [
+    {
+      "number": 1,
+      "file": "enchanting_and_brewing.snbt",
+      "title": "Enchanting & Brewing"
+    }
+  ],
+  "allowed_external_dependencies": []
+}

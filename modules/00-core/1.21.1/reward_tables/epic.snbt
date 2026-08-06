@@ -1,0 +1,117 @@
+{
+	filename: "epic"
+	icon: {
+		id: "minecraft:netherite_ingot"
+	}
+	id: "7B00000600000004"
+	loot_size: 1
+	order_index: 4
+	rewards: [
+		{
+			count: 2
+			id: "7B00000700040001"
+			item: {
+				count: 1
+				id: "minecraft:diamond_block"
+			}
+			random_bonus: 2
+			weight: 14.0f
+		}
+		{
+			count: 2
+			id: "7B00000700040002"
+			item: {
+				count: 1
+				id: "minecraft:netherite_scrap"
+			}
+			random_bonus: 2
+			weight: 12.0f
+		}
+		{
+			count: 2
+			id: "7B00000700040003"
+			item: {
+				count: 1
+				id: "minecraft:ancient_debris"
+			}
+			random_bonus: 2
+			weight: 10.0f
+		}
+		{
+			id: "7B00000700040004"
+			item: {
+				count: 1
+				id: "minecraft:enchanted_golden_apple"
+			}
+			weight: 8.0f
+		}
+		{
+			id: "7B00000700040005"
+			item: {
+				count: 1
+				id: "minecraft:totem_of_undying"
+			}
+			weight: 8.0f
+		}
+		{
+			id: "7B00000700040006"
+			item: {
+				count: 1
+				id: "minecraft:shulker_box"
+			}
+			weight: 8.0f
+		}
+		{
+			id: "7B00000700040007"
+			item: {
+				count: 1
+				id: "minecraft:netherite_ingot"
+			}
+			weight: 6.0f
+		}
+		{
+			id: "7B00000700040008"
+			item: {
+				count: 1
+				id: "minecraft:elytra"
+			}
+			weight: 5.0f
+		}
+		{
+			id: "7B00000700040009"
+			item: {
+				count: 1
+				id: "minecraft:trident"
+			}
+			weight: 5.0f
+		}
+		{
+			count: 2
+			id: "7B0000070004000A"
+			item: {
+				count: 1
+				id: "minecraft:emerald_block"
+			}
+			random_bonus: 2
+			weight: 5.0f
+		}
+		{
+			id: "7B0000070004000B"
+			item: {
+				count: 1
+				id: "minecraft:beacon"
+			}
+			weight: 4.0f
+		}
+		{
+			id: "7B0000070004000C"
+			item: {
+				count: 1
+				id: "minecraft:nether_star"
+			}
+			weight: 3.0f
+		}
+	]
+	title: "Epic Reward"
+	use_title: true
+}

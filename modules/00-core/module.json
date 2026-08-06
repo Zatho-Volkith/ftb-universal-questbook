@@ -1,0 +1,44 @@
+{
+  "id": "00-core",
+  "module_number": 0,
+  "name": "Core Reward Tables",
+  "description": "Five tiered reward tables built entirely from vanilla items, plus the chapter groups every other module hangs from. Required by all modules.",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "requires_mods": [],
+  "required": true,
+  "provides_reward_tables": {
+    "common": {
+      "id": "7B00000600000001",
+      "table_id": 8863084092434939905
+    },
+    "uncommon": {
+      "id": "7B00000600000002",
+      "table_id": 8863084092434939906
+    },
+    "rare": {
+      "id": "7B00000600000003",
+      "table_id": 8863084092434939907
+    },
+    "epic": {
+      "id": "7B00000600000004",
+      "table_id": 8863084092434939908
+    },
+    "legendary": {
+      "id": "7B00000600000005",
+      "table_id": 8863084092434939909
+    }
+  },
+  "provides_chapter_groups": {
+    "vanilla": {
+      "id": "7B00000100000001",
+      "title": "Universal \u00b7 Vanilla"
+    },
+    "mods": {
+      "id": "7B00000100000002",
+      "title": "Universal \u00b7 Mod Content"
+    }
+  }
+}

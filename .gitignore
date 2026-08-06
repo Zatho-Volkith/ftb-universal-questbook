@@ -1,0 +1,23 @@
+# Mod jars are never committed. FTB Quests in particular is distributed
+# All Rights Reserved; reference jars belong outside this repository.
+*.jar
+
+# Installer backups
+*.bak-*
+
+# Build output
+dist/
+
+# Local test server: portable JDK, NeoForge install, world data, logs.
+# Rebuild it any time with `python3 tools/testbed.py setup`.
+testbed/
+
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

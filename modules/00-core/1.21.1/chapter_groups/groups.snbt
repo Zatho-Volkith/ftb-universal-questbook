@@ -1,0 +1,14 @@
+{
+	chapter_groups: [
+		{
+			id: "7B00000100000001"
+			order_index: 1
+			title: "Universal · Vanilla"
+		}
+		{
+			id: "7B00000100000002"
+			order_index: 2
+			title: "Universal · Mod Content"
+		}
+	]
+}

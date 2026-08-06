@@ -1,0 +1,442 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "farming_and_food"
+	group: "7B00000100000001"
+	icon: {
+		id: "minecraft:wheat"
+	}
+	id: "7B03010200000001"
+	images: [ ]
+	order_index: 2
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"Tilled soil beside water grows almost anything."
+				""
+				"A hoe is two sticks and two of nearly any hard material."
+			]
+			id: "7B03010300010000"
+			rewards: [
+				{
+					id: "7B0301050001000B"
+					type: "xp"
+					xp: 10
+				}
+			]
+			subtitle: "Craft a hoe"
+			tasks: [
+				{
+					id: "7B03010400010001"
+					item: {
+						count: 1
+						id: "minecraft:wooden_hoe"
+					}
+					type: "item"
+				}
+			]
+			title: "Break Ground"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B03010300010000"]
+			description: [
+				"Wheat feeds you, breeds your animals, and stores indefinitely."
+				""
+				"Harvest only when the tops turn brown, or you lose the yield."
+			]
+			id: "7B03010300020000"
+			rewards: [
+				{
+					id: "7B0301050002000B"
+					type: "xp"
+					xp: 15
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B0301050002000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Harvest wheat"
+			tasks: [
+				{
+					count: 32L
+					id: "7B03010400020001"
+					item: {
+						count: 1
+						id: "minecraft:wheat"
+					}
+					type: "item"
+				}
+			]
+			title: "Golden Fields"
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B03010300020000"]
+			description: [
+				"Three wheat, no fuel, no cooking. The most efficient food in the game"
+				"for the effort involved."
+			]
+			id: "7B03010300030000"
+			rewards: [
+				{
+					id: "7B0301050003000B"
+					type: "xp"
+					xp: 10
+				}
+			]
+			subtitle: "Bake bread"
+			tasks: [
+				{
+					count: 8L
+					id: "7B03010400030001"
+					item: {
+						count: 1
+						id: "minecraft:bread"
+					}
+					type: "item"
+				}
+			]
+			title: "Daily Bread"
+			x: 3.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B03010300010000"]
+			description: [
+				"Both come from village farms or the occasional lucky zombie drop."
+				""
+				"Potatoes yield more per plant; carrots make golden carrots later."
+			]
+			id: "7B03010300040000"
+			rewards: [
+				{
+					id: "7B0301050004000B"
+					type: "xp"
+					xp: 15
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B0301050004000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Grow carrots and potatoes"
+			tasks: [
+				{
+					count: 16L
+					id: "7B03010400040001"
+					item: {
+						count: 1
+						id: "minecraft:carrot"
+					}
+					type: "item"
+				}
+				{
+					count: 16L
+					id: "7B03010400040002"
+					item: {
+						count: 1
+						id: "minecraft:potato"
+					}
+					type: "item"
+				}
+			]
+			title: "Roots"
+			x: 3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B03010300010000"]
+			description: [
+				"Unremarkable food, excellent red dye, and beetroot soup exists."
+				""
+				"Seeds come from village farms and pillager outposts."
+			]
+			id: "7B03010300050000"
+			rewards: [
+				{
+					id: "7B0301050005000B"
+					type: "xp"
+					xp: 10
+				}
+			]
+			subtitle: "Grow beetroot"
+			tasks: [
+				{
+					count: 8L
+					id: "7B03010400050001"
+					item: {
+						count: 1
+						id: "minecraft:beetroot"
+					}
+					type: "item"
+				}
+			]
+			title: "Beetroot"
+			x: 3.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B03010300010000"]
+			description: [
+				"Paper, books, sugar, and eventually every map and bookshelf you own."
+				""
+				"It only grows on sand or dirt with water alongside."
+			]
+			id: "7B03010300060000"
+			rewards: [
+				{
+					id: "7B0301050006000B"
+					type: "xp"
+					xp: 10
+				}
+			]
+			subtitle: "Harvest sugar cane"
+			tasks: [
+				{
+					count: 32L
+					id: "7B03010400060001"
+					item: {
+						count: 1
+						id: "minecraft:sugar_cane"
+					}
+					type: "item"
+				}
+			]
+			title: "Sweet Reeds"
+			x: 1.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B03010300010000"]
+			description: [
+				"Stem crops need an empty block beside them to fruit into."
+				""
+				"Leave room, or they will sit there forever looking healthy."
+			]
+			id: "7B03010300070000"
+			rewards: [
+				{
+					id: "7B0301050007000B"
+					type: "xp"
+					xp: 15
+				}
+			]
+			subtitle: "Grow the big ones"
+			tasks: [
+				{
+					count: 8L
+					id: "7B03010400070001"
+					item: {
+						count: 1
+						id: "minecraft:melon_slice"
+					}
+					type: "item"
+				}
+				{
+					count: 4L
+					id: "7B03010400070002"
+					item: {
+						count: 1
+						id: "minecraft:pumpkin"
+					}
+					type: "item"
+				}
+			]
+			title: "Melons and Pumpkins"
+			x: 1.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B03010300040000"]
+			description: [
+				"Animals follow the food they breed on: wheat for cows and sheep,"
+				"carrots for pigs, seeds for chickens."
+				""
+				"A lead saves you walking backwards across the entire map."
+			]
+			id: "7B03010300080000"
+			rewards: [
+				{
+					id: "7B0301050008000B"
+					type: "xp"
+					xp: 15
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B0301050008000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a lead"
+			tasks: [
+				{
+					id: "7B03010400080001"
+					item: {
+						count: 1
+						id: "minecraft:lead"
+					}
+					type: "item"
+				}
+			]
+			title: "Livestock"
+			x: 4.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B03010300030000", "7B03010300080000"]
+			description: [
+				"Steak restores more hunger than anything else you can farm reliably."
+				""
+				"Breed the herd, never eat the last two."
+			]
+			id: "7B03010300090000"
+			rewards: [
+				{
+					id: "7B0301050009000B"
+					type: "xp"
+					xp: 20
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B0301050009000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Cook a full plate"
+			tasks: [
+				{
+					count: 8L
+					id: "7B03010400090001"
+					item: {
+						count: 1
+						id: "minecraft:cooked_beef"
+					}
+					type: "item"
+				}
+			]
+			title: "A Proper Meal"
+			x: 6.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B03010300080000"]
+			description: [
+				"The best saturation in the game, and the base of night vision."
+				""
+				"Eight gold nuggets each -- expensive, but it lasts."
+			]
+			id: "7B030103000A0000"
+			rewards: [
+				{
+					id: "7B030105000A000B"
+					type: "xp"
+					xp: 25
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B030105000A000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a golden carrot"
+			tasks: [
+				{
+					id: "7B030104000A0001"
+					item: {
+						count: 1
+						id: "minecraft:golden_carrot"
+					}
+					type: "item"
+				}
+			]
+			title: "Golden Carrot"
+			x: 6.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B03010300080000"]
+			description: [
+				"Milk, sugar, wheat and eggs -- one of everything the farm makes."
+				""
+				"It cannot be picked back up, so place it where you mean it."
+			]
+			id: "7B030103000B0000"
+			rewards: [
+				{
+					id: "7B030105000B000B"
+					type: "xp"
+					xp: 20
+				}
+			]
+			subtitle: "Bake a cake"
+			tasks: [
+				{
+					id: "7B030104000B0001"
+					item: {
+						count: 1
+						id: "minecraft:cake"
+					}
+					type: "item"
+				}
+			]
+			title: "Cake Day"
+			x: 6.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B03010300050000"]
+			description: ["A composter turns surplus crops back into growth.", "", "Feed it everything you cannot eat."]
+			id: "7B030103000C0000"
+			rewards: [
+				{
+					id: "7B030105000C000B"
+					type: "xp"
+					xp: 15
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B030105000C000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Build a composter"
+			tasks: [
+				{
+					id: "7B030104000C0001"
+					item: {
+						count: 1
+						id: "minecraft:composter"
+					}
+					type: "item"
+				}
+				{
+					count: 16L
+					id: "7B030104000C0002"
+					item: {
+						count: 1
+						id: "minecraft:bone_meal"
+					}
+					type: "item"
+				}
+			]
+			title: "Bone Meal"
+			x: 4.5d
+			y: 1.5d
+		}
+	]
+	subtitle: "Crops, herds and a full hunger bar"
+	title: "Farming & Food"
+}

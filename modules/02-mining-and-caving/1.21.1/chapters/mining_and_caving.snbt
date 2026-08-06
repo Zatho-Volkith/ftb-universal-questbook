@@ -1,0 +1,438 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "mining_and_caving"
+	group: "7B00000100000001"
+	icon: {
+		id: "minecraft:iron_pickaxe"
+	}
+	id: "7B02010200000001"
+	images: [ ]
+	order_index: 1
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"A mine without light is a mine full of things you cannot see."
+				""
+				"Bring more torches than you think you need. You will place them all."
+			]
+			id: "7B02010300010000"
+			rewards: [
+				{
+					id: "7B0201050001000B"
+					type: "xp"
+					xp: 10
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B0201050001000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Light comes before everything"
+			tasks: [
+				{
+					count: 32L
+					id: "7B02010400010001"
+					item: {
+						count: 1
+						id: "minecraft:torch"
+					}
+					type: "item"
+				}
+			]
+			title: "Into the Dark"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B02010300010000"]
+			description: [
+				"Coal is fuel, light and the first thing you will find in any cave."
+				""
+				"A single seam can hold enough to keep a furnace running for hours."
+			]
+			id: "7B02010300020000"
+			rewards: [
+				{
+					id: "7B0201050002000B"
+					type: "xp"
+					xp: 10
+				}
+			]
+			subtitle: "Gather coal"
+			tasks: [
+				{
+					count: 32L
+					id: "7B02010400020001"
+					item: {
+						count: 1
+						id: "minecraft:coal"
+					}
+					type: "item"
+				}
+			]
+			title: "Coal Seam"
+			x: 1.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B02010300010000"]
+			description: [
+				"Iron runs through almost everything you will build."
+				""
+				"It generates at every depth, but the richest veins sit far below."
+			]
+			id: "7B02010300030000"
+			rewards: [
+				{
+					id: "7B0201050003000B"
+					type: "xp"
+					xp: 15
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B0201050003000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Gather iron"
+			tasks: [
+				{
+					count: 16L
+					id: "7B02010400030001"
+					item: {
+						count: 1
+						id: "minecraft:iron_ingot"
+					}
+					type: "item"
+				}
+			]
+			title: "Iron Vein"
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B02010300010000"]
+			description: [
+				"Copper is common, generous, and slowly turns green."
+				""
+				"Wax it if you want it to stay the colour you laid it."
+			]
+			id: "7B02010300040000"
+			rewards: [
+				{
+					id: "7B0201050004000B"
+					type: "xp"
+					xp: 10
+				}
+			]
+			subtitle: "Gather copper"
+			tasks: [
+				{
+					count: 32L
+					id: "7B02010400040001"
+					item: {
+						count: 1
+						id: "minecraft:copper_ingot"
+					}
+					type: "item"
+				}
+			]
+			title: "Copper Deposits"
+			x: 1.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B02010300030000"]
+			description: ["Stone will not touch gold, redstone, diamond or emerald.", "", "Iron opens all of it."]
+			id: "7B02010300050000"
+			rewards: [
+				{
+					id: "7B0201050005000B"
+					type: "xp"
+					xp: 15
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B0201050005000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft an iron pickaxe"
+			tasks: [
+				{
+					id: "7B02010400050001"
+					item: {
+						count: 1
+						id: "minecraft:iron_pickaxe"
+					}
+					type: "item"
+				}
+			]
+			title: "A Better Pick"
+			x: 3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B02010300050000"]
+			description: [
+				"Gold makes terrible tools and excellent everything else."
+				""
+				"Powered rails, clocks, golden apples -- and the Nether runs on it."
+			]
+			id: "7B02010300060000"
+			rewards: [
+				{
+					id: "7B0201050006000B"
+					type: "xp"
+					xp: 15
+				}
+			]
+			subtitle: "Gather gold"
+			tasks: [
+				{
+					count: 8L
+					id: "7B02010400060001"
+					item: {
+						count: 1
+						id: "minecraft:gold_ingot"
+					}
+					type: "item"
+				}
+			]
+			title: "Gold Rush"
+			x: 4.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B02010300050000"]
+			description: [
+				"The dust that makes the game a machine."
+				""
+				"Found deep, and always in quantity once you find it at all."
+			]
+			id: "7B02010300070000"
+			rewards: [
+				{
+					id: "7B0201050007000B"
+					type: "xp"
+					xp: 15
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B0201050007000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Gather redstone"
+			tasks: [
+				{
+					count: 32L
+					id: "7B02010400070001"
+					item: {
+						count: 1
+						id: "minecraft:redstone"
+					}
+					type: "item"
+				}
+			]
+			title: "Redstone Dust"
+			x: 4.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B02010300050000"]
+			description: [
+				"Blue dye, and the currency of the enchanting table."
+				""
+				"Every enchantment costs lapis. Stockpile more than feels sensible."
+			]
+			id: "7B02010300080000"
+			rewards: [
+				{
+					id: "7B0201050008000B"
+					type: "xp"
+					xp: 15
+				}
+			]
+			subtitle: "Gather lapis"
+			tasks: [
+				{
+					count: 16L
+					id: "7B02010400080001"
+					item: {
+						count: 1
+						id: "minecraft:lapis_lazuli"
+					}
+					type: "item"
+				}
+			]
+			title: "Lapis Lazuli"
+			x: 4.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B02010300050000"]
+			description: [
+				"A hollow ball of purple crystal, buried at random."
+				""
+				"Break the clusters only when fully grown, and only with a pickaxe."
+			]
+			id: "7B02010300090000"
+			rewards: [
+				{
+					id: "7B0201050009000B"
+					type: "xp"
+					xp: 20
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B0201050009000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Harvest amethyst"
+			tasks: [
+				{
+					count: 6L
+					id: "7B02010400090001"
+					item: {
+						count: 1
+						id: "minecraft:amethyst_shard"
+					}
+					type: "item"
+				}
+			]
+			title: "Amethyst Geode"
+			x: 4.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["7B02010300050000"]
+			description: [
+				"Deep, rare, and worth every hour spent in the dark."
+				""
+				"They sit near bedrock. Bring an iron pickaxe and a lot of torches."
+			]
+			id: "7B020103000A0000"
+			rewards: [
+				{
+					id: "7B020105000A000B"
+					type: "xp"
+					xp: 40
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B020105000A000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Find diamonds"
+			tasks: [
+				{
+					count: 3L
+					id: "7B020104000A0001"
+					item: {
+						count: 1
+						id: "minecraft:diamond"
+					}
+					type: "item"
+				}
+			]
+			title: "Diamonds at Last"
+			x: 6.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B020103000A0000"]
+			description: [
+				"The only tool that will break obsidian."
+				""
+				"Which means it is the only thing standing between you and the Nether."
+			]
+			id: "7B020103000B0000"
+			rewards: [
+				{
+					id: "7B020105000B000B"
+					type: "xp"
+					xp: 30
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B020105000B000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a diamond pickaxe"
+			tasks: [
+				{
+					id: "7B020104000B0001"
+					item: {
+						count: 1
+						id: "minecraft:diamond_pickaxe"
+					}
+					type: "item"
+				}
+			]
+			title: "The Best Pick"
+			x: 7.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B02010300060000"]
+			description: [
+				"Hauling ore on foot gets old around the fourth trip."
+				""
+				"Powered rails need gold, which is why this waited for the gold rush."
+			]
+			id: "7B020103000C0000"
+			rewards: [
+				{
+					id: "7B020105000C000B"
+					type: "xp"
+					xp: 20
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B020105000C000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Build a mine railway"
+			tasks: [
+				{
+					count: 32L
+					id: "7B020104000C0001"
+					item: {
+						count: 1
+						id: "minecraft:rail"
+					}
+					type: "item"
+				}
+				{
+					id: "7B020104000C0002"
+					item: {
+						count: 1
+						id: "minecraft:minecart"
+					}
+					type: "item"
+				}
+			]
+			title: "Rails and Carts"
+			x: 7.5d
+			y: -1.5d
+		}
+	]
+	subtitle: "Down, and further down"
+	title: "Mining & Caving"
+}

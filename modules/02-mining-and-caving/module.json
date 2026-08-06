@@ -1,0 +1,23 @@
+{
+  "id": "02-mining-and-caving",
+  "module_number": 2,
+  "name": "Mining and Caving",
+  "description": "Ores from coal to diamond, the tools to reach them, and rails to haul it home.",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "requires_mods": [],
+  "requires_modules": [
+    "00-core"
+  ],
+  "chapter_group": "vanilla",
+  "chapters": [
+    {
+      "number": 1,
+      "file": "mining_and_caving.snbt",
+      "title": "Mining & Caving"
+    }
+  ],
+  "allowed_external_dependencies": []
+}

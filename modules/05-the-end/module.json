@@ -1,0 +1,23 @@
+{
+  "id": "05-the-end",
+  "module_number": 5,
+  "name": "The End",
+  "description": "Pearls, the stronghold, the dragon, end cities and elytra.",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "requires_mods": [],
+  "requires_modules": [
+    "00-core"
+  ],
+  "chapter_group": "vanilla",
+  "chapters": [
+    {
+      "number": 1,
+      "file": "the_end.snbt",
+      "title": "The End"
+    }
+  ],
+  "allowed_external_dependencies": []
+}

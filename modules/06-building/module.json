@@ -1,0 +1,23 @@
+{
+  "id": "06-building",
+  "module_number": 6,
+  "name": "Building and Decoration",
+  "description": "Stone, glass, terracotta, concrete, banners and the decorative blocks.",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "requires_mods": [],
+  "requires_modules": [
+    "00-core"
+  ],
+  "chapter_group": "vanilla",
+  "chapters": [
+    {
+      "number": 1,
+      "file": "building.snbt",
+      "title": "Building & Decoration"
+    }
+  ],
+  "allowed_external_dependencies": []
+}

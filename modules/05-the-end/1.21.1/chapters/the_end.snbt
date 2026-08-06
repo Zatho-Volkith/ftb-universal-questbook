@@ -1,0 +1,379 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "the_end"
+	group: "7B00000100000001"
+	icon: {
+		id: "minecraft:end_stone"
+	}
+	id: "7B05010200000001"
+	images: [ ]
+	order_index: 4
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"Endermen drop them, and endermen are everywhere at night."
+				""
+				"Do not look at their faces. Or do, and bring a boat."
+			]
+			id: "7B05010300010000"
+			rewards: [
+				{
+					id: "7B0501050001000B"
+					type: "xp"
+					xp: 30
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B0501050001000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Collect ender pearls"
+			tasks: [
+				{
+					count: 12L
+					id: "7B05010400010001"
+					item: {
+						count: 1
+						id: "minecraft:ender_pearl"
+					}
+					type: "item"
+				}
+			]
+			title: "Ender Pearls"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B05010300010000"]
+			description: [
+				"Pearl plus blaze powder."
+				""
+				"Thrown, they point toward the nearest stronghold. Roughly one in five"
+				"shatters, so make more than twelve."
+			]
+			id: "7B05010300020000"
+			rewards: [
+				{
+					id: "7B0501050002000B"
+					type: "xp"
+					xp: 30
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B0501050002000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Craft eyes of ender"
+			tasks: [
+				{
+					count: 12L
+					id: "7B05010400020001"
+					item: {
+						count: 1
+						id: "minecraft:ender_eye"
+					}
+					type: "item"
+				}
+			]
+			title: "Eyes of Ender"
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B05010300020000"]
+			description: [
+				"The portal room sits under a stronghold, silverfish and all."
+				""
+				"Fill every frame, and take a bed you will not get to use."
+			]
+			id: "7B05010300030000"
+			rewards: [
+				{
+					id: "7B0501050003000B"
+					type: "xp"
+					xp: 80
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B0501050003000C"
+					table_id: 8863084092434939908L
+					type: "random"
+				}
+			]
+			subtitle: "Enter the End"
+			tasks: [
+				{
+					dimension: "minecraft:the_end"
+					id: "7B05010400030001"
+					type: "dimension"
+				}
+			]
+			title: "Into the End"
+			x: 3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B05010300030000"]
+			description: [
+				"Break the crystals first -- the caged ones need a bow or a well-thrown"
+				"pearl. Then fight it on the ground."
+				""
+				"Bring more blocks than weapons."
+			]
+			id: "7B05010300040000"
+			rewards: [
+				{
+					id: "7B0501050004000B"
+					type: "xp"
+					xp: 200
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B0501050004000C"
+					table_id: 8863084092434939909L
+					type: "random"
+				}
+			]
+			subtitle: "Defeat the ender dragon"
+			tasks: [
+				{
+					entity: "minecraft:ender_dragon"
+					id: "7B05010400040001"
+					type: "kill"
+					value: 1L
+				}
+			]
+			title: "Slay the Dragon"
+			x: 4.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B05010300040000"]
+			description: [
+				"It teleports when you hit it. Every single time."
+				""
+				"Piston, or torch under it. There is only ever one."
+			]
+			id: "7B05010300050000"
+			rewards: [
+				{
+					id: "7B0501050005000B"
+					type: "xp"
+					xp: 100
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B0501050005000C"
+					table_id: 8863084092434939909L
+					type: "random"
+				}
+			]
+			subtitle: "Claim the dragon egg"
+			tasks: [
+				{
+					id: "7B05010400050001"
+					item: {
+						count: 1
+						id: "minecraft:dragon_egg"
+					}
+					type: "item"
+				}
+			]
+			title: "The Egg"
+			x: 6.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B05010300040000"]
+			description: [
+				"Catch the purple cloud in an empty bottle during the fight."
+				""
+				"It is the only way to make a potion lingering."
+			]
+			id: "7B05010300060000"
+			rewards: [
+				{
+					id: "7B0501050006000B"
+					type: "xp"
+					xp: 40
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B0501050006000C"
+					table_id: 8863084092434939908L
+					type: "random"
+				}
+			]
+			subtitle: "Bottle dragon's breath"
+			tasks: [
+				{
+					count: 4L
+					id: "7B05010400060001"
+					item: {
+						count: 1
+						id: "minecraft:dragon_breath"
+					}
+					type: "item"
+				}
+			]
+			title: "Dragon's Breath"
+			x: 6.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B05010300040000"]
+			description: [
+				"Past the main island, across a thousand blocks of nothing."
+				""
+				"Take the gateway. Take a lot of food."
+			]
+			id: "7B05010300070000"
+			rewards: [
+				{
+					id: "7B0501050007000B"
+					type: "xp"
+					xp: 50
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B0501050007000C"
+					table_id: 8863084092434939908L
+					type: "random"
+				}
+			]
+			subtitle: "Reach an end city"
+			tasks: [
+				{
+					count: 16L
+					id: "7B05010400070001"
+					item: {
+						count: 1
+						id: "minecraft:purpur_block"
+					}
+					type: "item"
+				}
+			]
+			title: "End Cities"
+			x: 6.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B05010300070000"]
+			description: [
+				"One per end ship, hanging in the stern behind a shulker."
+				""
+				"Nothing about the game feels the same afterwards."
+			]
+			id: "7B05010300080000"
+			rewards: [
+				{
+					id: "7B0501050008000B"
+					type: "xp"
+					xp: 150
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B0501050008000C"
+					table_id: 8863084092434939909L
+					type: "random"
+				}
+			]
+			subtitle: "Find an elytra"
+			tasks: [
+				{
+					id: "7B05010400080001"
+					item: {
+						count: 1
+						id: "minecraft:elytra"
+					}
+					type: "item"
+				}
+			]
+			title: "Wings"
+			x: 7.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B05010300070000"]
+			description: [
+				"Two shells and a chest make a box that keeps its contents when broken."
+				""
+				"The single best storage item in the game."
+			]
+			id: "7B05010300090000"
+			rewards: [
+				{
+					id: "7B0501050009000B"
+					type: "xp"
+					xp: 60
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B0501050009000C"
+					table_id: 8863084092434939908L
+					type: "random"
+				}
+			]
+			subtitle: "Gather shulker shells"
+			tasks: [
+				{
+					count: 4L
+					id: "7B05010400090001"
+					item: {
+						count: 1
+						id: "minecraft:shulker_shell"
+					}
+					type: "item"
+				}
+			]
+			title: "Shulker Shells"
+			x: 7.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B05010300030000"]
+			description: [
+				"Eating one teleports you somewhere within eight blocks."
+				""
+				"Cooked, it becomes popped chorus fruit, and then purpur."
+			]
+			id: "7B050103000A0000"
+			rewards: [
+				{
+					id: "7B050105000A000B"
+					type: "xp"
+					xp: 25
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B050105000A000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Harvest chorus fruit"
+			tasks: [
+				{
+					count: 16L
+					id: "7B050104000A0001"
+					item: {
+						count: 1
+						id: "minecraft:chorus_fruit"
+					}
+					type: "item"
+				}
+			]
+			title: "Chorus Fruit"
+			x: 4.5d
+			y: 1.5d
+		}
+	]
+	subtitle: "The dragon, and what comes after"
+	title: "The End"
+}

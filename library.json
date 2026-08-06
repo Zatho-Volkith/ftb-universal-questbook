@@ -1,0 +1,48 @@
+{
+  "library": "FTB Universal Questbook",
+  "id_marker": "7B",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "chapter_groups": [
+    {
+      "key": "vanilla",
+      "id": "7B00000100000001",
+      "title": "Universal \u00b7 Vanilla",
+      "order_index": 1
+    },
+    {
+      "key": "mods",
+      "id": "7B00000100000002",
+      "title": "Universal \u00b7 Mod Content",
+      "order_index": 2
+    }
+  ],
+  "reward_tables": {
+    "common": {
+      "id": "7B00000600000001",
+      "table_id": 8863084092434939905,
+      "module": "00-core"
+    },
+    "uncommon": {
+      "id": "7B00000600000002",
+      "table_id": 8863084092434939906,
+      "module": "00-core"
+    },
+    "rare": {
+      "id": "7B00000600000003",
+      "table_id": 8863084092434939907,
+      "module": "00-core"
+    },
+    "epic": {
+      "id": "7B00000600000004",
+      "table_id": 8863084092434939908,
+      "module": "00-core"
+    },
+    "legendary": {
+      "id": "7B00000600000005",
+      "table_id": 8863084092434939909,
+      "module": "00-core"
+    }
+  }
+}

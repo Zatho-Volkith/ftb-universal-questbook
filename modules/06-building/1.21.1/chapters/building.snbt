@@ -1,0 +1,345 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "building"
+	group: "7B00000100000001"
+	icon: {
+		id: "minecraft:bricks"
+	}
+	id: "7B06010200000001"
+	images: [ ]
+	order_index: 5
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"The default texture of everything that is meant to look deliberate."
+				""
+				"Smelt cobblestone, then craft four at a time."
+			]
+			id: "7B06010300010000"
+			rewards: [
+				{
+					id: "7B0601050001000B"
+					type: "xp"
+					xp: 15
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B0601050001000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Craft stone bricks"
+			tasks: [
+				{
+					count: 64L
+					id: "7B06010400010001"
+					item: {
+						count: 1
+						id: "minecraft:stone_bricks"
+					}
+					type: "item"
+				}
+			]
+			title: "Cut Stone"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B06010300010000"]
+			description: ["Sand and fuel. A stack of glass changes a build more than any", "other single material."]
+			id: "7B06010300020000"
+			rewards: [
+				{
+					id: "7B0601050002000B"
+					type: "xp"
+					xp: 15
+				}
+			]
+			subtitle: "Smelt glass"
+			tasks: [
+				{
+					count: 64L
+					id: "7B06010400020001"
+					item: {
+						count: 1
+						id: "minecraft:glass"
+					}
+					type: "item"
+				}
+			]
+			title: "Glassworks"
+			x: 1.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B06010300010000"]
+			description: [
+				"Clay, smelted. Muted, warm, and dyeable into sixteen shades that"
+				"actually sit well beside each other."
+			]
+			id: "7B06010300030000"
+			rewards: [
+				{
+					id: "7B0601050003000B"
+					type: "xp"
+					xp: 15
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B0601050003000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Gather terracotta"
+			tasks: [
+				{
+					count: 32L
+					id: "7B06010400030001"
+					item: {
+						count: 1
+						id: "minecraft:terracotta"
+					}
+					type: "item"
+				}
+			]
+			title: "Terracotta"
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B06010300030000"]
+			description: [
+				"Powder plus water. The only genuinely saturated colours in the game."
+				""
+				"Mind that the powder falls."
+			]
+			id: "7B06010300040000"
+			rewards: [
+				{
+					id: "7B0601050004000B"
+					type: "xp"
+					xp: 20
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B0601050004000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Make concrete"
+			tasks: [
+				{
+					count: 32L
+					id: "7B06010400040001"
+					item: {
+						count: 1
+						id: "minecraft:white_concrete"
+					}
+					type: "item"
+				}
+			]
+			title: "Concrete"
+			x: 3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B06010300010000"]
+			description: [
+				"Sheep can be dyed and then sheared repeatedly, which is far cheaper"
+				"than dyeing the wool itself."
+			]
+			id: "7B06010300050000"
+			rewards: [
+				{
+					id: "7B0601050005000B"
+					type: "xp"
+					xp: 10
+				}
+			]
+			subtitle: "Dye some wool"
+			tasks: [
+				{
+					count: 8L
+					id: "7B06010400050001"
+					item: {
+						count: 1
+						id: "minecraft:blue_wool"
+					}
+					type: "item"
+				}
+			]
+			title: "Dyed Wool"
+			x: 1.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B06010300050000"]
+			description: [
+				"Six wool and a stick, then as many dye layers as you have patience for."
+				""
+				"Copy a finished one onto blanks to make a set."
+			]
+			id: "7B06010300060000"
+			rewards: [
+				{
+					id: "7B0601050006000B"
+					type: "xp"
+					xp: 15
+				}
+			]
+			subtitle: "Craft a banner"
+			tasks: [
+				{
+					id: "7B06010400060001"
+					item: {
+						count: 1
+						id: "minecraft:white_banner"
+					}
+					type: "item"
+				}
+			]
+			title: "Banners"
+			x: 3.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B06010300020000"]
+			description: [
+				"Eight sticks and a leather. The difference between a chest room"
+				"and a chest room you can actually navigate."
+			]
+			id: "7B06010300070000"
+			rewards: [
+				{
+					id: "7B0601050007000B"
+					type: "xp"
+					xp: 10
+				}
+			]
+			subtitle: "Craft item frames"
+			tasks: [
+				{
+					count: 4L
+					id: "7B06010400070001"
+					item: {
+						count: 1
+						id: "minecraft:item_frame"
+					}
+					type: "item"
+				}
+			]
+			title: "Item Frames"
+			x: 3.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B06010300020000"]
+			description: ["Torch, eight iron nuggets. They hang from ceilings, which torches", "have never managed."]
+			id: "7B06010300080000"
+			rewards: [
+				{
+					id: "7B0601050008000B"
+					type: "xp"
+					xp: 15
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B0601050008000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Craft lanterns"
+			tasks: [
+				{
+					count: 8L
+					id: "7B06010400080001"
+					item: {
+						count: 1
+						id: "minecraft:lantern"
+					}
+					type: "item"
+				}
+			]
+			title: "Lanterns"
+			x: 4.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B06010300010000"]
+			description: [
+				"Six planks and three books each, and every book is three paper"
+				"and a leather."
+				""
+				"Expensive, and the room always looks better for it."
+			]
+			id: "7B06010300090000"
+			rewards: [
+				{
+					id: "7B0601050009000B"
+					type: "xp"
+					xp: 20
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B0601050009000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft bookshelves"
+			tasks: [
+				{
+					count: 16L
+					id: "7B06010400090001"
+					item: {
+						count: 1
+						id: "minecraft:bookshelf"
+					}
+					type: "item"
+				}
+			]
+			title: "Bookshelves"
+			x: 4.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B06010300050000"]
+			description: [
+				"The size depends entirely on the blank wall you offer it."
+				""
+				"Frame the space first, then place."
+			]
+			id: "7B060103000A0000"
+			rewards: [
+				{
+					id: "7B060105000A000B"
+					type: "xp"
+					xp: 10
+				}
+			]
+			subtitle: "Hang paintings"
+			tasks: [
+				{
+					count: 4L
+					id: "7B060104000A0001"
+					item: {
+						count: 1
+						id: "minecraft:painting"
+					}
+					type: "item"
+				}
+			]
+			title: "Paintings"
+			x: 4.5d
+			y: 1.5d
+		}
+	]
+	subtitle: "Materials worth a stack of"
+	title: "Building & Decoration"
+}

@@ -1,0 +1,122 @@
+{
+	filename: "legendary"
+	icon: {
+		id: "minecraft:nether_star"
+	}
+	id: "7B00000600000005"
+	loot_size: 2
+	order_index: 5
+	rewards: [
+		{
+			count: 2
+			id: "7B00000700050001"
+			item: {
+				count: 1
+				id: "minecraft:netherite_ingot"
+			}
+			random_bonus: 2
+			weight: 14.0f
+		}
+		{
+			id: "7B00000700050002"
+			item: {
+				count: 1
+				id: "minecraft:nether_star"
+			}
+			random_bonus: 1
+			weight: 10.0f
+		}
+		{
+			id: "7B00000700050003"
+			item: {
+				count: 1
+				id: "minecraft:beacon"
+			}
+			weight: 10.0f
+		}
+		{
+			id: "7B00000700050004"
+			item: {
+				count: 1
+				id: "minecraft:elytra"
+			}
+			weight: 9.0f
+		}
+		{
+			count: 3
+			id: "7B00000700050005"
+			item: {
+				count: 1
+				id: "minecraft:enchanted_golden_apple"
+			}
+			random_bonus: 3
+			weight: 9.0f
+		}
+		{
+			id: "7B00000700050006"
+			item: {
+				count: 1
+				id: "minecraft:netherite_block"
+			}
+			weight: 7.0f
+		}
+		{
+			count: 2
+			id: "7B00000700050007"
+			item: {
+				count: 1
+				id: "minecraft:shulker_box"
+			}
+			random_bonus: 2
+			weight: 7.0f
+		}
+		{
+			count: 2
+			id: "7B00000700050008"
+			item: {
+				count: 1
+				id: "minecraft:totem_of_undying"
+			}
+			random_bonus: 2
+			weight: 7.0f
+		}
+		{
+			count: 6
+			id: "7B00000700050009"
+			item: {
+				count: 1
+				id: "minecraft:diamond_block"
+			}
+			random_bonus: 6
+			weight: 7.0f
+		}
+		{
+			count: 4
+			id: "7B0000070005000A"
+			item: {
+				count: 1
+				id: "minecraft:dragon_breath"
+			}
+			random_bonus: 4
+			weight: 5.0f
+		}
+		{
+			id: "7B0000070005000B"
+			item: {
+				count: 1
+				id: "minecraft:trident"
+			}
+			weight: 5.0f
+		}
+		{
+			id: "7B0000070005000C"
+			item: {
+				count: 1
+				id: "minecraft:conduit"
+			}
+			weight: 5.0f
+		}
+	]
+	title: "Legendary Reward"
+	use_title: true
+}
