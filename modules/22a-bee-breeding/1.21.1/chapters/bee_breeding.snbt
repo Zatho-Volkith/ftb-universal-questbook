@@ -1,0 +1,502 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "bee_breeding"
+	group: "7B00000100000006"
+	icon: {
+		id: "productivebees:breeding_chamber"
+	}
+	id: "7B22020200000001"
+	images: [ ]
+	order_index: 12
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"Breeding starts with bees you did not breed."
+				""
+				"Wild nests hold species you cannot make: crystalline, magmatic,"
+				"glowing, ender, slimy, and the ordinary mining and carpenter bees."
+				"Find them, cage them, and bring them home before anything else."
+				""
+				"Tick this off once you have a few species in hives."
+			]
+			id: "7B22020300010000"
+			rewards: [
+				{
+					id: "7B2202050001000B"
+					type: "xp"
+					xp: 15
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2202050001000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Find bees in the world"
+			tasks: [
+				{
+					id: "7B22020400010001"
+					type: "checkmark"
+				}
+			]
+			title: "Wild Stock"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B22020300010000"]
+			description: [
+				"The single most important wild bee in the mod."
+				""
+				"Almost every metal line begins with it. Nothing you breed later"
+				"happens without one, so get two and keep a spare."
+			]
+			id: "7B22020300020000"
+			rewards: [
+				{
+					id: "7B2202050002000B"
+					type: "xp"
+					xp: 25
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2202050002000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Find a crystalline bee"
+			tasks: [
+				{
+					id: "7B22020400020001"
+					type: "checkmark"
+				}
+			]
+			title: "The Crystalline Bee"
+			x: 1.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["7B22020300010000"]
+			description: [
+				"The other half of the first three metals."
+				""
+				"Common enough underground, and worth catching every one you see."
+			]
+			id: "7B22020300030000"
+			rewards: [
+				{
+					id: "7B2202050003000B"
+					type: "xp"
+					xp: 20
+				}
+			]
+			subtitle: "Find an ashy mining bee"
+			tasks: [
+				{
+					id: "7B22020400030001"
+					type: "checkmark"
+				}
+			]
+			title: "The Ashy Mining Bee"
+			x: 1.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B22020300020000", "7B22020300030000"]
+			description: [
+				"Crystalline and ashy mining, in the breeding chamber."
+				""
+				"The iron bee is the hub of the whole tree -- more than twenty other"
+				"species descend from it. Breed a surplus now and you will save"
+				"yourself hours later."
+			]
+			id: "7B22020300040000"
+			rewards: [
+				{
+					id: "7B2202050004000B"
+					type: "xp"
+					xp: 40
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2202050004000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Breed crystalline + ashy mining"
+			tasks: [
+				{
+					id: "7B22020400040001"
+					type: "checkmark"
+				}
+			]
+			title: "Iron Bee"
+			x: 3.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["7B22020300020000", "7B22020300030000"]
+			description: [
+				"The same pairing as iron, and just as likely."
+				""
+				"Breeding is a roll, not a recipe: the same two parents can give you"
+				"iron, copper or tin. Keep pairing them until you have all three."
+			]
+			id: "7B22020300050000"
+			rewards: [
+				{
+					id: "7B2202050005000B"
+					type: "xp"
+					xp: 30
+				}
+			]
+			subtitle: "Breed crystalline + ashy mining"
+			tasks: [
+				{
+					id: "7B22020400050001"
+					type: "checkmark"
+				}
+			]
+			title: "Copper Bee"
+			x: 3.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B22020300020000", "7B22020300030000"]
+			description: [
+				"The third result of that same pairing."
+				""
+				"You need it for bronze, and for nothing else in this chapter."
+			]
+			id: "7B22020300060000"
+			rewards: [
+				{
+					id: "7B2202050006000B"
+					type: "xp"
+					xp: 30
+				}
+			]
+			subtitle: "Breed crystalline + ashy mining"
+			tasks: [
+				{
+					id: "7B22020400060001"
+					type: "checkmark"
+				}
+			]
+			title: "Tin Bee"
+			x: 3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B22020300020000"]
+			description: [
+				"Crystalline again, this time with a mason bee."
+				""
+				"Mason bees are wild and easy to find near villages."
+			]
+			id: "7B22020300070000"
+			rewards: [
+				{
+					id: "7B2202050007000B"
+					type: "xp"
+					xp: 35
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2202050007000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Breed crystalline + mason"
+			tasks: [
+				{
+					id: "7B22020400070001"
+					type: "checkmark"
+				}
+			]
+			title: "Gold Bee"
+			x: 3.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B22020300010000"]
+			description: [
+				"Two wild bees, no metal line needed."
+				""
+				"Worth doing early: coal is a parent of steel, and a coal bee is an"
+				"endless fuel supply besides."
+			]
+			id: "7B22020300080000"
+			rewards: [
+				{
+					id: "7B2202050008000B"
+					type: "xp"
+					xp: 30
+				}
+			]
+			subtitle: "Breed magmatic + leafcutter"
+			tasks: [
+				{
+					id: "7B22020400080001"
+					type: "checkmark"
+				}
+			]
+			title: "Coal Bee"
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B22020300040000"]
+			description: ["Iron with a sweat bee.", "", "The same pairing also gives nickel, so expect to run it twice."]
+			id: "7B22020300090000"
+			rewards: [
+				{
+					id: "7B2202050009000B"
+					type: "xp"
+					xp: 35
+				}
+			]
+			subtitle: "Breed iron + sweat"
+			tasks: [
+				{
+					id: "7B22020400090001"
+					type: "checkmark"
+				}
+			]
+			title: "Zinc Bee"
+			x: 4.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["7B22020300040000", "7B22020300080000"]
+			description: [
+				"Iron and coal, which is how you would make steel anyway."
+				""
+				"The mod is quietly consistent about this sort of thing."
+			]
+			id: "7B220203000A0000"
+			rewards: [
+				{
+					id: "7B220205000A000B"
+					type: "xp"
+					xp: 45
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B220205000A000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Breed iron + coal"
+			tasks: [
+				{
+					id: "7B220204000A0001"
+					type: "checkmark"
+				}
+			]
+			title: "Steel Bee"
+			x: 4.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B22020300050000", "7B22020300090000"]
+			description: [
+				"Copper and zinc -- an alloy bee from two alloy components."
+				""
+				"The deepest point of the common metal line."
+			]
+			id: "7B220203000B0000"
+			rewards: [
+				{
+					id: "7B220205000B000B"
+					type: "xp"
+					xp: 50
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B220205000B000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Breed copper + zinc"
+			tasks: [
+				{
+					id: "7B220204000B0001"
+					type: "checkmark"
+				}
+			]
+			title: "Brass Bee"
+			x: 6.0d
+			y: -2.25d
+		}
+		{
+			dependencies: ["7B22020300050000", "7B22020300060000"]
+			description: [
+				"Copper and tin, the oldest alloy there is."
+				""
+				"Its comb is a configurable honeycomb carrying the bee's identity in"
+				"its data, not a separate item -- which is why this is a checkmark"
+				"rather than a hand-in."
+			]
+			id: "7B220203000C0000"
+			rewards: [
+				{
+					id: "7B220205000C000B"
+					type: "xp"
+					xp: 50
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B220205000C000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Breed copper + tin"
+			tasks: [
+				{
+					id: "7B220204000C0001"
+					type: "checkmark"
+				}
+			]
+			title: "Bronze Bee"
+			x: 4.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B22020300080000"]
+			description: [
+				"Magmatic and nomad, both wild."
+				""
+				"Keep it somewhere that will not catch fire, and take the comb."
+			]
+			id: "7B220203000D0000"
+			rewards: [
+				{
+					id: "7B220205000D000B"
+					type: "xp"
+					xp: 50
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B220205000D000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Breed magmatic + nomad"
+			tasks: [
+				{
+					id: "7B220204000D0001"
+					type: "checkmark"
+				}
+			]
+			title: "Blazing Bee"
+			x: 3.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["7B22020300010000"]
+			description: [
+				"A glowing bee and a chocolate mining bee."
+				""
+				"The start of the gem line, and the only route to lapis."
+			]
+			id: "7B220203000E0000"
+			rewards: [
+				{
+					id: "7B220205000E000B"
+					type: "xp"
+					xp: 35
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B220205000E000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Breed glowing + chocolate mining"
+			tasks: [
+				{
+					id: "7B220204000E0001"
+					type: "checkmark"
+				}
+			]
+			title: "Redstone Bee"
+			x: 1.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B220203000E0000"]
+			description: ["Redstone with a blue banded bee.", "", "Lapis is a dead end on its own, but diamond needs it."]
+			id: "7B220203000F0000"
+			rewards: [
+				{
+					id: "7B220205000F000B"
+					type: "xp"
+					xp: 40
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B220205000F000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Breed redstone + blue banded"
+			tasks: [
+				{
+					id: "7B220204000F0001"
+					type: "checkmark"
+				}
+			]
+			title: "Lapis Bee"
+			x: 3.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["7B220203000F0000"]
+			description: [
+				"An ender bee and a lapis bee."
+				""
+				"The end of the line for this chapter. Emerald follows from diamond"
+				"and a slimy bee, if you want to keep going."
+			]
+			id: "7B22020300100000"
+			rewards: [
+				{
+					id: "7B2202050010000B"
+					type: "xp"
+					xp: 80
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2202050010000C"
+					table_id: 8863084092434939908L
+					type: "random"
+				}
+			]
+			subtitle: "Breed ender + lapis"
+			tasks: [
+				{
+					id: "7B22020400100001"
+					type: "checkmark"
+				}
+			]
+			title: "Diamond Bee"
+			x: 4.5d
+			y: 4.5d
+		}
+	]
+	subtitle: "The breeding tree, from wild stock to diamond"
+	title: "Bee Breeding"
+}

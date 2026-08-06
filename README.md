@@ -137,6 +137,7 @@ are also in `library.json` and every module's `module.json`.
 | `20c-oceans-delight` | └ Ocean's Delight | 5 | `+ oceansdelight` |
 | `20d-enders-delight` | └ Ender's Delight | 5 | `+ endersdelight` |
 | `22-productivebees` | Productive Bees | 12 | `productivebees` |
+| `22a-bee-breeding` | └ Bee Breeding | 16 | `(same mod)` |
 | `28-umapyoi` | Umapyoi | 12 | `umapyoi` |
 | `30-quality-of-life` | Quality of Life | 8 | vanilla |
 | `30a-waystones` | └ Waystones | 4 | `+ waystones` |
@@ -149,9 +150,8 @@ are also in `library.json` and every module's `module.json`.
 | `30h-lootr` | └ Lootr | 3 | `+ lootr` |
 | `30i-easy-villagers` | └ Easy Villagers | 5 | `+ easy_villagers` |
 
-**189 quests across 24 chapters.** 101 of them are
-vanilla-only and work in any 1.21.1 pack; the rest install only when their
-mods are present.
+**205 quests across 25 chapters.** 101 are vanilla-only and
+work in any 1.21.1 pack; the rest install only when their mods are present.
 
 ### Task types
 

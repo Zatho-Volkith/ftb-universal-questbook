@@ -71,7 +71,7 @@ every book that has it installed.
 | `07` | `07-enchanting-and-brewing` | vanilla | shipped |
 | `20` | `20-farmersdelight` | `farmersdelight` | shipped |
 | `21` | *(reserved)* Croptopia | `croptopia` | planned |
-| `22` | `22-productivebees` | `productivebees` | shipped |
+| `22` | `22-productivebees` + `22a-bee-breeding` | `productivebees` | shipped |
 | `23` | *(reserved)* Sophisticated Storage | `sophisticatedstorage` | planned |
 | `24` | *(reserved)* Waystones | `waystones` | planned |
 | `25` | *(reserved)* Botany Pots | `botanypots` | planned |
