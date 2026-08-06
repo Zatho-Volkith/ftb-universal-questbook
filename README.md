@@ -26,6 +26,9 @@ python3 tools/install.py --instance ~/.minecraft --modules 01-getting-started
 
 # see what would happen without writing anything
 python3 tools/install.py --instance ~/.minecraft --auto --dry-run
+
+# which of your mods this library has no chapter for yet
+python3 tools/install.py --instance ~/.minecraft --auto --dry-run --uncovered
 ```
 
 Requires Python 3.9+ and nothing else. No pip install, no network access.
@@ -51,6 +54,16 @@ universality comes from *file granularity*: a vanilla-only core that works in
 any pack, plus one optional module per mod. `--auto` reads your mods folder and
 picks the ones that fit.
 
+A consequence worth stating plainly: a mod nobody has written a chapter for
+appears in neither the installed list nor the skipped one, so silence looks
+exactly like a failure to read the jar. `--auto` therefore reports the gap, and
+`--uncovered` names the mods:
+
+```
+detected 89 mods in .../mods
+  74 of them have no chapter in this library yet  (--uncovered to list)
+```
+
 **`chapter_groups.snbt` is a shared registry.** Installing a chapter is not
 purely additive — its group has to be registered in a file the target pack also
 owns. `install.py` merges into it rather than overwriting, so a pack author's
@@ -75,6 +88,7 @@ modules/
       chapters/getting_started.snbt
 tools/
   install.py                  install modules into an instance
+  import_chapter.py           pull a chapter back out of an instance
   wizard.py                   interactive installer shipped in the bundle
   validate.py                 lint the library
   testbed.py                  build and run a throwaway server to verify
@@ -87,6 +101,7 @@ tools/
   data/*.json                 committed item manifests
 tests/
   test_validate.py            asserts each validator check actually fires
+  test_import.py              asserts importing is stable and idempotent
 ```
 
 Module content sits under a Minecraft version folder (`1.21.1/`) so a 1.20.1
@@ -222,6 +237,59 @@ Two things it taught us, both worth knowing before pointing it at a new mod:
   hand one in. Those nodes become `checkmark` tasks with a note, so the
   structure survives and you choose the real objective.
 
+### Writing chapters in the game, and importing them back
+
+The best place to write a quest is inside the game — you can see the layout,
+pick items out of the real registry, and test a task the moment you write it.
+`import_chapter.py` is the way back:
+
+```bash
+# what is in the instance, and which of it the library already owns
+python3 tools/import_chapter.py --instance ~/.minecraft --list
+
+# pull your edits back into the module they came from
+python3 tools/import_chapter.py --instance ~/.minecraft \
+    --chapter refined_storage --into 29-refinedstorage
+
+# adopt a brand new chapter as a module
+python3 tools/import_chapter.py --instance ~/.minecraft \
+    --chapter mekanism --new 2b-mekanism --module 43 \
+    --name "Mekanism" --group automation
+```
+
+What makes this more than a file copy is the ID scheme. The in-game editor
+mints **random** hex IDs; everything here is **computed** from where the object
+sits. So an imported chapter is renumbered, and every reference to a renumbered
+ID — dependencies especially — is rewritten to match.
+
+The renumbering is deliberately conservative. An ID that is already correct for
+the target module and chapter is left exactly as it is, so re-importing a
+chapter you extended in game touches only the quests you added:
+
+```
+quests : 11
+  minted 1 new quest ID(s); 10 kept the ones they had
+```
+
+That matters because a quest's ID is what player progress is keyed on.
+Renumbering the whole chapter on every import would silently reset everyone's
+completion state the next time they updated.
+
+Four things are refused outright rather than left for `validate.py`, because
+each one produces a module that is broken for its *installer* rather than for
+you:
+
+| Refused | Why |
+|---------|-----|
+| a dependency on a quest in another chapter | works in your instance, breaks for anyone installing the module alone |
+| `stage` or `location` tasks | see [Task types](#task-types) — `stage` fails silently |
+| a reward drawing from a table the library does not ship | the reward resolves to nothing |
+| a module number another module already owns | IDs would collide |
+
+`requires_mods` is inferred from the item namespaces the chapter actually uses,
+and `module.json` is written for you. Run `validate.py` and `testbed.py`
+afterwards — the tool prints both commands when it finishes.
+
 ### Add-ons
 
 Mods with their own ecosystems — Farmer's Delight especially — get add-on
@@ -247,6 +315,7 @@ See [ID-REGISTRY.md](ID-REGISTRY.md#addons-chapter-slots-not-module-numbers).
 python3 tools/validate.py            # lint everything
 python3 tools/validate.py --strict   # warnings fail too
 python3 tests/test_validate.py       # confirm the linter still catches faults
+python3 tests/test_import.py         # confirm importing is stable
 ```
 
 ### Testing against a real server
@@ -294,6 +363,22 @@ Warnings cover things that are probably mistakes: an item ID absent from every
 manifest (almost always a typo), a mod namespace used without being declared in
 `requires_mods`, and two quests sitting on the same grid position.
 
+Two of them are about whether the chapter can be *read*, which matters more
+than it sounds — a wide chapter is where players give up:
+
+- **a dependency line drawn under an unrelated quest.** FTB draws a straight
+  line between quest centres, so in a chapter more than a few columns wide a
+  long edge will pass behind whatever is in the way, and the quest it passes
+  under reads as part of the chain. Fix it by moving one of the two, or by
+  giving the chapter another row.
+- **a redundant dependency** — a quest naming a prerequisite that another of
+  its own prerequisites already requires. It changes nothing about when the
+  quest unlocks, and costs a line across the chapter.
+
+Both were found by writing the check: Refined Storage and AE2 had 19 crossings
+between them, against 0–4 everywhere else, because both were laid out on three
+rows and up to 20 quests wide. Five rows and a spine on `y=0` fixed both.
+
 To add a module, see [docs/MODULE-SPEC.md](docs/MODULE-SPEC.md).
 
 ---
@@ -308,6 +393,17 @@ out of `assets/<namespace>/lang/en_us.json` inside the jars themselves — every
 registered item needs a translation key, so the lang file is a good proxy for
 the registry. It is not perfect, which is why an unknown ID is a warning rather
 than an error.
+
+One trap is worth knowing about, because it fails in the dangerous direction.
+A lang key is `item.<namespace>.<path>`, and paths routinely carry dotted
+suffixes for tooltips — `item.minecraft.diamond_sword.desc`. If the namespace
+is allowed to contain dots, a greedy parse reads
+`item.mekanismtools.bronze_shield.black` as namespace
+`mekanismtools.bronze_shield` holding an item called `black`. That invented
+370 phantom namespaces and 821 phantom items, and a mistyped ID landing in one
+of them **passed** the typo check, because the manifest appeared to confirm it.
+The namespace is therefore matched dot-free, and anything left with a dot in
+its path is treated as the tooltip key it is.
 
 ```bash
 # rebuild the mod manifest after adding jars
