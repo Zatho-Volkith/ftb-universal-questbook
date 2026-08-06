@@ -79,6 +79,7 @@ tools/
   validate.py                 lint the library
   testbed.py                  build and run a throwaway server to verify
   package.py                  build a distributable bundle + zip
+  derive_chapter.py           draft a chapter from a mod's recipe graph
   qid.py                      compute and explain IDs
   snbt.py                     SNBT reader/writer in FTB's dialect
   extract_item_ids.py         build an item manifest from mod jars
@@ -178,6 +179,32 @@ Two are deliberately **not** used, and `validate.py` rejects both:
 
 The `stage` behaviour is the nastier of the two: nothing errors, the book
 loads, the quest count is right, and the quest simply can never be finished.
+
+### Deriving a chapter from a mod
+
+A mod's recipes *are* its progression, and that is a fact about the mod rather
+than anyone's creative work — so a chapter skeleton can be computed:
+
+```bash
+python3 tools/derive_chapter.py --mod productivebees --analyse
+python3 tools/derive_chapter.py --mod productivebees --module 34 -o draft.snbt
+```
+
+It reads the jar, resolves the mod's item tags, drops recipes gated behind
+mods you do not have, collapses variant families (Productive Bees ships 600-odd
+beehives named after other mods' wood types), ranks what is left by depth and
+centrality, and emits a chapter with dependencies already wired.
+
+The output is a **draft**: structure derived, prose yours.
+
+Two things it taught us, both worth knowing before pointing it at a new mod:
+
+- **A mod's progression is often not in its crafting recipes.** Productive Bees
+  looks almost flat until you read its 107 `bee_breeding` recipes
+  (`parent1` + `parent2` → `offspring`), which reveal an eight-tier tree.
+- **Not every node is an item.** Bees are entities; you cannot ask a player to
+  hand one in. Those nodes become `checkmark` tasks with a note, so the
+  structure survives and you choose the real objective.
 
 ### Add-ons
 

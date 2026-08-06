@@ -45,6 +45,48 @@ VALID_PATH = re.compile(r"^[a-z0-9_]+$")
 ENTRY_KEY = re.compile(r"^(item|block)\.([a-z0-9_.\-]+)\.(.+)$")
 
 
+#: Recipe fields that name something other than an item. `type` is the recipe
+#: id itself; the rest are entities, mod ids and bookkeeping.
+_NON_ITEM_KEYS = {
+    "type", "parent1", "parent2", "offspring", "bee", "entity", "entity_type",
+    "mob", "modid", "category", "group", "advancement", "recipe_book_group",
+    "neoforge:conditions", "forge:conditions", "conditions", "fluid",
+    "dimension", "biome", "structure", "block",
+    # Component data carries entity NBT -- a spawn egg's `components` names the
+    # bee inside it. The item's own id is a sibling of `components`, never
+    # within it, so skipping the whole block loses nothing real.
+    "components", "minecraft:entity_data", "entity_data",
+}
+
+
+def _item_ids_in(node) -> list[str]:
+    """Ids that are unambiguously items.
+
+    Only values of an `item:` or `id:` key count. A bare namespaced string can
+    be anything -- Productive Bees' `bee_conversion` recipes carry bee entity
+    types in plain `source` and `result` fields, and harvesting those yielded
+    `productivebees:iron`, which passed the manifest and then failed in game.
+
+    The cost is missing the occasional 1.21 shorthand ingredient written as a
+    plain string, but lang scanning usually covers those. A missed item is a
+    warning; a phantom one is a barrier block in somebody's world.
+    """
+    found: list[str] = []
+    if isinstance(node, dict):
+        for key, value in node.items():
+            if key in _NON_ITEM_KEYS:
+                continue
+            if key in ("item", "id") and isinstance(value, str) and ":" in value:
+                if not value.startswith("#"):
+                    found.append(value)
+                continue
+            found.extend(_item_ids_in(value))
+    elif isinstance(node, list):
+        for value in node:
+            found.extend(_item_ids_in(value))
+    return found
+
+
 def ids_from_jar(jar_path: Path) -> tuple[dict[str, set[str]], list[str]]:
     """Return {namespace: {item ids}} and any warnings for one jar."""
     found: dict[str, set[str]] = {}
@@ -89,10 +131,21 @@ def ids_from_jar(jar_path: Path) -> tuple[dict[str, set[str]], list[str]]:
                 text = archive.read(name).decode("utf-8-sig")
             except (UnicodeDecodeError, KeyError):
                 continue
-            for namespace, path in NAMESPACED_ID.findall(text):
+            # Walk the parsed recipe rather than regexing the text, so we can
+            # skip fields that name things which are not items. Productive
+            # Bees' `bee_breeding` recipes carry entity types in parent1 /
+            # parent2 / offspring, and harvesting those yielded ids like
+            # `productivebees:iron` -- which passed a manifest check and then
+            # failed in game, the exact failure this manifest exists to stop.
+            try:
+                recipe = json.loads(text)
+            except json.JSONDecodeError:
+                continue
+            for ident in _item_ids_in(recipe):
+                namespace, path = ident.split(":", 1)
                 if "/" in path or not VALID_PATH.match(path):
-                    continue  # recipe type, tag or group reference, not an item
-                found.setdefault(namespace, set()).add(f"{namespace}:{path}")
+                    continue  # tag, recipe type or group reference
+                found.setdefault(namespace, set()).add(ident)
 
     return found, warnings
 
