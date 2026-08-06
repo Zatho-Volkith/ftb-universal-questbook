@@ -1,0 +1,29 @@
+{
+  "id": "20b-nethers-delight",
+  "module_number": 32,
+  "chapter_number": 3,
+  "extends": "20-farmersdelight",
+  "name": "Nether's Delight",
+  "description": "Blazier, nether stove, hoglin butchery, powdery cannon and ghasta.",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "requires_mods": [
+    "farmersdelight",
+    "mynethersdelight"
+  ],
+  "requires_modules": [
+    "00-core",
+    "20-farmersdelight"
+  ],
+  "chapter_group": "mods",
+  "chapters": [
+    {
+      "number": 3,
+      "file": "nethers_delight.snbt",
+      "title": "Nether's Delight"
+    }
+  ],
+  "allowed_external_dependencies": []
+}

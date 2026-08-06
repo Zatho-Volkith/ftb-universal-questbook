@@ -1,0 +1,28 @@
+{
+  "id": "30h-lootr",
+  "module_number": 48,
+  "chapter_number": 9,
+  "extends": "30-quality-of-life",
+  "name": "Lootr",
+  "description": "Per-player loot containers, and the trophy.",
+  "requires_mods": [
+    "lootr"
+  ],
+  "requires_modules": [
+    "00-core",
+    "30-quality-of-life"
+  ],
+  "chapter_group": "mods",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "chapters": [
+    {
+      "number": 9,
+      "file": "lootr.snbt",
+      "title": "Lootr"
+    }
+  ],
+  "allowed_external_dependencies": []
+}

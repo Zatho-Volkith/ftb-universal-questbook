@@ -352,6 +352,98 @@
 			x: 7.5d
 			y: 1.5d
 		}
+		{
+			description: [
+				"Fifteen bookshelves, one block of air between them and the table."
+				""
+				"Enchant books rather than tools, and combine books before you"
+				"apply them. The anvil cost compounds and it never comes back down."
+			]
+			id: "7B070103000B0000"
+			rewards: [
+				{
+					id: "7B070105000B000B"
+					type: "xp"
+					xp: 5
+				}
+			]
+			subtitle: "Read this first"
+			tasks: [
+				{
+					id: "7B070104000B0001"
+					type: "checkmark"
+				}
+			]
+			title: "Before You Enchant"
+			x: -1.5d
+			y: 0.0d
+		}
+		{
+			description: [
+				"Any enchantment, on anything, at any level."
+				""
+				"The lapis is the cheap part. The levels are not."
+			]
+			id: "7B070103000C0000"
+			rewards: [
+				{
+					id: "7B070105000C000B"
+					type: "xp"
+					xp: 40
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B070105000C000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Earn the enchanting advancement"
+			tasks: [
+				{
+					advancement: "minecraft:story/enchant_item"
+					criterion: ""
+					id: "7B070104000C0001"
+					type: "advancement"
+				}
+			]
+			title: "First Spell"
+			x: 6.0d
+			y: 0.0d
+		}
+		{
+			description: [
+				"Thirty levels is the top of the enchanting table."
+				""
+				"Mining, smelting and killing all pay. Bottling it up pays best."
+			]
+			id: "7B070103000D0000"
+			rewards: [
+				{
+					id: "7B070105000D000B"
+					type: "xp"
+					xp: 60
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B070105000D000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Reach experience level 30"
+			tasks: [
+				{
+					id: "7B070104000D0001"
+					points: false
+					type: "xp"
+					value: 30L
+				}
+			]
+			title: "Hard Won"
+			x: 6.0d
+			y: -1.5d
+		}
 	]
 	subtitle: "Lapis, anvils and awkward potions"
 	title: "Enchanting & Brewing"

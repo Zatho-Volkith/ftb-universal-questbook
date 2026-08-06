@@ -1,0 +1,481 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "farmers_delight"
+	group: "7B00000100000002"
+	icon: {
+		id: "farmersdelight:cooking_pot"
+	}
+	id: "7B20010200000001"
+	images: [ ]
+	order_index: 10
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"The knife is the tool the whole mod hangs off."
+				""
+				"It cuts meat into portions that go further, and it is the only way"
+				"to get several ingredients at all."
+			]
+			id: "7B20010300010000"
+			rewards: [
+				{
+					id: "7B2001050001000B"
+					type: "xp"
+					xp: 10
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2001050001000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a flint knife"
+			tasks: [
+				{
+					id: "7B20010400010001"
+					item: {
+						count: 1
+						id: "farmersdelight:flint_knife"
+					}
+					type: "item"
+				}
+			]
+			title: "A Sharper Edge"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B20010300010000"]
+			description: [
+				"Place it down, put an item on it, and use a tool."
+				""
+				"Right-click with a knife to slice, an axe to strip, a shovel to"
+				"flatten. It works on far more than you would expect."
+			]
+			id: "7B20010300020000"
+			rewards: [
+				{
+					id: "7B2001050002000B"
+					type: "xp"
+					xp: 10
+				}
+			]
+			subtitle: "Craft a cutting board"
+			tasks: [
+				{
+					id: "7B20010400020001"
+					item: {
+						count: 1
+						id: "farmersdelight:cutting_board"
+					}
+					type: "item"
+				}
+			]
+			title: "Something to Cut On"
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B20010300010000"]
+			description: [
+				"Wild cabbages, tomatoes, onions and rice grow untended out in the"
+				"world, each in the biome that suits it."
+				""
+				"Break them for the seeds and they become farmable."
+			]
+			id: "7B20010300030000"
+			rewards: [
+				{
+					id: "7B2001050003000B"
+					type: "xp"
+					xp: 15
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2001050003000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Find wild crops"
+			tasks: [
+				{
+					id: "7B20010400030001"
+					item: {
+						count: 1
+						id: "farmersdelight:cabbage_seeds"
+					}
+					type: "item"
+				}
+				{
+					id: "7B20010400030002"
+					item: {
+						count: 1
+						id: "farmersdelight:tomato_seeds"
+					}
+					type: "item"
+				}
+			]
+			title: "Wild Things"
+			x: 1.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B20010300020000"]
+			description: [
+				"Soups and stews, cooked over a heat source with a container in the"
+				"slot to serve them into."
+				""
+				"Put a bowl in, or you will make food you cannot pick up."
+			]
+			id: "7B20010300040000"
+			rewards: [
+				{
+					id: "7B2001050004000B"
+					type: "xp"
+					xp: 20
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2001050004000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a cooking pot"
+			tasks: [
+				{
+					id: "7B20010400040001"
+					item: {
+						count: 1
+						id: "farmersdelight:cooking_pot"
+					}
+					type: "item"
+				}
+			]
+			title: "The Cooking Pot"
+			x: 3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B20010300020000"]
+			description: [
+				"Fast frying, and it can be picked up and carried while still hot."
+				""
+				"You can even cook straight out of your hand with it."
+			]
+			id: "7B20010300050000"
+			rewards: [
+				{
+					id: "7B2001050005000B"
+					type: "xp"
+					xp: 20
+				}
+			]
+			subtitle: "Craft a skillet"
+			tasks: [
+				{
+					id: "7B20010400050001"
+					item: {
+						count: 1
+						id: "farmersdelight:skillet"
+					}
+					type: "item"
+				}
+			]
+			title: "The Skillet"
+			x: 3.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B20010300050000"]
+			description: [
+				"A heat source that cooks up to six things at once, and looks like"
+				"a kitchen rather than a furnace in the corner."
+			]
+			id: "7B20010300060000"
+			rewards: [
+				{
+					id: "7B2001050006000B"
+					type: "xp"
+					xp: 20
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2001050006000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Build a stove"
+			tasks: [
+				{
+					id: "7B20010400060001"
+					item: {
+						count: 1
+						id: "farmersdelight:stove"
+					}
+					type: "item"
+				}
+			]
+			title: "Fire Beneath"
+			x: 4.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B20010300010000"]
+			description: [
+				"Compost rots down into rich soil, which grows crops faster and"
+				"never needs water nearby."
+				""
+				"It is the single best thing you can do to a farm."
+			]
+			id: "7B20010300070000"
+			rewards: [
+				{
+					id: "7B2001050007000B"
+					type: "xp"
+					xp: 15
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2001050007000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Make organic compost"
+			tasks: [
+				{
+					id: "7B20010400070001"
+					item: {
+						count: 1
+						id: "farmersdelight:organic_compost"
+					}
+					type: "item"
+				}
+				{
+					count: 4L
+					id: "7B20010400070002"
+					item: {
+						count: 1
+						id: "farmersdelight:rich_soil"
+					}
+					type: "item"
+				}
+			]
+			title: "Rich Soil"
+			x: 1.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B20010300030000"]
+			description: [
+				"Rice needs shallow water, like sugar cane but fussier."
+				""
+				"Onions grow anywhere and end up in nearly every recipe worth making."
+			]
+			id: "7B20010300080000"
+			rewards: [
+				{
+					id: "7B2001050008000B"
+					type: "xp"
+					xp: 20
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2001050008000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Farm the new crops"
+			tasks: [
+				{
+					count: 8L
+					id: "7B20010400080001"
+					item: {
+						count: 1
+						id: "farmersdelight:onion"
+					}
+					type: "item"
+				}
+				{
+					count: 8L
+					id: "7B20010400080002"
+					item: {
+						count: 1
+						id: "farmersdelight:rice"
+					}
+					type: "item"
+				}
+			]
+			title: "Onions and Rice"
+			x: 3.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B20010300070000"]
+			description: [
+				"Straw comes from threshing wheat on a cutting board."
+				""
+				"Rope climbs, ties up tomatoes, and hangs things from ceilings."
+			]
+			id: "7B20010300090000"
+			rewards: [
+				{
+					id: "7B2001050009000B"
+					type: "xp"
+					xp: 15
+				}
+			]
+			subtitle: "Gather building materials"
+			tasks: [
+				{
+					count: 8L
+					id: "7B20010400090001"
+					item: {
+						count: 1
+						id: "farmersdelight:straw"
+					}
+					type: "item"
+				}
+				{
+					count: 4L
+					id: "7B20010400090002"
+					item: {
+						count: 1
+						id: "farmersdelight:rope"
+					}
+					type: "item"
+				}
+			]
+			title: "Straw and Rope"
+			x: 4.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B20010300040000"]
+			description: [
+				"Any three vegetables and a bowl."
+				""
+				"Cooked meals give a Comfort effect that regenerates health for a"
+				"while after eating -- worth far more than the hunger points."
+			]
+			id: "7B200103000A0000"
+			rewards: [
+				{
+					id: "7B200105000A000B"
+					type: "xp"
+					xp: 25
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B200105000A000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Cook vegetable soup"
+			tasks: [
+				{
+					id: "7B200104000A0001"
+					item: {
+						count: 1
+						id: "farmersdelight:vegetable_soup"
+					}
+					type: "item"
+				}
+			]
+			title: "First Stew"
+			x: 4.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B200103000A0000"]
+			description: [
+				"Bun, patty, cheese, lettuce. It takes a cow, a wheat farm and a"
+				"cabbage patch to build one sandwich."
+				""
+				"Worth it."
+			]
+			id: "7B200103000B0000"
+			rewards: [
+				{
+					id: "7B200105000B000B"
+					type: "xp"
+					xp: 30
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B200105000B000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Assemble a hamburger"
+			tasks: [
+				{
+					id: "7B200104000B0001"
+					item: {
+						count: 1
+						id: "farmersdelight:hamburger"
+					}
+					type: "item"
+				}
+			]
+			title: "A Proper Burger"
+			x: 6.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B20010300060000"]
+			description: [
+				"Knives wear out like any tool, and you will use this one constantly."
+				""
+				"There is a netherite one too, if you get that far."
+			]
+			id: "7B200103000C0000"
+			rewards: [
+				{
+					id: "7B200105000C000B"
+					type: "xp"
+					xp: 30
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B200105000C000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Upgrade your knife"
+			tasks: [
+				{
+					id: "7B200104000C0001"
+					item: {
+						count: 1
+						id: "farmersdelight:iron_knife"
+					}
+					type: "item"
+				}
+				{
+					id: "7B200104000C0002"
+					item: {
+						count: 1
+						id: "farmersdelight:diamond_knife"
+					}
+					type: "item"
+				}
+			]
+			title: "Better Knives"
+			x: 6.0d
+			y: -1.5d
+		}
+	]
+	subtitle: "Knives, pots and a real kitchen"
+	title: "Farmer's Delight"
+}

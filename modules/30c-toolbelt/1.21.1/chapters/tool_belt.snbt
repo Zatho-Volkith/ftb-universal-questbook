@@ -1,0 +1,112 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "tool_belt"
+	group: "7B00000100000002"
+	icon: {
+		id: "toolbelt:belt"
+	}
+	id: "7B30040200000001"
+	images: [ ]
+	order_index: 33
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"Leather, worn in a slot of its own."
+				""
+				"Tools go on it and come back with a keybind, without ever"
+				"touching your hotbar."
+			]
+			id: "7B30040300010000"
+			rewards: [
+				{
+					id: "7B3004050001000B"
+					type: "xp"
+					xp: 20
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3004050001000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a tool belt"
+			tasks: [
+				{
+					id: "7B30040400010001"
+					item: {
+						count: 1
+						id: "toolbelt:belt"
+					}
+					type: "item"
+				}
+			]
+			title: "The Belt"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B30040300010000"]
+			description: ["The same idea for blocks rather than tools."]
+			id: "7B30040300020000"
+			rewards: [
+				{
+					id: "7B3004050002000B"
+					type: "xp"
+					xp: 20
+				}
+			]
+			subtitle: "Craft a pouch"
+			tasks: [
+				{
+					id: "7B30040400020001"
+					item: {
+						count: 1
+						id: "toolbelt:pouch"
+					}
+					type: "item"
+				}
+			]
+			title: "The Pouch"
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B30040300010000"]
+			description: [
+				"The belt starts with two slots and widens as you level up,"
+				"so there is nothing extra to craft."
+				""
+				"Check this off once you have felt it get roomier."
+			]
+			id: "7B30040300030000"
+			rewards: [
+				{
+					id: "7B3004050003000B"
+					type: "xp"
+					xp: 30
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3004050003000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "How the belt grows"
+			tasks: [
+				{
+					id: "7B30040400030001"
+					type: "checkmark"
+				}
+			]
+			title: "More Room"
+			x: 1.5d
+			y: -1.5d
+		}
+	]
+	subtitle: "Nine slots you always have"
+	title: "Tool Belt"
+}

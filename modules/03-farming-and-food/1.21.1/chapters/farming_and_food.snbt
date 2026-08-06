@@ -436,6 +436,84 @@
 			x: 4.5d
 			y: 1.5d
 		}
+		{
+			description: [
+				"Crops, animals and the food worth cooking."
+				""
+				"Tilled soil next to water stays hydrated, and hydrated soil grows"
+				"noticeably faster. Plan the field around the water, not the other"
+				"way round."
+			]
+			id: "7B030103000D0000"
+			rewards: [
+				{
+					id: "7B030105000D000B"
+					type: "xp"
+					xp: 5
+				}
+			]
+			subtitle: "How to read this chapter"
+			tasks: [
+				{
+					id: "7B030104000D0001"
+					type: "checkmark"
+				}
+			]
+			title: "Before You Plant"
+			x: -1.5d
+			y: 0.0d
+		}
+		{
+			description: ["Flat, well-lit and full of animals.", "", "The easiest place in the game to start a farm."]
+			id: "7B030103000E0000"
+			rewards: [
+				{
+					id: "7B030105000E000B"
+					type: "xp"
+					xp: 15
+				}
+			]
+			subtitle: "Stand in a plains biome"
+			tasks: [
+				{
+					biome: "minecraft:plains"
+					id: "7B030104000E0001"
+					type: "biome"
+				}
+			]
+			title: "Open Country"
+			x: 4.5d
+			y: -1.5d
+		}
+		{
+			description: ["Ten pairs fed and paired off.", "", "A herd you breed is a herd that never runs out."]
+			id: "7B030103000F0000"
+			rewards: [
+				{
+					id: "7B030105000F000B"
+					type: "xp"
+					xp: 40
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B030105000F000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Breed animals"
+			tasks: [
+				{
+					id: "7B030104000F0001"
+					stat: "minecraft:animals_bred"
+					type: "stat"
+					value: 10
+				}
+			]
+			title: "The Herd"
+			x: 6.0d
+			y: 3.0d
+		}
 	]
 	subtitle: "Crops, herds and a full hunger bar"
 	title: "Farming & Food"

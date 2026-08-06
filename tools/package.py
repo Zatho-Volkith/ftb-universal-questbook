@@ -39,10 +39,18 @@ Drop-in quest chapters for FTB Quests.
 
 Contents
 --------
+The installer carries {module_count} chapters in total, including chapters for
+specific mods and their add-ons. It reads your pack and offers only the ones
+your mods support -- anything you do not have is greyed out.
+
+The `quests` folder, for copying in by hand, holds the {chapter_count}
+vanilla-only chapters ({quest_count} quests, {table_count} reward tables):
+
 {contents}
 
-{quest_count} quests across {chapter_count} chapters, {table_count} reward tables.
-Everything here uses vanilla items only, so it works in any {mc} pack.
+Those use vanilla items exclusively, so they work in any {mc} pack. Mod
+chapters are installer-only for exactly that reason -- copied in blind they
+would be a wall of barrier blocks for anyone without the mod.
 
 
 Installing -- the easy way
@@ -123,8 +131,8 @@ installer will tell you if your setting differs; it never edits that file.
 Troubleshooting
 ---------------
 A quest showing a BARRIER BLOCK instead of an icon means that item does not
-exist in your pack. Everything here is vanilla-only, so that should not happen
-on {mc} -- please report it.
+exist in your pack. If it is in a vanilla chapter, that is a bug -- please
+report it. If it is in a mod chapter, check that mod is actually installed.
 
 Nothing appears in the book: check that the chapter groups were registered in
 `config/ftbquests/quests/chapter_groups.snbt`.
@@ -172,15 +180,30 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--no-zip", action="store_true")
     args = parser.parse_args(argv)
 
-    # default to the vanilla-only modules, which is what "universal" means here
-    modules = args.modules
-    if not modules:
-        modules = []
-        for manifest_path in sorted((REPO_ROOT / "modules").glob("*/module.json")):
-            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-            if not manifest.get("requires_mods") and \
-                    (manifest_path.parent / args.mc_version).exists():
-                modules.append(manifest_path.parent.name)
+    # Two different sets, deliberately.
+    #
+    # The installer ships EVERY module -- the wizard detects which mods a pack
+    # has and offers exactly those, so withholding the mod chapters would just
+    # make the bundle less useful.
+    #
+    # The drop-in `quests/` folder ships only the vanilla-only modules, because
+    # it gets copied in blind with nothing checking what the pack contains. A
+    # Farmer's Delight chapter in there would be a wall of barrier blocks for
+    # anyone without the mod.
+    all_modules, dropin_modules = [], []
+    for manifest_path in sorted((REPO_ROOT / "modules").glob("*/module.json")):
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        if not (manifest_path.parent / args.mc_version).exists():
+            continue
+        slug = manifest_path.parent.name
+        all_modules.append(slug)
+        if not manifest.get("requires_mods"):
+            dropin_modules.append(slug)
+
+    if args.modules:
+        all_modules = list(args.modules)
+        dropin_modules = [m for m in dropin_modules if m in all_modules]
+    modules = all_modules
 
     output_root = args.output.expanduser().resolve()
     bundle = output_root / BUNDLE_NAME
@@ -190,7 +213,7 @@ def main(argv: list[str] | None = None) -> int:
 
     # 1. the drop-in quests folder
     quests_dir = bundle / "quests"
-    build_quests_folder(quests_dir, modules, args.mc_version)
+    build_quests_folder(quests_dir, dropin_modules, args.mc_version)
 
     # 2. the installer, for packs that already have a book.
     # install.py resolves modules as parent.parent, so mirror the repo shape:
@@ -261,7 +284,8 @@ def main(argv: list[str] | None = None) -> int:
     )
     (bundle / "README.txt").write_text(
         README.format(mc=args.mc_version, contents=contents, quest_count=quests,
-                      chapter_count=chapters, table_count=tables),
+                      chapter_count=chapters, table_count=tables,
+                      module_count=len(modules) - 1),
         encoding="utf-8",
     )
 
@@ -303,7 +327,9 @@ def main(argv: list[str] | None = None) -> int:
                     zf.write(path, path.relative_to(bundle.parent))
 
     print(f"bundle: {bundle}")
-    print(f"  modules  : {', '.join(modules)}")
+    print(f"  installer: {len(modules)} modules "
+          f"({len(modules) - len(dropin_modules)} need mods)")
+    print(f"  drop-in  : {len(dropin_modules)} vanilla-only modules")
     print(f"  content  : {chapters} chapters, {quests} quests, {tables} reward tables")
     if archive:
         print(f"  zip      : {archive} ({archive.stat().st_size / 1024:.0f} KB)")

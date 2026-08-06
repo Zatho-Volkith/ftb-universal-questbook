@@ -68,10 +68,13 @@ QUEST_SUMMARY = re.compile(
 QUEST_LOAD_FAILURE = re.compile(r"failed to load quest data from (\S+): (.*)")
 SEVERE = re.compile(r"\[(?:[^\]]*)/(ERROR|FATAL)\]")
 
-# Vanilla noise that says nothing about the questbook.
+# Noise that says nothing about the questbook. The RecipeManager entries are
+# mods shipping recipes for other mods that are not installed -- a property of
+# the pack, not of anything we wrote.
 BENIGN = re.compile(
     r"No key layers in MapLike|OFFLINE/INSECURE MODE|authenticate usernames|"
-    r"hackers to connect|online-mode|Environment: |experimental"
+    r"hackers to connect|online-mode|Environment: |experimental|"
+    r"RecipeManager|Negative index in crash report handler"
 )
 
 
@@ -178,7 +181,8 @@ def cmd_setup(args: argparse.Namespace) -> int:
     return 0
 
 
-def stage_mods(all_mods: bool) -> tuple[int, list[str]]:
+def stage_mods(all_mods: bool, extra_patterns: list[str] | None = None
+               ) -> tuple[int, list[str]]:
     mods_dir = SERVER_DIR / "mods"
     if mods_dir.exists():
         shutil.rmtree(mods_dir)
@@ -194,8 +198,25 @@ def stage_mods(all_mods: bool) -> tuple[int, list[str]]:
         chosen = jars
     else:
         chosen = []
-        for pattern in CORE_MOD_PATTERNS:
-            match = next((j for j in jars if pattern in j.name.lower()), None)
+        # Staging every reference jar usually fails on library mods that are
+        # not in the folder (balm, curios, caelus...), which says nothing about
+        # the questbook. Default to the FTB stack plus whatever was asked for.
+        # Jar filenames and mod IDs disagree about separators -- the mod
+        # `easy_villagers` ships as `easy-villagers-neoforge-...jar` -- so
+        # compare with both stripped out.
+        def flatten(text: str) -> str:
+            return text.lower().replace("-", "").replace("_", "")
+
+        for pattern in CORE_MOD_PATTERNS + list(extra_patterns or []):
+            flat = flatten(pattern)
+            # Prefer a jar whose filename STARTS with the pattern. A plain
+            # substring search picks "more_umapyoi_skills" for "umapyoi", which
+            # then fails to load because the mod it extends is absent.
+            candidates = [j for j in jars if flat in flatten(j.name)]
+            match = next(
+                (j for j in candidates if flatten(j.name).startswith(flat)),
+                candidates[0] if candidates else None,
+            )
             if match:
                 chosen.append(match)
             else:
@@ -266,7 +287,7 @@ def cmd_run(args: argparse.Namespace) -> int:
         die("the Minecraft EULA has not been accepted; see "
             "`python3 tools/testbed.py setup --help`")
 
-    staged, missing = stage_mods(args.all_mods)
+    staged, missing = stage_mods(args.all_mods, args.mods)
     print(f"staged {staged} mod jar(s)"
           + (" (all reference mods)" if args.all_mods else " (FTB Quests + dependencies)"))
     if missing:
@@ -337,7 +358,12 @@ def list_installable(args: argparse.Namespace) -> list[str]:
     names = []
     for manifest_path in sorted((REPO_ROOT / "modules").glob("*/module.json")):
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-        if args.all_mods or not manifest.get("requires_mods"):
+        needed = manifest.get("requires_mods") or []
+        staged_ok = all(
+            any(pat in n for pat in (args.mods or []))
+            for n in needed
+        ) if args.mods else not needed
+        if args.all_mods or not needed or staged_ok:
             if (manifest_path.parent / args.mc_version).exists():
                 names.append(manifest_path.parent.name)
     return names
@@ -371,6 +397,9 @@ def main(argv: list[str] | None = None) -> int:
     run.add_argument("--mc-version", default=MC_VERSION)
     run.add_argument("--all-mods", action="store_true",
                      help="stage every reference jar, not just FTB Quests")
+    run.add_argument("--mods", nargs="*", default=None,
+                     help="also stage reference jars whose filename contains "
+                          "these strings (e.g. farmersdelight productivebees)")
     run.add_argument("--timeout", type=int, default=300)
     run.add_argument("--expect-quests", type=int, default=None,
                      help="fail unless exactly this many quests load")

@@ -124,14 +124,77 @@ are also in `library.json` and every module's `module.json`.
 |--------|---------|--------|----------|
 | `00-core` | *(reward tables and chapter groups)* | — | vanilla |
 | `01-getting-started` | Getting Started | 10 | vanilla |
-| `02-mining-and-caving` | Mining & Caving | 12 | vanilla |
-| `03-farming-and-food` | Farming & Food | 12 | vanilla |
-| `04-the-nether` | The Nether | 11 | vanilla |
-| `05-the-end` | The End | 10 | vanilla |
-| `06-building` | Building & Decoration | 10 | vanilla |
-| `07-enchanting-and-brewing` | Enchanting & Brewing | 10 | vanilla |
+| `02-mining-and-caving` | Mining & Caving | 15 | vanilla |
+| `03-farming-and-food` | Farming & Food | 15 | vanilla |
+| `04-the-nether` | The Nether | 14 | vanilla |
+| `05-the-end` | The End | 13 | vanilla |
+| `06-building` | Building & Decoration | 13 | vanilla |
+| `07-enchanting-and-brewing` | Enchanting & Brewing | 13 | vanilla |
+| `20-farmersdelight` | Farmer's Delight | 12 | `farmersdelight` |
+| `20a-expanded-delight` | └ Expanded Delight | 6 | `+ expandeddelight` |
+| `20b-nethers-delight` | └ Nether's Delight | 6 | `+ mynethersdelight` |
+| `20c-oceans-delight` | └ Ocean's Delight | 5 | `+ oceansdelight` |
+| `20d-enders-delight` | └ Ender's Delight | 5 | `+ endersdelight` |
+| `22-productivebees` | Productive Bees | 12 | `productivebees` |
+| `28-umapyoi` | Umapyoi | 12 | `umapyoi` |
+| `30-quality-of-life` | Quality of Life | 8 | vanilla |
+| `30a-waystones` | └ Waystones | 4 | `+ waystones` |
+| `30b-explorers-compass` | └ Explorer's Compass | 2 | `+ explorerscompass` |
+| `30c-toolbelt` | └ Tool Belt | 3 | `+ toolbelt` |
+| `30d-sol-carrot` | └ Spice of Life: Carrot Edition | 2 | `+ solcarrot` |
+| `30e-crafting-on-a-stick` | └ Crafting on a Stick | 4 | `+ crafting_on_a_stick` |
+| `30f-torchmaster` | └ Torchmaster | 3 | `+ torchmaster` |
+| `30g-pylons` | └ Pylons | 4 | `+ pylons` |
+| `30h-lootr` | └ Lootr | 3 | `+ lootr` |
+| `30i-easy-villagers` | └ Easy Villagers | 5 | `+ easy_villagers` |
 
-75 quests, all vanilla-only, so every chapter works in any 1.21.1 pack.
+**189 quests across 24 chapters.** 101 of them are
+vanilla-only and work in any 1.21.1 pack; the rest install only when their
+mods are present.
+
+### Task types
+
+A chapter made only of item turn-ins reads like a shopping list. These nine
+types are used throughout, and all nine were verified by loading them in a real
+server and reading back what FTB Quests normalised them to:
+
+| Type | Used for |
+|------|----------|
+| `item` | hand in or hold an item |
+| `checkmark` | an information node with no requirement — click to acknowledge |
+| `observation` | look at a block or entity for a few seconds |
+| `stat` | a vanilla statistic (animals bred, play time, mob kills) |
+| `biome` / `structure` / `dimension` | be somewhere |
+| `kill` | defeat a specific entity |
+| `advancement` | earn a vanilla advancement |
+| `xp` | reach an experience level |
+
+Two are deliberately **not** used, and `validate.py` rejects both:
+
+- **`stage`** — FTB accepts it, silently rewrites it to `type: "custom"`, and
+  the quest becomes uncompletable. It needs a game-stage mod or KubeJS.
+- **`location`** — works, but pins a quest to fixed coordinates in one world,
+  which cannot be portable content.
+
+The `stage` behaviour is the nastier of the two: nothing errors, the book
+loads, the quest count is right, and the quest simply can never be finished.
+
+### Add-ons
+
+Mods with their own ecosystems — Farmer's Delight especially — get add-on
+chapters that hang off the parent module. The installer detects which are
+present and offers exactly those:
+
+```
+[✓] 8   Farmer's Delight             12  farmersdelight
+[✓] 9     └ Expanded Delight          6  + expandeddelight
+[ ] 10    └ Nether's Delight          6  + mynethersdelight   (needs mynethersdelight)
+[✓] 11    └ Ocean's Delight           5  + oceansdelight
+```
+
+Add-ons share their parent's module number and are told apart by chapter
+number, so a mod can have dozens without eating into the 256 module slots.
+See [ID-REGISTRY.md](ID-REGISTRY.md#addons-chapter-slots-not-module-numbers).
 
 ---
 

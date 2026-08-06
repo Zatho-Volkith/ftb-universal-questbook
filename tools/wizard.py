@@ -286,31 +286,70 @@ def step_choose(modules: dict[str, install.Module], mod_ids: set[str]) -> list[i
         (required if module.is_required else optional).append(module)
     optional.sort(key=lambda m: m.number)
 
+    # Order so every addon sits directly under the module it extends. Addons
+    # share their parent's module number, so sorting on (module, chapter)
+    # already produces that grouping.
+    by_slug = {m.slug: m for m in optional}
+    optional.sort(key=lambda m: (m.number, m.chapter_number))
+
     rows = []
     for module in optional:
         missing = [m for m in module.requires_mods if m not in mod_ids]
         quests, title = chapter_summary(module)
+        parent = by_slug.get(module.extends or "")
+        # Show only the mods this addon needs beyond its parent's.
+        extra = [m for m in module.requires_mods
+                 if not parent or m not in parent.requires_mods]
         rows.append({"module": module, "missing": missing, "quests": quests,
-                     "title": title, "on": not missing})
+                     "title": title, "on": not missing,
+                     "is_addon": parent is not None,
+                     "parent_slug": module.extends, "extra_mods": extra})
+
+    index_of = {row["module"].slug: i for i, row in enumerate(rows)}
+
+    def set_state(i: int, on: bool) -> None:
+        """Toggle a row, keeping parents and addons consistent.
+
+        Ticking an addon implies its parent (install.py would pull it in
+        anyway); unticking a parent drops the addons that hang off it.
+        """
+        rows[i]["on"] = on
+        row = rows[i]
+        if on and row["parent_slug"] in index_of:
+            parent_index = index_of[row["parent_slug"]]
+            if not rows[parent_index]["missing"]:
+                rows[parent_index]["on"] = True
+        if not on:
+            for j, other in enumerate(rows):
+                if other["parent_slug"] == row["module"].slug:
+                    other["on"] = False
 
     def render() -> None:
         print()
-        print(f"  {'#':<3} {'Chapter':<28} {'Quests':>6}  Requires")
-        print(dim("  " + "-" * 56))
+        print(f"  {'#':<4}{'Chapter':<30}{'Quests':>6}  Requires")
+        print(dim("  " + "-" * 58))
         for i, row in enumerate(rows, start=1):
             mark = f"[{TICK}]" if row["on"] else "[ ]"
-            needs = ", ".join(row["module"].requires_mods) or "vanilla"
-            line = (f"  {i:<3} {row['title']:<28} {row['quests']:>6}  {needs}")
-            if row["missing"]:
-                print(dim(f"{line}   {mark}  (needs {', '.join(row['missing'])})"))
-            elif row["on"]:
-                print(f"{green(mark)} {line[2:]}")
+            if row["is_addon"]:
+                label = f"  └ {row['title']}"
+                needs = "+ " + (", ".join(row["extra_mods"]) or "—")
             else:
-                print(f"{mark} {line[2:]}")
+                label = row["title"]
+                needs = ", ".join(row["module"].requires_mods) or "vanilla"
+            body = f"{i:<4}{label:<30}{row['quests']:>6}  {needs}"
+            if row["missing"]:
+                print(dim(f"  [ ] {body}   (needs {', '.join(row['missing'])})"))
+            elif row["on"]:
+                print(f"  {green(mark)} {body}")
+            else:
+                print(f"  {mark} {body}")
         chosen = sum(r["quests"] for r in rows if r["on"])
         count = sum(1 for r in rows if r["on"])
-        print(dim("  " + "-" * 56))
+        print(dim("  " + "-" * 58))
         print(f"  selected: {bold(str(count))} chapters, {bold(str(chosen))} quests")
+        addons_on = sum(1 for r in rows if r["on"] and r["is_addon"])
+        if addons_on:
+            print(dim(f"  ({addons_on} of those are add-ons detected in your pack)"))
 
     while True:
         render()
@@ -332,18 +371,18 @@ def step_choose(modules: dict[str, install.Module], mod_ids: set[str]) -> list[i
             return required + selected
 
         if answer == "a":
-            for row in rows:
-                row["on"] = True
+            for i in range(len(rows)):
+                set_state(i, True)
             continue
         if answer == "n":
-            for row in rows:
-                row["on"] = False
+            for i in range(len(rows)):
+                rows[i]["on"] = False
             continue
 
         for token in answer.replace(",", " ").split():
             if token.isdigit() and 1 <= int(token) <= len(rows):
-                row = rows[int(token) - 1]
-                row["on"] = not row["on"]
+                index = int(token) - 1
+                set_state(index, not rows[index]["on"])
             else:
                 print(yellow(f"  ignoring '{token}' — expected a number 1-{len(rows)}"))
 

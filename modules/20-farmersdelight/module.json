@@ -1,0 +1,25 @@
+{
+  "id": "20-farmersdelight",
+  "module_number": 32,
+  "name": "Farmer's Delight",
+  "description": "Knife, cutting board, cooking pot and stove, the new crops, and the food worth cooking.",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "requires_mods": [
+    "farmersdelight"
+  ],
+  "requires_modules": [
+    "00-core"
+  ],
+  "chapter_group": "mods",
+  "chapters": [
+    {
+      "number": 1,
+      "file": "farmers_delight.snbt",
+      "title": "Farmer's Delight"
+    }
+  ],
+  "allowed_external_dependencies": []
+}

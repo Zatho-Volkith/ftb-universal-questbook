@@ -1,0 +1,29 @@
+{
+  "id": "20a-expanded-delight",
+  "module_number": 32,
+  "chapter_number": 2,
+  "extends": "20-farmersdelight",
+  "name": "Expanded Delight",
+  "description": "Cheese casks, goat milk, the juicer, cinnamon, and four new crops.",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "requires_mods": [
+    "farmersdelight",
+    "expandeddelight"
+  ],
+  "requires_modules": [
+    "00-core",
+    "20-farmersdelight"
+  ],
+  "chapter_group": "mods",
+  "chapters": [
+    {
+      "number": 2,
+      "file": "expanded_delight.snbt",
+      "title": "Expanded Delight"
+    }
+  ],
+  "allowed_external_dependencies": []
+}

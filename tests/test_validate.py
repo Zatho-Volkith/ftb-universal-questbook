@@ -49,9 +49,11 @@ def _(root):
     edit(root / CHAPTER, '"7B01010300040000"', '"A1B2C3D4E5F60718"')
 
 
-@case("ID in the wrong module", r"encodes module 07 but lives in module 01")
+@case("ID in the wrong module", r"encodes module 0x7A but lives in module 0x01")
 def _(root):
-    edit(root / CHAPTER, '"7B01010300050000"', '"7B07010300050000"')
+    # 0x7A is deliberately a module number nothing owns, so this fires the
+    # wrong-module check alone rather than also colliding with a real ID.
+    edit(root / CHAPTER, '"7B01010300050000"', '"7B7A010300050000"')
 
 
 @case("cross-chapter dependency", r"which is not in this chapter")
@@ -97,6 +99,52 @@ def _(root):
 @case("reward table entry with a bad item", r"is not in any manifest")
 def _(root):
     edit(root / TABLE, 'id: "minecraft:torch"', 'id: "minecraft:torches"')
+
+
+ADDON = "modules/20a-expanded-delight/module.json"
+ADDON_CHAPTER = "modules/20a-expanded-delight/1.21.1/chapters/expanded_delight.snbt"
+ADDON2 = "modules/20b-nethers-delight/module.json"
+
+
+@case("two modules claiming the same chapter slot", r"already used by")
+def _(root):
+    # 20b normally owns chapter 3; point it at 20a's chapter 2
+    edit(root / ADDON2, '"chapter_number": 3', '"chapter_number": 2')
+
+
+@case("addon not sharing its parent's module number", r"Addons share the parent's module number")
+def _(root):
+    edit(root / ADDON, '"module_number": 32', '"module_number": 33')
+
+
+@case("addon not depending on its parent module", r"does not list it in\s+requires_modules")
+def _(root):
+    edit(root / ADDON, '"00-core",\n    "20-farmersdelight"', '"00-core"')
+
+
+@case("addon not requiring its parent's mods", r"does not require its mods")
+def _(root):
+    edit(root / ADDON, '"farmersdelight",\n    "expandeddelight"', '"expandeddelight"')
+
+
+@case("ID using a chapter the module does not own", r"owns chapter")
+def _(root):
+    edit(root / ADDON_CHAPTER, '"7B20020300010000"', '"7B20070300010000"')
+
+
+MINING = "modules/02-mining-and-caving/1.21.1/chapters/mining_and_caving.snbt"
+
+
+@case("unsupported task type (stage)", r"task type 'stage' is not usable here")
+def _(root):
+    # FTB accepts `stage`, silently rewrites it to type "custom", and the quest
+    # becomes uncompletable. Verified in the testbed; the linter must refuse it.
+    edit(root / MINING, 'type: "checkmark"', 'type: "stage"')
+
+
+@case("unknown task type", r"unrecognised task type")
+def _(root):
+    edit(root / MINING, 'type: "checkmark"', 'type: "teleport"')
 
 
 def run(root: Path) -> str:

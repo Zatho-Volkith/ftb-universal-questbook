@@ -160,6 +160,47 @@ python3 tools/extract_item_ids.py path/to/mods -o tools/data/mod-items-1.21.1.js
 python3 tools/validate.py --module 22-productivebees --strict
 ```
 
+## Adding an add-on chapter
+
+When a mod has its own ecosystem — Farmer's Delight has several Delight
+addons, Productive Bees has built-in support for a long list of worldgen mods —
+each addon gets its own chapter that only installs when that mod is present.
+
+An addon does **not** claim a new module number. It shares its parent's and
+takes a different chapter number:
+
+```json
+{
+  "id": "20a-expanded-delight",
+  "module_number": 32,
+  "chapter_number": 2,
+  "extends": "20-farmersdelight",
+  "requires_mods": ["farmersdelight", "expandeddelight"],
+  "requires_modules": ["00-core", "20-farmersdelight"],
+  "chapter_group": "mods"
+}
+```
+
+Five rules, all enforced by `validate.py`:
+
+1. `module_number` is the **parent's**, not a new one
+2. `chapter_number` is unique within that module — it is the only thing keeping
+   two addons' IDs apart, so a duplicate silently collides everything
+3. `extends` names a module that exists
+4. `requires_modules` includes the parent, so installing the addon alone still
+   pulls in the chapter it extends
+5. `requires_mods` repeats the parent's mods as well as its own, so
+   auto-detection cannot install it into a pack the parent cannot run in
+
+Mint IDs with the addon's own chapter number:
+
+```bash
+python3 tools/qid.py new 32 2 quest 1      # -> 7B20020300010000
+```
+
+The wizard picks this up automatically: addons render indented under their
+parent, ticked when their mod is detected and greyed out when it is not.
+
 ## 7. Test in a real instance
 
 The validator catches structural mistakes; it cannot tell you whether a chapter

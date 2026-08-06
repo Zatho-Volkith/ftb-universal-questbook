@@ -1,0 +1,28 @@
+{
+  "id": "30e-crafting-on-a-stick",
+  "module_number": 48,
+  "chapter_number": 6,
+  "extends": "30-quality-of-life",
+  "name": "Crafting on a Stick",
+  "description": "Portable crafting table, stonecutter, smithing table and anvil.",
+  "requires_mods": [
+    "crafting_on_a_stick"
+  ],
+  "requires_modules": [
+    "00-core",
+    "30-quality-of-life"
+  ],
+  "chapter_group": "mods",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "chapters": [
+    {
+      "number": 6,
+      "file": "crafting_on_a_stick.snbt",
+      "title": "Crafting on a Stick"
+    }
+  ],
+  "allowed_external_dependencies": []
+}

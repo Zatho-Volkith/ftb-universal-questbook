@@ -1,0 +1,261 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "expanded_delight"
+	group: "7B00000100000002"
+	icon: {
+		id: "expandeddelight:cheese_wheel"
+	}
+	id: "7B20020200000001"
+	images: [ ]
+	order_index: 20
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"The mallet crushes things the knife cannot cut."
+				""
+				"It is the entry point for most of what this addon adds."
+			]
+			id: "7B20020300010000"
+			rewards: [
+				{
+					id: "7B2002050001000B"
+					type: "xp"
+					xp: 15
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2002050001000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a crushing mallet"
+			tasks: [
+				{
+					id: "7B20020400010001"
+					item: {
+						count: 1
+						id: "expandeddelight:crushing_mallet"
+					}
+					type: "item"
+				}
+			]
+			title: "Crushing Mallet"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B20020300010000"]
+			description: [
+				"Goats give a different milk to cows, and the cheese made from it"
+				"is a separate ingredient entirely."
+			]
+			id: "7B20020300020000"
+			rewards: [
+				{
+					id: "7B2002050002000B"
+					type: "xp"
+					xp: 15
+				}
+			]
+			subtitle: "Milk a goat"
+			tasks: [
+				{
+					id: "7B20020400020001"
+					item: {
+						count: 1
+						id: "expandeddelight:goat_milk_bucket"
+					}
+					type: "item"
+				}
+			]
+			title: "Goat Milk"
+			x: 1.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B20020300010000"]
+			description: [
+				"Milk goes into a cask and waits."
+				""
+				"Casks are the slow half of this addon -- start one early and forget"
+				"about it until it is ready."
+			]
+			id: "7B20020300030000"
+			rewards: [
+				{
+					id: "7B2002050003000B"
+					type: "xp"
+					xp: 25
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2002050003000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Age a cheese wheel"
+			tasks: [
+				{
+					id: "7B20020400030001"
+					item: {
+						count: 1
+						id: "expandeddelight:cheese_cask"
+					}
+					type: "item"
+				}
+				{
+					id: "7B20020400030002"
+					item: {
+						count: 1
+						id: "expandeddelight:cheese_wheel"
+					}
+					type: "item"
+				}
+			]
+			title: "Cheese"
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B20020300010000"]
+			description: [
+				"Asparagus, chili peppers, cranberries and peanuts."
+				""
+				"Most of the new dishes need at least one of them."
+			]
+			id: "7B20020300040000"
+			rewards: [
+				{
+					id: "7B2002050004000B"
+					type: "xp"
+					xp: 20
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2002050004000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Grow asparagus and chili"
+			tasks: [
+				{
+					id: "7B20020400040001"
+					item: {
+						count: 1
+						id: "expandeddelight:asparagus_seeds"
+					}
+					type: "item"
+				}
+				{
+					id: "7B20020400040002"
+					item: {
+						count: 1
+						id: "expandeddelight:chili_pepper_seeds"
+					}
+					type: "item"
+				}
+			]
+			title: "New Crops"
+			x: 1.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B20020300030000"]
+			description: [
+				"Fruit in, juice out, into a glass jar."
+				""
+				"Jars are reusable, so make a few more than you think you need."
+			]
+			id: "7B20020300050000"
+			rewards: [
+				{
+					id: "7B2002050005000B"
+					type: "xp"
+					xp: 25
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2002050005000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a juicer"
+			tasks: [
+				{
+					id: "7B20020400050001"
+					item: {
+						count: 1
+						id: "expandeddelight:juicer"
+					}
+					type: "item"
+				}
+				{
+					count: 4L
+					id: "7B20020400050002"
+					item: {
+						count: 1
+						id: "expandeddelight:glass_jar"
+					}
+					type: "item"
+				}
+			]
+			title: "The Juicer"
+			x: 3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B20020300010000"]
+			description: [
+				"A whole tree that exists to season desserts."
+				""
+				"The wood is a perfectly good building material too."
+			]
+			id: "7B20020300060000"
+			rewards: [
+				{
+					id: "7B2002050006000B"
+					type: "xp"
+					xp: 20
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2002050006000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Harvest cinnamon"
+			tasks: [
+				{
+					count: 8L
+					id: "7B20020400060001"
+					item: {
+						count: 1
+						id: "expandeddelight:cinnamon_log"
+					}
+					type: "item"
+				}
+				{
+					count: 4L
+					id: "7B20020400060002"
+					item: {
+						count: 1
+						id: "expandeddelight:cinnamon"
+					}
+					type: "item"
+				}
+			]
+			title: "Cinnamon"
+			x: 3.0d
+			y: -1.5d
+		}
+	]
+	subtitle: "Cheese, casks and new crops"
+	title: "Expanded Delight"
+}

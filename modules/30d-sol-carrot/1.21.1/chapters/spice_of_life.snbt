@@ -1,0 +1,116 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "spice_of_life"
+	group: "7B00000100000002"
+	icon: {
+		id: "solcarrot:food_book"
+	}
+	id: "7B30050200000001"
+	images: [ ]
+	order_index: 34
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"It tracks every distinct food you have eaten."
+				""
+				"The more variety, the more maximum hearts you keep."
+			]
+			id: "7B30050300010000"
+			rewards: [
+				{
+					id: "7B3005050001000B"
+					type: "xp"
+					xp: 20
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3005050001000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a food book"
+			tasks: [
+				{
+					id: "7B30050400010001"
+					item: {
+						count: 1
+						id: "solcarrot:food_book"
+					}
+					type: "item"
+				}
+			]
+			title: "The Food Book"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B30050300010000"]
+			description: [
+				"Living on one crop stops paying off."
+				""
+				"Gather a spread and the book starts giving hearts back."
+			]
+			id: "7B30050300020000"
+			rewards: [
+				{
+					id: "7B3005050002000B"
+					type: "xp"
+					xp: 40
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3005050002000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Eat across the board"
+			tasks: [
+				{
+					count: 8L
+					id: "7B30050400020001"
+					item: {
+						count: 1
+						id: "minecraft:cooked_beef"
+					}
+					type: "item"
+				}
+				{
+					count: 8L
+					id: "7B30050400020002"
+					item: {
+						count: 1
+						id: "minecraft:bread"
+					}
+					type: "item"
+				}
+				{
+					count: 4L
+					id: "7B30050400020003"
+					item: {
+						count: 1
+						id: "minecraft:golden_carrot"
+					}
+					type: "item"
+				}
+				{
+					count: 8L
+					id: "7B30050400020004"
+					item: {
+						count: 1
+						id: "minecraft:cooked_salmon"
+					}
+					type: "item"
+				}
+			]
+			title: "A Varied Diet"
+			x: 1.5d
+			y: 0.0d
+		}
+	]
+	subtitle: "Eat something different"
+	title: "Spice of Life: Carrot Edition"
+}

@@ -1,0 +1,181 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "oceans_delight"
+	group: "7B00000100000002"
+	icon: {
+		id: "oceansdelight:stuffed_cod"
+	}
+	id: "7B20040200000001"
+	images: [ ]
+	order_index: 22
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["Squid were previously good for ink and nothing else.", "", "Not any more."]
+			id: "7B20040300010000"
+			rewards: [
+				{
+					id: "7B2004050001000B"
+					type: "xp"
+					xp: 20
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2004050001000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Harvest tentacles"
+			tasks: [
+				{
+					count: 2L
+					id: "7B20040400010001"
+					item: {
+						count: 1
+						id: "oceansdelight:tentacles"
+					}
+					type: "item"
+				}
+			]
+			title: "Tentacles"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B20040300010000"]
+			description: ["A whole fish, stuffed and baked.", "", "The first real meal you can make from the sea."]
+			id: "7B20040300020000"
+			rewards: [
+				{
+					id: "7B2004050002000B"
+					type: "xp"
+					xp: 25
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2004050002000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Cook stuffed cod"
+			tasks: [
+				{
+					id: "7B20040400020001"
+					item: {
+						count: 1
+						id: "oceansdelight:stuffed_cod"
+					}
+					type: "item"
+				}
+			]
+			title: "Stuffed Cod"
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B20040300010000"]
+			description: [
+				"Pufferfish, sliced carefully."
+				""
+				"Prepared properly it is food. Prepared badly it is still pufferfish."
+			]
+			id: "7B20040300030000"
+			rewards: [
+				{
+					id: "7B2004050003000B"
+					type: "xp"
+					xp: 30
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2004050003000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Prepare fugu"
+			tasks: [
+				{
+					id: "7B20040400030001"
+					item: {
+						count: 1
+						id: "oceansdelight:fugu_slice"
+					}
+					type: "item"
+				}
+			]
+			title: "Fugu"
+			x: 1.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B20040300020000"]
+			description: ["You have to beat a monument to get the ingredients.", "", "Fair trade."]
+			id: "7B20040300040000"
+			rewards: [
+				{
+					id: "7B2004050004000B"
+					type: "xp"
+					xp: 40
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2004050004000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Cook guardian soup"
+			tasks: [
+				{
+					id: "7B20040400040001"
+					item: {
+						count: 1
+						id: "oceansdelight:guardian_soup"
+					}
+					type: "item"
+				}
+			]
+			title: "Guardian Soup"
+			x: 3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B20040300040000"]
+			description: ["There are only three elder guardians per monument.", "", "This is what you do with one."]
+			id: "7B20040300050000"
+			rewards: [
+				{
+					id: "7B2004050005000B"
+					type: "xp"
+					xp: 60
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2004050005000C"
+					table_id: 8863084092434939908L
+					type: "random"
+				}
+			]
+			subtitle: "Serve an elder guardian roll"
+			tasks: [
+				{
+					id: "7B20040400050001"
+					item: {
+						count: 1
+						id: "oceansdelight:elder_guardian_roll"
+					}
+					type: "item"
+				}
+			]
+			title: "Elder Guardian Roll"
+			x: 3.0d
+			y: -1.5d
+		}
+	]
+	subtitle: "Everything the sea is good for"
+	title: "Ocean's Delight"
+}

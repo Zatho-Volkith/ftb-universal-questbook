@@ -1,0 +1,25 @@
+{
+  "id": "22-productivebees",
+  "module_number": 34,
+  "name": "Productive Bees",
+  "description": "Catching bees, advanced hives, centrifuges, breeding and gene manipulation.",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "requires_mods": [
+    "productivebees"
+  ],
+  "requires_modules": [
+    "00-core"
+  ],
+  "chapter_group": "mods",
+  "chapters": [
+    {
+      "number": 1,
+      "file": "productive_bees.snbt",
+      "title": "Productive Bees"
+    }
+  ],
+  "allowed_external_dependencies": []
+}

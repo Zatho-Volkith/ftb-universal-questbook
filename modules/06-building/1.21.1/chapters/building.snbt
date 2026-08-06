@@ -339,6 +339,95 @@
 			x: 4.5d
 			y: 1.5d
 		}
+		{
+			description: [
+				"Nothing here is required for anything. It is a materials list for"
+				"the part of the game with no objective."
+				""
+				"Gather a stack of each and the builds get easier."
+			]
+			id: "7B060103000B0000"
+			rewards: [
+				{
+					id: "7B060105000B000B"
+					type: "xp"
+					xp: 5
+				}
+			]
+			subtitle: "How to read this chapter"
+			tasks: [
+				{
+					id: "7B060104000B0001"
+					type: "checkmark"
+				}
+			]
+			title: "Before You Build"
+			x: -1.5d
+			y: 0.0d
+		}
+		{
+			description: [
+				"A wall of these changes a room more than any other single block."
+				""
+				"Stand and look at one you have placed."
+			]
+			id: "7B060103000C0000"
+			rewards: [
+				{
+					id: "7B060105000C000B"
+					type: "xp"
+					xp: 20
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B060105000C000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Look at a bookshelf"
+			tasks: [
+				{
+					id: "7B060104000C0001"
+					observation_type: "block"
+					timer: 20L
+					to_observe: "minecraft:bookshelf"
+					type: "observation"
+				}
+			]
+			title: "Study the Craft"
+			x: 6.0d
+			y: 0.0d
+		}
+		{
+			description: ["An hour of play time.", "", "Building is the part nobody finishes, and that is the point."]
+			id: "7B060103000D0000"
+			rewards: [
+				{
+					id: "7B060105000D000B"
+					type: "xp"
+					xp: 50
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B060105000D000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Put the hours in"
+			tasks: [
+				{
+					id: "7B060104000D0001"
+					stat: "minecraft:play_time"
+					type: "stat"
+					value: 72000
+				}
+			]
+			title: "Time Served"
+			x: 6.0d
+			y: -1.5d
+		}
 	]
 	subtitle: "Materials worth a stack of"
 	title: "Building & Decoration"

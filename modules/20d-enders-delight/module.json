@@ -1,0 +1,29 @@
+{
+  "id": "20d-enders-delight",
+  "module_number": 32,
+  "chapter_number": 5,
+  "extends": "20-farmersdelight",
+  "name": "Ender's Delight",
+  "description": "Ender shards, the endstone stove, chorus pie, voidpepper and shulker.",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "requires_mods": [
+    "farmersdelight",
+    "endersdelight"
+  ],
+  "requires_modules": [
+    "00-core",
+    "20-farmersdelight"
+  ],
+  "chapter_group": "mods",
+  "chapters": [
+    {
+      "number": 5,
+      "file": "enders_delight.snbt",
+      "title": "Ender's Delight"
+    }
+  ],
+  "allowed_external_dependencies": []
+}

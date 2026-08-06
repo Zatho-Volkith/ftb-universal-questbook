@@ -145,8 +145,16 @@ class LoadedModule:
     slug: str
     manifest: dict
     root: Path
+    #: Chapter byte for this module's objects. Addons share their parent's
+    #: module number and are distinguished by this instead, so an addon costs
+    #: a chapter slot rather than one of the 256 module numbers.
+    chapter_number: int = 1
     chapters: dict[Path, dict] = field(default_factory=dict)
     reward_tables: dict[Path, dict] = field(default_factory=dict)
+
+    @property
+    def extends(self) -> str | None:
+        return self.manifest.get("extends")
 
 
 def discover_modules(modules_dir: Path, mc_version: str, only: str | None,
@@ -180,8 +188,16 @@ def discover_modules(modules_dir: Path, mc_version: str, only: str | None,
         if not version_root.exists():
             continue  # module does not target this MC version; not an error
 
+        chapter_number = manifest.get("chapter_number", 1)
+        if not isinstance(chapter_number, int) or not 1 <= chapter_number <= 255:
+            report.error(str(manifest_path.relative_to(REPO_ROOT)),
+                         f"chapter_number must be an integer 1-255, "
+                         f"got {chapter_number!r}")
+            continue
+
         module = LoadedModule(number=number, slug=module_dir.name,
-                              manifest=manifest, root=version_root)
+                              manifest=manifest, root=version_root,
+                              chapter_number=chapter_number)
 
         for kind, bucket in (("chapters", module.chapters),
                              ("reward_tables", module.reward_tables)):
@@ -233,14 +249,83 @@ def check_ids(modules: list[LoadedModule], report: Report) -> dict[str, str]:
                         f"modules cannot collide -- see ID-REGISTRY.md."
                     )
                     continue
-                encoded = qid.parse(ident)["module"]
-                if encoded != module.number:
+                parsed = qid.parse(ident)
+                if parsed["module"] != module.number:
                     report.error(
                         where,
-                        f"ID {ident} encodes module {encoded:02d} but lives in "
-                        f"module {module.number:02d} ({module.slug})"
+                        f"ID {ident} encodes module 0x{parsed['module']:02X} but "
+                        f"lives in module 0x{module.number:02X} ({module.slug})"
+                    )
+                    continue
+                # Chapter byte 0 means module-scoped (reward tables, groups);
+                # anything else must be this module's own chapter slot.
+                if parsed["chapter"] not in (0, module.chapter_number):
+                    report.error(
+                        where,
+                        f"ID {ident} encodes chapter 0x{parsed['chapter']:02X} but "
+                        f"{module.slug} owns chapter 0x{module.chapter_number:02X}. "
+                        f"Addons share their parent's module number and must use "
+                        f"their own chapter_number -- see docs/MODULE-SPEC.md."
                     )
     return seen
+
+
+def check_chapter_slots(modules: list[LoadedModule], report: Report) -> None:
+    """No two modules may claim the same (module number, chapter number).
+
+    Addons deliberately reuse their parent's module number, so the chapter byte
+    is the only thing keeping their IDs apart. A duplicate here would silently
+    collide every ID in both modules.
+    """
+    claimed: dict[tuple[int, int], str] = {}
+    for module in modules:
+        slot = (module.number, module.chapter_number)
+        if slot in claimed:
+            report.error(
+                f"modules/{module.slug}/module.json",
+                f"claims module 0x{slot[0]:02X} chapter 0x{slot[1]:02X}, already "
+                f"used by {claimed[slot]}. Give this module its own "
+                f"chapter_number."
+            )
+        else:
+            claimed[slot] = module.slug
+
+
+def check_addon_parents(modules: list[LoadedModule], report: Report) -> None:
+    """An addon must name a parent that exists and must depend on it."""
+    by_slug = {m.slug: m for m in modules}
+    for module in modules:
+        parent_slug = module.extends
+        if not parent_slug:
+            continue
+        parent = by_slug.get(parent_slug)
+        if parent is None:
+            report.error(f"modules/{module.slug}/module.json",
+                         f"extends {parent_slug!r}, which is not a module here")
+            continue
+        if parent.number != module.number:
+            report.error(
+                f"modules/{module.slug}/module.json",
+                f"extends {parent_slug} but uses module number "
+                f"0x{module.number:02X} instead of the parent's "
+                f"0x{parent.number:02X}. Addons share the parent's module number."
+            )
+        if parent_slug not in module.manifest.get("requires_modules", []):
+            report.error(
+                f"modules/{module.slug}/module.json",
+                f"extends {parent_slug} but does not list it in "
+                f"requires_modules, so installing this alone would leave it "
+                f"without the chapter it extends"
+            )
+        parent_mods = set(parent.manifest.get("requires_mods", []))
+        own_mods = set(module.manifest.get("requires_mods", []))
+        if not parent_mods <= own_mods:
+            report.error(
+                f"modules/{module.slug}/module.json",
+                f"extends {parent_slug} but does not require its mods "
+                f"({', '.join(sorted(parent_mods - own_mods))}), so auto-detection "
+                f"could install it into a pack the parent cannot run in"
+            )
 
 
 def check_chapter_filenames(modules: list[LoadedModule], report: Report) -> None:
@@ -342,6 +427,57 @@ def check_items(modules: list[LoadedModule], known: set[str],
                     )
 
 
+#: Task types this library uses, verified by loading each one in a real
+#: server and reading back what FTB Quests normalised it to.
+#:
+#: `stage` is deliberately absent: FTB accepts it, silently rewrites it to
+#: `type: "custom"`, and the quest becomes uncompletable. It needs a game-stage
+#: mod or KubeJS to mean anything.
+#:
+#: `location` is absent for a different reason -- it works, but it pins a quest
+#: to fixed coordinates in a specific world, which cannot be portable.
+SUPPORTED_TASK_TYPES = {
+    "item", "checkmark", "observation", "stat", "biome", "structure",
+    "dimension", "kill", "advancement", "xp",
+}
+UNSUPPORTED_TASK_TYPES = {
+    "stage": "FTB rewrites this to type \"custom\" and the quest can never be "
+             "completed; it needs a game-stage mod or KubeJS",
+    "location": "pins the quest to fixed coordinates in one world, so it cannot "
+                "work as portable content",
+    "custom": "requires a KubeJS script the installing pack will not have",
+    "energy": "requires a mod that provides energy",
+    "fluid": "requires a mod that provides fluid handling",
+}
+
+
+def check_task_types(modules: list[LoadedModule], report: Report) -> None:
+    for module in modules:
+        for path, tree in module.chapters.items():
+            rel = str(path.relative_to(REPO_ROOT))
+            for index, quest in enumerate(tree.get("quests") or []):
+                if not isinstance(quest, dict):
+                    continue
+                for task in quest.get("tasks") or []:
+                    if not isinstance(task, dict):
+                        continue
+                    kind = task.get("type")
+                    where = f"{rel} :: quests[{index}] task {task.get('id')}"
+                    if kind in UNSUPPORTED_TASK_TYPES:
+                        report.error(
+                            where,
+                            f"task type {kind!r} is not usable here: "
+                            f"{UNSUPPORTED_TASK_TYPES[kind]}"
+                        )
+                    elif kind not in SUPPORTED_TASK_TYPES:
+                        report.warn(
+                            where,
+                            f"unrecognised task type {kind!r} -- if this is real, "
+                            f"add it to SUPPORTED_TASK_TYPES after checking it "
+                            f"loads in the testbed"
+                        )
+
+
 def check_layout(modules: list[LoadedModule], report: Report) -> None:
     for module in modules:
         for path, tree in module.chapters.items():
@@ -395,9 +531,12 @@ def main(argv: list[str] | None = None) -> int:
         return 1 if report.errors else 0
 
     ids = check_ids(modules, report)
+    check_chapter_slots(modules, report)
+    check_addon_parents(modules, report)
     check_chapter_filenames(modules, report)
     check_dependencies(modules, report)
     check_reward_tables(modules, report)
+    check_task_types(modules, report)
     check_layout(modules, report)
     if known:
         check_items(modules, known, sources, report)

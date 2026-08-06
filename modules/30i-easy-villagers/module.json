@@ -1,0 +1,28 @@
+{
+  "id": "30i-easy-villagers",
+  "module_number": 48,
+  "chapter_number": 10,
+  "extends": "30-quality-of-life",
+  "name": "Easy Villagers",
+  "description": "Picking up villagers, trading, breeding, converting and iron farms.",
+  "requires_mods": [
+    "easy_villagers"
+  ],
+  "requires_modules": [
+    "00-core",
+    "30-quality-of-life"
+  ],
+  "chapter_group": "mods",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "chapters": [
+    {
+      "number": 10,
+      "file": "easy_villagers.snbt",
+      "title": "Easy Villagers"
+    }
+  ],
+  "allowed_external_dependencies": []
+}

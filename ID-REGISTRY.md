@@ -69,14 +69,49 @@ every book that has it installed.
 | `05` | `05-the-end` | vanilla | shipped |
 | `06` | `06-building` | vanilla | shipped |
 | `07` | `07-enchanting-and-brewing` | vanilla | shipped |
-| `20` | *(reserved)* Farmer's Delight | `farmersdelight` | planned |
+| `20` | `20-farmersdelight` | `farmersdelight` | shipped |
 | `21` | *(reserved)* Croptopia | `croptopia` | planned |
-| `22` | *(reserved)* Productive Bees | `productivebees` | planned |
+| `22` | `22-productivebees` | `productivebees` | shipped |
 | `23` | *(reserved)* Sophisticated Storage | `sophisticatedstorage` | planned |
 | `24` | *(reserved)* Waystones | `waystones` | planned |
 | `25` | *(reserved)* Botany Pots | `botanypots` | planned |
 | `26` | *(reserved)* Aquaculture | `aquaculture` | planned |
 | `27` | *(reserved)* Supplementaries | `supplementaries` | planned |
+| `28` | `28-umapyoi` | `umapyoi` | shipped |
+| `30` | `30-quality-of-life` + 9 add-ons | vanilla parent | shipped |
+
+## Addons: chapter slots, not module numbers
+
+A mod with addons — Farmer's Delight has five or six in common use — would burn
+through the module numbers fast if each addon claimed one. It does not need to.
+
+An addon **shares its parent's module number** and is distinguished by its
+**chapter number** instead. There are 255 chapter slots inside every module, so
+the ceiling is nowhere near.
+
+| Directory | Module | Chapter | ID prefix | Requires |
+|-----------|--------|---------|-----------|----------|
+| `20-farmersdelight` | `20` | `01` | `7B2001…` | `farmersdelight` |
+| `20a-expanded-delight` | `20` | `02` | `7B2002…` | `+ expandeddelight` |
+| `20b-nethers-delight` | `20` | `03` | `7B2003…` | `+ mynethersdelight` |
+| `20c-oceans-delight` | `20` | `04` | `7B2004…` | `+ oceansdelight` |
+| `20d-enders-delight` | `20` | `05` | `7B2005…` | `+ endersdelight` |
+
+The directory suffix letter tracks the chapter: `a` = chapter 2, `b` = 3, and
+so on. It is a convention for humans; the authority is `chapter_number` in
+`module.json`.
+
+An addon's `module.json` must:
+
+* set `module_number` to the **parent's** number
+* set its own `chapter_number`, unique within that module
+* name the parent in `extends`
+* list the parent in `requires_modules`
+* repeat the parent's `requires_mods` alongside its own
+
+`validate.py` enforces every one of those, plus that no two modules claim the
+same (module, chapter) slot — which matters more here than anywhere else,
+since the chapter byte is the only thing keeping two addons' IDs apart.
 
 ## Allocated ranges
 

@@ -1,0 +1,111 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "torchmaster"
+	group: "7B00000100000002"
+	icon: {
+		id: "torchmaster:megatorch"
+	}
+	id: "7B30070200000001"
+	images: [ ]
+	order_index: 36
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"Blocks hostile spawning in a huge radius without lighting"
+				"anything up."
+				""
+				"One at base ends the nightly perimeter check for good."
+			]
+			id: "7B30070300010000"
+			rewards: [
+				{
+					id: "7B3007050001000B"
+					type: "xp"
+					xp: 40
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3007050001000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Build a megatorch"
+			tasks: [
+				{
+					id: "7B30070400010001"
+					item: {
+						count: 1
+						id: "torchmaster:megatorch"
+					}
+					type: "item"
+				}
+			]
+			title: "Megatorch"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B30070300010000"]
+			description: ["The same idea for the things a megatorch will not stop."]
+			id: "7B30070300020000"
+			rewards: [
+				{
+					id: "7B3007050002000B"
+					type: "xp"
+					xp: 30
+				}
+			]
+			subtitle: "Build a dreadlamp"
+			tasks: [
+				{
+					id: "7B30070400020001"
+					item: {
+						count: 1
+						id: "torchmaster:dreadlamp"
+					}
+					type: "item"
+				}
+			]
+			title: "Dreadlamp"
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B30070300010000"]
+			description: ["Places invisible light sources around itself.", "", "A lit cavern with no torches in sight."]
+			id: "7B30070300030000"
+			rewards: [
+				{
+					id: "7B3007050003000B"
+					type: "xp"
+					xp: 30
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3007050003000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a feral flare lantern"
+			tasks: [
+				{
+					id: "7B30070400030001"
+					item: {
+						count: 1
+						id: "torchmaster:feral_flare_lantern"
+					}
+					type: "item"
+				}
+			]
+			title: "Feral Flare Lantern"
+			x: 1.5d
+			y: -1.5d
+		}
+	]
+	subtitle: "Stop the spawns, keep the dark"
+	title: "Torchmaster"
+}

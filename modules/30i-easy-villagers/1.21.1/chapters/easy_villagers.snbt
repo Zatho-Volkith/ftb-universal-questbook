@@ -1,0 +1,182 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "easy_villagers"
+	group: "7B00000100000002"
+	icon: {
+		id: "easy_villagers:trader"
+	}
+	id: "7B300A0200000001"
+	images: [ ]
+	order_index: 39
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"A villager as an item you can carry."
+				""
+				"Every fence-and-boat trick you ever used is now obsolete."
+			]
+			id: "7B300A0300010000"
+			rewards: [
+				{
+					id: "7B300A050001000B"
+					type: "xp"
+					xp: 25
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B300A050001000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Capture a villager"
+			tasks: [
+				{
+					id: "7B300A0400010001"
+					item: {
+						count: 1
+						id: "easy_villagers:villager"
+					}
+					type: "item"
+				}
+			]
+			title: "Pick One Up"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B300A0300010000"]
+			description: [
+				"Slot a villager in and trade through the block."
+				""
+				"No pathing, no wandering off, no getting hit by a zombie."
+			]
+			id: "7B300A0300020000"
+			rewards: [
+				{
+					id: "7B300A050002000B"
+					type: "xp"
+					xp: 30
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B300A050002000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Build a trader block"
+			tasks: [
+				{
+					id: "7B300A0400020001"
+					item: {
+						count: 1
+						id: "easy_villagers:trader"
+					}
+					type: "item"
+				}
+			]
+			title: "The Trader"
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B300A0300010000"]
+			description: ["Two villagers and food in, babies out.", "", "A villager farm in one block."]
+			id: "7B300A0300030000"
+			rewards: [
+				{
+					id: "7B300A050003000B"
+					type: "xp"
+					xp: 40
+				}
+			]
+			subtitle: "Build a breeder"
+			tasks: [
+				{
+					id: "7B300A0400030001"
+					item: {
+						count: 1
+						id: "easy_villagers:breeder"
+					}
+					type: "item"
+				}
+			]
+			title: "The Breeder"
+			x: 1.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B300A0300010000"]
+			description: [
+				"Zombie villager in, cured villager out, on a timer."
+				""
+				"Cured villagers trade at a permanent discount."
+			]
+			id: "7B300A0300040000"
+			rewards: [
+				{
+					id: "7B300A050004000B"
+					type: "xp"
+					xp: 40
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B300A050004000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Build a converter"
+			tasks: [
+				{
+					id: "7B300A0400040001"
+					item: {
+						count: 1
+						id: "easy_villagers:converter"
+					}
+					type: "item"
+				}
+			]
+			title: "The Converter"
+			x: 1.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B300A0300020000"]
+			description: ["Three villagers and a block.", "", "Iron stops being something you mine."]
+			id: "7B300A0300050000"
+			rewards: [
+				{
+					id: "7B300A050005000B"
+					type: "xp"
+					xp: 60
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B300A050005000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Build an iron farm"
+			tasks: [
+				{
+					id: "7B300A0400050001"
+					item: {
+						count: 1
+						id: "easy_villagers:iron_farm"
+					}
+					type: "item"
+				}
+			]
+			title: "Iron Farm"
+			x: 3.0d
+			y: 0.0d
+		}
+	]
+	subtitle: "Trading without the pens"
+	title: "Easy Villagers"
+}

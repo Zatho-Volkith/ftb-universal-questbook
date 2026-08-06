@@ -1,0 +1,28 @@
+{
+  "id": "30f-torchmaster",
+  "module_number": 48,
+  "chapter_number": 7,
+  "extends": "30-quality-of-life",
+  "name": "Torchmaster",
+  "description": "Megatorch, dreadlamp and the feral flare lantern.",
+  "requires_mods": [
+    "torchmaster"
+  ],
+  "requires_modules": [
+    "00-core",
+    "30-quality-of-life"
+  ],
+  "chapter_group": "mods",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "chapters": [
+    {
+      "number": 7,
+      "file": "torchmaster.snbt",
+      "title": "Torchmaster"
+    }
+  ],
+  "allowed_external_dependencies": []
+}

@@ -1,0 +1,28 @@
+{
+  "id": "30a-waystones",
+  "module_number": 48,
+  "chapter_number": 2,
+  "extends": "30-quality-of-life",
+  "name": "Waystones",
+  "description": "Waystones, warp stones, scrolls and warp plates.",
+  "requires_mods": [
+    "waystones"
+  ],
+  "requires_modules": [
+    "00-core",
+    "30-quality-of-life"
+  ],
+  "chapter_group": "mods",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "chapters": [
+    {
+      "number": 2,
+      "file": "waystones.snbt",
+      "title": "Waystones"
+    }
+  ],
+  "allowed_external_dependencies": []
+}

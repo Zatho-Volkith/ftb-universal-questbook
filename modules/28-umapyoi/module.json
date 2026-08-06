@@ -1,0 +1,25 @@
+{
+  "id": "28-umapyoi",
+  "module_number": 40,
+  "name": "Umapyoi",
+  "description": "Jewels and tickets, pedestals, the training facility, skills, racing and factors.",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "requires_mods": [
+    "umapyoi"
+  ],
+  "requires_modules": [
+    "00-core"
+  ],
+  "chapter_group": "mods",
+  "chapters": [
+    {
+      "number": 1,
+      "file": "umapyoi.snbt",
+      "title": "Umapyoi"
+    }
+  ],
+  "allowed_external_dependencies": []
+}

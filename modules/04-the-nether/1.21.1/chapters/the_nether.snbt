@@ -391,6 +391,92 @@
 			x: 7.5d
 			y: 0.0d
 		}
+		{
+			description: [
+				"Everything here is on fire, most of it is hostile, and the ceiling"
+				"has lava on top of it."
+				""
+				"Take gold armour if you plan to walk past piglins, take a bed you"
+				"will not sleep in for nothing, and never dig straight up."
+			]
+			id: "7B040103000C0000"
+			rewards: [
+				{
+					id: "7B040105000C000B"
+					type: "xp"
+					xp: 5
+				}
+			]
+			subtitle: "Read this first"
+			tasks: [
+				{
+					id: "7B040104000C0001"
+					type: "checkmark"
+				}
+			]
+			title: "Before You Go"
+			x: -1.5d
+			y: 0.0d
+		}
+		{
+			description: [
+				"Blazes, wither skeletons and nether wart all live here."
+				""
+				"Fortresses run in strips along the z axis -- travel sideways, not"
+				"in circles."
+			]
+			id: "7B040103000D0000"
+			rewards: [
+				{
+					id: "7B040105000D000B"
+					type: "xp"
+					xp: 50
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B040105000D000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Locate a nether fortress"
+			tasks: [
+				{
+					id: "7B040104000D0001"
+					structure: "minecraft:fortress"
+					type: "structure"
+				}
+			]
+			title: "Find the Fortress"
+			x: 3.0d
+			y: 1.5d
+		}
+		{
+			description: [
+				"Hoglins, huge fungi, and the only wood down here."
+				""
+				"Warped forests are the safe ones. This is not that."
+			]
+			id: "7B040103000E0000"
+			rewards: [
+				{
+					id: "7B040105000E000B"
+					type: "xp"
+					xp: 25
+				}
+			]
+			subtitle: "Visit a crimson forest"
+			tasks: [
+				{
+					biome: "minecraft:crimson_forest"
+					id: "7B040104000E0001"
+					type: "biome"
+				}
+			]
+			title: "Crimson Forest"
+			x: 3.0d
+			y: -1.5d
+		}
 	]
 	subtitle: "Everything here is on fire"
 	title: "The Nether"

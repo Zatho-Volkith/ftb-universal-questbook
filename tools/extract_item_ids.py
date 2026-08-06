@@ -33,6 +33,12 @@ import zipfile
 from pathlib import Path
 
 LANG_PATH = re.compile(r"^assets/([a-z0-9_.\-]+)/lang/en_us\.json$")
+# Recipe JSON is a second, better source. A lang key only proves a translation
+# exists -- Nether's Delight has `block.mynethersdelight.blazier_block` but the
+# item is actually `mynethersdelight:blazier`, so lang alone will happily
+# approve an ID the game rejects. Anything named in a recipe genuinely exists.
+RECIPE_PATH = re.compile(r"^data/([a-z0-9_.\-]+)/recipes?/.*\.json$")
+NAMESPACED_ID = re.compile(r'"([a-z0-9_.\-]+):([a-z0-9_/]+)"')
 # Item and block paths in Minecraft are always lowercase alphanumeric with
 # underscores. Anything else is a tooltip or subtitle key, not an item.
 VALID_PATH = re.compile(r"^[a-z0-9_]+$")
@@ -71,6 +77,21 @@ def ids_from_jar(jar_path: Path) -> tuple[dict[str, set[str]], list[str]]:
                 _kind, namespace, path = match.groups()
                 if not VALID_PATH.match(path):
                     continue  # tooltip / subtitle / description key
+                found.setdefault(namespace, set()).add(f"{namespace}:{path}")
+
+        # Second pass: IDs named in recipe files. These are authoritative --
+        # the game would reject the recipe otherwise -- and they catch items
+        # whose registry name differs from their translation key.
+        for name in archive.namelist():
+            if not RECIPE_PATH.match(name):
+                continue
+            try:
+                text = archive.read(name).decode("utf-8-sig")
+            except (UnicodeDecodeError, KeyError):
+                continue
+            for namespace, path in NAMESPACED_ID.findall(text):
+                if "/" in path or not VALID_PATH.match(path):
+                    continue  # recipe type, tag or group reference, not an item
                 found.setdefault(namespace, set()).add(f"{namespace}:{path}")
 
     return found, warnings

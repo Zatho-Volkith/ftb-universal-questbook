@@ -373,6 +373,93 @@
 			x: 4.5d
 			y: 1.5d
 		}
+		{
+			description: [
+				"There is no coming back without a portal or a very long fall."
+				""
+				"Bring blocks, a bow, and something to eat. Leave anything you"
+				"would hate to lose in a chest at home."
+			]
+			id: "7B050103000B0000"
+			rewards: [
+				{
+					id: "7B050105000B000B"
+					type: "xp"
+					xp: 5
+				}
+			]
+			subtitle: "Read this first"
+			tasks: [
+				{
+					id: "7B050104000B0001"
+					type: "checkmark"
+				}
+			]
+			title: "Before You Jump"
+			x: -1.5d
+			y: 0.0d
+		}
+		{
+			description: [
+				"Out past the main island, across the void."
+				""
+				"Take the gateway -- it saves a very long flight."
+			]
+			id: "7B050103000C0000"
+			rewards: [
+				{
+					id: "7B050105000C000B"
+					type: "xp"
+					xp: 70
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B050105000C000C"
+					table_id: 8863084092434939908L
+					type: "random"
+				}
+			]
+			subtitle: "Locate an end city"
+			tasks: [
+				{
+					id: "7B050104000C0001"
+					structure: "minecraft:end_city"
+					type: "structure"
+				}
+			]
+			title: "Find a City"
+			x: 4.5d
+			y: -1.5d
+		}
+		{
+			description: ["The game's actual credits roll after this one.", "", "Everything past it is your own idea."]
+			id: "7B050103000D0000"
+			rewards: [
+				{
+					id: "7B050105000D000B"
+					type: "xp"
+					xp: 100
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B050105000D000C"
+					table_id: 8863084092434939909L
+					type: "random"
+				}
+			]
+			subtitle: "Earn the dragon advancement"
+			tasks: [
+				{
+					advancement: "minecraft:end/kill_dragon"
+					criterion: ""
+					id: "7B050104000D0001"
+					type: "advancement"
+				}
+			]
+			title: "Free the End"
+			x: 7.5d
+			y: -1.5d
+		}
 	]
 	subtitle: "The dragon, and what comes after"
 	title: "The End"

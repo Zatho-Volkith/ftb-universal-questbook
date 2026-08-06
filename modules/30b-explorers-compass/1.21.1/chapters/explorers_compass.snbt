@@ -1,0 +1,106 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "explorers_compass"
+	group: "7B00000100000002"
+	icon: {
+		id: "explorerscompass:explorerscompass"
+	}
+	id: "7B30030200000001"
+	images: [ ]
+	order_index: 32
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"Pick a structure from a list and it points the way."
+				""
+				"Mansions, monuments, outposts, fortresses -- anything the"
+				"world generated."
+			]
+			id: "7B30030300010000"
+			rewards: [
+				{
+					id: "7B3003050001000B"
+					type: "xp"
+					xp: 30
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3003050001000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft an explorer's compass"
+			tasks: [
+				{
+					id: "7B30030400010001"
+					item: {
+						count: 1
+						id: "explorerscompass:explorerscompass"
+					}
+					type: "item"
+				}
+			]
+			title: "Explorer's Compass"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B30030300010000"]
+			description: [
+				"Knowing where a mansion is does not make it close."
+				""
+				"Food, a boat and a map before you set out."
+			]
+			id: "7B30030300020000"
+			rewards: [
+				{
+					id: "7B3003050002000B"
+					type: "xp"
+					xp: 25
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3003050002000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Assemble an expedition kit"
+			tasks: [
+				{
+					id: "7B30030400020001"
+					item: {
+						count: 1
+						id: "minecraft:map"
+					}
+					type: "item"
+				}
+				{
+					id: "7B30030400020002"
+					item: {
+						count: 1
+						id: "minecraft:oak_boat"
+					}
+					type: "item"
+				}
+				{
+					count: 16L
+					id: "7B30030400020003"
+					item: {
+						count: 1
+						id: "minecraft:cooked_beef"
+					}
+					type: "item"
+				}
+			]
+			title: "Pack for the Trip"
+			x: 1.5d
+			y: 0.0d
+		}
+	]
+	subtitle: "Find it without the wandering"
+	title: "Explorer's Compass"
+}

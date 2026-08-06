@@ -57,6 +57,15 @@ class Module:
     def is_required(self) -> bool:
         return bool(self.manifest.get("required", False))
 
+    @property
+    def extends(self) -> str | None:
+        """Slug of the module this one is an addon for, if any."""
+        return self.manifest.get("extends")
+
+    @property
+    def chapter_number(self) -> int:
+        return self.manifest.get("chapter_number", 1)
+
 
 # --------------------------------------------------------------------------
 

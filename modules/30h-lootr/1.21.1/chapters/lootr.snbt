@@ -1,0 +1,111 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "lootr"
+	group: "7B00000100000002"
+	icon: {
+		id: "lootr:lootr_chest"
+	}
+	id: "7B30090200000001"
+	images: [ ]
+	order_index: 38
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"Every player gets their own copy of the contents."
+				""
+				"Nobody races to the dungeon chest any more, which on a server"
+				"is the whole point."
+			]
+			id: "7B30090300010000"
+			rewards: [
+				{
+					id: "7B3009050001000B"
+					type: "xp"
+					xp: 25
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3009050001000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Open a Lootr chest"
+			tasks: [
+				{
+					id: "7B30090400010001"
+					item: {
+						count: 1
+						id: "lootr:lootr_chest"
+					}
+					type: "item"
+				}
+			]
+			title: "Lootr Chest"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B30090300010000"]
+			description: ["The same behaviour, in barrel form.", "", "Useful when you want to place your own."]
+			id: "7B30090300020000"
+			rewards: [
+				{
+					id: "7B3009050002000B"
+					type: "xp"
+					xp: 25
+				}
+			]
+			subtitle: "Obtain a Lootr barrel"
+			tasks: [
+				{
+					id: "7B30090400020001"
+					item: {
+						count: 1
+						id: "lootr:lootr_barrel"
+					}
+					type: "item"
+				}
+			]
+			title: "Lootr Barrel"
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B30090300010000"]
+			description: ["Proof you were there first, even though everyone else", "still got their loot."]
+			id: "7B30090300030000"
+			rewards: [
+				{
+					id: "7B3009050003000B"
+					type: "xp"
+					xp: 40
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3009050003000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Claim a trophy"
+			tasks: [
+				{
+					id: "7B30090400030001"
+					item: {
+						count: 1
+						id: "lootr:trophy"
+					}
+					type: "item"
+				}
+			]
+			title: "Trophy"
+			x: 1.5d
+			y: -1.5d
+		}
+	]
+	subtitle: "Loot that is yours alone"
+	title: "Lootr"
+}

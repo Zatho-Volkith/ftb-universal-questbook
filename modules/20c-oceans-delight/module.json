@@ -1,0 +1,29 @@
+{
+  "id": "20c-oceans-delight",
+  "module_number": 32,
+  "chapter_number": 4,
+  "extends": "20-farmersdelight",
+  "name": "Ocean's Delight",
+  "description": "Tentacles, stuffed fish, fugu, and what to do with an elder guardian.",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "requires_mods": [
+    "farmersdelight",
+    "oceansdelight"
+  ],
+  "requires_modules": [
+    "00-core",
+    "20-farmersdelight"
+  ],
+  "chapter_group": "mods",
+  "chapters": [
+    {
+      "number": 4,
+      "file": "oceans_delight.snbt",
+      "title": "Ocean's Delight"
+    }
+  ],
+  "allowed_external_dependencies": []
+}

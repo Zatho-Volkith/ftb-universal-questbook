@@ -1,0 +1,235 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "nethers_delight"
+	group: "7B00000100000002"
+	icon: {
+		id: "mynethersdelight:nether_bricks_stove"
+	}
+	id: "7B20030200000001"
+	images: [ ]
+	order_index: 21
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["A Nether heat source that does not go out.", "", "Everything here is cooked over one."]
+			id: "7B20030300010000"
+			rewards: [
+				{
+					id: "7B2003050001000B"
+					type: "xp"
+					xp: 25
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2003050001000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a blazier"
+			tasks: [
+				{
+					id: "7B20030400010001"
+					item: {
+						count: 1
+						id: "mynethersdelight:blazier"
+					}
+					type: "item"
+				}
+			]
+			title: "The Blazier"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B20030300010000"]
+			description: ["The Nether's own version of the stove, for the Nether's own", "ingredients."]
+			id: "7B20030300020000"
+			rewards: [
+				{
+					id: "7B2003050002000B"
+					type: "xp"
+					xp: 30
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2003050002000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Build a nether stove"
+			tasks: [
+				{
+					id: "7B20030400020001"
+					item: {
+						count: 1
+						id: "mynethersdelight:nether_bricks_stove"
+					}
+					type: "item"
+				}
+			]
+			title: "Nether Stove"
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B20030300010000"]
+			description: [
+				"Hoglins were always walking food. Now they are walking ingredients."
+				""
+				"The hide is useful in its own right."
+			]
+			id: "7B20030300030000"
+			rewards: [
+				{
+					id: "7B2003050003000B"
+					type: "xp"
+					xp: 25
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2003050003000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Butcher a hoglin"
+			tasks: [
+				{
+					count: 2L
+					id: "7B20030400030001"
+					item: {
+						count: 1
+						id: "mynethersdelight:hoglin_loin"
+					}
+					type: "item"
+				}
+				{
+					id: "7B20030400030002"
+					item: {
+						count: 1
+						id: "mynethersdelight:hoglin_hide"
+					}
+					type: "item"
+				}
+			]
+			title: "Hoglin Cuts"
+			x: 1.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B20030300010000"]
+			description: [
+				"A Nether crop, which is not a phrase that used to mean anything."
+				""
+				"It grows on soul soil and gives pepper powder."
+			]
+			id: "7B20030300040000"
+			rewards: [
+				{
+					id: "7B2003050004000B"
+					type: "xp"
+					xp: 20
+				}
+			]
+			subtitle: "Grow a powdery cannon"
+			tasks: [
+				{
+					id: "7B20030400040001"
+					item: {
+						count: 1
+						id: "mynethersdelight:powder_cannon"
+					}
+					type: "item"
+				}
+			]
+			title: "Powdery Cannon"
+			x: 1.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B20030300020000"]
+			description: [
+				"Ghast tears, of all things, go into pasta."
+				""
+				"Nobody has explained this and it is probably better that way."
+			]
+			id: "7B20030300050000"
+			rewards: [
+				{
+					id: "7B2003050005000B"
+					type: "xp"
+					xp: 40
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2003050005000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Make ghasta"
+			tasks: [
+				{
+					id: "7B20030400050001"
+					item: {
+						count: 1
+						id: "mynethersdelight:ghast_dough"
+					}
+					type: "item"
+				}
+				{
+					id: "7B20030400050002"
+					item: {
+						count: 1
+						id: "mynethersdelight:ghasta"
+					}
+					type: "item"
+				}
+			]
+			title: "Ghast Dough"
+			x: 3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B20030300030000"]
+			description: [
+				"The centrepiece dish of the Nether."
+				""
+				"It takes a hoglin, a crop farm and a blazier to put on the table."
+			]
+			id: "7B20030300060000"
+			rewards: [
+				{
+					id: "7B2003050006000B"
+					type: "xp"
+					xp: 50
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2003050006000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Serve stuffed hoglin"
+			tasks: [
+				{
+					id: "7B20030400060001"
+					item: {
+						count: 1
+						id: "mynethersdelight:plate_of_stuffed_hoglin"
+					}
+					type: "item"
+				}
+			]
+			title: "Stuffed Hoglin"
+			x: 3.0d
+			y: -1.5d
+		}
+	]
+	subtitle: "Cooking in the worst possible kitchen"
+	title: "Nether's Delight"
+}

@@ -1,0 +1,179 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "enders_delight"
+	group: "7B00000100000002"
+	icon: {
+		id: "endersdelight:chorus_pie"
+	}
+	id: "7B20050200000001"
+	images: [ ]
+	order_index: 23
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["The base ingredient for everything the End can cook."]
+			id: "7B20050300010000"
+			rewards: [
+				{
+					id: "7B2005050001000B"
+					type: "xp"
+					xp: 30
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2005050001000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Gather ender shards"
+			tasks: [
+				{
+					count: 4L
+					id: "7B20050400010001"
+					item: {
+						count: 1
+						id: "endersdelight:ender_shard"
+					}
+					type: "item"
+				}
+			]
+			title: "Ender Shard"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B20050300010000"]
+			description: ["A stove that belongs in the End, for food that could not be made", "anywhere else."]
+			id: "7B20050300020000"
+			rewards: [
+				{
+					id: "7B2005050002000B"
+					type: "xp"
+					xp: 40
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2005050002000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Build an endstone stove"
+			tasks: [
+				{
+					id: "7B20050400020001"
+					item: {
+						count: 1
+						id: "endersdelight:endstone_stove"
+					}
+					type: "item"
+				}
+			]
+			title: "Endstone Stove"
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B20050300010000"]
+			description: [
+				"Chorus fruit was always a curiosity."
+				""
+				"Baked into a pie it becomes something you would actually carry."
+			]
+			id: "7B20050300030000"
+			rewards: [
+				{
+					id: "7B2005050003000B"
+					type: "xp"
+					xp: 35
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2005050003000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Bake a chorus pie"
+			tasks: [
+				{
+					id: "7B20050400030001"
+					item: {
+						count: 1
+						id: "endersdelight:chorus_pie"
+					}
+					type: "item"
+				}
+			]
+			title: "Chorus Pie"
+			x: 1.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B20050300010000"]
+			description: ["A bush that grows out in the End islands.", "", "Worth the trip for the heat it adds."]
+			id: "7B20050300040000"
+			rewards: [
+				{
+					id: "7B2005050004000B"
+					type: "xp"
+					xp: 30
+				}
+			]
+			subtitle: "Find voidpepper"
+			tasks: [
+				{
+					id: "7B20050400040001"
+					item: {
+						count: 1
+						id: "endersdelight:voidpepper"
+					}
+					type: "item"
+				}
+			]
+			title: "Void Pepper"
+			x: 1.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B20050300020000"]
+			description: [
+				"Shulkers are hard to kill and harder to reach."
+				""
+				"This is the most expensive meal in the pack, and it should be."
+			]
+			id: "7B20050300050000"
+			rewards: [
+				{
+					id: "7B2005050005000B"
+					type: "xp"
+					xp: 60
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2005050005000C"
+					table_id: 8863084092434939908L
+					type: "random"
+				}
+			]
+			subtitle: "Serve stuffed shulker"
+			tasks: [
+				{
+					id: "7B20050400050001"
+					item: {
+						count: 1
+						id: "endersdelight:stuffed_shulker"
+					}
+					type: "item"
+				}
+			]
+			title: "Stuffed Shulker"
+			x: 3.0d
+			y: 0.0d
+		}
+	]
+	subtitle: "Food at the end of the world"
+	title: "Ender's Delight"
+}

@@ -31,7 +31,7 @@
 					type: "random"
 				}
 			]
-			subtitle: "Light comes before everything"
+			subtitle: "Craft torches before you dig"
 			tasks: [
 				{
 					count: 32L
@@ -430,6 +430,98 @@
 			]
 			title: "Rails and Carts"
 			x: 7.5d
+			y: -1.5d
+		}
+		{
+			description: [
+				"Everything here branches. Follow whichever ore you care about and"
+				"ignore the rest -- nothing is gated behind anything else."
+				""
+				"Bring more torches than you think you need. That part is not optional."
+			]
+			id: "7B020103000D0000"
+			rewards: [
+				{
+					id: "7B020105000D000B"
+					type: "xp"
+					xp: 5
+				}
+			]
+			subtitle: "How to read this chapter"
+			tasks: [
+				{
+					id: "7B020104000D0001"
+					type: "checkmark"
+				}
+			]
+			title: "Before You Dig"
+			x: -1.5d
+			y: 0.0d
+		}
+		{
+			description: [
+				"Far below, in the sculk. Do not step on it and do not stay long."
+				""
+				"The reward is worth one careful visit."
+			]
+			id: "7B020103000E0000"
+			rewards: [
+				{
+					id: "7B020105000E000B"
+					type: "xp"
+					xp: 60
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B020105000E000C"
+					table_id: 8863084092434939908L
+					type: "random"
+				}
+			]
+			subtitle: "Find an ancient city"
+			tasks: [
+				{
+					id: "7B020104000E0001"
+					structure: "minecraft:ancient_city"
+					type: "structure"
+				}
+			]
+			title: "The Deep Dark"
+			x: 6.0d
+			y: 1.5d
+		}
+		{
+			description: [
+				"Not mine it -- just look at it, in the wall, where it generated."
+				""
+				"The moment every cave trip is chasing."
+			]
+			id: "7B020103000F0000"
+			rewards: [
+				{
+					id: "7B020105000F000B"
+					type: "xp"
+					xp: 30
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B020105000F000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Lay eyes on diamond ore"
+			tasks: [
+				{
+					id: "7B020104000F0001"
+					observation_type: "block"
+					timer: 20L
+					to_observe: "minecraft:diamond_ore"
+					type: "observation"
+				}
+			]
+			title: "Spot the Vein"
+			x: 6.0d
 			y: -1.5d
 		}
 	]
