@@ -333,6 +333,9 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--list", action="store_true",
                         help="list available modules and exit")
+    parser.add_argument("--uncovered", action="store_true",
+                        help="with --auto, name the installed mods this "
+                             "library has no chapter for")
     args = parser.parse_args(argv)
 
     modules = load_modules(args.mc_version)
@@ -363,6 +366,20 @@ def main(argv: list[str] | None = None) -> int:
         available = detect_mods(args.instance)
         print(f"detected {len(available) - 1} mods in {args.instance / 'mods'}")
         chosen, skipped = select_modules(modules, available)
+
+        # A mod nobody has written a chapter for appears in neither the
+        # installed list nor the skipped one, so from the outside the tool
+        # looks as though it failed to read the jar. Say so instead: a gap in
+        # the library and a gap in detection are very different problems.
+        covered = {mod for module in modules.values()
+                   for mod in module.requires_mods}
+        uncovered = sorted(available - covered - {"minecraft"})
+        if uncovered:
+            print(f"  {len(uncovered)} of them have no chapter in this library "
+                  f"yet" + ("" if args.uncovered else "  (--uncovered to list)"))
+            if args.uncovered:
+                for name in uncovered:
+                    print(f"    {name}")
     elif args.modules:
         unknown = [m for m in args.modules if m not in modules]
         if unknown:

@@ -339,6 +339,9 @@ def step_choose(modules: dict[str, install.Module], mod_ids: set[str]) -> list[i
 
     index_of = {row["module"].slug: i for i, row in enumerate(rows)}
 
+    covered = {mod for module in modules.values() for mod in module.requires_mods}
+    uncovered = sorted(mod_ids - covered - {"minecraft"})
+
     def set_state(i: int, on: bool) -> None:
         """Toggle a row, keeping parents and addons consistent.
 
@@ -391,11 +394,17 @@ def step_choose(modules: dict[str, install.Module], mod_ids: set[str]) -> list[i
         addons_on = sum(1 for r in rows if r["on"] and r["is_addon"])
         if addons_on:
             print(dim(f"  ({addons_on} of those are add-ons detected in your pack)"))
+        # Mods with no chapter never appear in the list above, so without this
+        # the wizard looks like it failed to detect them.
+        if uncovered:
+            print(dim(f"  {len(uncovered)} mod(s) in this pack have no chapter yet"
+                      f" — type 'm' to list"))
 
     while True:
         render()
         print()
-        print(dim("  Type numbers to toggle (e.g. '1 3 5'), 'a' = all, 'n' = none,"))
+        print(dim("  Type numbers to toggle (e.g. '1 3 5'), 'a' = all, 'n' = none,"
+                  + ("  'm' = uncovered mods," if uncovered else "")))
         answer = ask("  Enter = install the selection").lower().strip()
 
         if not answer:
@@ -418,6 +427,13 @@ def step_choose(modules: dict[str, install.Module], mod_ids: set[str]) -> list[i
         if answer == "n":
             for i in range(len(rows)):
                 rows[i]["on"] = False
+            continue
+        if answer == "m":
+            print()
+            print(dim("  no chapter in this library yet:"))
+            for name in uncovered:
+                print(dim(f"    {name}"))
+            ask(dim("  Enter to go back"))
             continue
 
         for token in answer.replace(",", " ").split():
