@@ -1,0 +1,26 @@
+{
+  "id": "2a-ae2",
+  "module_number": 42,
+  "chapter_number": 1,
+  "name": "Applied Energistics 2",
+  "description": "Certus and fluix through the processor chain to the controller, drive, terminal and autocrafting.",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "requires_mods": [
+    "ae2"
+  ],
+  "requires_modules": [
+    "00-core"
+  ],
+  "chapter_group": "storage",
+  "chapters": [
+    {
+      "number": 1,
+      "file": "applied_energistics.snbt",
+      "title": "Applied Energistics 2"
+    }
+  ],
+  "allowed_external_dependencies": []
+}

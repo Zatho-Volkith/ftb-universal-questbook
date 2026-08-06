@@ -1,0 +1,177 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "extended_ae"
+	group: "7B00000100000007"
+	icon: {
+		id: "extendedae:entro_ingot"
+	}
+	id: "7B2A030200000001"
+	images: [ ]
+	order_index: 43
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["The material behind everything Extended AE adds.", "", "Seven other things are built from it."]
+			id: "7B2A030300010000"
+			rewards: [
+				{
+					id: "7B2A03050001000B"
+					type: "xp"
+					xp: 40
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A03050001000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Craft entro ingots"
+			tasks: [
+				{
+					count: 8L
+					id: "7B2A030400010001"
+					item: {
+						count: 1
+						id: "extendedae:entro_ingot"
+					}
+					type: "item"
+				}
+			]
+			title: "Entro Ingot"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B2A030300010000"]
+			description: ["More slots than the standard interface, and configurable per slot."]
+			id: "7B2A030300020000"
+			rewards: [
+				{
+					id: "7B2A03050002000B"
+					type: "xp"
+					xp: 50
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A03050002000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Build an ex interface"
+			tasks: [
+				{
+					id: "7B2A030400020001"
+					item: {
+						count: 1
+						id: "extendedae:ex_interface"
+					}
+					type: "item"
+				}
+			]
+			title: "Extended Interface"
+			x: 1.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B2A030300010000"]
+			description: ["The cable-part form, for when a full block will not fit."]
+			id: "7B2A030300030000"
+			rewards: [
+				{
+					id: "7B2A03050003000B"
+					type: "xp"
+					xp: 45
+				}
+			]
+			subtitle: "Craft an oversize interface part"
+			tasks: [
+				{
+					id: "7B2A030400030001"
+					item: {
+						count: 1
+						id: "extendedae:oversize_interface_part"
+					}
+					type: "item"
+				}
+			]
+			title: "Oversize Parts"
+			x: 1.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B2A030300020000"]
+			description: ["Upgrades a plain AE2 interface in place rather than replacing it."]
+			id: "7B2A030300040000"
+			rewards: [
+				{
+					id: "7B2A03050004000B"
+					type: "xp"
+					xp: 55
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A03050004000C"
+					table_id: 8863084092434939908L
+					type: "random"
+				}
+			]
+			subtitle: "Craft an interface upgrade"
+			tasks: [
+				{
+					id: "7B2A030400040001"
+					item: {
+						count: 1
+						id: "extendedae:interface_upgrade"
+					}
+					type: "item"
+				}
+			]
+			title: "Interface Upgrade"
+			x: 3.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B2A030300010000"]
+			description: [
+				"A multiblock of molecular assemblers."
+				""
+				"Same job as a wall of individual assemblers, in a fraction of the"
+				"space and with one pattern provider feeding all of it."
+			]
+			id: "7B2A030300050000"
+			rewards: [
+				{
+					id: "7B2A03050005000B"
+					type: "xp"
+					xp: 70
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A03050005000C"
+					table_id: 8863084092434939908L
+					type: "random"
+				}
+			]
+			subtitle: "Build an assembler matrix wall"
+			tasks: [
+				{
+					count: 4L
+					id: "7B2A030400050001"
+					item: {
+						count: 1
+						id: "extendedae:assembler_matrix_wall"
+					}
+					type: "item"
+				}
+			]
+			title: "Assembler Matrix"
+			x: 3.0d
+			y: 1.5d
+		}
+	]
+	subtitle: "Bigger interfaces, assembler matrices"
+	title: "Extended AE"
+}

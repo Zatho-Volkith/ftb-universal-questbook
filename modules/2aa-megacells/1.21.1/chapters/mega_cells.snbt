@@ -1,0 +1,191 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "mega_cells"
+	group: "7B00000100000007"
+	icon: {
+		id: "megacells:sky_steel_ingot"
+	}
+	id: "7B2A020200000001"
+	images: [ ]
+	order_index: 42
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["Sky stone, smelted into something workable.", "", "Everything MEGA is built from it."]
+			id: "7B2A020300010000"
+			rewards: [
+				{
+					id: "7B2A02050001000B"
+					type: "xp"
+					xp: 40
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A02050001000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Smelt sky steel"
+			tasks: [
+				{
+					count: 8L
+					id: "7B2A020400010001"
+					item: {
+						count: 1
+						id: "megacells:sky_steel_ingot"
+					}
+					type: "item"
+				}
+			]
+			title: "Sky Steel"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B2A020300010000"]
+			description: [
+				"A fourth press, found the same way as AE2's three."
+				""
+				"It prints the processor every MEGA component needs."
+			]
+			id: "7B2A020300020000"
+			rewards: [
+				{
+					id: "7B2A02050002000B"
+					type: "xp"
+					xp: 50
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A02050002000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Recover the accumulation press"
+			tasks: [
+				{
+					id: "7B2A020400020001"
+					item: {
+						count: 1
+						id: "megacells:accumulation_processor_press"
+					}
+					type: "item"
+				}
+			]
+			title: "Accumulation Press"
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B2A020300020000"]
+			description: ["Sky steel plus the press."]
+			id: "7B2A020300030000"
+			rewards: [
+				{
+					id: "7B2A02050003000B"
+					type: "xp"
+					xp: 50
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A02050003000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Print the processor"
+			tasks: [
+				{
+					count: 4L
+					id: "7B2A020400030001"
+					item: {
+						count: 1
+						id: "megacells:printed_accumulation_processor"
+					}
+					type: "item"
+				}
+			]
+			title: "Accumulation Processor"
+			x: 3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B2A020300030000"]
+			description: [
+				"Where AE2 stops at 256k, this starts at 1m and runs to 256m."
+				""
+				"One of these replaces a wall of AE2 crafting storage."
+			]
+			id: "7B2A020300040000"
+			rewards: [
+				{
+					id: "7B2A02050004000B"
+					type: "xp"
+					xp: 80
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A02050004000C"
+					table_id: 8863084092434939908L
+					type: "random"
+				}
+			]
+			subtitle: "Build 1m crafting storage"
+			tasks: [
+				{
+					id: "7B2A020400040001"
+					item: {
+						count: 1
+						id: "megacells:1m_crafting_storage"
+					}
+					type: "item"
+				}
+			]
+			title: "MEGA Crafting"
+			x: 4.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B2A020300030000"]
+			description: [
+				"Far more pattern slots than the standard provider."
+				""
+				"At the point where you are managing hundreds of patterns, this is"
+				"the difference between one block and twenty."
+			]
+			id: "7B2A020300050000"
+			rewards: [
+				{
+					id: "7B2A02050005000B"
+					type: "xp"
+					xp: 70
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A02050005000C"
+					table_id: 8863084092434939908L
+					type: "random"
+				}
+			]
+			subtitle: "Build a mega pattern provider"
+			tasks: [
+				{
+					id: "7B2A020400050001"
+					item: {
+						count: 1
+						id: "megacells:cable_mega_pattern_provider"
+					}
+					type: "item"
+				}
+			]
+			title: "MEGA Pattern Provider"
+			x: 4.5d
+			y: 1.5d
+		}
+	]
+	subtitle: "Where 256k stops being enough"
+	title: "MEGA Cells"
+}

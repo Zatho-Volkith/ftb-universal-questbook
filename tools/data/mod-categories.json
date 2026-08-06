@@ -145,6 +145,17 @@
     "apotheosis": "adventure",
     "dungeons_arise": "adventure",
     "voicechat": "qol",
-    "watut": "qol"
+    "watut": "qol",
+    "megacells": "storage",
+    "extendedae": "storage",
+    "advanced_ae": "storage",
+    "appflux": "storage",
+    "appmek": "storage",
+    "ae2wtlib": "storage",
+    "merequester": "storage",
+    "arseng": "storage",
+    "ae2ct": "storage",
+    "ae2importexportcard": "storage",
+    "aeinfinitybooster": "storage"
   }
 }

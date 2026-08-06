@@ -79,6 +79,7 @@ every book that has it installed.
 | `27` | *(reserved)* Supplementaries | `supplementaries` | planned |
 | `28` | `28-umapyoi` | `umapyoi` | shipped |
 | `29` | `29-refinedstorage` | `refinedstorage` | shipped |
+| `2A` | `2a-ae2` + 4 add-ons | `ae2` | shipped |
 | `30` | `30-quality-of-life` + 9 add-ons | vanilla parent | shipped |
 
 ## Addons: chapter slots, not module numbers

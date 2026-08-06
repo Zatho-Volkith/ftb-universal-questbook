@@ -140,6 +140,11 @@ are also in `library.json` and every module's `module.json`.
 | `22a-bee-breeding` | └ Bee Breeding | 16 | `(same mod)` |
 | `28-umapyoi` | Umapyoi | 12 | `umapyoi` |
 | `29-refinedstorage` | Refined Storage | 19 | `refinedstorage` |
+| `2a-ae2` | Applied Energistics 2 | 20 | `ae2` |
+| `2aa-megacells` | └ MEGA Cells | 5 | `+ megacells` |
+| `2ab-extendedae` | └ Extended AE | 5 | `+ extendedae` |
+| `2ac-advanced-ae` | └ Advanced AE | 6 | `+ advanced_ae` |
+| `2ad-appflux` | └ Applied Flux | 5 | `+ appflux` |
 | `30-quality-of-life` | Quality of Life | 8 | vanilla |
 | `30a-waystones` | └ Waystones | 4 | `+ waystones` |
 | `30b-explorers-compass` | └ Explorer's Compass | 2 | `+ explorerscompass` |
@@ -151,7 +156,7 @@ are also in `library.json` and every module's `module.json`.
 | `30h-lootr` | └ Lootr | 3 | `+ lootr` |
 | `30i-easy-villagers` | └ Easy Villagers | 5 | `+ easy_villagers` |
 
-**224 quests across 26 chapters.** 101 are vanilla-only and
+**265 quests across 31 chapters.** 101 are vanilla-only and
 work in any 1.21.1 pack; the rest install only when their mods are present.
 
 ### Task types

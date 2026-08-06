@@ -1,0 +1,29 @@
+{
+  "id": "2ac-advanced-ae",
+  "module_number": 42,
+  "chapter_number": 4,
+  "name": "Advanced AE",
+  "description": "Quantum upgrade bases, quantum storage and the advanced pattern provider chain.",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "requires_mods": [
+    "ae2",
+    "advanced_ae"
+  ],
+  "requires_modules": [
+    "00-core",
+    "2a-ae2"
+  ],
+  "chapter_group": "storage",
+  "chapters": [
+    {
+      "number": 4,
+      "file": "advanced_ae.snbt",
+      "title": "Advanced AE"
+    }
+  ],
+  "allowed_external_dependencies": [],
+  "extends": "2a-ae2"
+}

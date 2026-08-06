@@ -1,0 +1,29 @@
+{
+  "id": "2aa-megacells",
+  "module_number": 42,
+  "chapter_number": 2,
+  "name": "MEGA Cells",
+  "description": "Sky steel, the accumulation processor, and storage past AE2's ceiling.",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "requires_mods": [
+    "ae2",
+    "megacells"
+  ],
+  "requires_modules": [
+    "00-core",
+    "2a-ae2"
+  ],
+  "chapter_group": "storage",
+  "chapters": [
+    {
+      "number": 2,
+      "file": "mega_cells.snbt",
+      "title": "MEGA Cells"
+    }
+  ],
+  "allowed_external_dependencies": [],
+  "extends": "2a-ae2"
+}

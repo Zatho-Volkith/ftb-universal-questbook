@@ -1,0 +1,29 @@
+{
+  "id": "2ad-appflux",
+  "module_number": 42,
+  "chapter_number": 5,
+  "name": "Applied Flux",
+  "description": "Redstone crystals and flux accessors: Forge Energy stored on ME cells.",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "requires_mods": [
+    "ae2",
+    "appflux"
+  ],
+  "requires_modules": [
+    "00-core",
+    "2a-ae2"
+  ],
+  "chapter_group": "storage",
+  "chapters": [
+    {
+      "number": 5,
+      "file": "applied_flux.snbt",
+      "title": "Applied Flux"
+    }
+  ],
+  "allowed_external_dependencies": [],
+  "extends": "2a-ae2"
+}

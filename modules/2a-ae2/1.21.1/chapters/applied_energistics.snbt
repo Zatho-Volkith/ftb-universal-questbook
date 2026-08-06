@@ -1,0 +1,833 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "applied_energistics"
+	group: "7B00000100000007"
+	icon: {
+		id: "ae2:controller"
+	}
+	id: "7B2A010200000001"
+	images: [ ]
+	order_index: 41
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"A network is a controller, some cable, and devices touching that cable."
+				""
+				"Storage lives on cells in a drive. Everything is measured in channels:"
+				"each device uses one, and a controller supplies thirty-two per face."
+				"Run out and things stop working with no error."
+				""
+				"Dense cable carries thirty-two channels, normal cable carries eight."
+			]
+			id: "7B2A010300140000"
+			rewards: [
+				{
+					id: "7B2A01050014000B"
+					type: "xp"
+					xp: 10
+				}
+			]
+			subtitle: "Read before you build"
+			tasks: [
+				{
+					id: "7B2A010400140001"
+					type: "checkmark"
+				}
+			]
+			title: "How AE2 Works"
+			x: -1.5d
+			y: 0.0d
+		}
+		{
+			description: [
+				"The mineral the whole mod is built on."
+				""
+				"It generates underground, and once you have a budding quartz block"
+				"from a meteorite you can grow it indefinitely in water."
+			]
+			id: "7B2A010300010000"
+			rewards: [
+				{
+					id: "7B2A01050001000B"
+					type: "xp"
+					xp: 20
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A01050001000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Mine certus quartz"
+			tasks: [
+				{
+					count: 16L
+					id: "7B2A010400010001"
+					item: {
+						count: 1
+						id: "ae2:certus_quartz_crystal"
+					}
+					type: "item"
+				}
+			]
+			title: "Certus Quartz"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B2A010300010000"]
+			description: [
+				"A charger and some power turns certus into charged certus."
+				""
+				"Twenty-two different recipes need it, so build the charger early"
+				"and keep it fed."
+			]
+			id: "7B2A010300020000"
+			rewards: [
+				{
+					id: "7B2A01050002000B"
+					type: "xp"
+					xp: 25
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A01050002000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Charge a crystal"
+			tasks: [
+				{
+					count: 8L
+					id: "7B2A010400020001"
+					item: {
+						count: 1
+						id: "ae2:charged_certus_quartz_crystal"
+					}
+					type: "item"
+				}
+			]
+			title: "Charged Certus"
+			x: 1.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B2A010300010000"]
+			description: [
+				"Charged certus, redstone and quartz, thrown into water."
+				""
+				"Fluix is what makes cable carry data rather than just exist."
+			]
+			id: "7B2A010300030000"
+			rewards: [
+				{
+					id: "7B2A01050003000B"
+					type: "xp"
+					xp: 25
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A01050003000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Make fluix crystals"
+			tasks: [
+				{
+					count: 8L
+					id: "7B2A010400030001"
+					item: {
+						count: 1
+						id: "ae2:fluix_crystal"
+					}
+					type: "item"
+				}
+			]
+			title: "Fluix"
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B2A010300010000"]
+			description: [
+				"Quartz glass is used by twenty-one recipes -- more than anything"
+				"else in the mod."
+				""
+				"Make a lot. You will use all of it on cell housings."
+			]
+			id: "7B2A010300040000"
+			rewards: [
+				{
+					id: "7B2A01050004000B"
+					type: "xp"
+					xp: 25
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A01050004000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Grind quartz into dust"
+			tasks: [
+				{
+					count: 8L
+					id: "7B2A010400040001"
+					item: {
+						count: 1
+						id: "ae2:certus_quartz_dust"
+					}
+					type: "item"
+				}
+				{
+					count: 16L
+					id: "7B2A010400040002"
+					item: {
+						count: 1
+						id: "ae2:quartz_glass"
+					}
+					type: "item"
+				}
+			]
+			title: "Dust and Glass"
+			x: 1.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B2A010300040000"]
+			description: ["Smelted from certus dust, and the base of every processor."]
+			id: "7B2A010300050000"
+			rewards: [
+				{
+					id: "7B2A01050005000B"
+					type: "xp"
+					xp: 20
+				}
+			]
+			subtitle: "Smelt silicon"
+			tasks: [
+				{
+					count: 8L
+					id: "7B2A010400050001"
+					item: {
+						count: 1
+						id: "ae2:silicon"
+					}
+					type: "item"
+				}
+			]
+			title: "Silicon"
+			x: 3.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B2A010300010000"]
+			description: [
+				"Presses are not crafted. They sit in meteorites, in a mysterious"
+				"cube, buried anywhere on the surface or under it."
+				""
+				"Find one meteorite and you have the whole set for the rest of the"
+				"world. This is the real gate on AE2, not the materials."
+			]
+			id: "7B2A010300060000"
+			rewards: [
+				{
+					id: "7B2A01050006000B"
+					type: "xp"
+					xp: 60
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A01050006000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Recover processor presses"
+			tasks: [
+				{
+					id: "7B2A010400060001"
+					item: {
+						count: 1
+						id: "ae2:calculation_processor_press"
+					}
+					type: "item"
+				}
+				{
+					id: "7B2A010400060002"
+					item: {
+						count: 1
+						id: "ae2:logic_processor_press"
+					}
+					type: "item"
+				}
+				{
+					id: "7B2A010400060003"
+					item: {
+						count: 1
+						id: "ae2:engineering_processor_press"
+					}
+					type: "item"
+				}
+			]
+			title: "The Presses"
+			x: 3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B2A010300050000", "7B2A010300060000"]
+			description: [
+				"Silicon plus the silicon press, in an inscriber."
+				""
+				"Every processor is a printed silicon plus a printed something else."
+			]
+			id: "7B2A010300070000"
+			rewards: [
+				{
+					id: "7B2A01050007000B"
+					type: "xp"
+					xp: 30
+				}
+			]
+			subtitle: "Press silicon"
+			tasks: [
+				{
+					count: 4L
+					id: "7B2A010400070001"
+					item: {
+						count: 1
+						id: "ae2:printed_silicon"
+					}
+					type: "item"
+				}
+			]
+			title: "Printed Silicon"
+			x: 4.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B2A010300070000"]
+			description: [
+				"Calculation, logic and engineering."
+				""
+				"Nothing in the rest of this chapter happens without them, and the"
+				"inscriber is slow, so print more than you need now."
+			]
+			id: "7B2A010300080000"
+			rewards: [
+				{
+					id: "7B2A01050008000B"
+					type: "xp"
+					xp: 60
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A01050008000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Print all three processors"
+			tasks: [
+				{
+					count: 4L
+					id: "7B2A010400080001"
+					item: {
+						count: 1
+						id: "ae2:calculation_processor"
+					}
+					type: "item"
+				}
+				{
+					count: 4L
+					id: "7B2A010400080002"
+					item: {
+						count: 1
+						id: "ae2:logic_processor"
+					}
+					type: "item"
+				}
+				{
+					count: 4L
+					id: "7B2A010400080003"
+					item: {
+						count: 1
+						id: "ae2:engineering_processor"
+					}
+					type: "item"
+				}
+			]
+			title: "Processors"
+			x: 6.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B2A010300030000"]
+			description: [
+				"Eight channels per cable."
+				""
+				"Quartz fibre passes power between networks without passing data --"
+				"the usual way to run a subnet."
+			]
+			id: "7B2A010300090000"
+			rewards: [
+				{
+					id: "7B2A01050009000B"
+					type: "xp"
+					xp: 25
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A01050009000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Craft glass cable"
+			tasks: [
+				{
+					count: 2L
+					id: "7B2A010400090001"
+					item: {
+						count: 1
+						id: "ae2:quartz_fiber"
+					}
+					type: "item"
+				}
+				{
+					count: 16L
+					id: "7B2A010400090002"
+					item: {
+						count: 1
+						id: "ae2:fluix_glass_cable"
+					}
+					type: "item"
+				}
+			]
+			title: "Fluix Cable"
+			x: 3.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B2A010300090000"]
+			description: [
+				"An acceptor converts outside power into AE. A cell buffers it."
+				""
+				"A network with no buffer browns out the moment you craft anything."
+			]
+			id: "7B2A0103000A0000"
+			rewards: [
+				{
+					id: "7B2A0105000A000B"
+					type: "xp"
+					xp: 35
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A0105000A000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Build an energy acceptor and cell"
+			tasks: [
+				{
+					id: "7B2A0104000A0001"
+					item: {
+						count: 1
+						id: "ae2:energy_acceptor"
+					}
+					type: "item"
+				}
+				{
+					id: "7B2A0104000A0002"
+					item: {
+						count: 1
+						id: "ae2:energy_cell"
+					}
+					type: "item"
+				}
+			]
+			title: "Power"
+			x: 4.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B2A010300080000"]
+			description: [
+				"Thirty-two channels per face, and the centre of everything."
+				""
+				"Controllers can be built into a block, but no two controllers may"
+				"touch unless they are part of the same structure."
+			]
+			id: "7B2A0103000B0000"
+			rewards: [
+				{
+					id: "7B2A0105000B000B"
+					type: "xp"
+					xp: 100
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A0105000B000C"
+					table_id: 8863084092434939908L
+					type: "random"
+				}
+			]
+			subtitle: "Build an ME controller"
+			tasks: [
+				{
+					id: "7B2A0104000B0001"
+					item: {
+						count: 1
+						id: "ae2:controller"
+					}
+					type: "item"
+				}
+			]
+			title: "The Controller"
+			x: 7.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B2A010300040000", "7B2A010300080000"]
+			description: [
+				"A housing plus a cell component."
+				""
+				"Cells hold both a byte count and a type count -- a 1k cell fills up"
+				"on 63 different item types long before it runs out of space."
+			]
+			id: "7B2A0103000C0000"
+			rewards: [
+				{
+					id: "7B2A0105000C000B"
+					type: "xp"
+					xp: 50
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A0105000C000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a housing and a cell"
+			tasks: [
+				{
+					count: 2L
+					id: "7B2A0104000C0001"
+					item: {
+						count: 1
+						id: "ae2:item_cell_housing"
+					}
+					type: "item"
+				}
+				{
+					id: "7B2A0104000C0002"
+					item: {
+						count: 1
+						id: "ae2:item_storage_cell_1k"
+					}
+					type: "item"
+				}
+			]
+			title: "Storage Cells"
+			x: 7.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B2A0103000B0000", "7B2A0103000C0000"]
+			description: ["Ten cell bays.", "", "This is the moment the network has somewhere to put things."]
+			id: "7B2A0103000D0000"
+			rewards: [
+				{
+					id: "7B2A0105000D000B"
+					type: "xp"
+					xp: 70
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A0105000D000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Build an ME drive"
+			tasks: [
+				{
+					id: "7B2A0104000D0001"
+					item: {
+						count: 1
+						id: "ae2:drive"
+					}
+					type: "item"
+				}
+			]
+			title: "The Drive"
+			x: 9.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B2A0103000D0000"]
+			description: ["The window into storage, and the payoff for all of the above."]
+			id: "7B2A0103000E0000"
+			rewards: [
+				{
+					id: "7B2A0105000E000B"
+					type: "xp"
+					xp: 60
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A0105000E000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Build a terminal"
+			tasks: [
+				{
+					id: "7B2A0104000E0001"
+					item: {
+						count: 1
+						id: "ae2:terminal"
+					}
+					type: "item"
+				}
+			]
+			title: "Terminal"
+			x: 10.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B2A010300080000", "7B2A010300090000"]
+			description: [
+				"An import bus pulls into the network, an export bus pushes out."
+				""
+				"Both take upgrade cards -- capacity, speed, fuzzy, redstone."
+			]
+			id: "7B2A0103000F0000"
+			rewards: [
+				{
+					id: "7B2A0105000F000B"
+					type: "xp"
+					xp: 40
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A0105000F000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft import and export buses"
+			tasks: [
+				{
+					count: 2L
+					id: "7B2A0104000F0001"
+					item: {
+						count: 1
+						id: "ae2:import_bus"
+					}
+					type: "item"
+				}
+				{
+					count: 2L
+					id: "7B2A0104000F0002"
+					item: {
+						count: 1
+						id: "ae2:export_bus"
+					}
+					type: "item"
+				}
+			]
+			title: "Buses"
+			x: 9.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B2A0103000C0000"]
+			description: [
+				"1k, 4k, 16k, 64k, then 256k."
+				""
+				"Each tier is built from the one below, so the first 256k cell costs"
+				"a great deal of quartz glass."
+			]
+			id: "7B2A010300100000"
+			rewards: [
+				{
+					id: "7B2A01050010000B"
+					type: "xp"
+					xp: 60
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A01050010000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a 64k storage cell"
+			tasks: [
+				{
+					id: "7B2A010400100001"
+					item: {
+						count: 1
+						id: "ae2:item_storage_cell_64k"
+					}
+					type: "item"
+				}
+			]
+			title: "Bigger Cells"
+			x: 9.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B2A010300080000", "7B2A010300090000"]
+			description: [
+				"A crafting CPU is a block of crafting units, at least one of which"
+				"is crafting storage."
+				""
+				"Storage sets how large a job it can plan; co-processors set how"
+				"fast it runs."
+			]
+			id: "7B2A010300110000"
+			rewards: [
+				{
+					id: "7B2A01050011000B"
+					type: "xp"
+					xp: 80
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A01050011000C"
+					table_id: 8863084092434939908L
+					type: "random"
+				}
+			]
+			subtitle: "Build a crafting unit and storage"
+			tasks: [
+				{
+					count: 4L
+					id: "7B2A010400110001"
+					item: {
+						count: 1
+						id: "ae2:crafting_unit"
+					}
+					type: "item"
+				}
+				{
+					id: "7B2A010400110002"
+					item: {
+						count: 1
+						id: "ae2:1k_crafting_storage"
+					}
+					type: "item"
+				}
+			]
+			title: "Autocrafting"
+			x: 10.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B2A010300110000"]
+			description: [
+				"The pattern provider hands ingredients out; the assemblers craft."
+				""
+				"Surround one provider with six assemblers and it will keep all of"
+				"them busy."
+			]
+			id: "7B2A010300120000"
+			rewards: [
+				{
+					id: "7B2A01050012000B"
+					type: "xp"
+					xp: 90
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A01050012000C"
+					table_id: 8863084092434939908L
+					type: "random"
+				}
+			]
+			subtitle: "Build assemblers and providers"
+			tasks: [
+				{
+					count: 4L
+					id: "7B2A010400120001"
+					item: {
+						count: 1
+						id: "ae2:molecular_assembler"
+					}
+					type: "item"
+				}
+				{
+					count: 2L
+					id: "7B2A010400120002"
+					item: {
+						count: 1
+						id: "ae2:pattern_provider"
+					}
+					type: "item"
+				}
+			]
+			title: "Assembly"
+			x: 12.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B2A0103000E0000"]
+			description: [
+				"The whole network, anywhere within range."
+				""
+				"Range grows with the number of access points, and each one wants"
+				"its own channel."
+			]
+			id: "7B2A010300130000"
+			rewards: [
+				{
+					id: "7B2A01050013000B"
+					type: "xp"
+					xp: 90
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A01050013000C"
+					table_id: 8863084092434939908L
+					type: "random"
+				}
+			]
+			subtitle: "Build wireless access"
+			tasks: [
+				{
+					id: "7B2A010400130001"
+					item: {
+						count: 1
+						id: "ae2:wireless_access_point"
+					}
+					type: "item"
+				}
+				{
+					id: "7B2A010400130002"
+					item: {
+						count: 1
+						id: "ae2:wireless_terminal"
+					}
+					type: "item"
+				}
+			]
+			title: "Wireless"
+			x: 12.0d
+			y: 0.0d
+		}
+	]
+	subtitle: "Channels, cells and autocrafting"
+	title: "Applied Energistics 2"
+}

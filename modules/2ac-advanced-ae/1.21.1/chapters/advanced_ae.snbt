@@ -1,0 +1,219 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "advanced_ae"
+	group: "7B00000100000007"
+	icon: {
+		id: "advanced_ae:quantum_upgrade_base"
+	}
+	id: "7B2A040200000001"
+	images: [ ]
+	order_index: 44
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["Eleven things are built from this, which makes it the spine of the", "whole add-on."]
+			id: "7B2A040300010000"
+			rewards: [
+				{
+					id: "7B2A04050001000B"
+					type: "xp"
+					xp: 50
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A04050001000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Craft the base component"
+			tasks: [
+				{
+					count: 4L
+					id: "7B2A040400010001"
+					item: {
+						count: 1
+						id: "advanced_ae:quantum_upgrade_base"
+					}
+					type: "item"
+				}
+			]
+			title: "Quantum Upgrade Base"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B2A040300010000"]
+			description: ["The reagent behind the quantum tier."]
+			id: "7B2A040300020000"
+			rewards: [
+				{
+					id: "7B2A04050002000B"
+					type: "xp"
+					xp: 45
+				}
+			]
+			subtitle: "Make quantum infused dust"
+			tasks: [
+				{
+					count: 4L
+					id: "7B2A040400020001"
+					item: {
+						count: 1
+						id: "advanced_ae:quantum_infused_dust"
+					}
+					type: "item"
+				}
+			]
+			title: "Quantum Infused Dust"
+			x: 1.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B2A040300010000"]
+			description: ["The starting point of the advanced provider line."]
+			id: "7B2A040300030000"
+			rewards: [
+				{
+					id: "7B2A04050003000B"
+					type: "xp"
+					xp: 55
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A04050003000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Build a small adv pattern provider"
+			tasks: [
+				{
+					id: "7B2A040400030001"
+					item: {
+						count: 1
+						id: "advanced_ae:small_adv_pattern_provider"
+					}
+					type: "item"
+				}
+			]
+			title: "Small Pattern Provider"
+			x: 1.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B2A040300020000"]
+			description: [
+				"Storage measured in a unit AE2 does not have."
+				""
+				"The 256 is the entry tier, not the ceiling."
+			]
+			id: "7B2A040300040000"
+			rewards: [
+				{
+					id: "7B2A04050004000B"
+					type: "xp"
+					xp: 70
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A04050004000C"
+					table_id: 8863084092434939908L
+					type: "random"
+				}
+			]
+			subtitle: "Build quantum storage"
+			tasks: [
+				{
+					id: "7B2A040400040001"
+					item: {
+						count: 1
+						id: "advanced_ae:quantum_storage_256"
+					}
+					type: "item"
+				}
+			]
+			title: "Quantum Storage"
+			x: 3.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B2A040300030000"]
+			description: ["Two steps up the provider chain, each built from the last."]
+			id: "7B2A040300050000"
+			rewards: [
+				{
+					id: "7B2A04050005000B"
+					type: "xp"
+					xp: 70
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A04050005000C"
+					table_id: 8863084092434939908L
+					type: "random"
+				}
+			]
+			subtitle: "Craft advanced provider parts"
+			tasks: [
+				{
+					id: "7B2A040400050001"
+					item: {
+						count: 1
+						id: "advanced_ae:small_adv_pattern_provider_part"
+					}
+					type: "item"
+				}
+				{
+					id: "7B2A040400050002"
+					item: {
+						count: 1
+						id: "advanced_ae:adv_pattern_provider_part"
+					}
+					type: "item"
+				}
+			]
+			title: "Provider Parts"
+			x: 3.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B2A040300050000"]
+			description: [
+				"The deepest craft in the add-on -- four steps from the base"
+				"component, and it holds patterns accordingly."
+			]
+			id: "7B2A040300060000"
+			rewards: [
+				{
+					id: "7B2A04050006000B"
+					type: "xp"
+					xp: 90
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A04050006000C"
+					table_id: 8863084092434939909L
+					type: "random"
+				}
+			]
+			subtitle: "Build the full provider"
+			tasks: [
+				{
+					id: "7B2A040400060001"
+					item: {
+						count: 1
+						id: "advanced_ae:adv_pattern_provider"
+					}
+					type: "item"
+				}
+			]
+			title: "Advanced Pattern Provider"
+			x: 4.5d
+			y: -1.5d
+		}
+	]
+	subtitle: "The quantum tier"
+	title: "Advanced AE"
+}

@@ -33,13 +33,18 @@ Running a server means accepting the Minecraft EULA
 from __future__ import annotations
 
 import argparse
+import json
 import re
 import shutil
 import subprocess
 import sys
 import tarfile
 import urllib.request
+import zipfile
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import install  # noqa: E402  (for its mods.toml parser)
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 TESTBED = REPO_ROOT / "testbed"
@@ -76,6 +81,30 @@ BENIGN = re.compile(
     r"hackers to connect|online-mode|Environment: |experimental|"
     r"RecipeManager|Negative index in crash report handler"
 )
+
+
+def declared_mod_ids(jar: Path) -> set[str]:
+    """Mod ids a jar declares, from its own metadata rather than its name."""
+    ids: set[str] = set()
+    try:
+        with zipfile.ZipFile(jar) as archive:
+            names = set(archive.namelist())
+            if "fabric.mod.json" in names:
+                try:
+                    payload = json.loads(
+                        archive.read("fabric.mod.json").decode("utf-8-sig"))
+                    if isinstance(payload, dict) and payload.get("id"):
+                        ids.add(payload["id"])
+                except (json.JSONDecodeError, UnicodeDecodeError):
+                    pass
+            for toml in ("META-INF/neoforge.mods.toml", "META-INF/mods.toml"):
+                if toml in names:
+                    ids.update(install.mod_ids_from_toml(
+                        archive.read(toml).decode("utf-8", errors="replace")))
+                    break
+    except (zipfile.BadZipFile, OSError):
+        pass
+    return ids
 
 
 def java_bin() -> Path:
@@ -201,13 +230,21 @@ def stage_mods(all_mods: bool, extra_patterns: list[str] | None = None
         # Staging every reference jar usually fails on library mods that are
         # not in the folder (balm, curios, caelus...), which says nothing about
         # the questbook. Default to the FTB stack plus whatever was asked for.
-        # Jar filenames and mod IDs disagree about separators -- the mod
-        # `easy_villagers` ships as `easy-villagers-neoforge-...jar` -- so
-        # compare with both stripped out.
+        # Filenames are not mod ids. `easy_villagers` ships as
+        # `easy-villagers-...jar` and `appflux` as `AppliedFlux-...jar`, so ask
+        # each jar what it declares before falling back to the filename.
         def flatten(text: str) -> str:
             return text.lower().replace("-", "").replace("_", "")
 
+        declared: dict[str, Path] = {}
+        for jar in jars:
+            for mod_id in declared_mod_ids(jar):
+                declared.setdefault(mod_id, jar)
+
         for pattern in CORE_MOD_PATTERNS + list(extra_patterns or []):
+            if pattern in declared:
+                chosen.append(declared[pattern])
+                continue
             flat = flatten(pattern)
             # Prefer a jar whose filename STARTS with the pattern. A plain
             # substring search picks "more_umapyoi_skills" for "umapyoi", which

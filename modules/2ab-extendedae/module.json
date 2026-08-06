@@ -1,0 +1,29 @@
+{
+  "id": "2ab-extendedae",
+  "module_number": 42,
+  "chapter_number": 3,
+  "name": "Extended AE",
+  "description": "Entro ingots, extended interfaces and the assembler matrix multiblock.",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "requires_mods": [
+    "ae2",
+    "extendedae"
+  ],
+  "requires_modules": [
+    "00-core",
+    "2a-ae2"
+  ],
+  "chapter_group": "storage",
+  "chapters": [
+    {
+      "number": 3,
+      "file": "extended_ae.snbt",
+      "title": "Extended AE"
+    }
+  ],
+  "allowed_external_dependencies": [],
+  "extends": "2a-ae2"
+}
