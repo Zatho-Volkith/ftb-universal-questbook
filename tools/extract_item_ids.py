@@ -42,7 +42,14 @@ NAMESPACED_ID = re.compile(r'"([a-z0-9_.\-]+):([a-z0-9_/]+)"')
 # Item and block paths in Minecraft are always lowercase alphanumeric with
 # underscores. Anything else is a tooltip or subtitle key, not an item.
 VALID_PATH = re.compile(r"^[a-z0-9_]+$")
-ENTRY_KEY = re.compile(r"^(item|block)\.([a-z0-9_.\-]+)\.(.+)$")
+# A lang key is `item.<namespace>.<path>`, and a path routinely carries extra
+# dotted suffixes for tooltips: `item.minecraft.diamond_sword.desc`. The
+# namespace must therefore be dot-free, or a greedy match swallows part of the
+# path and invents a namespace -- `item.mekanismtools.bronze_shield.black` was
+# read as namespace `mekanismtools.bronze_shield` holding an item named
+# `black`. That fabricates a namespace nothing can typo-check against, so a
+# misspelled ID landing in one would pass validation silently.
+ENTRY_KEY = re.compile(r"^(item|block)\.([a-z0-9_\-]+)\.(.+)$")
 
 
 #: Recipe fields that name something other than an item. `type` is the recipe
