@@ -11,8 +11,9 @@ What it does:
   2. resolves the mod's own item tags so tag ingredients still link things up
   3. discards anything needing a third mod, which is what strips the 600-odd
      beehive variants Productive Bees ships for worldgen mods you do not have
-  4. collapses variant families (`expansion_box_oak`, `_birch`, `_cherry`...)
-     down to one representative
+  4. collapses cosmetic variant families (`expansion_box_oak`, `_birch`,
+     `_cherry`...) to one representative, while protecting progression tiers
+     (`basic`/`advanced`/`elite`, AE2's `1k`/`4k`/`64k`) from being merged
   5. ranks what is left by depth in the dependency graph
   6. emits a chapter laid out in tiers, with dependencies already wired
 
@@ -21,8 +22,13 @@ the structure is derived, the writing is yours. Run it, read it, cut what is
 not interesting, then write the prose.
 
     python3 tools/derive_chapter.py --mod productivebees --analyse
+    python3 tools/derive_chapter.py --mod mekanism --analyse --no-collapse
     python3 tools/derive_chapter.py --mod productivebees \\
         --module 34 --chapter 1 --max-quests 14 -o /tmp/draft.snbt
+
+Run --analyse first, always. It reports the graph and warns when the mod is
+tiered enough that collapsing would hide the progression, in which case rerun
+with --no-collapse.
 """
 
 from __future__ import annotations
@@ -60,19 +66,80 @@ _CONDITION_KEYS = {"neoforge:conditions", "forge:conditions", "conditions"}
 # reading the jar
 # --------------------------------------------------------------------------
 
-def find_jar(mod: str, search_dirs: list[Path]) -> Path | None:
-    flat = mod.replace("_", "").replace("-", "")
-    best = None
-    for directory in search_dirs:
-        if not directory.is_dir():
+_MODID_LINE = re.compile(r'^\s*modId\s*=\s*"([^"]+)"')
+
+
+def mod_ids_from_toml(text: str) -> set[str]:
+    """Mod ids a `mods.toml` DECLARES, not the ones it depends on.
+
+    Both use the same `modId = "..."` syntax, so a naive search over the whole
+    file reports every dependency as though the jar provided it. Asking for
+    `ae2` then matches AdvancedAE, which merely requires it. Only `[[mods]]`
+    sections declare; `[[dependencies.*]]` sections do not.
+    """
+    ids: set[str] = set()
+    in_mods_section = False
+    for line in text.splitlines():
+        stripped = line.strip()
+        if stripped.startswith("[["):
+            in_mods_section = stripped.startswith("[[mods]]")
             continue
-        for jar in sorted(directory.rglob("*.jar")):
-            name = jar.name.lower().replace("_", "").replace("-", "")
-            if flat in name:
-                if name.startswith(flat):
-                    return jar
-                best = best or jar
-    return best
+        if stripped.startswith("["):
+            in_mods_section = False
+            continue
+        if in_mods_section:
+            match = _MODID_LINE.match(line)
+            if match:
+                ids.add(match.group(1))
+    return ids
+
+
+def declared_mod_ids(jar: Path) -> set[str]:
+    """Mod ids a jar actually declares, from its own metadata."""
+    ids: set[str] = set()
+    try:
+        with zipfile.ZipFile(jar) as archive:
+            names = set(archive.namelist())
+            if "fabric.mod.json" in names:
+                try:
+                    payload = json.loads(
+                        archive.read("fabric.mod.json").decode("utf-8-sig"))
+                    if isinstance(payload, dict) and payload.get("id"):
+                        ids.add(payload["id"])
+                except (json.JSONDecodeError, UnicodeDecodeError):
+                    pass
+            for toml in ("META-INF/neoforge.mods.toml", "META-INF/mods.toml"):
+                if toml in names:
+                    text = archive.read(toml).decode("utf-8", errors="replace")
+                    ids.update(mod_ids_from_toml(text))
+                    break
+    except (zipfile.BadZipFile, OSError):
+        pass
+    return ids
+
+
+def find_jar(mod: str, search_dirs: list[Path]) -> Path | None:
+    """Locate the jar that actually declares this mod id.
+
+    Filename matching is not good enough once addons are involved: asking for
+    `ae2` globs onto `ae2ct`, `ae2wtlib` and `ae2importexportcard` long before
+    it reaches `appliedenergistics2-19.2.17.jar`, which is the one that
+    declares `ae2`. Read the metadata and match what the jar says it is.
+    """
+    jars = [j for directory in search_dirs if directory.is_dir()
+            for j in sorted(directory.rglob("*.jar"))]
+
+    for jar in jars:                       # exact declared id wins outright
+        if mod in declared_mod_ids(jar):
+            return jar
+
+    flat = mod.replace("_", "").replace("-", "")
+    for jar in jars:                       # fall back to the filename
+        name = jar.name.lower().replace("_", "").replace("-", "")
+        if name.startswith(flat):
+            return jar
+    return next((j for j in jars
+                 if flat in j.name.lower().replace("_", "").replace("-", "")), None)
 
 
 def _ids_in(node) -> list[str]:
@@ -210,7 +277,27 @@ def resolve(ingredients: set[str], tags: dict[str, set[str]], namespace: str,
     return own, foreign
 
 
-def build_families(items: list[str], threshold: int = 3) -> dict[str, str]:
+#: Words that mark a progression tier rather than a cosmetic variant.
+#: Collapsing across these throws away the actual progression -- Mekanism's
+#: basic/advanced/elite/ultimate circuits are four separate goals, not four
+#: colours of the same one.
+_TIER_WORDS = {
+    "basic", "advanced", "elite", "ultimate", "creative", "reinforced",
+    "atomic", "infused", "tier1", "tier2", "tier3", "tier4", "tier5",
+    "mk1", "mk2", "mk3", "mk4",
+}
+
+#: Numeric tiers: AE2 counts storage in 1k / 4k / 16k / 64k / 256k, Mekanism
+#: and others just count. Same problem, different notation.
+_TIER_PATTERN = re.compile(r"^\d+[kmgt]?$")
+
+
+def is_tier_token(token: str) -> bool:
+    return token in _TIER_WORDS or bool(_TIER_PATTERN.match(token))
+
+
+def build_families(items: list[str], threshold: int = 3,
+                   collapse: bool = True) -> dict[str, str]:
     """Group items that differ only by a material or colour variant.
 
     Doing this from a hardcoded word list does not survive contact with a mod
@@ -227,6 +314,9 @@ def build_families(items: list[str], threshold: int = 3) -> dict[str, str]:
     Items with no such pattern keep their own name and stand alone.
     """
     paths = {item: item.split(":", 1)[1] for item in items}
+    if not collapse:
+        return dict(paths)
+
     counts: dict[tuple, int] = defaultdict(int)
     candidates: dict[str, list[tuple]] = {}
 
@@ -237,6 +327,13 @@ def build_families(items: list[str], threshold: int = 3) -> dict[str, str]:
             for j in range(i + 1, len(tokens) + 1):
                 if j - i == len(tokens):
                     continue                      # wildcard everything: useless
+                # Never wildcard away a tier. Removing "basic" from
+                # basic_control_circuit yields `*_control_circuit`, which
+                # merges four distinct progression steps into one node.
+                # `any`, not `all`: a span of ['1k','crafting'] still
+                # destroys the tier if wildcarded away.
+                if any(is_tier_token(tok) for tok in tokens[i:j]):
+                    continue
                 key = tuple(tokens[:i]) + ("*",) + tuple(tokens[j:])
                 counts[key] += 1
                 seen.append(key)
@@ -258,7 +355,8 @@ def build_families(items: list[str], threshold: int = 3) -> dict[str, str]:
 
 
 def build_graph(recipes: dict[str, list[set[str]]], tags: dict[str, set[str]],
-                namespace: str) -> tuple[dict[str, set[str]], dict[str, int], list[str]]:
+                namespace: str, collapse: bool = True,
+                ) -> tuple[dict[str, set[str]], dict[str, int], list[str]]:
     """Return (deps, depth, dropped) for items craftable without other mods.
 
     Two things this has to get right, both learned the hard way on Productive
@@ -288,7 +386,7 @@ def build_graph(recipes: dict[str, list[set[str]]], tags: dict[str, set[str]],
             dropped.append(result)      # every recipe needs a third mod
 
     # -- family-level graph ------------------------------------------------
-    family_of = build_families(list(alternatives))
+    family_of = build_families(list(alternatives), collapse=collapse)
     family_alts: dict[str, list[set[str]]] = defaultdict(list)
     for item, options in alternatives.items():
         me = family_of[item]
@@ -350,7 +448,7 @@ def centrality(deps: dict[str, set[str]]) -> dict[str, int]:
 
 
 def pick(deps: dict[str, set[str]], depth: dict[str, int], limit: int,
-         ) -> list[str]:
+         collapse: bool = True) -> list[str]:
     """Choose one representative per variant family, spread across tiers.
 
     Ranking matters more than it looks. Sorting a tier alphabetically fills a
@@ -360,7 +458,7 @@ def pick(deps: dict[str, set[str]], depth: dict[str, int], limit: int,
     goes into making it. That surfaces the cages, hives and centrifuges the mod
     is actually about.
     """
-    families = build_families(list(deps))
+    families = build_families(list(deps), collapse=collapse)
     used = centrality(deps)
 
     def rank(item: str) -> tuple:
@@ -504,6 +602,10 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--max-quests", type=int, default=14)
     parser.add_argument("--group", default="", help="chapter group hex id")
     parser.add_argument("-o", "--output", type=Path)
+    parser.add_argument("--no-collapse", action="store_true",
+                        help="do not merge variant families. Right for tiered "
+                             "tech mods, where near-identical names are real "
+                             "progression steps rather than colours of one thing")
     parser.add_argument("--analyse", action="store_true",
                         help="report the graph instead of writing a chapter")
     args = parser.parse_args(argv)
@@ -520,26 +622,51 @@ def main(argv: list[str] | None = None) -> int:
     if not recipes:
         print(f"error: no {args.mod} recipes in {jar.name}", file=sys.stderr)
         return 1
-    deps, depth, dropped = build_graph(recipes, tags, args.mod)
+    collapse = not args.no_collapse
+    deps, depth, dropped = build_graph(recipes, tags, args.mod, collapse)
 
     if args.analyse:
         print(f"jar          : {jar.name}")
         print(f"recipes      : {len(recipes)} producing {args.mod} items")
         print(f"needs others : {len(dropped)} dropped (require a third mod)")
         print(f"buildable    : {len(deps)}")
-        fam = build_families(list(deps))
+        fam = build_families(list(deps), collapse=collapse)
         families = set(fam.values())
-        print(f"families     : {len(families)} after collapsing variants")
-        tiers: dict[int, list[str]] = defaultdict(list)
-        for item in deps:
-            tiers[depth[item]].append(item)
+        # Show what the other mode would do, and say which fits. Collapsing
+        # suits mods whose names vary by material; it actively harms tiered
+        # tech mods, where near-identical names are the progression.
+        other = set(build_families(list(deps), collapse=not collapse).values())
+        tiered = sum(1 for i in deps
+                     if any(is_tier_token(tok)
+                            for tok in i.split(":", 1)[1].split("_")))
+        label = "after collapsing variants" if collapse else "(collapsing off)"
+        print(f"families     : {len(families)} {label}")
+        print(f"               {len(other)} with --no-collapse"
+              if collapse else
+              f"               {len(other)} if variants were collapsed")
+        # The pathology to warn about is a family named for a tier -- e.g.
+        # `advanced_*`, which lumps advanced circuits in with advanced energy
+        # cubes and keeps only one of them.
+        tier_families = sorted(
+            f for f in families
+            if "*" in f and all(is_tier_token(tok) or tok == "*"
+                                for tok in f.split("_") if tok)
+        )
+        if collapse and tier_families:
+            print(f"\n  WARNING: {len(tier_families)} families are named for a "
+                  f"progression tier:")
+            print(f"    {', '.join(tier_families[:6])}")
+            print("  That merges unrelated machines of the same tier and keeps "
+                  "only one.")
+            print("  This is a tiered tech mod -- rerun with --no-collapse.")
+
         print("\ndepth   items  representative sample")
         for tier in sorted(tiers):
             sample = sorted({fam[i] for i in tiers[tier]})[:6]
             print(f"  {tier:<5} {len(tiers[tier]):>5}  {', '.join(sample)}")
         used = centrality(deps)
         print("\nwhat a chapter would use:")
-        for item in pick(deps, depth, args.max_quests):
+        for item in pick(deps, depth, args.max_quests, collapse):
             parents = sorted(p.split(':')[1] for p in deps[item] if p in deps)
             print(f"  d{depth[item]}  {item.split(':')[1]:<26} "
                   f"used by {used.get(item, 0):<3} <- "
@@ -550,7 +677,7 @@ def main(argv: list[str] | None = None) -> int:
         print("error: --module is required unless --analyse", file=sys.stderr)
         return 1
 
-    chosen = pick(deps, depth, args.max_quests)
+    chosen = pick(deps, depth, args.max_quests, collapse)
     chapter = build_chapter(chosen, deps, depth, args.module, args.chapter,
                             args.mod, args.group)
     output = args.output or REPO_ROOT / f"{args.mod}-draft.snbt"

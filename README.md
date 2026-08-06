@@ -195,7 +195,16 @@ mods you do not have, collapses variant families (Productive Bees ships 600-odd
 beehives named after other mods' wood types), ranks what is left by depth and
 centrality, and emits a chapter with dependencies already wired.
 
-The output is a **draft**: structure derived, prose yours.
+The output is a **draft**: structure derived, prose yours. Always run
+`--analyse` first — it warns when a mod is tiered enough that the default
+variant-collapsing would hide its progression, in which case rerun with
+`--no-collapse`.
+
+| Mod shape | Mode | Why |
+|-----------|------|-----|
+| Material variants (Productive Bees, the Delights) | default | 45 beehive variants collapse to one node |
+| Tiered tech (Mekanism, EnderIO) | `--no-collapse` | basic → advanced → elite → ultimate are four goals, not one |
+| AE2 | default | its `1k`/`4k`/`64k` tiers are already protected |
 
 Two things it taught us, both worth knowing before pointing it at a new mod:
 

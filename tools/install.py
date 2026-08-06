@@ -35,7 +35,31 @@ import snbt
 REPO_ROOT = Path(__file__).resolve().parent.parent
 QUESTS_SUBPATH = Path("config/ftbquests/quests")
 
-NEOFORGE_MODID = re.compile(r'^\s*modId\s*=\s*"([^"]+)"', re.MULTILINE)
+_MODID_LINE = re.compile(r'^\s*modId\s*=\s*"([^"]+)"')
+
+
+def mod_ids_from_toml(text: str) -> set[str]:
+    """Mod ids a `mods.toml` DECLARES, not the ones it depends on.
+
+    Both use `modId = "..."`, so searching the whole file counts every
+    dependency as an installed mod -- which would offer someone chapters for
+    mods their pack merely mentions.
+    """
+    ids: set[str] = set()
+    in_mods_section = False
+    for line in text.splitlines():
+        stripped = line.strip()
+        if stripped.startswith("[["):
+            in_mods_section = stripped.startswith("[[mods]]")
+            continue
+        if stripped.startswith("["):
+            in_mods_section = False
+            continue
+        if in_mods_section:
+            match = _MODID_LINE.match(line)
+            if match:
+                ids.add(match.group(1))
+    return ids
 
 
 @dataclass
@@ -113,7 +137,7 @@ def detect_mods(instance: Path) -> set[str]:
                 for toml in ("META-INF/neoforge.mods.toml", "META-INF/mods.toml"):
                     if toml in names:
                         text = archive.read(toml).decode("utf-8", errors="replace")
-                        found.update(NEOFORGE_MODID.findall(text))
+                        found.update(mod_ids_from_toml(text))
                         break
         except (zipfile.BadZipFile, OSError):
             continue
