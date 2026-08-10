@@ -38,9 +38,9 @@ def banner() -> None:
 
 
 def step_instance() -> Path:
-    heading(1, STEPS, "Which instance did you author in?")
+    heading(1, STEPS, "Which instance are you working with?")
     print("Paste the path to the instance folder — the one containing")
-    print(dim("  'config' (and usually 'mods')."))
+    print(dim("  'mods' (and usually 'config')."))
     print()
     while True:
         raw = ask("Instance folder")
@@ -53,14 +53,52 @@ def step_instance() -> Path:
             continue
         quests_dir = instance / ic.QUESTS_SUBPATH
         if not quests_dir.is_dir():
-            print(yellow(f"  {CROSS} no questbook in this instance yet "
+            print(yellow(f"  no questbook in this instance yet "
                          f"(nothing at {quests_dir})"))
-            print(dim("    Launch the pack once with FTB Quests installed --"))
-            print(dim("    or install this library into it -- then author a"))
-            print(dim("    chapter in game and come back."))
+            if confirm("  Draft a chapter from one of its mods instead?",
+                       default=True):
+                step_draft(instance)
+            print(dim("    Or: launch the pack once with FTB Quests"))
+            print(dim("    installed, author a chapter, and come back."))
             continue
         print(green(f"  {TICK} {quests_dir}"))
         return quests_dir
+
+
+def step_draft(instance: Path) -> None:
+    """Create a chapter from a mod's recipes -- no authoring required."""
+    mods = ic.draftable_mods(instance)
+    if not mods:
+        print(yellow("  every mod in this instance already has a chapter."))
+        raise SystemExit(0)
+    print(dim("\n  Mods with no chapter yet (library mods and client-side"))
+    print(dim("  utilities will refuse -- they have nothing to draft from):\n"))
+    for i, mod in enumerate(mods, start=1):
+        print(f"  {i:>3}  {mod}")
+    while True:
+        answer = ask("\n  Number of the mod to draft")
+        if answer.isdigit() and 1 <= int(answer) <= len(mods):
+            mod = mods[int(answer) - 1]
+            break
+        print(yellow(f"  expected a number 1-{len(mods)}"))
+    quests = ask("  How many quests?", default="14")
+    tiered = confirm("  Tiered mod (iron/gold/diamond steps)? Keeping tiers "
+                     "makes a longer chain", default=False)
+    try:
+        result = ic.draft_module(
+            instance, mod, max_quests=int(quests or 14), collapse=not tiered)
+    except ic.Problem as exc:
+        print(red(f"  {CROSS} {exc}"))
+        raise SystemExit(1)
+    for path in result["written"]:
+        print(green(f"  {TICK} wrote {path.relative_to(ic.REPO_ROOT)}"))
+    if result["installed_to"]:
+        print(green(f"  {TICK} installed into the instance's questbook"))
+    print(f"\n  {result['quest_count']} draft quests under "
+          f"{bold(result['slug'])}. Launch the pack, polish the text and"
+          f"\n  layout in game, then run this wizard again to import it back.")
+    print(dim(f"\n  ID-REGISTRY.md row: {result['registry_row']}"))
+    raise SystemExit(0)
 
 
 def step_chapter(quests_dir: Path) -> ic.Candidate:
@@ -68,9 +106,9 @@ def step_chapter(quests_dir: Path) -> ic.Candidate:
     candidates = ic.scan(quests_dir, MC_VERSION)
     if not candidates:
         print(yellow("  The questbook here has no chapters to import yet."))
-        print(dim("    Author one in game first: open the book, enter edit"))
-        print(dim("    mode, add a chapter. Then run this again."))
-        raise SystemExit(1)
+        if confirm("  Draft one from a mod's recipes instead?", default=True):
+            step_draft(quests_dir.parent.parent.parent)
+        raise SystemExit(0)
     while True:
         print()
         for i, c in enumerate(candidates, start=1):
@@ -79,7 +117,10 @@ def step_chapter(quests_dir: Path) -> ic.Candidate:
             else:
                 print(f"  {i:>3}  {c.stem:<28} {c.quest_count:>3} quests   "
                       f"{dim(c.origin)}")
-        answer = ask("\n  Number of the chapter to import")
+        answer = ask("\n  Number of the chapter to import"
+                     " ('d' = draft a new one from a mod)")
+        if answer.lower() == "d":
+            step_draft(quests_dir.parent.parent.parent)
         if answer.isdigit() and 1 <= int(answer) <= len(candidates):
             chosen = candidates[int(answer) - 1]
             if chosen.parse_error:

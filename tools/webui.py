@@ -152,10 +152,14 @@ class Handler(BaseHTTPRequestHandler):
                             f"then author a chapter in game and come back.")
                 elif not candidates:
                     note = ("The questbook here has no chapters to import "
-                            "yet. Author one in game first: open the book, "
-                            "enter edit mode, add a chapter.")
+                            "yet -- draft one from a mod below, or author "
+                            "one in game.")
+                instance = quests.parent.parent.parent
                 self._reply(200, {"quests_dir": quests,
                                   "chapters": [asdict(c) for c in candidates],
+                                  "draftable": ic.draftable_mods(
+                                      instance, MC_VERSION,
+                                      self.session.repo_root),
                                   "note": note})
             elif self.path == "/api/suggest":
                 quests = self.session.quests_dir(str(body.get("instance", "")))
@@ -199,6 +203,24 @@ class Handler(BaseHTTPRequestHandler):
                     "targets": {slug: str(target.relative_to(
                         self.session.repo_root))
                         for slug, (target, _t) in plan.trees.items()},
+                })
+            elif self.path == "/api/draft":
+                quests = self.session.quests_dir(str(body.get("instance", "")),
+                                                 must_exist=False)
+                result = ic.draft_module(
+                    quests.parent.parent.parent, str(body.get("mod", "")),
+                    max_quests=int(body.get("max_quests") or 14),
+                    collapse=not body.get("tiered"),
+                    mc_version=MC_VERSION,
+                    repo_root=self.session.repo_root,
+                )
+                self._reply(200, {
+                    "slug": result["slug"],
+                    "quest_count": result["quest_count"],
+                    "written": [str(p.relative_to(self.session.repo_root))
+                                for p in result["written"]],
+                    "installed": result["installed_to"] is not None,
+                    "registry_row": result["registry_row"],
                 })
             elif self.path == "/api/apply":
                 if not body.get("confirm"):
@@ -277,6 +299,20 @@ PAGE = """<!doctype html>
 <fieldset id="s2" disabled>
   <legend>2 · Chapter</legend>
   <div id="chapters"></div>
+  <div style="margin-top:.8rem; padding-top:.8rem; border-top:1px dashed #ccc">
+    <b>…or draft a new chapter from a mod</b> — no authoring needed. The
+    draft is built from the mod's own recipes, added to the library, and
+    installed into this instance so the next launch shows it in game.
+    <p>
+      <select id="draftMod"></select>
+      <label> quests: <input type="number" id="draftCount" value="14"
+             min="3" max="30" style="width:4rem"></label>
+      <label><input type="checkbox" id="draftTiered"> tiered mod
+             (keep iron/gold/diamond steps separate)</label>
+    </p>
+    <button onclick="draft()">Draft it</button>
+    <div id="draftOut" class="note"></div>
+  </div>
 </fieldset>
 
 <fieldset id="s3" disabled>
@@ -324,12 +360,9 @@ async function scan() {
   const out = $("s1out");
   try {
     const data = await api("/api/scan", { instance: $("instance").value });
-    if (data.note) {
-      out.innerHTML = `<div class="warn">${data.note}</div>`;
-      $("s2").disabled = true;
-      return;
-    }
-    out.innerHTML = `<span class="ok">✓ ${data.quests_dir}</span>`;
+    out.innerHTML = data.note
+      ? `<div class="warn">${data.note}</div>`
+      : `<span class="ok">✓ ${data.quests_dir}</span>`;
     const list = $("chapters");
     list.innerHTML = "";
     for (const c of data.chapters) {
@@ -341,7 +374,34 @@ async function scan() {
       if (!c.parse_error) div.onclick = () => pick(c, div);
       list.appendChild(div);
     }
+    const select = $("draftMod");
+    select.innerHTML = "";
+    for (const mod of data.draftable) {
+      const option = document.createElement("option");
+      option.value = option.textContent = mod;
+      select.appendChild(option);
+    }
     enable("s2");
+  } catch (e) { fail(out, e); }
+}
+
+async function draft() {
+  const out = $("draftOut");
+  out.textContent = "drafting…";
+  try {
+    const data = await api("/api/draft", {
+      instance: $("instance").value, mod: $("draftMod").value,
+      max_quests: $("draftCount").value, tiered: $("draftTiered").checked,
+    });
+    out.innerHTML =
+      data.written.map(w => `<div class="ok">✓ wrote ${w}</div>`).join("") +
+      (data.installed
+        ? `<div class="ok">✓ installed into this instance's questbook</div>`
+        : "") +
+      `<div>${data.quest_count} draft quests under <code>${data.slug}</code>.
+       Launch the pack, polish the text and layout in game, then come back
+       here and import the chapter — your edits keep their IDs.</div>` +
+      `<div class="note">ID-REGISTRY.md row: <code>${data.registry_row}</code></div>`;
   } catch (e) { fail(out, e); }
 }
 

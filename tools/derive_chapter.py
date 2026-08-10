@@ -567,11 +567,14 @@ def build_chapter(chosen: list[str], deps: dict[str, set[str]],
                 "xp": 10 + 10 * depth[item],
             }],
             "title": prettify(item),
-            "subtitle": "TODO: one line on why this matters",
+            "subtitle": (f"Craft or collect: {prettify(item)}"
+                         if item in items else f"Reach {prettify(item)}"),
             "description": [
-                "TODO: write this.",
+                f"Step {depth[item] + 1} of {prettify(namespace)}'s "
+                f"progression, drafted from the mod's own recipes.",
                 "",
-                f"Derived: depth {depth[item]} in {namespace}'s recipe graph."
+                "Draft text -- rewrite it here or polish it in game, then "
+                "import the chapter back."
                 + ("" if item in items else
                    f"  NOTE: {item} is not an item (entity or non-item node), "
                    f"so this is a checkmark -- pick a real objective."),
@@ -595,7 +598,7 @@ def build_chapter(chosen: list[str], deps: dict[str, set[str]],
         "order_index": 0,
         "quest_links": [],
         "quests": quests,
-        "subtitle": "TODO: chapter subtitle",
+        "subtitle": "A first pass, drafted from the mod's own recipes",
         "title": prettify(namespace),
     }
 

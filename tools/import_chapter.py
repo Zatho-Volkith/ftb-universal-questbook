@@ -921,6 +921,116 @@ def apply_import(plan: ImportPlan, repo_root: Path = REPO_ROOT,
 
 
 # --------------------------------------------------------------------------
+# drafting a chapter from nothing
+# --------------------------------------------------------------------------
+
+def draftable_mods(instance: Path, mc_version: str = "1.21.1",
+                   repo_root: Path = REPO_ROOT) -> list[str]:
+    """Mods in the instance the library has no chapter for yet."""
+    import install
+    modules = known_modules(mc_version, repo_root)
+    covered = {mod for manifest in modules.values()
+               for mod in manifest.get("requires_mods") or []}
+    return sorted(install.detect_mods(instance) - covered - {"minecraft"})
+
+
+def _group_key_for(mod: str, repo_root: Path) -> str:
+    categories_path = repo_root / "tools" / "data" / "mod-categories.json"
+    if categories_path.exists():
+        payload = json.loads(categories_path.read_text(encoding="utf-8"))
+        category = payload.get("mods", {}).get(mod)
+        info = payload.get("categories", {}).get(category)
+        if info and info.get("group"):
+            return info["group"]
+    return "mods"
+
+
+def draft_module(instance: Path, mod: str, *, max_quests: int = 14,
+                 collapse: bool = True, mc_version: str = "1.21.1",
+                 repo_root: Path = REPO_ROOT,
+                 install_into_instance: bool = True) -> dict:
+    """Create a library module for `mod` with nothing pre-authored.
+
+    The chapter is drafted from the mod's own recipe graph (derive_chapter),
+    written into the library under the next free module number, and -- by
+    default -- also installed into the instance's questbook, so the next
+    launch shows it in game ready to polish. The draft mints computed IDs,
+    so a later re-import of the polished chapter keeps them all.
+    """
+    import derive_chapter as dc
+
+    jar = dc.find_jar(mod, [instance / "mods"])
+    if jar is None:
+        raise Problem(f"no jar in {instance / 'mods'} declares mod id {mod!r}")
+    recipes, tags = dc.read_jar(jar, mod)
+    if not recipes:
+        raise Problem(
+            f"{mod} has no recipes producing its own items, so there is no "
+            f"progression to draft a chapter from. Library mods and "
+            f"client-side utilities usually look like this.")
+
+    modules = known_modules(mc_version, repo_root)
+    number = next_free_module_number(free_module_numbers(modules, repo_root))
+    slug = f"{number:02x}-{mod.replace('_', '-')}"
+    group_key = _group_key_for(mod, repo_root)
+    groups = {g["key"]: g for g in load_library(repo_root)["chapter_groups"]}
+    group = groups[group_key]
+
+    deps, depth, dropped = dc.build_graph(recipes, tags, mod, collapse)
+    chosen = dc.pick(deps, depth, max_quests, collapse)
+    if not chosen:
+        raise Problem(f"{mod}'s recipe graph collapsed to nothing usable")
+    tree = dc.build_chapter(chosen, deps, depth, number, 1, mod, group["id"])
+
+    # Sit after the group's existing chapters rather than on top of them.
+    peers = [_as_int(t.get("order_index", 0))
+             for slug_ in modules
+             for path in (repo_root / "modules" / slug_ / mc_version
+                          / "chapters").glob("*.snbt")
+             for t in [snbt.load(str(path))] if t.get("group") == group["id"]]
+    tree["order_index"] = (max(peers) + 1) if peers else 0
+
+    chapter_path = (repo_root / "modules" / slug / mc_version / "chapters"
+                    / f"{mod}.snbt")
+    chapter_path.parent.mkdir(parents=True)
+    snbt.dump(tree, str(chapter_path))
+    manifest = build_manifest(slug, number, 1, tree["title"], f"{mod}.snbt",
+                              tree["title"], group_key, [mod], None,
+                              mc_version, repo_root)
+    manifest["description"] = (f"{tree['title']}. Drafted from the mod's "
+                               f"recipe graph -- polish before shipping.")
+    manifest_path = repo_root / "modules" / slug / "module.json"
+    manifest_path.write_text(json.dumps(manifest, indent=2) + "\n",
+                             encoding="utf-8")
+
+    installed_to = None
+    if install_into_instance:
+        import install
+        quests_dir = instance / QUESTS_SUBPATH
+        (quests_dir / "chapters").mkdir(parents=True, exist_ok=True)
+        installed_to = quests_dir / "chapters" / f"{mod}.snbt"
+        snbt.dump(tree, str(installed_to))
+        install.merge_chapter_groups(quests_dir, [
+            {"id": group["id"], "order_index": group["order_index"],
+             "title": group["title"]}])
+
+    return {
+        "slug": slug,
+        "module_number": number,
+        "quest_count": len(tree["quests"]),
+        "dropped_recipes": dropped,
+        "written": [chapter_path, manifest_path],
+        "installed_to": installed_to,
+        "registry_row": (f"| `{number:02X}` | `{slug}` | `{mod}` | "
+                         f"draft |"),
+    }
+
+
+def _as_int(value) -> int:
+    return int(value.value if isinstance(value, snbt.Num) else value)
+
+
+# --------------------------------------------------------------------------
 
 def do_list(quests_dir: Path, mc_version: str, show_free: bool = False,
             repo_root: Path = REPO_ROOT) -> int:

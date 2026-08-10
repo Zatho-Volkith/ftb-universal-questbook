@@ -100,6 +100,22 @@ def make_fixture_instance() -> Path:
             ["Recovered through the web UI.", "", "Second paragraph."]}
     snbt.dump(tree, str(chapters / "imported.snbt"))
     snbt.dump(lang, str(chapters.parent / "lang" / "en_us.snbt"))
+
+    # A tiny real mod jar, so the draft flow has something to derive from:
+    # widget from planks, gadget from widget.
+    import json as jsonlib
+    import zipfile
+    (instance / "mods").mkdir()
+    with zipfile.ZipFile(instance / "mods" / "testdraftmod-1.0.jar", "w") as jar:
+        jar.writestr("fabric.mod.json", jsonlib.dumps({"id": "testdraftmod"}))
+        jar.writestr("data/testdraftmod/recipe/widget.json", jsonlib.dumps({
+            "type": "minecraft:crafting_shapeless",
+            "ingredients": [{"item": "minecraft:oak_planks"}],
+            "result": {"id": "testdraftmod:widget"}}))
+        jar.writestr("data/testdraftmod/recipe/gadget.json", jsonlib.dumps({
+            "type": "minecraft:crafting_shapeless",
+            "ingredients": [{"item": "testdraftmod:widget"}],
+            "result": {"id": "testdraftmod:gadget"}}))
     return instance
 
 
@@ -196,6 +212,31 @@ def main() -> int:
                            token=token)
     check("validate endpoint runs clean", status == 200 and payload["clean"],
           str(payload)[:400])
+
+    # -- drafting from nothing ---------------------------------------------
+    status, payload = call(port, "/api/scan", {"instance": str(instance)},
+                           token=token)
+    check("scan lists draftable mods",
+          "testdraftmod" in payload.get("draftable", []), str(payload)[:300])
+
+    status, payload = call(port, "/api/draft",
+                           {"instance": str(instance), "mod": "testdraftmod",
+                            "max_quests": 10}, token=token)
+    drafted = payload.get("slug", "")
+    check("draft creates a module", status == 200
+          and payload.get("quest_count", 0) >= 2 and drafted, str(payload))
+    check("draft lands in the fixture repo",
+          (fixture_repo / "modules" / drafted / "module.json").exists())
+    check("draft is installed into the instance",
+          (instance / "config" / "ftbquests" / "quests" / "chapters"
+           / "testdraftmod.snbt").exists())
+
+    status, payload = call(port, "/api/draft",
+                           {"instance": str(instance), "mod": "nonesuch"},
+                           token=token)
+    check("unknown mod refused with a clear message",
+          status == 422 and "no jar" in payload.get("error", ""),
+          str(payload))
 
     httpd.shutdown()
 
