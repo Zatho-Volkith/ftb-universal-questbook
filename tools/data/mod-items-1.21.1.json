@@ -7,13 +7,17 @@
     "AppliedFlux-1.21-2.1.5-neoforge.jar",
     "Aquaculture-1.21.1-2.7.21.jar",
     "BetterAdvancements-NeoForge-1.21.1-0.4.3.21.jar",
+    "Controlling-neoforge-1.21.1-19.0.5.jar",
+    "CrashAssistant-neoforge-1.20.6-1.21.4-1.11.11.jar",
     "Cucumber-1.21.1-8.0.16.jar",
+    "EpheroLib-1.21.1-NEO-FORGE-1.2.0.jar",
     "ExplorersCompass-1.21.1-3.4.0-neoforge.jar",
     "ExtendedAE-1.21-2.2.35-neoforge.jar",
     "ExtremeReactors2-1.21.1-2.4.28.jar",
     "FarmersDelight-1.21.1-1.3.2.jar",
+    "GlitchCore-neoforge-1.21.1-2.1.0.2.jar",
     "Glodium-1.21-2.2-neoforge.jar",
-    "Jade-1.21.1-NeoForge-15.10.5.jar",
+    "Jade-1.21.1-NeoForge-15.10.6.jar",
     "Mekanism-1.21.1-10.7.19.85.jar",
     "MekanismTools-1.21.1-10.7.19.85.jar",
     "MyNethersDelight-1.21.1-1.10.4.jar",
@@ -22,6 +26,7 @@
     "NaturesCompass-1.21.1-3.4.0-neoforge.jar",
     "Patchouli-1.21.1-93-NEOFORGE.jar",
     "ProjectE-1.21.1-PE1.1.0.jar",
+    "Searchables-neoforge-1.21.1-1.0.2.jar",
     "SereneSeasons-neoforge-1.21.1-10.1.0.3.jar",
     "ToolBelt-1.21.1-2.2.10.jar",
     "ZeroCore2-1.21.1-2.4.21.jar",
@@ -31,15 +36,21 @@
     "ae2jeiintegration-1.2.1.jar",
     "ae2wtlib-19.5.1.jar",
     "aeinfinitybooster-neoforge-1.21.1-1.0.0.58.jar",
+    "alltheleaks-1.1.11+1.21.1-neoforge.jar",
+    "appleskin-neoforge-mc1.21-3.0.9.jar",
     "appliedenergistics2-19.2.17.jar",
     "architectury-13.0.11-neoforge.jar",
     "ars_nouveau-1.21.1-5.13.0.jar",
     "arseng-2.1.1-beta.jar",
     "balm-neoforge-1.21.1-21.0.64.jar",
+    "bookshelf-neoforge-1.21.1-21.1.81.jar",
     "botanypots-neoforge-1.21.1-21.1.44.jar",
     "bountiful-neoforge-8.0.0-beta.2.jar",
+    "c2mx-neoforge-1.21.1.jar",
+    "caelus-neoforge-7.0.1+1.21.1.jar",
     "cc-tweaked-1.21.1-forge-1.113.1.jar",
     "comforts-neoforge-9.0.5+1.21.1.jar",
+    "coroutil-neoforge-1.21.0-1.3.9.jar",
     "cosmeticarmorreworked-1.21.1-v1-neoforge.jar",
     "crafting_on_a_stick-1.21.0.6.jar",
     "croptopia-neoforge-1.21.1-4.2.4.jar",
@@ -48,36 +59,53 @@
     "deeperdarker-neoforge-1.21.1-1.4.1.jar",
     "easy-villagers-neoforge-1.21.1-1.1.42.jar",
     "elytraslot-neoforge-9.0.2+1.21.1.jar",
+    "enchdesc-neoforge-1.21.1-21.1.10.jar",
     "enderio-8.2.11-beta.jar",
     "endersdelight-1.3.1.jar",
     "expandeddelight-0.1.4.jar",
     "farmingforblockheads-neoforge-1.21.1-21.1.13.jar",
+    "ftb-backups-3-21.1.5.jar",
+    "ftb-chunks-neoforge-2101.1.21.jar",
+    "ftb-essentials-neoforge-2101.1.10.jar",
+    "ftb-filter-system-neoforge-21.1.4.jar",
+    "ftb-library-neoforge-2101.1.35.jar",
+    "ftb-quests-fabric-2101.1.29.jar",
+    "ftb-quests-neoforge-2101.1.30.jar",
+    "ftb-teams-neoforge-2101.1.10.jar",
+    "ftb-ultimine-neoforge-2101.1.15.jar",
+    "ftb-xmod-compat-fabric-21.1.10.jar",
+    "ftb-xmod-compat-neoforge-21.1.10.jar",
+    "ftbxaerocompat-neoforge-1.1.4.jar",
     "functionalstorage-1.21.1-1.5.4.jar",
     "geckolib-neoforge-1.21.1-4.9.2.jar",
     "guideme-21.1.17.jar",
     "inventorysorter-1.21.1-24.0.24.jar",
     "ironfurnaces-neoforge-1.21.1-4.3.2.jar",
-    "jei-1.21.1-neoforge-19.43.0.393.jar",
+    "jei-1.21.1-neoforge-19.43.0.395.jar",
+    "journeymap-neoforge-1.21.1-6.0.3.jar",
+    "kotlinforforge-5.12.0-all.jar",
     "lootr-neoforge-1.21.1-1.11.38.123.jar",
     "megacells-4.11.0.jar",
     "merequester-neoforge-1.21.1-1.4.3.jar",
     "mob_grinding_utils-1.1.10+mc1.21.1.jar",
-    "moonlight-1.21.1-3.3.2-neoforge.jar",
+    "moonlight-1.21.1-3.3.3-neoforge.jar",
     "more_umapyoi_skills-1.0.3.0.jar",
     "mysterious_mountain_lib-1.2.15-1.21.1.jar",
     "oceansdelight-neoforge-1.0.4-1.21.1.jar",
     "polyeng-0.4.1.jar",
     "polymorph-neoforge-1.1.0+1.21.1.jar",
+    "prickle-neoforge-1.21.1-21.1.11.jar",
     "productivebees-1.21.1-13.13.5.jar",
     "pylons-1.21.1-5.4.2.jar",
     "refinedstorage-neoforge-2.0.9.jar",
     "reliquary-1.21.1-2.0.77.1537.jar",
     "showcaseitem-1.21.1-1.1.0.jar",
     "solcarrot-1.21.1-1.16.6.jar",
-    "sophisticatedbackpacks-1.21.1-3.25.73.2027.jar",
-    "sophisticatedcore-1.21.1-1.4.80.2194.jar",
-    "sophisticatedstorage-1.21.1-1.5.83.2017.jar",
+    "sophisticatedbackpacks-1.21.1-3.25.74.2056.jar",
+    "sophisticatedcore-1.21.1-1.4.84.2248.jar",
+    "sophisticatedstorage-1.21.1-1.5.85.2071.jar",
     "supplementaries-1.21.1-3.8.8-neoforge.jar",
+    "titanium-1.21-4.0.43.jar",
     "toms_storage-1.21-2.4.1.jar",
     "torchmaster-neoforge-1.21.1-21.1.9.jar",
     "trade-cycling-neoforge-1.21.1-1.0.18.jar",
@@ -85,7 +113,7 @@
     "ultimine_rewind-1.21.1-2.0.0.jar",
     "umapyoi-1.4.12-1.21.1.jar",
     "umapyoidelight-1.21.1-0.3.1.jar",
-    "voicechat-neoforge-1.21.1-2.6.21.jar",
+    "voicechat-neoforge-1.21.1-2.6.22.jar",
     "watut-neoforge-1.21.0-1.2.7.jar",
     "waystones-neoforge-1.21.1-21.1.40.jar",
     "xaerominimap-neoforge-1.21.1-26.4.2.jar",
@@ -5572,6 +5600,52 @@
         "fruitsdelight:persimmon_sapling"
       ]
     },
+    "ftbfiltersystem": {
+      "from_jar": "ftb-filter-system-neoforge-21.1.4.jar",
+      "count": 1,
+      "items": [
+        "ftbfiltersystem:smart_filter"
+      ]
+    },
+    "ftblibrary": {
+      "from_jar": "ftb-library-neoforge-2101.1.35.jar",
+      "count": 2,
+      "items": [
+        "ftblibrary:fluid_container",
+        "ftblibrary:icon_item"
+      ]
+    },
+    "ftbquests": {
+      "from_jar": "ftb-quests-fabric-2101.1.29.jar",
+      "count": 18,
+      "items": [
+        "ftbquests:aux_task_screen",
+        "ftbquests:barrier",
+        "ftbquests:book",
+        "ftbquests:chest",
+        "ftbquests:custom_icon",
+        "ftbquests:detector",
+        "ftbquests:loot_crate_opener",
+        "ftbquests:loot_crate_storage",
+        "ftbquests:lootcrate",
+        "ftbquests:missing_item",
+        "ftbquests:progress_detector",
+        "ftbquests:progress_screen",
+        "ftbquests:screen_1",
+        "ftbquests:screen_3",
+        "ftbquests:screen_5",
+        "ftbquests:screen_7",
+        "ftbquests:stage_barrier",
+        "ftbquests:task_screen_configurator"
+      ]
+    },
+    "ftbultimine": {
+      "from_jar": "ftb-ultimine-neoforge-2101.1.15.jar",
+      "count": 1,
+      "items": [
+        "ftbultimine:ultiminer"
+      ]
+    },
     "functionalstorage": {
       "from_jar": "functionalstorage-1.21.1-1.5.4.jar",
       "count": 66,
@@ -7871,7 +7945,7 @@
       ]
     },
     "moonlight": {
-      "from_jar": "moonlight-1.21.1-3.3.2-neoforge.jar",
+      "from_jar": "moonlight-1.21.1-3.3.3-neoforge.jar",
       "count": 1,
       "items": [
         "moonlight:spawn_box"
@@ -9986,7 +10060,7 @@
       ]
     },
     "sawmill": {
-      "from_jar": "sophisticatedbackpacks-1.21.1-3.25.73.2027.jar",
+      "from_jar": "sophisticatedbackpacks-1.21.1-3.25.74.2056.jar",
       "count": 1,
       "items": [
         "sawmill:sawmill"
@@ -10112,8 +10186,8 @@
       ]
     },
     "sophisticatedbackpacks": {
-      "from_jar": "sophisticatedbackpacks-1.21.1-3.25.73.2027.jar",
-      "count": 61,
+      "from_jar": "sophisticatedbackpacks-1.21.1-3.25.74.2056.jar",
+      "count": 71,
       "items": [
         "sophisticatedbackpacks:advanced_alchemy_upgrade",
         "sophisticatedbackpacks:advanced_compacting_upgrade",
@@ -10165,9 +10239,19 @@
         "sophisticatedbackpacks:stack_downgrade_tier_3",
         "sophisticatedbackpacks:stack_upgrade_omega_tier",
         "sophisticatedbackpacks:stack_upgrade_starter_tier",
+        "sophisticatedbackpacks:stack_upgrade_starter_tier_to_tier_1_conversion",
+        "sophisticatedbackpacks:stack_upgrade_starter_tier_to_tier_2_conversion",
+        "sophisticatedbackpacks:stack_upgrade_starter_tier_to_tier_3_conversion",
+        "sophisticatedbackpacks:stack_upgrade_starter_tier_to_tier_4_conversion",
         "sophisticatedbackpacks:stack_upgrade_tier_1",
+        "sophisticatedbackpacks:stack_upgrade_tier_1_to_tier_2_conversion",
+        "sophisticatedbackpacks:stack_upgrade_tier_1_to_tier_3_conversion",
+        "sophisticatedbackpacks:stack_upgrade_tier_1_to_tier_4_conversion",
         "sophisticatedbackpacks:stack_upgrade_tier_2",
+        "sophisticatedbackpacks:stack_upgrade_tier_2_to_tier_3_conversion",
+        "sophisticatedbackpacks:stack_upgrade_tier_2_to_tier_4_conversion",
         "sophisticatedbackpacks:stack_upgrade_tier_3",
+        "sophisticatedbackpacks:stack_upgrade_tier_3_to_tier_4_conversion",
         "sophisticatedbackpacks:stack_upgrade_tier_4",
         "sophisticatedbackpacks:stonecutter_upgrade",
         "sophisticatedbackpacks:survival_infinity_upgrade",
@@ -10179,15 +10263,15 @@
       ]
     },
     "sophisticatedcore": {
-      "from_jar": "sophisticatedcore-1.21.1-1.4.80.2194.jar",
+      "from_jar": "sophisticatedcore-1.21.1-1.4.84.2248.jar",
       "count": 1,
       "items": [
         "sophisticatedcore:xp_bucket"
       ]
     },
     "sophisticatedstorage": {
-      "from_jar": "sophisticatedstorage-1.21.1-1.5.83.2017.jar",
-      "count": 124,
+      "from_jar": "sophisticatedstorage-1.21.1-1.5.85.2071.jar",
+      "count": 139,
       "items": [
         "sophisticatedstorage:acacia_storage_connector",
         "sophisticatedstorage:advanced_alchemy_upgrade",
@@ -10296,9 +10380,24 @@
         "sophisticatedstorage:stack_upgrade_omega_tier",
         "sophisticatedstorage:stack_upgrade_tier_1",
         "sophisticatedstorage:stack_upgrade_tier_1_plus",
+        "sophisticatedstorage:stack_upgrade_tier_1_plus_to_tier_2_conversion",
+        "sophisticatedstorage:stack_upgrade_tier_1_plus_to_tier_3_conversion",
+        "sophisticatedstorage:stack_upgrade_tier_1_plus_to_tier_4_conversion",
+        "sophisticatedstorage:stack_upgrade_tier_1_plus_to_tier_5_conversion",
+        "sophisticatedstorage:stack_upgrade_tier_1_to_tier_1_plus_conversion",
+        "sophisticatedstorage:stack_upgrade_tier_1_to_tier_2_conversion",
+        "sophisticatedstorage:stack_upgrade_tier_1_to_tier_3_conversion",
+        "sophisticatedstorage:stack_upgrade_tier_1_to_tier_4_conversion",
+        "sophisticatedstorage:stack_upgrade_tier_1_to_tier_5_conversion",
         "sophisticatedstorage:stack_upgrade_tier_2",
+        "sophisticatedstorage:stack_upgrade_tier_2_to_tier_3_conversion",
+        "sophisticatedstorage:stack_upgrade_tier_2_to_tier_4_conversion",
+        "sophisticatedstorage:stack_upgrade_tier_2_to_tier_5_conversion",
         "sophisticatedstorage:stack_upgrade_tier_3",
+        "sophisticatedstorage:stack_upgrade_tier_3_to_tier_4_conversion",
+        "sophisticatedstorage:stack_upgrade_tier_3_to_tier_5_conversion",
         "sophisticatedstorage:stack_upgrade_tier_4",
+        "sophisticatedstorage:stack_upgrade_tier_4_to_tier_5_conversion",
         "sophisticatedstorage:stack_upgrade_tier_5",
         "sophisticatedstorage:stonecutter_upgrade",
         "sophisticatedstorage:storage_connector",
@@ -10733,6 +10832,16 @@
         "thermalendergy:melodium_dust",
         "thermalendergy:prismalium_dust",
         "thermalendergy:stellarium_dust"
+      ]
+    },
+    "titanium": {
+      "from_jar": "titanium-1.21-4.0.43.jar",
+      "count": 4,
+      "items": [
+        "titanium:block_asset_test",
+        "titanium:block_test",
+        "titanium:block_twenty_four_test",
+        "titanium:machine_test"
       ]
     },
     "tombstone": {

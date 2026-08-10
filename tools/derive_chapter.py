@@ -605,6 +605,11 @@ def main(argv: list[str] | None = None) -> int:
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--mod", required=True, help="mod id, e.g. productivebees")
     parser.add_argument("--jar", type=Path, help="path to the jar (else searched for)")
+    parser.add_argument("--mods-dir", type=Path, action="append", default=None,
+                        metavar="DIR",
+                        help="also search this folder for the jar (e.g. a "
+                             "launcher instance's mods dir); repeatable, "
+                             "searched before the default reference folders")
     parser.add_argument("--module", type=int, help="module number for minted IDs")
     parser.add_argument("--chapter", type=int, default=1)
     parser.add_argument("--max-quests", type=int, default=14)
@@ -622,7 +627,7 @@ def main(argv: list[str] | None = None) -> int:
                         help="report the graph instead of writing a chapter")
     args = parser.parse_args(argv)
 
-    jar = args.jar or find_jar(args.mod, [
+    jar = args.jar or find_jar(args.mod, (args.mods_dir or []) + [
         REPO_ROOT.parent / "Refrence mods", REPO_ROOT.parent / "Reference mods",
         REPO_ROOT / "reference-mods",
     ])

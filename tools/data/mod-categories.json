@@ -78,7 +78,7 @@
     "oceansdelight": "food",
     "endersdelight": "food",
     "croptopiadelight": "food",
-    "umapyoidelight": "food",
+    "umapyoidelight": "adventure",
     "miners_delight": "food",
     "farmersrespite": "food",
     "croptopia": "food",
@@ -156,6 +156,8 @@
     "arseng": "storage",
     "ae2ct": "storage",
     "ae2importexportcard": "storage",
-    "aeinfinitybooster": "storage"
+    "aeinfinitybooster": "storage",
+    "farmingforblockheads": "food",
+    "ars_nouveau": "adventure"
   }
 }
