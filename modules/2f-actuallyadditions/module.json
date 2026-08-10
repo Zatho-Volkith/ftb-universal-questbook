@@ -1,0 +1,26 @@
+{
+  "id": "2f-actuallyadditions",
+  "module_number": 47,
+  "chapter_number": 1,
+  "name": "Actually Additions",
+  "description": "Actually Additions. Drafted from the mod's recipe graph -- polish before shipping.",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "requires_mods": [
+    "actuallyadditions"
+  ],
+  "requires_modules": [
+    "00-core"
+  ],
+  "chapters": [
+    {
+      "number": 1,
+      "file": "actuallyadditions.snbt",
+      "title": "Actually Additions"
+    }
+  ],
+  "allowed_external_dependencies": [],
+  "chapter_group": "tech"
+}

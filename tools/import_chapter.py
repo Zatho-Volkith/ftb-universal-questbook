@@ -1014,6 +1014,11 @@ def draft_module(instance: Path, mod: str, *, max_quests: int = 14,
             {"id": group["id"], "order_index": group["order_index"],
              "title": group["title"]}])
 
+    # The module is in the repo now, so the registry must say so -- an
+    # unrecorded number is one somebody else can allocate.
+    registry_row = f"| `{number:02X}` | `{slug}` | `{mod}` | draft |"
+    registry_updated = insert_registry_row(repo_root, registry_row, number)
+
     return {
         "slug": slug,
         "module_number": number,
@@ -1021,8 +1026,8 @@ def draft_module(instance: Path, mod: str, *, max_quests: int = 14,
         "dropped_recipes": dropped,
         "written": [chapter_path, manifest_path],
         "installed_to": installed_to,
-        "registry_row": (f"| `{number:02X}` | `{slug}` | `{mod}` | "
-                         f"draft |"),
+        "registry_row": registry_row,
+        "registry_updated": registry_updated,
     }
 
 

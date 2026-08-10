@@ -10,7 +10,12 @@ runs on. The server binds 127.0.0.1 only, every mutating request must carry a
 token minted at startup (embedded in the page it serves), the Host header must
 be the loopback address, instance paths must resolve inside your home
 directory (--allow-any-path to override), and writes only ever land inside
-this repository's modules/ directory via import_chapter.apply_import.
+this repository's modules/ directory or the scanned instance's own questbook
+folder (config/ftbquests/quests).
+
+Besides importing, the page can install the library into the scanned instance
+-- creating the questbook from scratch if the pack has never launched -- and
+draft a new chapter from any mod's recipes.
 
     python3 tools/webui.py            # starts, opens your browser
     python3 tools/webui.py --port 8765 --no-browser
@@ -34,6 +39,7 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 
 import import_chapter as ic     # noqa: E402
+import install as installer     # noqa: E402
 from wizard import normalise_path, resolve_instance  # noqa: E402
 
 MC_VERSION = "1.21.1"
@@ -147,13 +153,14 @@ class Handler(BaseHTTPRequestHandler):
                 note = None
                 if not quests.is_dir():
                     note = (f"This instance has no questbook yet (nothing at "
-                            f"{quests}). Launch the pack once with FTB Quests "
-                            f"installed -- or install this library into it -- "
-                            f"then author a chapter in game and come back.")
+                            f"{quests}). Use Install below to create the "
+                            f"book and fill it with the library -- no game "
+                            f"launch needed -- or draft a chapter from one "
+                            f"of its mods.")
                 elif not candidates:
                     note = ("The questbook here has no chapters to import "
-                            "yet -- draft one from a mod below, or author "
-                            "one in game.")
+                            "yet -- install the library or draft a chapter "
+                            "from a mod below.")
                 instance = quests.parent.parent.parent
                 self._reply(200, {"quests_dir": quests,
                                   "chapters": [asdict(c) for c in candidates],
@@ -221,6 +228,35 @@ class Handler(BaseHTTPRequestHandler):
                                 for p in result["written"]],
                     "installed": result["installed_to"] is not None,
                     "registry_row": result["registry_row"],
+                    "registry_updated": result["registry_updated"],
+                })
+            elif self.path == "/api/install":
+                if not body.get("confirm"):
+                    raise ic.Problem("install requires confirm: true")
+                quests = self.session.quests_dir(str(body.get("instance", "")),
+                                                 must_exist=False)
+                instance = quests.parent.parent.parent
+                modules = installer.load_modules(MC_VERSION,
+                                                 self.session.repo_root)
+                if not modules:
+                    raise ic.Problem(f"no modules for Minecraft {MC_VERSION} "
+                                     f"-- the checkout looks incomplete")
+                available = installer.detect_mods(instance)
+                chosen, skipped = installer.select_modules(modules, available)
+                chosen, problems = installer.resolve_module_deps(chosen,
+                                                                 modules)
+                if problems:
+                    raise ic.Problem("; ".join(problems))
+                plan = installer.build_plan(chosen, modules)
+                stats = installer.apply_plan(quests, plan)
+                self._reply(200, {
+                    "modules": sorted(m.slug for m in chosen),
+                    "chapters": sum(1 for f in plan.files
+                                    if f.dest_rel.startswith("chapters/")),
+                    "skipped": [{"slug": m.slug, "missing": missing}
+                                for m, missing in skipped],
+                    "book_created": bool(stats["book_created"]),
+                    "stats": stats,
                 })
             elif self.path == "/api/apply":
                 if not body.get("confirm"):
@@ -298,6 +334,13 @@ PAGE = """<!doctype html>
 
 <fieldset id="s2" disabled>
   <legend>2 · Chapter</legend>
+  <div style="margin-bottom:.8rem; padding-bottom:.8rem; border-bottom:1px dashed #ccc">
+    <b>Install the questbook into this instance</b> — creates the book if the
+    pack has never launched, picks chapters to match its mods, and merges with
+    anything already there. Nothing an existing book owns is touched.
+    <p><button onclick="installLib()">Install</button></p>
+    <div id="installOut" class="note"></div>
+  </div>
   <div id="chapters"></div>
   <div style="margin-top:.8rem; padding-top:.8rem; border-top:1px dashed #ccc">
     <b>…or draft a new chapter from a mod</b> — no authoring needed. The
@@ -385,6 +428,25 @@ async function scan() {
   } catch (e) { fail(out, e); }
 }
 
+async function installLib() {
+  const out = $("installOut");
+  out.textContent = "installing…";
+  try {
+    const data = await api("/api/install",
+        { instance: $("instance").value, confirm: true });
+    out.innerHTML =
+      (data.book_created
+        ? `<div class="ok">✓ created a fresh questbook (progression_mode "flexible")</div>`
+        : "") +
+      `<div class="ok">✓ installed ${data.modules.length} modules as ` +
+      `${data.chapters} chapters</div>` +
+      (data.skipped.length
+        ? `<div>skipped ${data.skipped.length} module(s) whose mods are not in this pack</div>`
+        : "") +
+      `<div>Launch the pack and open the quest book — it is ready.</div>`;
+  } catch (e) { fail(out, e); }
+}
+
 async function draft() {
   const out = $("draftOut");
   out.textContent = "drafting…";
@@ -401,7 +463,9 @@ async function draft() {
       `<div>${data.quest_count} draft quests under <code>${data.slug}</code>.
        Launch the pack, polish the text and layout in game, then come back
        here and import the chapter — your edits keep their IDs.</div>` +
-      `<div class="note">ID-REGISTRY.md row: <code>${data.registry_row}</code></div>`;
+      (data.registry_updated
+        ? `<div class="note">ID-REGISTRY.md row inserted.</div>`
+        : `<div class="note">add to ID-REGISTRY.md yourself: <code>${data.registry_row}</code></div>`);
   } catch (e) { fail(out, e); }
 }
 

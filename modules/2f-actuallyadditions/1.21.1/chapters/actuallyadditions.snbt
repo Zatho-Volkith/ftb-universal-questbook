@@ -1,0 +1,461 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "actuallyadditions"
+	group: "7B00000100000006"
+	icon: {
+		id: "actuallyadditions:restonia_crystal"
+	}
+	id: "7B2F010200000001"
+	images: [ ]
+	order_index: 7
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"Step 1 of Actuallyadditions's progression, drafted from the mod's own recipes."
+				""
+				"Draft text -- rewrite it here or polish it in game, then import the chapter back."
+			]
+			id: "7B2F010300010000"
+			rewards: [
+				{
+					id: "7B2F01050001000B"
+					type: "xp"
+					xp: 10
+				}
+			]
+			subtitle: "Craft or collect: Restonia Crystal"
+			tasks: [
+				{
+					id: "7B2F010400010001"
+					item: {
+						count: 1
+						id: "actuallyadditions:restonia_crystal"
+					}
+					type: "item"
+				}
+			]
+			title: "Restonia Crystal"
+			x: 0.0d
+			y: -3.0d
+		}
+		{
+			description: [
+				"Step 1 of Actuallyadditions's progression, drafted from the mod's own recipes."
+				""
+				"Draft text -- rewrite it here or polish it in game, then import the chapter back."
+			]
+			id: "7B2F010300020000"
+			rewards: [
+				{
+					id: "7B2F01050002000B"
+					type: "xp"
+					xp: 10
+				}
+			]
+			subtitle: "Craft or collect: Black Quartz"
+			tasks: [
+				{
+					id: "7B2F010400020001"
+					item: {
+						count: 1
+						id: "actuallyadditions:black_quartz"
+					}
+					type: "item"
+				}
+			]
+			title: "Black Quartz"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B2F010300020000"]
+			description: [
+				"Step 1 of Actuallyadditions's progression, drafted from the mod's own recipes."
+				""
+				"Draft text -- rewrite it here or polish it in game, then import the chapter back."
+			]
+			id: "7B2F010300030000"
+			rewards: [
+				{
+					id: "7B2F01050003000B"
+					type: "xp"
+					xp: 10
+				}
+			]
+			subtitle: "Craft or collect: Iron Casing"
+			tasks: [
+				{
+					id: "7B2F010400030001"
+					item: {
+						count: 1
+						id: "actuallyadditions:iron_casing"
+					}
+					type: "item"
+				}
+			]
+			title: "Iron Casing"
+			x: 1.5d
+			y: -0.75d
+		}
+		{
+			dependencies: ["7B2F010300020000"]
+			description: [
+				"Step 1 of Actuallyadditions's progression, drafted from the mod's own recipes."
+				""
+				"Draft text -- rewrite it here or polish it in game, then import the chapter back."
+			]
+			id: "7B2F010300040000"
+			rewards: [
+				{
+					id: "7B2F01050004000B"
+					type: "xp"
+					xp: 10
+				}
+			]
+			subtitle: "Craft or collect: Black Quartz Block"
+			tasks: [
+				{
+					id: "7B2F010400040001"
+					item: {
+						count: 1
+						id: "actuallyadditions:black_quartz_block"
+					}
+					type: "item"
+				}
+			]
+			title: "Black Quartz Block"
+			x: 1.5d
+			y: 0.75d
+		}
+		{
+			description: [
+				"Step 1 of Actuallyadditions's progression, drafted from the mod's own recipes."
+				""
+				"Draft text -- rewrite it here or polish it in game, then import the chapter back."
+			]
+			id: "7B2F010300050000"
+			rewards: [
+				{
+					id: "7B2F01050005000B"
+					type: "xp"
+					xp: 10
+				}
+			]
+			subtitle: "Craft or collect: Canola Seeds"
+			tasks: [
+				{
+					id: "7B2F010400050001"
+					item: {
+						count: 1
+						id: "actuallyadditions:canola_seeds"
+					}
+					type: "item"
+				}
+			]
+			title: "Canola Seeds"
+			x: 0.0d
+			y: 3.0d
+		}
+		{
+			description: [
+				"Step 1 of Actuallyadditions's progression, drafted from the mod's own recipes."
+				""
+				"Draft text -- rewrite it here or polish it in game, then import the chapter back."
+			]
+			id: "7B2F010300060000"
+			rewards: [
+				{
+					id: "7B2F01050006000B"
+					type: "xp"
+					xp: 10
+				}
+			]
+			subtitle: "Craft or collect: Breaker"
+			tasks: [
+				{
+					id: "7B2F010400060001"
+					item: {
+						count: 1
+						id: "actuallyadditions:breaker"
+					}
+					type: "item"
+				}
+			]
+			title: "Breaker"
+			x: 0.0d
+			y: 4.5d
+		}
+		{
+			description: [
+				"Step 1 of Actuallyadditions's progression, drafted from the mod's own recipes."
+				""
+				"Draft text -- rewrite it here or polish it in game, then import the chapter back."
+			]
+			id: "7B2F010300070000"
+			rewards: [
+				{
+					id: "7B2F01050007000B"
+					type: "xp"
+					xp: 10
+				}
+			]
+			subtitle: "Craft or collect: Ring"
+			tasks: [
+				{
+					id: "7B2F010400070001"
+					item: {
+						count: 1
+						id: "actuallyadditions:ring"
+					}
+					type: "item"
+				}
+			]
+			title: "Ring"
+			x: 0.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["7B2F010300020000", "7B2F010300010000"]
+			description: [
+				"Step 2 of Actuallyadditions's progression, drafted from the mod's own recipes."
+				""
+				"Draft text -- rewrite it here or polish it in game, then import the chapter back."
+			]
+			id: "7B2F010300080000"
+			rewards: [
+				{
+					id: "7B2F01050008000B"
+					type: "xp"
+					xp: 20
+				}
+			]
+			subtitle: "Craft or collect: Basic Coil"
+			tasks: [
+				{
+					id: "7B2F010400080001"
+					item: {
+						count: 1
+						id: "actuallyadditions:basic_coil"
+					}
+					type: "item"
+				}
+			]
+			title: "Basic Coil"
+			x: 1.5d
+			y: -2.25d
+		}
+		{
+			description: [
+				"Step 2 of Actuallyadditions's progression, drafted from the mod's own recipes."
+				""
+				"Draft text -- rewrite it here or polish it in game, then import the chapter back."
+			]
+			id: "7B2F010300090000"
+			rewards: [
+				{
+					id: "7B2F01050009000B"
+					type: "xp"
+					xp: 20
+				}
+			]
+			subtitle: "Craft or collect: Empowered Diamatine Crystal"
+			tasks: [
+				{
+					id: "7B2F010400090001"
+					item: {
+						count: 1
+						id: "actuallyadditions:empowered_diamatine_crystal"
+					}
+					type: "item"
+				}
+			]
+			title: "Empowered Diamatine Crystal"
+			x: 0.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B2F010300020000"]
+			description: [
+				"Step 2 of Actuallyadditions's progression, drafted from the mod's own recipes."
+				""
+				"Draft text -- rewrite it here or polish it in game, then import the chapter back."
+			]
+			id: "7B2F0103000A0000"
+			rewards: [
+				{
+					id: "7B2F0105000A000B"
+					type: "xp"
+					xp: 20
+				}
+			]
+			subtitle: "Craft or collect: Lens"
+			tasks: [
+				{
+					id: "7B2F0104000A0001"
+					item: {
+						count: 1
+						id: "actuallyadditions:lens"
+					}
+					type: "item"
+				}
+			]
+			title: "Lens"
+			x: 1.5d
+			y: 2.25d
+		}
+		{
+			dependencies: ["7B2F010300010000"]
+			description: [
+				"Step 2 of Actuallyadditions's progression, drafted from the mod's own recipes."
+				""
+				"Draft text -- rewrite it here or polish it in game, then import the chapter back."
+			]
+			id: "7B2F0103000B0000"
+			rewards: [
+				{
+					id: "7B2F0105000B000B"
+					type: "xp"
+					xp: 20
+				}
+			]
+			subtitle: "Craft or collect: Laser Relay Advanced"
+			tasks: [
+				{
+					id: "7B2F0104000B0001"
+					item: {
+						count: 1
+						id: "actuallyadditions:laser_relay_advanced"
+					}
+					type: "item"
+				}
+			]
+			title: "Laser Relay Advanced"
+			x: 1.5d
+			y: -3.75d
+		}
+		{
+			dependencies: ["7B2F010300080000"]
+			description: [
+				"Step 3 of Actuallyadditions's progression, drafted from the mod's own recipes."
+				""
+				"Draft text -- rewrite it here or polish it in game, then import the chapter back."
+			]
+			id: "7B2F0103000C0000"
+			rewards: [
+				{
+					id: "7B2F0105000C000B"
+					type: "xp"
+					xp: 30
+				}
+			]
+			subtitle: "Craft or collect: Advanced Coil"
+			tasks: [
+				{
+					id: "7B2F0104000C0001"
+					item: {
+						count: 1
+						id: "actuallyadditions:advanced_coil"
+					}
+					type: "item"
+				}
+			]
+			title: "Advanced Coil"
+			x: 3.0d
+			y: -2.25d
+		}
+		{
+			dependencies: ["7B2F010300030000"]
+			description: [
+				"Step 3 of Actuallyadditions's progression, drafted from the mod's own recipes."
+				""
+				"Draft text -- rewrite it here or polish it in game, then import the chapter back."
+			]
+			id: "7B2F0103000D0000"
+			rewards: [
+				{
+					id: "7B2F0105000D000B"
+					type: "xp"
+					xp: 30
+				}
+			]
+			subtitle: "Craft or collect: Vertical Digger"
+			tasks: [
+				{
+					id: "7B2F0104000D0001"
+					item: {
+						count: 1
+						id: "actuallyadditions:vertical_digger"
+					}
+					type: "item"
+				}
+			]
+			title: "Vertical Digger"
+			x: 3.0d
+			y: 0.75d
+		}
+		{
+			dependencies: ["7B2F0103000C0000", "7B2F010300030000"]
+			description: [
+				"Step 4 of Actuallyadditions's progression, drafted from the mod's own recipes."
+				""
+				"Draft text -- rewrite it here or polish it in game, then import the chapter back."
+			]
+			id: "7B2F0103000E0000"
+			rewards: [
+				{
+					id: "7B2F0105000E000B"
+					type: "xp"
+					xp: 40
+				}
+			]
+			subtitle: "Craft or collect: Energizer"
+			tasks: [
+				{
+					id: "7B2F0104000E0001"
+					item: {
+						count: 1
+						id: "actuallyadditions:energizer"
+					}
+					type: "item"
+				}
+			]
+			title: "Energizer"
+			x: 4.5d
+			y: -2.25d
+		}
+		{
+			dependencies: ["7B2F0103000C0000", "7B2F010300030000"]
+			description: [
+				"Step 4 of Actuallyadditions's progression, drafted from the mod's own recipes."
+				""
+				"Draft text -- rewrite it here or polish it in game, then import the chapter back."
+			]
+			id: "7B2F0103000F0000"
+			rewards: [
+				{
+					id: "7B2F0105000F000B"
+					type: "xp"
+					xp: 40
+				}
+			]
+			subtitle: "Craft or collect: Enervator"
+			tasks: [
+				{
+					id: "7B2F0104000F0001"
+					item: {
+						count: 1
+						id: "actuallyadditions:enervator"
+					}
+					type: "item"
+				}
+			]
+			title: "Enervator"
+			x: 4.5d
+			y: -0.75d
+		}
+	]
+	subtitle: "A first pass, drafted from the mod's own recipes"
+	title: "Actually Additions"
+}

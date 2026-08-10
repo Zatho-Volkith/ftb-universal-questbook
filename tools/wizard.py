@@ -491,6 +491,9 @@ def step_install(quests_dir: Path, chosen: list[install.Module],
     plan = install.build_plan(chosen, modules)
     stats = install.apply_plan(quests_dir, plan)
 
+    if stats["book_created"]:
+        print(f"  {green(TICK)} created a fresh questbook "
+              f"(progression_mode \"flexible\")")
     print(f"  {green(TICK)} wrote {stats['written']} quest file(s)")
     if stats["removed"]:
         print(f"  {green(TICK)} removed {stats['removed']} superseded add-on "

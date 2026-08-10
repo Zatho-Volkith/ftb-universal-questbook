@@ -35,7 +35,18 @@ MERGED_BOXES = {
     "croptopia.snbt": (0.0, 7.5, -3.0, 9.0),
     "umapyoi.snbt": (0.0, 6.0, -1.5, 7.5),
 }
-FULL_CHAPTER_COUNT = 23
+def full_chapter_count() -> int:
+    """One installed chapter file per non-addon module that ships chapters.
+
+    Computed, not hardcoded: drafted modules (tools/import_chapter.py
+    draft_module) land in modules/ between commits, and a fixed number would
+    fail on every draft. The committed library ships at least 23.
+    """
+    modules = install.load_modules(MC)
+    count = sum(len(list((m.version_root / "chapters").glob("*.snbt")))
+                for m in modules.values() if not m.extends)
+    assert count >= 23, count
+    return count
 
 
 def fresh_quests_dir() -> Path:
@@ -70,7 +81,7 @@ def test_full_install_shape():
     quests = fresh_quests_dir()
     do_install(quests)
     chapters = sorted(p.name for p in (quests / "chapters").glob("*.snbt"))
-    assert len(chapters) == FULL_CHAPTER_COUNT, chapters
+    assert len(chapters) == full_chapter_count(), chapters
     addon_files = {"waystones.snbt", "mega_cells.snbt", "expanded_delight.snbt",
                    "bee_breeding.snbt", "applied_flux.snbt"}
     assert not addon_files & set(chapters), "addon chapter installed standalone"
@@ -158,7 +169,7 @@ def test_completionist_ids_and_dependencies():
     assert ae2["dependencies"] == ["7B2A010200000001"]
     assert ae2["tasks"] == [{"id": "7B0901042A010001", "type": "checkmark"}]
     final = by_id["7B090103FFFF0000"]
-    assert len(final["dependencies"]) == FULL_CHAPTER_COUNT - 1
+    assert len(final["dependencies"]) == full_chapter_count() - 1
     assert set(final["dependencies"]) == set(by_id) - {final["id"]}
 
 
@@ -168,6 +179,20 @@ def test_completionist_ids_stable_across_install_sets():
     tree = snbt.load(str(small / "chapters" / "completionist.snbt"))
     fd = [q for q in tree["quests"] if q["id"] == "7B09010320010000"]
     assert fd and fd[0]["dependencies"] == ["7B20010200000001"]
+
+
+def test_fresh_book_gets_data_snbt():
+    quests = fresh_quests_dir()
+    result = do_install(quests, ["01-getting-started"])
+    assert result["stats"]["book_created"] == 1
+    data = snbt.load(str(quests / "data.snbt"))
+    assert data["progression_mode"] == "flexible"
+    # An existing data.snbt belongs to the pack: reinstalling must not touch it.
+    data["progression_mode"] = "linear"
+    snbt.dump(data, str(quests / "data.snbt"))
+    second = do_install(quests, ["01-getting-started"])
+    assert second["stats"]["book_created"] == 0
+    assert snbt.load(str(quests / "data.snbt"))["progression_mode"] == "linear"
 
 
 def test_group_merge_and_prune():

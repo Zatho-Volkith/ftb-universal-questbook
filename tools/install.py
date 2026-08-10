@@ -99,9 +99,10 @@ class Module:
 
 # --------------------------------------------------------------------------
 
-def load_modules(mc_version: str) -> dict[str, Module]:
+def load_modules(mc_version: str, repo_root: Path = REPO_ROOT,
+                 ) -> dict[str, Module]:
     modules: dict[str, Module] = {}
-    modules_dir = REPO_ROOT / "modules"
+    modules_dir = repo_root / "modules"
     if not modules_dir.exists():
         return modules
     for module_dir in sorted(p for p in modules_dir.iterdir() if p.is_dir()):
@@ -319,6 +320,44 @@ def prune_lang_entries(quests_dir: Path, module_numbers: set[int]) -> int:
     return removed_total
 
 
+def ensure_book_data(quests_dir: Path) -> bool:
+    """Give a brand-new book a data.snbt so first launch behaves as authored.
+
+    Without this, FTB Quests generates the file on first launch with
+    progression_mode "linear" -- and this library's chapters branch, they do
+    not form a line. The field set below is exactly what the mod generates
+    (verified against a testbed server), with only the progression mode
+    changed. An existing data.snbt belongs to the pack and is never touched.
+    """
+    target = quests_dir / "data.snbt"
+    if target.exists():
+        return False
+    snbt.dump({
+        "default_autoclaim_rewards": "disabled",
+        "default_consume_items": False,
+        "default_quest_disable_jei": False,
+        "default_quest_shape": "circle",
+        "default_reward_team": False,
+        "detection_delay": 20,
+        "disable_gui": False,
+        "drop_book_on_death": False,
+        "drop_loot_crates": False,
+        "emergency_items_cooldown": 300,
+        "fallback_locale": "en_us",
+        "grid_scale": snbt.Num(0.5, "d"),
+        "hide_excluded_quests": False,
+        "lock_message": "",
+        "loot_crate_no_drop": {"boss": 0, "monster": 600, "passive": 4000},
+        "pause_game": False,
+        "presets": {},
+        "progression_mode": "flexible",
+        "show_lock_icons": False,
+        "verify_on_load": False,
+        "version": 13,
+    }, str(target))
+    return True
+
+
 def backup(path: Path) -> Path:
     """Copy a file aside before overwriting or removing it."""
     stamp = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S")
@@ -458,6 +497,7 @@ def build_plan(chosen: list[Module], modules: dict[str, Module]) -> Plan:
 def apply_plan(quests_dir: Path, plan: Plan) -> dict[str, int]:
     """Write a plan into the target quests folder."""
     quests_dir.mkdir(parents=True, exist_ok=True)
+    book_created = ensure_book_data(quests_dir)
 
     written = 0
     for planned in plan.files:
@@ -495,6 +535,7 @@ def apply_plan(quests_dir: Path, plan: Plan) -> dict[str, int]:
         "groups_pruned": pruned_groups,
         "groups_total": total_groups,
         "lang_pruned": pruned_lang,
+        "book_created": int(book_created),
     }
 
 
@@ -673,14 +714,12 @@ def main(argv: list[str] | None = None) -> int:
         print(f"cleared {stats['lang_pruned']} stale translation entr(ies) so "
               f"the updated text takes effect")
 
-    data_file = quests_dir / "data.snbt"
-    if not data_file.exists():
-        print(f"\nnote: {data_file.name} does not exist yet. FTB Quests will create it "
-              f"on first launch. For the loose branching progression this library is "
-              f"designed around, set progression_mode to \"flexible\".")
+    if stats["book_created"]:
+        print("created data.snbt for the new book "
+              "(progression_mode \"flexible\")")
     else:
         try:
-            data = snbt.load(str(data_file))
+            data = snbt.load(str(quests_dir / "data.snbt"))
             mode = data.get("progression_mode")
             if mode != "flexible":
                 print(f"\nnote: this instance uses progression_mode {mode!r}. "

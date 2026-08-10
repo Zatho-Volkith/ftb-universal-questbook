@@ -100,8 +100,11 @@ until you reinstall or delete it; that is true of every chapter, not just
 merged ones.
 
 These chapters are authored for **flexible** progression — quests branch rather
-than unlocking in a fixed line. The installer will tell you if your `data.snbt`
-uses a stricter `progression_mode`, but it never edits that file, since it is
+than unlocking in a fixed line. Installing into a pack that has never been
+launched works fine: the installer creates the questbook from scratch,
+including a `data.snbt` set to flexible, so the first launch already shows the
+book. If your pack has an existing `data.snbt` with a stricter
+`progression_mode`, the installer tells you but never edits it — that file is
 your pack's setting to make.
 
 Launch the game and open the quest book. If a quest shows a **barrier block**

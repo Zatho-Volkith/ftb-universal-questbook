@@ -181,6 +181,7 @@ are also in `library.json` and every module's `module.json`.
 | `2c-functional-storage` | Functional Storage | 12 | `functionalstorage` |
 | `2d-toms-storage` | Tom's Simple Storage | 10 | `toms_storage` |
 | `2e-farming-for-blockheads` | Farming for Blockheads | 9 | `farmingforblockheads` |
+| `2f-actuallyadditions` | Actually Additions (draft) | 15 | `actuallyadditions` |
 | `30-quality-of-life` | Quality of Life | 8 | vanilla |
 | `30a-waystones` | └ Waystones | 4 | `+ waystones` |
 | `30b-explorers-compass` | └ Explorer's Compass | 2 | `+ explorerscompass` |
@@ -192,7 +193,7 @@ are also in `library.json` and every module's `module.json`.
 | `30h-lootr` | └ Lootr | 3 | `+ lootr` |
 | `30i-easy-villagers` | └ Easy Villagers | 5 | `+ easy_villagers` |
 
-**427 quests across 23 in-game chapters on a full install.** Add-on modules do
+**442 quests across 24 in-game chapters on a full install.** Add-on modules do
 not appear as chapters of their own: the installer merges each one's quests
 into its parent's chapter, in a cluster below the parent's tree, and only for
 the add-on mods actually present. Two chapters are special: **Welcome** (six
@@ -280,14 +281,20 @@ python3 tools/import_chapter.py --instance ~/.minecraft \
     --chapter refined_storage --into 29-refinedstorage
 
 # adopt a brand new chapter as a module -- the slug encodes the module
-# number (2f = 0x2F = 47) and the chapter group is suggested from its items
+# number (31 = 0x31 = 49) and the chapter group is suggested from its items
 python3 tools/import_chapter.py --instance ~/.minecraft \
-    --chapter mekanism --new 2f-mekanism --name "Mekanism"
+    --chapter mekanism --new 31-mekanism --name "Mekanism"
 ```
 
 Prefer it guided? `python3 tools/import_wizard.py` walks the same flow step
 by step, and `python3 tools/webui.py` serves it as a local web page (both are
-repo-only tools — the player bundle does not ship them). Both recover text
+repo-only tools — the player bundle does not ship them). Both handle a
+freshly created instance that has never been launched: they can install the
+library into it (creating the questbook, `data.snbt` included, so the first
+launch shows the book) or draft a brand-new chapter from any uncovered mod's
+recipe graph — the draft lands in the library with its ID-REGISTRY.md row
+inserted and is installed into the instance, ready to polish in game and
+import back with every ID preserved. Both also recover text
 that FTB Quests migrated into the instance's `lang/en_us.snbt` — a chapter
 authored in a played world would otherwise import with every title and
 description missing — and both can split a merged family chapter back into

@@ -230,6 +230,10 @@ def main() -> int:
     check("draft is installed into the instance",
           (instance / "config" / "ftbquests" / "quests" / "chapters"
            / "testdraftmod.snbt").exists())
+    check("draft inserts its registry row",
+          payload.get("registry_updated") and "`testdraftmod`"
+          in (fixture_repo / "ID-REGISTRY.md").read_text(encoding="utf-8"),
+          str(payload)[:300])
 
     status, payload = call(port, "/api/draft",
                            {"instance": str(instance), "mod": "nonesuch"},
@@ -237,6 +241,29 @@ def main() -> int:
     check("unknown mod refused with a clear message",
           status == 422 and "no jar" in payload.get("error", ""),
           str(payload))
+
+    # -- installing the library into a never-launched instance --------------
+    target = Path(tempfile.mkdtemp()) / "install-me"
+    (target / "mods").mkdir(parents=True)          # no config folder at all
+    status, payload = call(port, "/api/install", {"instance": str(target)},
+                           token=token)
+    check("install without confirm is refused", status == 422, str(payload))
+
+    status, payload = call(port, "/api/install",
+                           {"instance": str(target), "confirm": True},
+                           token=token)
+    quests = target / "config" / "ftbquests" / "quests"
+    check("install creates the book and chapters", status == 200
+          and payload.get("book_created") and payload.get("chapters", 0) >= 1
+          and (quests / "chapters").is_dir(), str(payload)[:300])
+    data = snbt.load(str(quests / "data.snbt"))
+    check("fresh data.snbt is flexible",
+          data.get("progression_mode") == "flexible", str(data)[:200])
+    status, payload = call(port, "/api/scan", {"instance": str(target)},
+                           token=token)
+    check("the installed book scans", status == 200
+          and len(payload["chapters"]) >= 1, str(payload)[:300])
+    shutil.rmtree(target.parent, ignore_errors=True)
 
     httpd.shutdown()
 

@@ -86,6 +86,7 @@ every book that has it installed.
 | `2C` | `2c-functional-storage` | `functionalstorage` | shipped |
 | `2D` | `2d-toms-storage` | `toms_storage` | shipped |
 | `2E` | `2e-farming-for-blockheads` | `farmingforblockheads` | shipped |
+| `2F` | `2f-actuallyadditions` | `actuallyadditions` | draft |
 | `30` | `30-quality-of-life` + 9 add-ons | vanilla parent | shipped |
 
 ## Addons merge into their parent's chapter at install time

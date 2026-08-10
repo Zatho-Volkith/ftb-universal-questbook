@@ -55,14 +55,52 @@ def step_instance() -> Path:
         if not quests_dir.is_dir():
             print(yellow(f"  no questbook in this instance yet "
                          f"(nothing at {quests_dir})"))
+            if confirm("  Install the questbook library into it now?"
+                       " (creates the book -- no game launch needed)",
+                       default=True):
+                step_install_library(instance)
             if confirm("  Draft a chapter from one of its mods instead?",
                        default=True):
                 step_draft(instance)
-            print(dim("    Or: launch the pack once with FTB Quests"))
-            print(dim("    installed, author a chapter, and come back."))
+            print(dim("    Or: author a chapter in game and come back."))
             continue
         print(green(f"  {TICK} {quests_dir}"))
         return quests_dir
+
+
+def step_install_library(instance: Path) -> None:
+    """Create the book (if needed) and install the library into it.
+
+    The picking is automatic -- chapters whose mods are in the pack -- because
+    someone here came to import, not to configure. The full interactive
+    installer (tools/wizard.py) exists for choosing chapters by hand.
+    """
+    import install
+    modules = install.load_modules(MC_VERSION)
+    if not modules:
+        print(red("  no modules found -- the checkout looks incomplete"))
+        raise SystemExit(1)
+    available = install.detect_mods(instance)
+    chosen, skipped = install.select_modules(modules, available)
+    chosen, problems = install.resolve_module_deps(chosen, modules)
+    for problem in problems:
+        print(red(f"  {CROSS} {problem}"))
+    if problems:
+        raise SystemExit(1)
+    plan = install.build_plan(chosen, modules)
+    stats = install.apply_plan(instance / ic.QUESTS_SUBPATH, plan)
+    if stats["book_created"]:
+        print(green(f"  {TICK} created a fresh questbook "
+                    f"(progression_mode \"flexible\")"))
+    chapters = sum(1 for f in plan.files
+                   if f.dest_rel.startswith("chapters/"))
+    print(green(f"  {TICK} installed {len(chosen)} modules as "
+                f"{chapters} chapters"))
+    if skipped:
+        print(dim(f"    skipped {len(skipped)} module(s) whose mods are not "
+                  f"in this pack"))
+    print("\n  Launch the pack and open the quest book -- it is ready.")
+    raise SystemExit(0)
 
 
 def step_draft(instance: Path) -> None:
@@ -97,7 +135,11 @@ def step_draft(instance: Path) -> None:
     print(f"\n  {result['quest_count']} draft quests under "
           f"{bold(result['slug'])}. Launch the pack, polish the text and"
           f"\n  layout in game, then run this wizard again to import it back.")
-    print(dim(f"\n  ID-REGISTRY.md row: {result['registry_row']}"))
+    if result["registry_updated"]:
+        print(dim("\n  ID-REGISTRY.md row inserted."))
+    else:
+        print(dim(f"\n  add to ID-REGISTRY.md yourself: "
+                  f"{result['registry_row']}"))
     raise SystemExit(0)
 
 

@@ -534,6 +534,28 @@ def build_chapter(chosen: list[str], deps: dict[str, set[str]],
                 out |= nearest(parent, seen | {item})
         return out
 
+    # Transitive reduction: an edge to an ancestor another parent already
+    # reaches adds no information and draws a line across the chapter --
+    # validate.py flags exactly this, so never emit it.
+    parent_map = {item: sorted(nearest(item)) for item in chosen}
+
+    def implied(siblings: list[str], target: str) -> bool:
+        seen: set[str] = set()
+        stack = [s for s in siblings if s != target]
+        while stack:
+            node = stack.pop()
+            if node in seen:
+                continue
+            seen.add(node)
+            for parent in parent_map.get(node, ()):
+                if parent == target:
+                    return True
+                stack.append(parent)
+        return False
+
+    for item, parents in parent_map.items():
+        parent_map[item] = [p for p in parents if not implied(parents, p)]
+
     tiers: dict[int, list[str]] = defaultdict(list)
     for item in chosen:
         tiers[depth[item]].append(item)
@@ -546,7 +568,7 @@ def build_chapter(chosen: list[str], deps: dict[str, set[str]],
         row = tiers[depth[item]].index(item)
         offset = (len(tiers[depth[item]]) - 1) / 2
 
-        parents = sorted(nearest(item))
+        parents = parent_map[item]
         quest = {
             "id": qid.qid(module, chapter, "quest", n, 0),
             # A derived node is not always an item. Productive Bees' whole
