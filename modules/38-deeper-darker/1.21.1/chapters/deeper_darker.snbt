@@ -1,0 +1,404 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "octagon"
+	filename: "deeper_darker"
+	group: "7B00000100000002"
+	icon: {
+		id: "deeperdarker:heart_of_the_deep"
+	}
+	id: "7B38010200000001"
+	images: [ ]
+	order_index: 2
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"The deep dark is the quietest biome in the game for a reason."
+				"Sweep up sculk with silk touch or a hoe, and raid the ancient"
+				"city chests for echo shards."
+				""
+				"Move slowly, pack wool to muffle your steps, and do not feed"
+				"the shriekers."
+			]
+			id: "7B38010300010000"
+			rewards: [
+				{
+					id: "7B3801050001000B"
+					type: "xp"
+					xp: 10
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3801050001000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Gather sculk and echo shards"
+			tasks: [
+				{
+					id: "7B38010400010001"
+					item: {
+						count: 16
+						id: "minecraft:sculk"
+					}
+					type: "item"
+				}
+				{
+					id: "7B38010400010002"
+					item: {
+						count: 4
+						id: "minecraft:echo_shard"
+					}
+					type: "item"
+				}
+			]
+			title: "Into the Deep Dark"
+			x: 0.0d
+			y: -0.75d
+		}
+		{
+			dependencies: ["7B38010300010000"]
+			description: [
+				"Smash the ancient vases scattered through the city and carapace"
+				"turns up among the sherds; the Warden itself drops it too, if"
+				"you are feeling brave early."
+				""
+				"You need a pile of it -- it rings every reinforced echo shard"
+				"and points every ancient compass."
+			]
+			id: "7B38010300020000"
+			rewards: [
+				{
+					id: "7B3801050002000B"
+					type: "xp"
+					xp: 25
+				}
+			]
+			subtitle: "Collect 4 warden carapace"
+			tasks: [
+				{
+					id: "7B38010400020001"
+					item: {
+						count: 4
+						id: "deeperdarker:warden_carapace"
+					}
+					type: "item"
+				}
+			]
+			title: "Warden Carapace"
+			x: 1.5d
+			y: -0.75d
+		}
+		{
+			dependencies: ["7B38010300020000"]
+			description: [
+				"One echo shard ringed with warden carapace and phantom"
+				"membranes."
+				""
+				"This is the mod's keystone ingredient -- all warden gear runs"
+				"on it. Craft spares while the materials are out."
+			]
+			id: "7B38010300030000"
+			rewards: [
+				{
+					id: "7B3801050003000B"
+					type: "xp"
+					xp: 40
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3801050003000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Reinforce an echo shard"
+			tasks: [
+				{
+					id: "7B38010400030001"
+					item: {
+						count: 1
+						id: "deeperdarker:reinforced_echo_shard"
+					}
+					type: "item"
+				}
+			]
+			title: "Reinforced Echo Shard"
+			x: 3.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B38010300020000"]
+			description: [
+				"There is no clever route around this one: the Warden holds the"
+				"heart, and the heart opens the way down."
+				""
+				"Ranged damage and patience beat melee heroics. Bring a totem."
+			]
+			id: "7B38010300040000"
+			rewards: [
+				{
+					id: "7B3801050004000B"
+					type: "xp"
+					xp: 50
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3801050004000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Slay the Warden, take its heart"
+			tasks: [
+				{
+					id: "7B38010400040001"
+					item: {
+						count: 1
+						id: "deeperdarker:heart_of_the_deep"
+					}
+					type: "item"
+				}
+			]
+			title: "Heart of the Deep"
+			x: 3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B38010300040000"]
+			description: [
+				"Build a reinforced deepslate frame -- the broken portal at an"
+				"ancient city's center is most of one -- and press the heart"
+				"against it."
+				""
+				"The Otherside is where the sculk comes from. Its bedrock layers"
+				"are gloomslate and sculk stone, and both work like deepslate."
+			]
+			id: "7B38010300050000"
+			rewards: [
+				{
+					id: "7B3801050005000B"
+					type: "xp"
+					xp: 50
+				}
+			]
+			subtitle: "Mine gloomslate and sculk stone"
+			tasks: [
+				{
+					id: "7B38010400050001"
+					item: {
+						count: 16
+						id: "deeperdarker:gloomslate"
+					}
+					type: "item"
+				}
+				{
+					id: "7B38010400050002"
+					item: {
+						count: 16
+						id: "deeperdarker:sculk_stone"
+					}
+					type: "item"
+				}
+			]
+			title: "The Otherside"
+			x: 4.5d
+			y: 0.75d
+		}
+		{
+			dependencies: ["7B38010300050000"]
+			description: [
+				"The Otherside's own ore, glinting out of gloomslate and sculk"
+				"stone veins."
+				""
+				"Resonarium plates push diamond gear up a full tier, and sludges"
+				"drop the raw ore if mining bores you."
+			]
+			id: "7B38010300060000"
+			rewards: [
+				{
+					id: "7B3801050006000B"
+					type: "xp"
+					xp: 60
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3801050006000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Mine 8 resonarium"
+			tasks: [
+				{
+					id: "7B38010400060001"
+					item: {
+						count: 8
+						id: "deeperdarker:resonarium"
+					}
+					type: "item"
+				}
+			]
+			title: "Resonarium"
+			x: 6.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B38010300060000"]
+			description: [
+				"Diamond tools plus a resonarium upgrade template at a smithing"
+				"table. Templates turn up in ancient temple chests."
+				""
+				"It sits between diamond and netherite at a fraction of the"
+				"price -- and you are standing in the dimension that sells it."
+			]
+			id: "7B38010300070000"
+			rewards: [
+				{
+					id: "7B3801050007000B"
+					type: "xp"
+					xp: 70
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3801050007000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Smith a resonarium pickaxe"
+			tasks: [
+				{
+					id: "7B38010400070001"
+					item: {
+						count: 1
+						id: "deeperdarker:resonarium_pickaxe"
+					}
+					type: "item"
+				}
+			]
+			title: "Resonarium Gear"
+			x: 7.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B38010300050000"]
+			description: [
+				"Ancient temples guard the Otherside's best chests. Soul dust"
+				"and sculk bones pad their loot tables, and the sculk mobs on"
+				"the way down drop both."
+				""
+				"Hold onto every scrap -- the elytra ahead is hungry."
+			]
+			id: "7B38010300080000"
+			rewards: [
+				{
+					id: "7B3801050008000B"
+					type: "xp"
+					xp: 60
+				}
+			]
+			subtitle: "Loot soul dust and sculk bones"
+			tasks: [
+				{
+					id: "7B38010400080001"
+					item: {
+						count: 4
+						id: "deeperdarker:soul_dust"
+					}
+					type: "item"
+				}
+				{
+					id: "7B38010400080002"
+					item: {
+						count: 4
+						id: "deeperdarker:sculk_bone"
+					}
+					type: "item"
+				}
+			]
+			title: "Temple Relics"
+			x: 6.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B38010300030000", "7B38010300050000"]
+			description: [
+				"Netherite armor, a warden upgrade template from the temples,"
+				"and a reinforced echo shard per piece."
+				""
+				"Warden armor outclasses netherite and unnerves everything that"
+				"looks at you. The full set is this chapter's long game."
+			]
+			id: "7B38010300090000"
+			rewards: [
+				{
+					id: "7B3801050009000B"
+					type: "xp"
+					xp: 80
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3801050009000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Smith a warden chestplate"
+			tasks: [
+				{
+					id: "7B38010400090001"
+					item: {
+						count: 1
+						id: "deeperdarker:warden_chestplate"
+					}
+					type: "item"
+				}
+			]
+			title: "Warden Armor"
+			x: 6.0d
+			y: -2.25d
+		}
+		{
+			dependencies: ["7B38010300080000"]
+			description: [
+				"An elytra dressed in sculk bones, soul dust and a soul crystal."
+				"Stalkers drop the crystals if the temple fountains ran dry."
+				""
+				"It flies like an elytra and boosts on its own -- no fireworks"
+				"required. The deep dark has no ceiling after this."
+			]
+			id: "7B380103000A0000"
+			rewards: [
+				{
+					id: "7B380105000A000B"
+					type: "xp"
+					xp: 100
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B380105000A000C"
+					table_id: 8863084092434939908L
+					type: "random"
+				}
+			]
+			subtitle: "Craft the soul elytra"
+			tasks: [
+				{
+					id: "7B380104000A0001"
+					item: {
+						count: 1
+						id: "deeperdarker:soul_elytra"
+					}
+					type: "item"
+				}
+			]
+			title: "Soul Elytra"
+			x: 7.5d
+			y: 1.5d
+		}
+	]
+	subtitle: "What the sculk is guarding"
+	title: "Deeper and Darker"
+}

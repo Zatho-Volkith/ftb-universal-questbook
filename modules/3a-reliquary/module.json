@@ -1,0 +1,26 @@
+{
+  "id": "3a-reliquary",
+  "module_number": 58,
+  "chapter_number": 1,
+  "name": "Reliquary",
+  "description": "Grisly mob ingredients refined into genuinely useful relics: alkahestry, glowing bread, torch staves, void tears, and a chalice for lava.",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "requires_mods": [
+    "reliquary"
+  ],
+  "requires_modules": [
+    "00-core"
+  ],
+  "chapter_group": "mods",
+  "chapters": [
+    {
+      "number": 1,
+      "file": "reliquary.snbt",
+      "title": "Reliquary"
+    }
+  ],
+  "allowed_external_dependencies": []
+}

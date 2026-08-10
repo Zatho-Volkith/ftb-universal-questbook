@@ -1,0 +1,26 @@
+{
+  "id": "33-enderio",
+  "module_number": 51,
+  "chapter_number": 1,
+  "name": "Ender IO",
+  "description": "Grains of infinity, the alloy smelter and SAG mill, conduits for power and items, and soul machinery up to the powered spawner.",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "requires_mods": [
+    "enderio"
+  ],
+  "requires_modules": [
+    "00-core"
+  ],
+  "chapter_group": "tech",
+  "chapters": [
+    {
+      "number": 1,
+      "file": "ender_io.snbt",
+      "title": "Ender IO"
+    }
+  ],
+  "allowed_external_dependencies": []
+}

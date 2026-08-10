@@ -1,0 +1,427 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "heart"
+	filename: "reliquary"
+	group: "7B00000100000002"
+	icon: {
+		id: "reliquary:infernal_chalice"
+	}
+	id: "7B3A010200000001"
+	images: [ ]
+	order_index: 3
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"Reliquary is built on what monsters leave behind: hearts,"
+				"wings, glands, and worse. Drop rates are stingy; a looting"
+				"sword fixes that."
+				""
+				"Zombies keep the hearts, bats the wings. This is the shallow"
+				"end of the ingredient list."
+			]
+			id: "7B3A010300010000"
+			rewards: [
+				{
+					id: "7B3A01050001000B"
+					type: "xp"
+					xp: 10
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3A01050001000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Collect zombie hearts and bat wings"
+			tasks: [
+				{
+					id: "7B3A010400010001"
+					item: {
+						count: 2
+						id: "reliquary:zombie_heart"
+					}
+					type: "item"
+				}
+				{
+					id: "7B3A010400010002"
+					item: {
+						count: 2
+						id: "reliquary:bat_wing"
+					}
+					type: "item"
+				}
+			]
+			title: "Mob Ingredients"
+			x: 0.0d
+			y: 0.75d
+		}
+		{
+			dependencies: ["7B3A010300010000"]
+			description: [
+				"Three drops carry most of this mod: molten cores from blazes,"
+				"catalyzing glands from creepers, nebulous hearts from endermen."
+				""
+				"Nearly every relic ahead asks for at least one. Farm"
+				"accordingly."
+			]
+			id: "7B3A010300020000"
+			rewards: [
+				{
+					id: "7B3A01050002000B"
+					type: "xp"
+					xp: 20
+				}
+			]
+			subtitle: "Gather cores, glands and hearts"
+			tasks: [
+				{
+					id: "7B3A010400020001"
+					item: {
+						count: 2
+						id: "reliquary:molten_core"
+					}
+					type: "item"
+				}
+				{
+					id: "7B3A010400020002"
+					item: {
+						count: 2
+						id: "reliquary:catalyzing_gland"
+					}
+					type: "item"
+				}
+				{
+					id: "7B3A010400020003"
+					item: {
+						count: 2
+						id: "reliquary:nebulous_heart"
+					}
+					type: "item"
+				}
+			]
+			title: "Essential Catalysts"
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B3A010300020000"]
+			description: [
+				"A book bound in eight kinds of unpleasantness, including a"
+				"wither skeleton skull and an eye of the storm -- which only"
+				"charged creepers drop."
+				""
+				"Charged with redstone, the tome duplicates common blocks and"
+				"items. It is the closest this mod comes to a printing press."
+			]
+			id: "7B3A010300030000"
+			rewards: [
+				{
+					id: "7B3A01050003000B"
+					type: "xp"
+					xp: 40
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3A01050003000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Craft the alkahestry tome"
+			tasks: [
+				{
+					id: "7B3A010400030001"
+					item: {
+						count: 1
+						id: "reliquary:alkahestry_tome"
+					}
+					type: "item"
+				}
+			]
+			title: "Alkahestry Tome"
+			x: 3.0d
+			y: -2.25d
+		}
+		{
+			dependencies: ["7B3A010300010000"]
+			description: [
+				"Glass panes, water, glowstone, gunpowder and nether wart. No"
+				"brewing stand required."
+				""
+				"Thrown, it sears the undead like bottled daylight. It also"
+				"feeds into glowing bread and the holy hand grenade."
+			]
+			id: "7B3A010300040000"
+			rewards: [
+				{
+					id: "7B3A01050004000B"
+					type: "xp"
+					xp: 20
+				}
+			]
+			subtitle: "Brew a vial of glowing water"
+			tasks: [
+				{
+					id: "7B3A010400040001"
+					item: {
+						count: 1
+						id: "reliquary:glowing_water"
+					}
+					type: "item"
+				}
+			]
+			title: "Glowing Water"
+			x: 1.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B3A010300040000"]
+			description: [
+				"Three loaves kneaded with one vial of glowing water."
+				""
+				"Bread that goes down in half the time and shines faintly on"
+				"the way. Solid travel food with a party trick."
+			]
+			id: "7B3A010300050000"
+			rewards: [
+				{
+					id: "7B3A01050005000B"
+					type: "xp"
+					xp: 30
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3A01050005000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Bake 3 glowing bread"
+			tasks: [
+				{
+					id: "7B3A010400050001"
+					item: {
+						count: 3
+						id: "reliquary:glowing_bread"
+					}
+					type: "item"
+				}
+			]
+			title: "Glowing Bread"
+			x: 3.0d
+			y: 2.25d
+		}
+		{
+			dependencies: ["7B3A010300020000"]
+			description: [
+				"The lantern of paranoia rides in your inventory and slaps"
+				"torches onto any dark surface near you, asked or not."
+				""
+				"The sojourner's staff stores whole stacks of torches and plants"
+				"them at range. Between the two, darkness is someone else's"
+				"problem."
+			]
+			id: "7B3A010300060000"
+			rewards: [
+				{
+					id: "7B3A01050006000B"
+					type: "xp"
+					xp: 30
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3A01050006000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft the lantern and the staff"
+			tasks: [
+				{
+					id: "7B3A010400060001"
+					item: {
+						count: 1
+						id: "reliquary:lantern_of_paranoia"
+					}
+					type: "item"
+				}
+				{
+					id: "7B3A010400060002"
+					item: {
+						count: 1
+						id: "reliquary:sojourner_staff"
+					}
+					type: "item"
+				}
+			]
+			title: "Lantern and Staff"
+			x: 3.0d
+			y: -0.75d
+		}
+		{
+			dependencies: ["7B3A010300020000"]
+			description: [
+				"A torch that shoves. Hostile mobs and projectiles nearby are"
+				"pushed firmly away from it."
+				""
+				"Plant them around base perimeters, mining camps, or anywhere"
+				"creepers keep ruining your masonry."
+			]
+			id: "7B3A010300070000"
+			rewards: [
+				{
+					id: "7B3A01050007000B"
+					type: "xp"
+					xp: 40
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3A01050007000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft an interdiction torch"
+			tasks: [
+				{
+					id: "7B3A010400070001"
+					item: {
+						count: 1
+						id: "reliquary:interdiction_torch"
+					}
+					type: "item"
+				}
+			]
+			title: "Interdiction Torch"
+			x: 3.0d
+			y: 0.75d
+		}
+		{
+			dependencies: ["7B3A010300020000"]
+			description: [
+				"A ghast tear steeped in a nebulous heart, a slime pearl and"
+				"lapis."
+				""
+				"A void tear holds an absurd amount of a single item, and empty"
+				"ones seed half the endgame relics. Two is the minimum sensible"
+				"batch."
+			]
+			id: "7B3A010300080000"
+			rewards: [
+				{
+					id: "7B3A01050008000B"
+					type: "xp"
+					xp: 40
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3A01050008000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft 2 void tears"
+			tasks: [
+				{
+					id: "7B3A010400080001"
+					item: {
+						count: 2
+						id: "reliquary:void_tear"
+					}
+					type: "item"
+				}
+			]
+			title: "Void Tear"
+			x: 3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B3A010300080000"]
+			description: [
+				"The emperor's chalice drinks entire lakes and pours them back"
+				"out -- an infinite water bucket with delusions of grandeur."
+				""
+				"The hero's medallion banks your experience and pays it out on"
+				"demand. Enchanters stop dreading the number thirty."
+			]
+			id: "7B3A010300090000"
+			rewards: [
+				{
+					id: "7B3A01050009000B"
+					type: "xp"
+					xp: 60
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3A01050009000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Craft the chalice and medallion"
+			tasks: [
+				{
+					id: "7B3A010400090001"
+					item: {
+						count: 1
+						id: "reliquary:emperor_chalice"
+					}
+					type: "item"
+				}
+				{
+					id: "7B3A010400090002"
+					item: {
+						count: 1
+						id: "reliquary:hero_medallion"
+					}
+					type: "item"
+				}
+			]
+			title: "Chalice and Medallion"
+			x: 4.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B3A010300090000"]
+			description: [
+				"The emperor's chalice, infernal claws, an infernal tear and a"
+				"molten core make a cup that swallows lava instead."
+				""
+				"It scoops and stores whole pools of the stuff. Fuel, obsidian"
+				"works and Nether confidence follow."
+			]
+			id: "7B3A0103000A0000"
+			rewards: [
+				{
+					id: "7B3A0105000A000B"
+					type: "xp"
+					xp: 100
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3A0105000A000C"
+					table_id: 8863084092434939908L
+					type: "random"
+				}
+			]
+			subtitle: "Craft the infernal chalice"
+			tasks: [
+				{
+					id: "7B3A0104000A0001"
+					item: {
+						count: 1
+						id: "reliquary:infernal_chalice"
+					}
+					type: "item"
+				}
+			]
+			title: "Infernal Chalice"
+			x: 6.0d
+			y: 0.0d
+		}
+	]
+	subtitle: "Unsavory parts, remarkable relics"
+	title: "Reliquary"
+}

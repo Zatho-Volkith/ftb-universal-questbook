@@ -1,0 +1,389 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "square"
+	filename: "iron_furnaces"
+	group: "7B00000100000006"
+	icon: {
+		id: "ironfurnaces:iron_furnace"
+	}
+	id: "7B39010200000001"
+	images: [ ]
+	order_index: 14
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"A furnace wrapped in iron: faster than stone and the first"
+				"rung of a long ladder."
+				""
+				"Every later tier is crafted around the previous one, so this"
+				"block is never wasted."
+			]
+			id: "7B39010300010000"
+			rewards: [
+				{
+					id: "7B3901050001000B"
+					type: "xp"
+					xp: 10
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3901050001000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Craft an iron furnace"
+			tasks: [
+				{
+					id: "7B39010400010001"
+					item: {
+						count: 1
+						id: "ironfurnaces:iron_furnace"
+					}
+					type: "item"
+				}
+			]
+			title: "Iron Furnace"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B39010300010000"]
+			description: [
+				"Gold cuts the smelt time again."
+				""
+				"The pattern holds from here: wrap the old furnace in the"
+				"next material and keep cooking."
+			]
+			id: "7B39010300020000"
+			rewards: [
+				{
+					id: "7B3901050002000B"
+					type: "xp"
+					xp: 15
+				}
+			]
+			subtitle: "Upgrade to gold"
+			tasks: [
+				{
+					id: "7B39010400020001"
+					item: {
+						count: 1
+						id: "ironfurnaces:gold_furnace"
+					}
+					type: "item"
+				}
+			]
+			title: "Gold Furnace"
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B39010300020000"]
+			description: [
+				"Ores barely have time to warm up."
+				""
+				"By this tier one furnace with a speed augment outpaces a"
+				"whole bank of vanilla ones."
+			]
+			id: "7B39010300030000"
+			rewards: [
+				{
+					id: "7B3901050003000B"
+					type: "xp"
+					xp: 25
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3901050003000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Upgrade to diamond"
+			tasks: [
+				{
+					id: "7B39010400030001"
+					item: {
+						count: 1
+						id: "ironfurnaces:diamond_furnace"
+					}
+					type: "item"
+				}
+			]
+			title: "Diamond Furnace"
+			x: 3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B39010300030000"]
+			description: [
+				"The villagers' favorite rock, put to honest work."
+				""
+				"Emerald tier chews through fuel alarmingly fast — the fuel"
+				"efficiency augment starts earning its slot here."
+			]
+			id: "7B39010300040000"
+			rewards: [
+				{
+					id: "7B3901050004000B"
+					type: "xp"
+					xp: 30
+				}
+			]
+			subtitle: "Upgrade to emerald"
+			tasks: [
+				{
+					id: "7B39010400040001"
+					item: {
+						count: 1
+						id: "ironfurnaces:emerald_furnace"
+					}
+					type: "item"
+				}
+			]
+			title: "Emerald Furnace"
+			x: 4.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B39010300040000"]
+			description: [
+				"Built from the toughest overworld block, and quick enough"
+				"that hoppers become the bottleneck."
+				""
+				"One more tier to go."
+			]
+			id: "7B39010300050000"
+			rewards: [
+				{
+					id: "7B3901050005000B"
+					type: "xp"
+					xp: 40
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3901050005000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Upgrade to obsidian"
+			tasks: [
+				{
+					id: "7B39010400050001"
+					item: {
+						count: 1
+						id: "ironfurnaces:obsidian_furnace"
+					}
+					type: "item"
+				}
+			]
+			title: "Obsidian Furnace"
+			x: 6.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B39010300050000"]
+			description: [
+				"The top of the material ladder, smelting near-instantly."
+				""
+				"Also the key ingredient of the rainbow core — do not tuck it"
+				"away just yet."
+			]
+			id: "7B39010300060000"
+			rewards: [
+				{
+					id: "7B3901050006000B"
+					type: "xp"
+					xp: 50
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3901050006000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Upgrade to netherite"
+			tasks: [
+				{
+					id: "7B39010400060001"
+					item: {
+						count: 1
+						id: "ironfurnaces:netherite_furnace"
+					}
+					type: "item"
+				}
+			]
+			title: "Netherite Furnace"
+			x: 7.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B39010300010000"]
+			description: [
+				"Augments slot into any iron furnace tier and change how it"
+				"behaves."
+				""
+				"Blasting turns the furnace into a blast furnace, smoking"
+				"into a smoker — full speed, no separate blocks."
+			]
+			id: "7B39010300070000"
+			rewards: [
+				{
+					id: "7B3901050007000B"
+					type: "xp"
+					xp: 20
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3901050007000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Craft blasting and smoking augments"
+			tasks: [
+				{
+					id: "7B39010400070001"
+					item: {
+						count: 1
+						id: "ironfurnaces:augment_blasting"
+					}
+					type: "item"
+				}
+				{
+					id: "7B39010400070002"
+					item: {
+						count: 1
+						id: "ironfurnaces:augment_smoking"
+					}
+					type: "item"
+				}
+			]
+			title: "Recipe Augments"
+			x: 1.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B39010300010000"]
+			description: [
+				"Turns one furnace into six parallel smelting slots with"
+				"their own input and output sides."
+				""
+				"The closer to netherite you install it, the more absurd the"
+				"throughput."
+			]
+			id: "7B39010300080000"
+			rewards: [
+				{
+					id: "7B3901050008000B"
+					type: "xp"
+					xp: 25
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3901050008000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a factory augment"
+			tasks: [
+				{
+					id: "7B39010400080001"
+					item: {
+						count: 1
+						id: "ironfurnaces:augment_factory"
+					}
+					type: "item"
+				}
+			]
+			title: "Factory Augment"
+			x: 1.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B39010300020000"]
+			description: [
+				"Upgrade items convert a placed furnace to the next tier"
+				"without breaking it — contents and augments stay put."
+				""
+				"One exists for every step of the ladder; this one turns"
+				"gold into diamond on the spot."
+			]
+			id: "7B39010300090000"
+			rewards: [
+				{
+					id: "7B3901050009000B"
+					type: "xp"
+					xp: 25
+				}
+			]
+			subtitle: "Craft a gold-to-diamond upgrade"
+			tasks: [
+				{
+					id: "7B39010400090001"
+					item: {
+						count: 1
+						id: "ironfurnaces:upgrade_diamond"
+					}
+					type: "item"
+				}
+			]
+			title: "In-Place Upgrade"
+			x: 3.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B39010300060000"]
+			description: [
+				"The core is forged around a netherite furnace; the plating"
+				"is pressed from furnaces across the whole ladder."
+				""
+				"Together they build the rainbow furnace — the mod's glowing,"
+				"color-cycling victory lap, and the fastest smelter in it."
+			]
+			id: "7B390103000A0000"
+			rewards: [
+				{
+					id: "7B390105000A000B"
+					type: "xp"
+					xp: 100
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B390105000A000C"
+					table_id: 8863084092434939908L
+					type: "random"
+				}
+			]
+			subtitle: "Assemble the rainbow furnace parts"
+			tasks: [
+				{
+					id: "7B390104000A0001"
+					item: {
+						count: 1
+						id: "ironfurnaces:rainbow_core"
+					}
+					type: "item"
+				}
+				{
+					id: "7B390104000A0002"
+					item: {
+						count: 1
+						id: "ironfurnaces:rainbow_plating"
+					}
+					type: "item"
+				}
+			]
+			title: "Rainbow Furnace"
+			x: 9.0d
+			y: 0.0d
+		}
+	]
+	subtitle: "Six tiers of faster smelting"
+	title: "Iron Furnaces"
+}

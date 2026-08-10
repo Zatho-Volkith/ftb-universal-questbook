@@ -1,0 +1,402 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "square"
+	filename: "computercraft"
+	group: "7B00000100000006"
+	icon: {
+		id: "computercraft:computer_normal"
+	}
+	id: "7B37010200000001"
+	images: [ ]
+	order_index: 13
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"Stone, redstone and a glass pane make a full Lua computer"
+				"with a terminal, a filesystem and a shell."
+				""
+				"Place it and start typing. `help` lists the manuals,"
+				"`programs` lists what it can run, and `edit startup.lua`"
+				"begins your career."
+			]
+			id: "7B37010300010000"
+			rewards: [
+				{
+					id: "7B3701050001000B"
+					type: "xp"
+					xp: 10
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3701050001000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a computer"
+			tasks: [
+				{
+					id: "7B37010400010001"
+					item: {
+						count: 1
+						id: "computercraft:computer_normal"
+					}
+					type: "item"
+				}
+			]
+			title: "The Computer"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B37010300010000"]
+			description: [
+				"Floppies are how programs travel between computers without a"
+				"network — sneakernet, faithfully preserved."
+				""
+				"A drive beside a computer mounts the disk under /disk. Put a"
+				"startup file on one and any computer will boot from it."
+			]
+			id: "7B37010300020000"
+			rewards: [
+				{
+					id: "7B3701050002000B"
+					type: "xp"
+					xp: 15
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3701050002000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a disk drive and a floppy"
+			tasks: [
+				{
+					id: "7B37010400020001"
+					item: {
+						count: 1
+						id: "computercraft:disk_drive"
+					}
+					type: "item"
+				}
+				{
+					id: "7B37010400020002"
+					item: {
+						count: 1
+						id: "computercraft:disk"
+					}
+					type: "item"
+				}
+			]
+			title: "Disk Drive"
+			x: 1.5d
+			y: -0.75d
+		}
+		{
+			dependencies: ["7B37010300010000"]
+			description: [
+				"Monitors bolt together into one big screen any adjacent"
+				"computer can draw on — status boards, clocks, shop signs."
+				""
+				"Four in a two-by-two is the classic start. The `monitor`"
+				"program redirects any other program onto the wall."
+			]
+			id: "7B37010300030000"
+			rewards: [
+				{
+					id: "7B3701050003000B"
+					type: "xp"
+					xp: 15
+				}
+			]
+			subtitle: "Craft four monitors"
+			tasks: [
+				{
+					id: "7B37010400030001"
+					item: {
+						count: 4
+						id: "computercraft:monitor_normal"
+					}
+					type: "item"
+				}
+			]
+			title: "Monitors"
+			x: 1.5d
+			y: 0.75d
+		}
+		{
+			dependencies: ["7B37010300020000"]
+			description: [
+				"A note block with opinions. Attached to a computer it plays"
+				"notes, sound effects, even streamed audio through the"
+				"speaker API."
+				""
+				"Doorbells, alarms, a jukebox that takes requests — it is the"
+				"cheapest fun in the mod."
+			]
+			id: "7B37010300040000"
+			rewards: [
+				{
+					id: "7B3701050004000B"
+					type: "xp"
+					xp: 20
+				}
+			]
+			subtitle: "Craft a speaker"
+			tasks: [
+				{
+					id: "7B37010400040001"
+					item: {
+						count: 1
+						id: "computercraft:speaker"
+					}
+					type: "item"
+				}
+			]
+			title: "Speaker"
+			x: 3.0d
+			y: -0.75d
+		}
+		{
+			dependencies: ["7B37010300010000"]
+			description: [
+				"A computer in a chassis: it moves, turns, digs and places,"
+				"all from Lua. The crafting grid builds it around a computer"
+				"you provide."
+				""
+				"Combine it with a diamond pickaxe to make a mining turtle,"
+				"then teach it to dig so you never have to."
+			]
+			id: "7B37010300050000"
+			rewards: [
+				{
+					id: "7B3701050005000B"
+					type: "xp"
+					xp: 20
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3701050005000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a turtle"
+			tasks: [
+				{
+					id: "7B37010400050001"
+					item: {
+						count: 1
+						id: "computercraft:turtle_normal"
+					}
+					type: "item"
+				}
+			]
+			title: "The Turtle"
+			x: 1.5d
+			y: -2.25d
+		}
+		{
+			dependencies: ["7B37010300030000"]
+			description: [
+				"Wired modems and cable share peripherals across distance: a"
+				"computer in your base can drive a monitor wall, a drive bay,"
+				"a speaker — anything on the same cable run."
+				""
+				"Right-click a modem to expose the block it touches; every"
+				"peripheral gets a name on the network."
+			]
+			id: "7B37010300060000"
+			rewards: [
+				{
+					id: "7B3701050006000B"
+					type: "xp"
+					xp: 30
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3701050006000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft wired modems and cable"
+			tasks: [
+				{
+					id: "7B37010400060001"
+					item: {
+						count: 2
+						id: "computercraft:wired_modem"
+					}
+					type: "item"
+				}
+				{
+					id: "7B37010400060002"
+					item: {
+						count: 8
+						id: "computercraft:cable"
+					}
+					type: "item"
+				}
+			]
+			title: "Wired Networking"
+			x: 3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B37010300050000"]
+			description: [
+				"Bolt one onto a turtle or a computer and it talks over"
+				"rednet — no cable, respectable range, better the higher you"
+				"mount it."
+				""
+				"This is how you send a mining turtle to work and get"
+				"progress reports back at your desk."
+			]
+			id: "7B37010300070000"
+			rewards: [
+				{
+					id: "7B3701050007000B"
+					type: "xp"
+					xp: 30
+				}
+			]
+			subtitle: "Craft a wireless modem"
+			tasks: [
+				{
+					id: "7B37010400070001"
+					item: {
+						count: 1
+						id: "computercraft:wireless_modem_normal"
+					}
+					type: "item"
+				}
+			]
+			title: "Wireless Modem"
+			x: 3.0d
+			y: -2.25d
+		}
+		{
+			dependencies: ["7B37010300010000"]
+			description: [
+				"The gold-plated tier: colour display and mouse support on"
+				"top of everything the stone model does."
+				""
+				"Colour makes real interfaces possible — buttons, graphs,"
+				"maps — and every advanced peripheral matches it."
+			]
+			id: "7B37010300080000"
+			rewards: [
+				{
+					id: "7B3701050008000B"
+					type: "xp"
+					xp: 25
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3701050008000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft an advanced computer"
+			tasks: [
+				{
+					id: "7B37010400080001"
+					item: {
+						count: 1
+						id: "computercraft:computer_advanced"
+					}
+					type: "item"
+				}
+			]
+			title: "Advanced Computer"
+			x: 1.5d
+			y: 2.25d
+		}
+		{
+			dependencies: ["7B37010300080000"]
+			description: [
+				"The terminal that goes where you go. A golden apple wrapped"
+				"in glass and stone, running the same Lua as everything else."
+				""
+				"Fit it with a wireless modem and it becomes a remote control"
+				"for your whole base."
+			]
+			id: "7B37010300090000"
+			rewards: [
+				{
+					id: "7B3701050009000B"
+					type: "xp"
+					xp: 30
+				}
+			]
+			subtitle: "Craft a pocket computer"
+			tasks: [
+				{
+					id: "7B37010400090001"
+					item: {
+						count: 1
+						id: "computercraft:pocket_computer_normal"
+					}
+					type: "item"
+				}
+			]
+			title: "Pocket Computer"
+			x: 3.0d
+			y: 2.25d
+		}
+		{
+			dependencies: ["7B37010300070000", "7B37010300080000"]
+			description: [
+				"The advanced turtle adds the colour terminal and mouse to a"
+				"machine that digs; the ender modem talks across any distance"
+				"and across dimensions."
+				""
+				"Together they are the endgame of remote automation: a turtle"
+				"in the Nether taking orders from your pocket."
+			]
+			id: "7B370103000A0000"
+			rewards: [
+				{
+					id: "7B370105000A000B"
+					type: "xp"
+					xp: 60
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B370105000A000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Craft an advanced turtle and an ender modem"
+			tasks: [
+				{
+					id: "7B370104000A0001"
+					item: {
+						count: 1
+						id: "computercraft:turtle_advanced"
+					}
+					type: "item"
+				}
+				{
+					id: "7B370104000A0002"
+					item: {
+						count: 1
+						id: "computercraft:wireless_modem_advanced"
+					}
+					type: "item"
+				}
+			]
+			title: "Ender-Grade Kit"
+			x: 4.5d
+			y: 0.0d
+		}
+	]
+	subtitle: "Lua-powered computers and turtles"
+	title: "CC: Tweaked"
+}

@@ -1,0 +1,26 @@
+{
+  "id": "35-extreme-reactors",
+  "module_number": 53,
+  "chapter_number": 1,
+  "name": "Extreme Reactors",
+  "description": "Yellorium in, power out: build a passively cooled reactor, harvest cyanite from its waste, and graduate to a steam turbine.",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "requires_mods": [
+    "bigreactors"
+  ],
+  "requires_modules": [
+    "00-core"
+  ],
+  "chapter_group": "tech",
+  "chapters": [
+    {
+      "number": 1,
+      "file": "extreme_reactors.snbt",
+      "title": "Extreme Reactors"
+    }
+  ],
+  "allowed_external_dependencies": []
+}

@@ -220,6 +220,76 @@ def cmd_setup(args: argparse.Namespace) -> int:
     return 0
 
 
+def required_dep_ids(jar: Path) -> set[str]:
+    """Mod ids this jar's metadata declares as REQUIRED dependencies.
+
+    NeoForge toml: `[[dependencies.<modid>]]` blocks with `type = "required"`
+    (required is also the default when type is absent). Loader-level ids
+    (minecraft, neoforge, forge) are the server's problem, not ours.
+    """
+    deps: set[str] = set()
+    try:
+        with zipfile.ZipFile(jar) as archive:
+            names = set(archive.namelist())
+            toml = next((t for t in ("META-INF/neoforge.mods.toml",
+                                     "META-INF/mods.toml") if t in names), None)
+            if not toml:
+                return deps
+            text = archive.read(toml).decode("utf-8", errors="replace")
+    except (zipfile.BadZipFile, OSError):
+        return deps
+
+    in_dep_section = False
+    dep_id: str | None = None
+    dep_type = "required"
+
+    def flush() -> None:
+        nonlocal dep_id, dep_type
+        if in_dep_section and dep_id and dep_type == "required":
+            deps.add(dep_id)
+        dep_id, dep_type = None, "required"
+
+    for line in text.splitlines():
+        stripped = line.strip()
+        if stripped.startswith("[["):
+            flush()
+            in_dep_section = stripped.startswith("[[dependencies")
+            continue
+        if stripped.startswith("["):
+            flush()
+            in_dep_section = False
+            continue
+        if in_dep_section:
+            match = re.match(r'modId\s*=\s*"([^"]+)"', stripped)
+            if match:
+                dep_id = match.group(1)
+                continue
+            match = re.match(r'type\s*=\s*"([^"]+)"', stripped)
+            if match:
+                dep_type = match.group(1).lower()
+    flush()
+    return deps - {"minecraft", "neoforge", "forge"}
+
+
+def embedded_artifact_ids(jar: Path) -> set[str]:
+    """Artifacts a jar ships inside itself (NeoForge jar-in-jar).
+
+    Ender IO bundles endercore this way: the toml still declares it required,
+    but the loader finds it embedded. Treat those as already satisfied.
+    """
+    try:
+        with zipfile.ZipFile(jar) as archive:
+            if "META-INF/jarjar/metadata.json" not in archive.namelist():
+                return set()
+            meta = json.loads(archive.read("META-INF/jarjar/metadata.json"))
+    except (zipfile.BadZipFile, OSError, json.JSONDecodeError):
+        return set()
+    return {entry["identifier"]["artifact"].lower()
+            for entry in meta.get("jars", [])
+            if isinstance(entry.get("identifier"), dict)
+            and entry["identifier"].get("artifact")}
+
+
 def stage_mods(all_mods: bool, extra_patterns: list[str] | None = None,
                reference: list[Path] | None = None) -> tuple[int, list[str]]:
     mods_dir = SERVER_DIR / "mods"
@@ -269,9 +339,31 @@ def stage_mods(all_mods: bool, extra_patterns: list[str] | None = None,
             else:
                 missing.append(pattern)
 
-    for jar in chosen:
+        # Pull in required dependencies transitively: ars_nouveau is useless
+        # without curios and geckolib, and nobody should have to know that to
+        # run a testbed. A required dep with no jar in the reference folder is
+        # reported like any other missing mod.
+        queue = list(chosen)
+        staged_ids = {i for jar in chosen
+                      for i in declared_mod_ids(jar) | embedded_artifact_ids(jar)}
+        while queue:
+            jar = queue.pop()
+            for dep in sorted(required_dep_ids(jar)):
+                if dep in staged_ids:
+                    continue
+                dep_jar = declared.get(dep)
+                if dep_jar is None:
+                    missing.append(f"{dep} (needed by {jar.name})")
+                    staged_ids.add(dep)     # report once
+                    continue
+                chosen.append(dep_jar)
+                staged_ids |= declared_mod_ids(dep_jar) \
+                    | embedded_artifact_ids(dep_jar)
+                queue.append(dep_jar)
+
+    for jar in dict.fromkeys(chosen):
         shutil.copy2(jar, mods_dir / jar.name)
-    return len(chosen), missing
+    return len(dict.fromkeys(chosen)), missing
 
 
 def analyse(log_text: str, expected: dict | None) -> tuple[bool, list[str]]:

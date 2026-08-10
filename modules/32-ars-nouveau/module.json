@@ -1,0 +1,26 @@
+{
+  "id": "32-ars-nouveau",
+  "module_number": 50,
+  "chapter_number": 1,
+  "name": "Ars Nouveau",
+  "description": "Spell books from novice to archmage: glyph scribing, a source economy fed by crops, apparatus crafting, summons and magebloom armor.",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "requires_mods": [
+    "ars_nouveau"
+  ],
+  "requires_modules": [
+    "00-core"
+  ],
+  "chapter_group": "mods",
+  "chapters": [
+    {
+      "number": 1,
+      "file": "ars_nouveau.snbt",
+      "title": "Ars Nouveau"
+    }
+  ],
+  "allowed_external_dependencies": []
+}

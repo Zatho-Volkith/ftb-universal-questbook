@@ -1,0 +1,245 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "hexagon"
+	filename: "mystical_agradditions"
+	group: "7B00000100000006"
+	icon: {
+		id: "mysticalagradditions:insanium_essence"
+	}
+	id: "7B34020200000001"
+	images: [ ]
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"Supremium was not the top after all. Insanium sits above it,"
+				"combined from supremium essence the usual way."
+				""
+				"It feeds tier six seeds and the strongest gear additions."
+			]
+			id: "7B34020300010000"
+			rewards: [
+				{
+					id: "7B3402050001000B"
+					type: "xp"
+					xp: 40
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3402050001000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Craft insanium essence"
+			tasks: [
+				{
+					id: "7B34020400010001"
+					item: {
+						count: 1
+						id: "mysticalagradditions:insanium_essence"
+					}
+					type: "item"
+				}
+			]
+			title: "Insanium Essence"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B34020300010000"]
+			description: [
+				"Tier six crops refuse to grow on farmland alone. Each needs"
+				"its crux block sitting directly under the crop."
+				""
+				"One crux per seed type — build them before you plant."
+			]
+			id: "7B34020300020000"
+			rewards: [
+				{
+					id: "7B3402050002000B"
+					type: "xp"
+					xp: 50
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3402050002000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Craft both tier 6 cruxes"
+			tasks: [
+				{
+					id: "7B34020400020001"
+					item: {
+						count: 1
+						id: "mysticalagradditions:nether_star_crux"
+					}
+					type: "item"
+				}
+				{
+					id: "7B34020400020002"
+					item: {
+						count: 1
+						id: "mysticalagradditions:dragon_egg_crux"
+					}
+					type: "item"
+				}
+			]
+			title: "Cruxes"
+			x: 1.5d
+			y: 0.75d
+		}
+		{
+			dependencies: ["7B34020300020000"]
+			description: [
+				"Nether stars and dragon eggs, farmed like wheat."
+				""
+				"The recipes want the real thing once — a star, an egg — plus"
+				"insanium. After that you never fight for either again."
+			]
+			id: "7B34020300030000"
+			rewards: [
+				{
+					id: "7B3402050003000B"
+					type: "xp"
+					xp: 60
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3402050003000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Infuse nether star and dragon egg seeds"
+			tasks: [
+				{
+					id: "7B34020400030001"
+					item: {
+						count: 1
+						id: "mysticalagriculture:nether_star_seeds"
+					}
+					type: "item"
+				}
+				{
+					id: "7B34020400030002"
+					item: {
+						count: 1
+						id: "mysticalagriculture:dragon_egg_seeds"
+					}
+					type: "item"
+				}
+			]
+			title: "Tier 6 Seeds"
+			x: 3.0d
+			y: 0.75d
+		}
+		{
+			dependencies: ["7B34020300010000"]
+			description: [
+				"The gear-grade form of insanium, cast around a supremium"
+				"core."
+				""
+				"It upgrades essence equipment past anything the base mod"
+				"offers."
+			]
+			id: "7B34020300040000"
+			rewards: [
+				{
+					id: "7B3402050004000B"
+					type: "xp"
+					xp: 40
+				}
+			]
+			subtitle: "Craft an insanium ingot"
+			tasks: [
+				{
+					id: "7B34020400040001"
+					item: {
+						count: 1
+						id: "mysticalagradditions:insanium_ingot"
+					}
+					type: "item"
+				}
+			]
+			title: "Insanium Ingot"
+			x: 1.5d
+			y: -0.75d
+		}
+		{
+			dependencies: ["7B34020300040000"]
+			description: [
+				"Essence gear is assembled and upgraded here, not at a"
+				"crafting bench."
+				""
+				"It also installs augments — swap abilities in and out of"
+				"supremium and insanium equipment freely."
+			]
+			id: "7B34020300050000"
+			rewards: [
+				{
+					id: "7B3402050005000B"
+					type: "xp"
+					xp: 50
+				}
+			]
+			subtitle: "Build a tinkering table"
+			tasks: [
+				{
+					id: "7B34020400050001"
+					item: {
+						count: 1
+						id: "mysticalagriculture:tinkering_table"
+					}
+					type: "item"
+				}
+			]
+			title: "Tinkering Table"
+			x: 3.0d
+			y: -0.75d
+		}
+		{
+			dependencies: ["7B34020300050000"]
+			description: [
+				"Pickaxe, axe, shovel and hoe in one tool, forged from"
+				"awakened supremium."
+				""
+				"The awakening altar from the main chapter supplies the"
+				"metal; this is what it was for."
+			]
+			id: "7B34020300060000"
+			rewards: [
+				{
+					id: "7B3402050006000B"
+					type: "xp"
+					xp: 100
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3402050006000C"
+					table_id: 8863084092434939908L
+					type: "random"
+				}
+			]
+			subtitle: "Forge an awakened supremium paxel"
+			tasks: [
+				{
+					id: "7B34020400060001"
+					item: {
+						count: 1
+						id: "mysticalagradditions:awakened_supremium_paxel"
+					}
+					type: "item"
+				}
+			]
+			title: "Awakened Paxel"
+			x: 4.5d
+			y: -0.75d
+		}
+	]
+	subtitle: "Tier six and beyond"
+	title: "Mystical Agradditions"
+}

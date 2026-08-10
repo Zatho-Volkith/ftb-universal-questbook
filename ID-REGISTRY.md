@@ -88,6 +88,19 @@ every book that has it installed.
 | `2E` | `2e-farming-for-blockheads` | `farmingforblockheads` | shipped |
 | `2F` | `2f-actuallyadditions` | `actuallyadditions` | draft |
 | `30` | `30-quality-of-life` + 9 add-ons | vanilla parent | shipped |
+| `31` | `31-mekanism` + `31a-mekanism-tools` | `mekanism` | shipped |
+| `32` | `32-ars-nouveau` | `ars_nouveau` | shipped |
+| `33` | `33-enderio` | `enderio` | shipped |
+| `34` | `34-mystical-agriculture` + `34a-mystical-agradditions` | `mysticalagriculture` | shipped |
+| `35` | `35-extreme-reactors` | `bigreactors` | shipped |
+| `36` | `36-projecte` | `projecte` | shipped |
+| `37` | `37-computercraft` | `computercraft` | shipped |
+| `38` | `38-deeper-darker` | `deeperdarker` | shipped |
+| `39` | `39-iron-furnaces` | `ironfurnaces` | shipped |
+| `3A` | `3a-reliquary` | `reliquary` | shipped |
+| `3B` | `3b-mob-grinding-utils` | `mob_grinding_utils` | shipped |
+| `3C` | `3c-supplementaries` | `supplementaries` | shipped |
+| `3D` | `3d-serene-seasons` | `sereneseasons` | shipped |
 
 ## Addons merge into their parent's chapter at install time
 
@@ -122,6 +135,9 @@ the ceiling is nowhere near.
 |-----------|--------|---------|-----------|----------|
 | `20-farmersdelight` | `20` | `01` | `7B2001…` | `farmersdelight` |
 | `20a-expanded-delight` | `20` | `02` | `7B2002…` | `+ expandeddelight` |
+| `20b-nethers-delight` | `20` | `03` | `7B2003…` | `+ mynethersdelight` |
+| `20c-oceans-delight` | `20` | `04` | `7B2004…` | `+ oceansdelight` |
+| `20d-enders-delight` | `20` | `05` | `7B2005…` | `+ endersdelight` |
 
 The AE2 family (module `2A`) allocates its chapter slots the same way:
 
@@ -136,9 +152,8 @@ The AE2 family (module `2A`) allocates its chapter slots the same way:
 | `2af-merequester` | `07` | `7B2A07…` | `merequester` |
 | `2ag-applied-mekanistics` | `08` | `7B2A08…` | `appmek`, `mekanism` |
 | `2ah-ars-energistique` | `09` | `7B2A09…` | `arseng`, `ars_nouveau` |
-| `20b-nethers-delight` | `20` | `03` | `7B2003…` | `+ mynethersdelight` |
-| `20c-oceans-delight` | `20` | `04` | `7B2004…` | `+ oceansdelight` |
-| `20d-enders-delight` | `20` | `05` | `7B2005…` | `+ endersdelight` |
+| `2ai-import-export` | `0A` | `7B2A0A…` | `ae2importexportcard` |
+| `2aj-infinity-booster` | `0B` | `7B2A0B…` | `aeinfinitybooster` |
 
 The directory suffix letter tracks the chapter: `a` = chapter 2, `b` = 3, and
 so on. It is a convention for humans; the authority is `chapter_number` in

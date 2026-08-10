@@ -1,0 +1,192 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "diamond"
+	filename: "mekanism_tools"
+	group: "7B00000100000006"
+	icon: {
+		id: "mekanismtools:osmium_paxel"
+	}
+	id: "7B31020200000001"
+	images: [ ]
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"The metal you are already mining for machines also makes"
+				"solid gear — better than iron and cheaper than it looks."
+				""
+				"A full tool set costs one vein; you will not miss the ingots."
+			]
+			id: "7B31020300010000"
+			rewards: [
+				{
+					id: "7B3102050001000B"
+					type: "xp"
+					xp: 15
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3102050001000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft an osmium pickaxe"
+			tasks: [
+				{
+					id: "7B31020400010001"
+					item: {
+						count: 1
+						id: "mekanismtools:osmium_pickaxe"
+					}
+					type: "item"
+				}
+			]
+			title: "Osmium Pickaxe"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B31020300010000"]
+			description: [
+				"Axe, pickaxe and shovel welded onto one stick."
+				""
+				"One hotbar slot digs everything, and it inherits the material"
+				"stats of the tools that went in."
+			]
+			id: "7B31020300020000"
+			rewards: [
+				{
+					id: "7B3102050002000B"
+					type: "xp"
+					xp: 25
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3102050002000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Combine your tools into a paxel"
+			tasks: [
+				{
+					id: "7B31020400020001"
+					item: {
+						count: 1
+						id: "mekanismtools:osmium_paxel"
+					}
+					type: "item"
+				}
+			]
+			title: "Osmium Paxel"
+			x: 1.5d
+			y: -0.75d
+		}
+		{
+			dependencies: ["7B31020300010000"]
+			description: [
+				"Between iron and diamond in protection, at a price closer"
+				"to iron."
+				""
+				"A sensible stopgap while your machines work toward the"
+				"refined metals that replace it."
+			]
+			id: "7B31020300030000"
+			rewards: [
+				{
+					id: "7B3102050003000B"
+					type: "xp"
+					xp: 25
+				}
+			]
+			subtitle: "Craft an osmium chestplate"
+			tasks: [
+				{
+					id: "7B31020400030001"
+					item: {
+						count: 1
+						id: "mekanismtools:osmium_chestplate"
+					}
+					type: "item"
+				}
+			]
+			title: "Osmium Armor"
+			x: 1.5d
+			y: 0.75d
+		}
+		{
+			dependencies: ["7B31020300020000"]
+			description: [
+				"Crushed obsidian, enriched, compressed with osmium — then"
+				"hammered into a blade past diamond."
+				""
+				"The ingots come from your machine line, so the sword is"
+				"really a certificate of a working factory."
+			]
+			id: "7B31020300040000"
+			rewards: [
+				{
+					id: "7B3102050004000B"
+					type: "xp"
+					xp: 60
+				}
+			]
+			subtitle: "Forge a refined obsidian sword"
+			tasks: [
+				{
+					id: "7B31020400040001"
+					item: {
+						count: 1
+						id: "mekanismtools:refined_obsidian_sword"
+					}
+					type: "item"
+				}
+			]
+			title: "Refined Obsidian Sword"
+			x: 3.0d
+			y: -0.75d
+		}
+		{
+			dependencies: ["7B31020300030000"]
+			description: [
+				"The heaviest armor Mekanism forges — netherite-class"
+				"protection out of processed stone."
+				""
+				"A full suit takes a serious pile of refined obsidian; the"
+				"chestplate alone is the statement piece."
+			]
+			id: "7B31020300050000"
+			rewards: [
+				{
+					id: "7B3102050005000B"
+					type: "xp"
+					xp: 80
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3102050005000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Forge a refined obsidian chestplate"
+			tasks: [
+				{
+					id: "7B31020400050001"
+					item: {
+						count: 1
+						id: "mekanismtools:refined_obsidian_chestplate"
+					}
+					type: "item"
+				}
+			]
+			title: "Refined Obsidian Plate"
+			x: 3.0d
+			y: 0.75d
+		}
+	]
+	subtitle: "Paxels and plate from the machine age"
+	title: "Mekanism: Tools"
+}

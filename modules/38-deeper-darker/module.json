@@ -1,0 +1,26 @@
+{
+  "id": "38-deeper-darker",
+  "module_number": 56,
+  "chapter_number": 1,
+  "name": "Deeper and Darker",
+  "description": "Follow the sculk below the bedrock: reinforce echo shards, take the Warden's heart, and mine the Otherside for resonarium, warden gear and the soul elytra.",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "requires_mods": [
+    "deeperdarker"
+  ],
+  "requires_modules": [
+    "00-core"
+  ],
+  "chapter_group": "mods",
+  "chapters": [
+    {
+      "number": 1,
+      "file": "deeper_darker.snbt",
+      "title": "Deeper and Darker"
+    }
+  ],
+  "allowed_external_dependencies": []
+}

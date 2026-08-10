@@ -1,0 +1,468 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "hexagon"
+	filename: "supplementaries"
+	group: "7B00000100000002"
+	icon: {
+		id: "supplementaries:globe"
+	}
+	id: "7B3C010200000001"
+	images: [ ]
+	order_index: 4
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"Rope placed from the top climbs like a ladder, ties up boats,"
+				"and drops safely down any shaft. It is woven from flax, so"
+				"start a small patch the moment you find seeds."
+				""
+				"Hang a pulley block above the rope and power it: the wheel"
+				"spools the line up and down for you. An elevator shaft with"
+				"no pistons and no slime."
+			]
+			id: "7B3C010300010000"
+			rewards: [
+				{
+					id: "7B3C01050001000B"
+					type: "xp"
+					xp: 10
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3C01050001000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Craft rope and a pulley block"
+			tasks: [
+				{
+					id: "7B3C010400010001"
+					item: {
+						count: 8
+						id: "supplementaries:rope"
+					}
+					type: "item"
+				}
+				{
+					id: "7B3C010400010002"
+					item: {
+						count: 1
+						id: "supplementaries:pulley_block"
+					}
+					type: "item"
+				}
+			]
+			title: "Rope and Pulley"
+			x: 0.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["7B3C010300010000"]
+			description: [
+				"A small portable inventory that keeps its contents when you"
+				"break it, stitched from the same flax as your rope."
+				""
+				"Early on it is the shulker box you can actually afford. Carry"
+				"one on mining trips and walk home with double the loot."
+			]
+			id: "7B3C010300020000"
+			rewards: [
+				{
+					id: "7B3C01050002000B"
+					type: "xp"
+					xp: 20
+				}
+			]
+			subtitle: "Craft a sack"
+			tasks: [
+				{
+					id: "7B3C010400020001"
+					item: {
+						count: 1
+						id: "supplementaries:sack"
+					}
+					type: "item"
+				}
+			]
+			title: "Sack"
+			x: 1.5d
+			y: -3.75d
+		}
+		{
+			dependencies: ["7B3C010300010000"]
+			description: [
+				"The cage scoops up small mobs whole; the jar catches the even"
+				"smaller things -- fish, bees -- and holds fluids besides."
+				""
+				"Use the empty cage on a critter to catch it. Both blocks keep"
+				"their contents when broken, so your zoo travels with you."
+			]
+			id: "7B3C010300030000"
+			rewards: [
+				{
+					id: "7B3C01050003000B"
+					type: "xp"
+					xp: 20
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3C01050003000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a cage and a jar"
+			tasks: [
+				{
+					id: "7B3C010400030001"
+					item: {
+						count: 1
+						id: "supplementaries:cage"
+					}
+					type: "item"
+				}
+				{
+					id: "7B3C010400030002"
+					item: {
+						count: 1
+						id: "supplementaries:jar"
+					}
+					type: "item"
+				}
+			]
+			title: "Cage and Jar"
+			x: 1.5d
+			y: -2.25d
+		}
+		{
+			dependencies: ["7B3C010300030000"]
+			description: [
+				"Mount a faucet on a tank, jar or cauldron and give it a"
+				"redstone pulse: it moves one dose of fluid into whatever sits"
+				"below, no bucket-clicking involved."
+				""
+				"It pulls items out of containers one at a time too, which"
+				"makes it a dirt-cheap dropper for slow, precise automation."
+			]
+			id: "7B3C010300040000"
+			rewards: [
+				{
+					id: "7B3C01050004000B"
+					type: "xp"
+					xp: 30
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3C01050004000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a faucet"
+			tasks: [
+				{
+					id: "7B3C010400040001"
+					item: {
+						count: 1
+						id: "supplementaries:faucet"
+					}
+					type: "item"
+				}
+			]
+			title: "Faucet"
+			x: 3.0d
+			y: -2.25d
+		}
+		{
+			dependencies: ["7B3C010300020000"]
+			description: [
+				"A shulker box reinforced with a netherite ingot: blast-proof,"
+				"theft-proof, and bound to you. Only the owner or someone"
+				"holding the right key can open it."
+				""
+				"Like the sack, it keeps its contents when broken -- except"
+				"this one also survives the creeper that finds your vault."
+			]
+			id: "7B3C010300050000"
+			rewards: [
+				{
+					id: "7B3C01050005000B"
+					type: "xp"
+					xp: 40
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3C01050005000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Assemble a safe"
+			tasks: [
+				{
+					id: "7B3C010400050001"
+					item: {
+						count: 1
+						id: "supplementaries:safe"
+					}
+					type: "item"
+				}
+			]
+			title: "Safe"
+			x: 3.0d
+			y: -3.75d
+		}
+		{
+			description: [
+				"A hand crank for redstone: each turn nudges the output up a"
+				"notch, from zero all the way to fifteen."
+				""
+				"Perfect for testing contraptions, or for dialing in an exact"
+				"signal without building a tower of repeaters."
+			]
+			id: "7B3C010300060000"
+			rewards: [
+				{
+					id: "7B3C01050006000B"
+					type: "xp"
+					xp: 10
+				}
+			]
+			subtitle: "Craft a crank"
+			tasks: [
+				{
+					id: "7B3C010400060001"
+					item: {
+						count: 1
+						id: "supplementaries:crank"
+					}
+					type: "item"
+				}
+			]
+			title: "Crank"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B3C010300060000"]
+			description: [
+				"Cog blocks pass strong redstone power to every cog they"
+				"touch, snaking a signal along walls and ceilings with no"
+				"wiring at all."
+				""
+				"A crank at the end of a cog line makes a tidy manual switch"
+				"for doors, lamps and farms. One craft yields six."
+			]
+			id: "7B3C010300070000"
+			rewards: [
+				{
+					id: "7B3C01050007000B"
+					type: "xp"
+					xp: 20
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3C01050007000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Craft cog blocks"
+			tasks: [
+				{
+					id: "7B3C010400070001"
+					item: {
+						count: 6
+						id: "supplementaries:cog_block"
+					}
+					type: "item"
+				}
+			]
+			title: "Cog Blocks"
+			x: 1.5d
+			y: -0.75d
+		}
+		{
+			dependencies: ["7B3C010300060000"]
+			description: [
+				"Rotates whatever sits against its face, one quarter turn per"
+				"redstone pulse. It spins mobs too, if you enjoy that."
+				""
+				"Use it to re-orient stubborn blocks that refuse to face the"
+				"right way, or to build a windmill that actually turns."
+			]
+			id: "7B3C010300080000"
+			rewards: [
+				{
+					id: "7B3C01050008000B"
+					type: "xp"
+					xp: 20
+				}
+			]
+			subtitle: "Craft a turn table"
+			tasks: [
+				{
+					id: "7B3C010400080001"
+					item: {
+						count: 1
+						id: "supplementaries:turn_table"
+					}
+					type: "item"
+				}
+			]
+			title: "Turn Table"
+			x: 1.5d
+			y: 0.75d
+		}
+		{
+			dependencies: ["7B3C010300070000"]
+			description: [
+				"A piston that has given up on subtlety. Power it and it hurls"
+				"whatever stands on it into the air -- or down a corridor, if"
+				"you lay it on its side."
+				""
+				"Chain a few in sequence for the fastest hallway in the base."
+			]
+			id: "7B3C010300090000"
+			rewards: [
+				{
+					id: "7B3C01050009000B"
+					type: "xp"
+					xp: 40
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3C01050009000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a spring launcher"
+			tasks: [
+				{
+					id: "7B3C010400090001"
+					item: {
+						count: 1
+						id: "supplementaries:spring_launcher"
+					}
+					type: "item"
+				}
+			]
+			title: "Spring Launcher"
+			x: 3.0d
+			y: -0.75d
+		}
+		{
+			description: [
+				"A slim wall shelf that keeps items where you can see them"
+				"instead of buried in a chest. Books, tools, trophies -- it"
+				"displays anything."
+				""
+				"Cheap enough to line a whole workshop: three slabs make two."
+			]
+			id: "7B3C0103000A0000"
+			rewards: [
+				{
+					id: "7B3C0105000A000B"
+					type: "xp"
+					xp: 10
+				}
+			]
+			subtitle: "Craft item shelves"
+			tasks: [
+				{
+					id: "7B3C0104000A0001"
+					item: {
+						count: 4
+						id: "supplementaries:item_shelf"
+					}
+					type: "item"
+				}
+			]
+			title: "Item Shelf"
+			x: 0.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["7B3C0103000A0000"]
+			description: [
+				"A proper display stand. Whatever you set on it hovers gently"
+				"above the stone, visible from across the room."
+				""
+				"Statues, sea lanterns and hard-won loot all read better on a"
+				"pedestal than in yet another item frame."
+			]
+			id: "7B3C0103000B0000"
+			rewards: [
+				{
+					id: "7B3C0105000B000B"
+					type: "xp"
+					xp: 20
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3C0105000B000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Craft pedestals"
+			tasks: [
+				{
+					id: "7B3C0104000B0001"
+					item: {
+						count: 2
+						id: "supplementaries:pedestal"
+					}
+					type: "item"
+				}
+			]
+			title: "Pedestal"
+			x: 1.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["7B3C0103000B0000"]
+			description: [
+				"There is no recipe for the world. Globes turn up in shipwreck"
+				"holds and on the wandering trader's stranger price lists, so"
+				"earning one means going out and looking."
+				""
+				"Set it spinning on a pedestal for a centerpiece, and try"
+				"renaming it in an anvil first -- some names change the globe."
+			]
+			id: "7B3C0103000C0000"
+			rewards: [
+				{
+					id: "7B3C0105000C000B"
+					type: "xp"
+					xp: 100
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3C0105000C000C"
+					table_id: 8863084092434939908L
+					type: "random"
+				}
+			]
+			subtitle: "Track down a globe"
+			tasks: [
+				{
+					id: "7B3C0104000C0001"
+					item: {
+						count: 1
+						id: "supplementaries:globe"
+					}
+					type: "item"
+				}
+			]
+			title: "The Globe"
+			x: 3.0d
+			y: 3.0d
+		}
+	]
+	subtitle: "The small hardware vanilla never shipped"
+	title: "Supplementaries"
+}

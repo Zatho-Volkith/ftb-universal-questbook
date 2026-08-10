@@ -1,0 +1,26 @@
+{
+  "id": "34-mystical-agriculture",
+  "module_number": 52,
+  "chapter_number": 1,
+  "name": "Mystical Agriculture",
+  "description": "Grow your resources as crops: infuse prosperity and inferium into seeds, climb the essence tiers, and forge supremium gear from the harvest.",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "requires_mods": [
+    "mysticalagriculture"
+  ],
+  "requires_modules": [
+    "00-core"
+  ],
+  "chapter_group": "tech",
+  "chapters": [
+    {
+      "number": 1,
+      "file": "mystical_agriculture.snbt",
+      "title": "Mystical Agriculture"
+    }
+  ],
+  "allowed_external_dependencies": []
+}

@@ -1,0 +1,29 @@
+{
+  "id": "34a-mystical-agradditions",
+  "module_number": 52,
+  "chapter_number": 2,
+  "name": "Mystical Agradditions",
+  "description": "Insanium essence, cruxes for nether star and dragon egg crops, and the awakened supremium paxel.",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "requires_mods": [
+    "mysticalagriculture",
+    "mysticalagradditions"
+  ],
+  "requires_modules": [
+    "00-core",
+    "34-mystical-agriculture"
+  ],
+  "chapter_group": "tech",
+  "chapters": [
+    {
+      "number": 2,
+      "file": "mystical_agradditions.snbt",
+      "title": "Mystical Agradditions"
+    }
+  ],
+  "allowed_external_dependencies": [],
+  "extends": "34-mystical-agriculture"
+}

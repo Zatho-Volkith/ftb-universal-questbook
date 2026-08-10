@@ -1,0 +1,29 @@
+{
+  "id": "2aj-infinity-booster",
+  "module_number": 42,
+  "chapter_number": 11,
+  "name": "Infinity Booster",
+  "description": "An infinity card that removes the wireless terminal's range limit, and a dimension card that removes the dimension one too.",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "requires_mods": [
+    "ae2",
+    "aeinfinitybooster"
+  ],
+  "requires_modules": [
+    "00-core",
+    "2a-ae2"
+  ],
+  "chapter_group": "tech",
+  "chapters": [
+    {
+      "number": 11,
+      "file": "infinity_booster.snbt",
+      "title": "Infinity Booster"
+    }
+  ],
+  "allowed_external_dependencies": [],
+  "extends": "2a-ae2"
+}

@@ -1,0 +1,464 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "octagon"
+	filename: "projecte"
+	group: "7B00000100000006"
+	icon: {
+		id: "projecte:philosophers_stone"
+	}
+	id: "7B36010200000001"
+	images: [ ]
+	order_index: 12
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"A diamond ringed in redstone and glowstone, and the key to"
+				"everything ProjectE does."
+				""
+				"It transmutes blocks in-world, anchors dozens of recipes, and"
+				"is never consumed — one stone lasts you the whole mod."
+			]
+			id: "7B36010300010000"
+			rewards: [
+				{
+					id: "7B3601050001000B"
+					type: "xp"
+					xp: 10
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3601050001000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Craft the philosopher's stone"
+			tasks: [
+				{
+					id: "7B36010400010001"
+					item: {
+						count: 1
+						id: "projecte:philosophers_stone"
+					}
+					type: "item"
+				}
+			]
+			title: "Philosopher's Stone"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			description: [
+				"Cheap glue for alchemical crafting: cobble and charcoal at"
+				"the low end, diamond and coal at the top."
+				""
+				"The dusts also repair tools on a covalence repair talisman,"
+				"so surplus is never wasted."
+			]
+			id: "7B36010300020000"
+			rewards: [
+				{
+					id: "7B3601050002000B"
+					type: "xp"
+					xp: 10
+				}
+			]
+			subtitle: "Craft low and high covalence dust"
+			tasks: [
+				{
+					count: 8L
+					id: "7B36010400020001"
+					item: {
+						count: 1
+						id: "projecte:low_covalence_dust"
+					}
+					type: "item"
+				}
+				{
+					count: 8L
+					id: "7B36010400020002"
+					item: {
+						count: 1
+						id: "projecte:high_covalence_dust"
+					}
+					type: "item"
+				}
+			]
+			title: "Covalence Dust"
+			x: 0.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B36010300010000"]
+			description: [
+				"Burn an item and the table learns it, banking its value as"
+				"EMC. Spend that EMC on anything else you have ever learned."
+				""
+				"This is the heart of the mod: matter in, knowledge kept,"
+				"matter out."
+			]
+			id: "7B36010300030000"
+			rewards: [
+				{
+					id: "7B3601050003000B"
+					type: "xp"
+					xp: 20
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3601050003000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a transmutation table"
+			tasks: [
+				{
+					id: "7B36010400030001"
+					item: {
+						count: 1
+						id: "projecte:transmutation_table"
+					}
+					type: "item"
+				}
+			]
+			title: "Transmutation Table"
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B36010300020000"]
+			description: [
+				"A big chest built from all three covalence dusts, and a bag"
+				"that opens into its own pocket inventory."
+				""
+				"Bags of the same colour share contents no matter who carries"
+				"them — a supply line in dyed wool."
+			]
+			id: "7B36010300040000"
+			rewards: [
+				{
+					id: "7B3601050004000B"
+					type: "xp"
+					xp: 25
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3601050004000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft the chest and a bag"
+			tasks: [
+				{
+					id: "7B36010400040001"
+					item: {
+						count: 1
+						id: "projecte:alchemical_chest"
+					}
+					type: "item"
+				}
+				{
+					id: "7B36010400040002"
+					item: {
+						count: 1
+						id: "projecte:black_alchemical_bag"
+					}
+					type: "item"
+				}
+			]
+			title: "Alchemical Storage"
+			x: 1.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B36010300030000"]
+			description: [
+				"It drinks light and condenses EMC from nothing, around the"
+				"clock if you give it a glowstone ceiling."
+				""
+				"Drop fuel in and it climbs the ladder for you: coal to"
+				"alchemical coal to mobius to aeternalis."
+			]
+			id: "7B36010300050000"
+			rewards: [
+				{
+					id: "7B3601050005000B"
+					type: "xp"
+					xp: 35
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3601050005000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Build an energy collector MK1"
+			tasks: [
+				{
+					id: "7B36010400050001"
+					item: {
+						count: 1
+						id: "projecte:collector_mk1"
+					}
+					type: "item"
+				}
+			]
+			title: "Energy Collector"
+			x: 3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B36010300050000"]
+			description: [
+				"Placed against a collector it buffers the flow and adds a"
+				"bonus on top; alone it eats items and pays out their EMC."
+				""
+				"Relays are also where klein stars go to be charged."
+			]
+			id: "7B36010300060000"
+			rewards: [
+				{
+					id: "7B3601050006000B"
+					type: "xp"
+					xp: 30
+				}
+			]
+			subtitle: "Build an antimatter relay MK1"
+			tasks: [
+				{
+					id: "7B36010400060001"
+					item: {
+						count: 1
+						id: "projecte:relay_mk1"
+					}
+					type: "item"
+				}
+			]
+			title: "Antimatter Relay"
+			x: 4.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B36010300060000"]
+			description: [
+				"A battery for raw EMC, crafted from mobius fuel."
+				""
+				"Charge it in a relay and it bankrolls tools that spend EMC as"
+				"ammunition. Four of a kind combine into the next size up,"
+				"all the way to Omega."
+			]
+			id: "7B36010300070000"
+			rewards: [
+				{
+					id: "7B3601050007000B"
+					type: "xp"
+					xp: 40
+				}
+			]
+			subtitle: "Craft a klein star ein"
+			tasks: [
+				{
+					id: "7B36010400070001"
+					item: {
+						count: 1
+						id: "projecte:klein_star_ein"
+					}
+					type: "item"
+				}
+			]
+			title: "Klein Star"
+			x: 6.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B36010300050000"]
+			description: [
+				"Aeternalis fuel pressed around a diamond block until it"
+				"stops being either."
+				""
+				"The first true endgame material: tools, armor and the next"
+				"collector tier are all built from it."
+			]
+			id: "7B36010300080000"
+			rewards: [
+				{
+					id: "7B3601050008000B"
+					type: "xp"
+					xp: 50
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3601050008000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Condense dark matter"
+			tasks: [
+				{
+					id: "7B36010400080001"
+					item: {
+						count: 1
+						id: "projecte:dark_matter"
+					}
+					type: "item"
+				}
+			]
+			title: "Dark Matter"
+			x: 4.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B36010300080000"]
+			description: [
+				"Your MK1 wrapped in dark matter, generating EMC several"
+				"times faster."
+				""
+				"Collectors upgrade in place — the old one is an ingredient,"
+				"so the farm only ever grows."
+			]
+			id: "7B36010300090000"
+			rewards: [
+				{
+					id: "7B3601050009000B"
+					type: "xp"
+					xp: 60
+				}
+			]
+			subtitle: "Upgrade a collector with dark matter"
+			tasks: [
+				{
+					id: "7B36010400090001"
+					item: {
+						count: 1
+						id: "projecte:collector_mk2"
+					}
+					type: "item"
+				}
+			]
+			title: "Collector MK2"
+			x: 6.0d
+			y: -0.75d
+		}
+		{
+			dependencies: ["7B36010300080000"]
+			description: [
+				"Dark matter and aeternalis fuel, folded again."
+				""
+				"Everything red matter touches ignores conventional limits:"
+				"tools with charge modes, armor that shrugs, and the final"
+				"collector tier."
+			]
+			id: "7B360103000A0000"
+			rewards: [
+				{
+					id: "7B360105000A000B"
+					type: "xp"
+					xp: 70
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B360105000A000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Condense red matter"
+			tasks: [
+				{
+					id: "7B360104000A0001"
+					item: {
+						count: 1
+						id: "projecte:red_matter"
+					}
+					type: "item"
+				}
+			]
+			title: "Red Matter"
+			x: 6.0d
+			y: 0.75d
+		}
+		{
+			dependencies: ["7B36010300090000", "7B360103000A0000"]
+			description: [
+				"The MK2 sheathed in red matter — the fastest passive EMC in"
+				"the mod."
+				""
+				"A bank of these under glowstone funds anything the"
+				"transmutation table knows, indefinitely."
+			]
+			id: "7B360103000B0000"
+			rewards: [
+				{
+					id: "7B360105000B000B"
+					type: "xp"
+					xp: 90
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B360105000B000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Build the final collector tier"
+			tasks: [
+				{
+					id: "7B360104000B0001"
+					item: {
+						count: 1
+						id: "projecte:collector_mk3"
+					}
+					type: "item"
+				}
+			]
+			title: "Collector MK3"
+			x: 7.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B360103000A0000"]
+			description: [
+				"A dark matter chestplate re-forged in red matter, with"
+				"protection ordinary armor cannot approach."
+				""
+				"By the time you wear this, the mod has stopped asking what"
+				"you can afford."
+			]
+			id: "7B360103000C0000"
+			rewards: [
+				{
+					id: "7B360105000C000B"
+					type: "xp"
+					xp: 100
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B360105000C000C"
+					table_id: 8863084092434939908L
+					type: "random"
+				}
+			]
+			subtitle: "Forge a red matter chestplate"
+			tasks: [
+				{
+					id: "7B360104000C0001"
+					item: {
+						count: 1
+						id: "projecte:rm_chestplate"
+					}
+					type: "item"
+				}
+			]
+			title: "Red Matter Armor"
+			x: 9.0d
+			y: 0.75d
+		}
+	]
+	subtitle: "Everything is worth something"
+	title: "ProjectE"
+}

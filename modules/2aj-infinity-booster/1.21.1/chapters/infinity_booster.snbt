@@ -1,0 +1,141 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "infinity_booster"
+	group: "7B00000100000006"
+	icon: {
+		id: "aeinfinitybooster:infinity_card"
+	}
+	id: "7B2A0B0200000001"
+	images: [ ]
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"Wireless boosters stretch an access point's bubble a few"
+				"blocks at a time -- and every terminal still goes dark the"
+				"moment you wander past the edge."
+				""
+				"Build the access point and a handful of boosters anyway;"
+				"three of them go straight into the card that ends the"
+				"problem."
+			]
+			id: "7B2A0B0300010000"
+			rewards: [
+				{
+					id: "7B2A0B050001000B"
+					type: "xp"
+					xp: 30
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A0B050001000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft an access point and boosters"
+			tasks: [
+				{
+					id: "7B2A0B0400010001"
+					item: {
+						count: 1
+						id: "ae2:wireless_access_point"
+					}
+					type: "item"
+				}
+				{
+					id: "7B2A0B0400010002"
+					item: {
+						count: 3
+						id: "ae2:wireless_booster"
+					}
+					type: "item"
+				}
+			]
+			title: "Signal Range"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B2A0B0300010000"]
+			description: [
+				"A nether star wrapped in netherite and ender eyes. Slot it"
+				"into a wireless terminal and the range check simply stops"
+				"happening -- one access point covers the whole dimension."
+				""
+				"The catch: only the dimension the access point lives in."
+			]
+			id: "7B2A0B0300020000"
+			rewards: [
+				{
+					id: "7B2A0B050002000B"
+					type: "xp"
+					xp: 60
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A0B050002000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Craft an infinity card"
+			tasks: [
+				{
+					id: "7B2A0B0400020001"
+					item: {
+						count: 1
+						id: "aeinfinitybooster:infinity_card"
+					}
+					type: "item"
+				}
+			]
+			title: "Infinity Range Booster"
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B2A0B0300020000"]
+			description: [
+				"Four infinity cards fused around an ender eye. The terminal"
+				"now reaches your network from the Nether, the End, or"
+				"anywhere else you can carry it."
+				""
+				"It does not chunk-load anything -- the network only answers"
+				"if its chunks are already running."
+			]
+			id: "7B2A0B0300030000"
+			rewards: [
+				{
+					id: "7B2A0B050003000B"
+					type: "xp"
+					xp: 90
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A0B050003000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a dimension card"
+			tasks: [
+				{
+					id: "7B2A0B0400030001"
+					item: {
+						count: 1
+						id: "aeinfinitybooster:dimension_card"
+					}
+					type: "item"
+				}
+			]
+			title: "Dimension Card"
+			x: 3.0d
+			y: 0.0d
+		}
+	]
+	subtitle: "Range limits, removed"
+	title: "Infinity Booster"
+}

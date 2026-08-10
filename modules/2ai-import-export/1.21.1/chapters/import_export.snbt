@@ -1,0 +1,179 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "import_export"
+	group: "7B00000100000006"
+	icon: {
+		id: "ae2importexportcard:import_card"
+	}
+	id: "7B2A0A0200000001"
+	images: [ ]
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"The host for both cards. On its own the wireless terminal"
+				"only reads the network; carded up, it moves items for you"
+				"without a single click."
+				""
+				"Link it to a wireless access point before anything else."
+			]
+			id: "7B2A0A0300010000"
+			rewards: [
+				{
+					id: "7B2A0A050001000B"
+					type: "xp"
+					xp: 20
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A0A050001000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a wireless terminal"
+			tasks: [
+				{
+					id: "7B2A0A0400010001"
+					item: {
+						count: 1
+						id: "ae2:wireless_terminal"
+					}
+					type: "item"
+				}
+			]
+			title: "Terminal in Hand"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B2A0A0300010000"]
+			description: [
+				"Each card is forged from a working bus, an advanced card and"
+				"a pair of processors. Nothing exotic -- if your network can"
+				"print processors, it can afford both."
+				""
+				"Yes, the recipe eats the bus. It was going to sit in a drawer"
+				"anyway."
+			]
+			id: "7B2A0A0300020000"
+			rewards: [
+				{
+					id: "7B2A0A050002000B"
+					type: "xp"
+					xp: 30
+				}
+			]
+			subtitle: "Gather buses and advanced cards"
+			tasks: [
+				{
+					id: "7B2A0A0400020001"
+					item: {
+						count: 1
+						id: "ae2:import_bus"
+					}
+					type: "item"
+				}
+				{
+					id: "7B2A0A0400020002"
+					item: {
+						count: 1
+						id: "ae2:export_bus"
+					}
+					type: "item"
+				}
+				{
+					id: "7B2A0A0400020003"
+					item: {
+						count: 2
+						id: "ae2:advanced_card"
+					}
+					type: "item"
+				}
+			]
+			title: "Bus Parts"
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B2A0A0300020000"]
+			description: [
+				"Slots into the wireless terminal and quietly feeds your"
+				"pickups into the network while you work. Set the filter to"
+				"whitelist or blacklist and choose what gets whisked away."
+				""
+				"Cobble in, ores in, pockets empty. That is the whole pitch."
+			]
+			id: "7B2A0A0300030000"
+			rewards: [
+				{
+					id: "7B2A0A050003000B"
+					type: "xp"
+					xp: 40
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A0A050003000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft an import card"
+			tasks: [
+				{
+					id: "7B2A0A0400030001"
+					item: {
+						count: 1
+						id: "ae2importexportcard:import_card"
+					}
+					type: "item"
+				}
+			]
+			title: "Import Card"
+			x: 3.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B2A0A0300020000"]
+			description: [
+				"The opposite direction: the terminal keeps chosen items"
+				"topped up in your inventory straight from network storage."
+				""
+				"Food, torches, building blocks -- set the filter once and"
+				"stop walking back to restock."
+			]
+			id: "7B2A0A0300040000"
+			rewards: [
+				{
+					id: "7B2A0A050004000B"
+					type: "xp"
+					xp: 40
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A0A050004000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft an export card"
+			tasks: [
+				{
+					id: "7B2A0A0400040001"
+					item: {
+						count: 1
+						id: "ae2importexportcard:export_card"
+					}
+					type: "item"
+				}
+			]
+			title: "Export Card"
+			x: 3.0d
+			y: 1.5d
+		}
+	]
+	subtitle: "Your inventory, on the network"
+	title: "Import Export Card"
+}

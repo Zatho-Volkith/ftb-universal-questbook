@@ -1,0 +1,26 @@
+{
+  "id": "36-projecte",
+  "module_number": 54,
+  "chapter_number": 1,
+  "name": "ProjectE",
+  "description": "Equivalent exchange through EMC: the philosopher's stone, transmutation, energy collectors, and the dark and red matter ladder.",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "requires_mods": [
+    "projecte"
+  ],
+  "requires_modules": [
+    "00-core"
+  ],
+  "chapter_group": "tech",
+  "chapters": [
+    {
+      "number": 1,
+      "file": "projecte.snbt",
+      "title": "ProjectE"
+    }
+  ],
+  "allowed_external_dependencies": []
+}

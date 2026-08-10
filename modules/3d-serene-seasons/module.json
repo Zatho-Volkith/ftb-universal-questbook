@@ -1,0 +1,26 @@
+{
+  "id": "3d-serene-seasons",
+  "module_number": 61,
+  "chapter_number": 1,
+  "name": "Serene Seasons",
+  "description": "Seasons change what grows and when. Craft the calendar, farm through a full year, and build the greenhouse that makes winter optional.",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "requires_mods": [
+    "sereneseasons"
+  ],
+  "requires_modules": [
+    "00-core"
+  ],
+  "chapter_group": "food",
+  "chapters": [
+    {
+      "number": 1,
+      "file": "serene_seasons.snbt",
+      "title": "Serene Seasons"
+    }
+  ],
+  "allowed_external_dependencies": []
+}

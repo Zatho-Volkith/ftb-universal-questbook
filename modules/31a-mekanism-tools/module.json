@@ -1,0 +1,29 @@
+{
+  "id": "31a-mekanism-tools",
+  "module_number": 49,
+  "chapter_number": 2,
+  "name": "Mekanism: Tools",
+  "description": "Osmium tools, the do-everything paxel, and refined obsidian gear forged from Mekanism's alloy line.",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "requires_mods": [
+    "mekanism",
+    "mekanismtools"
+  ],
+  "requires_modules": [
+    "00-core",
+    "31-mekanism"
+  ],
+  "chapter_group": "tech",
+  "chapters": [
+    {
+      "number": 2,
+      "file": "mekanism_tools.snbt",
+      "title": "Mekanism: Tools"
+    }
+  ],
+  "allowed_external_dependencies": [],
+  "extends": "31-mekanism"
+}

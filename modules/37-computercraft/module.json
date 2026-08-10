@@ -1,0 +1,26 @@
+{
+  "id": "37-computercraft",
+  "module_number": 55,
+  "chapter_number": 1,
+  "name": "CC: Tweaked",
+  "description": "Computers, turtles and pocket computers programmable in Lua, plus the modems and monitors that wire them into everything else.",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "requires_mods": [
+    "computercraft"
+  ],
+  "requires_modules": [
+    "00-core"
+  ],
+  "chapter_group": "tech",
+  "chapters": [
+    {
+      "number": 1,
+      "file": "computercraft.snbt",
+      "title": "CC: Tweaked"
+    }
+  ],
+  "allowed_external_dependencies": []
+}

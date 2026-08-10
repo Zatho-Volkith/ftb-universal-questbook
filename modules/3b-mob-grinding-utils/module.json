@@ -1,0 +1,26 @@
+{
+  "id": "3b-mob-grinding-utils",
+  "module_number": 59,
+  "chapter_number": 1,
+  "name": "Mob Grinding Utils",
+  "description": "Fans, a mob masher and absorption hoppers turn mobs into drops, fluid XP and spawn eggs on an industrial scale.",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "requires_mods": [
+    "mob_grinding_utils"
+  ],
+  "requires_modules": [
+    "00-core"
+  ],
+  "chapter_group": "tech",
+  "chapters": [
+    {
+      "number": 1,
+      "file": "mob_grinding_utils.snbt",
+      "title": "Mob Grinding Utils"
+    }
+  ],
+  "allowed_external_dependencies": []
+}

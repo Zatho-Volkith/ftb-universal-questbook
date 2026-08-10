@@ -1,0 +1,26 @@
+{
+  "id": "31-mekanism",
+  "module_number": 49,
+  "chapter_number": 1,
+  "name": "Mekanism",
+  "description": "Osmium and the metallurgic infuser up through factory tiers, stored power, gas handling, and the digital miner.",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "requires_mods": [
+    "mekanism"
+  ],
+  "requires_modules": [
+    "00-core"
+  ],
+  "chapter_group": "tech",
+  "chapters": [
+    {
+      "number": 1,
+      "file": "mekanism.snbt",
+      "title": "Mekanism"
+    }
+  ],
+  "allowed_external_dependencies": []
+}

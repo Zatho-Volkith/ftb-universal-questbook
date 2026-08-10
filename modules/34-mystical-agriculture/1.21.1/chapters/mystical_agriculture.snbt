@@ -1,0 +1,582 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "hexagon"
+	filename: "mystical_agriculture"
+	group: "7B00000100000006"
+	icon: {
+		id: "mysticalagriculture:inferium_essence"
+	}
+	id: "7B34010200000001"
+	images: [ ]
+	order_index: 10
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"Two ores underpin the whole mod: prosperity shards are the"
+				"crafting material, inferium essence is the fuel."
+				""
+				"Both spawn from stone level down, and inferium also drops from"
+				"hostile mobs. Grab plenty — everything here eats them."
+			]
+			id: "7B34010300010000"
+			rewards: [
+				{
+					id: "7B3401050001000B"
+					type: "xp"
+					xp: 10
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3401050001000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Mine prosperity shards and inferium essence"
+			tasks: [
+				{
+					count: 8L
+					id: "7B34010400010001"
+					item: {
+						count: 1
+						id: "mysticalagriculture:prosperity_shard"
+					}
+					type: "item"
+				}
+				{
+					count: 16L
+					id: "7B34010400010002"
+					item: {
+						count: 1
+						id: "mysticalagriculture:inferium_essence"
+					}
+					type: "item"
+				}
+			]
+			title: "Shards and Essence"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B34010300010000"]
+			description: [
+				"Combines four essence of one tier into a single essence of the"
+				"next tier up."
+				""
+				"It has 1,000 charges — plenty for now. The master version you"
+				"will meet later never runs out."
+			]
+			id: "7B34010300020000"
+			rewards: [
+				{
+					id: "7B3401050002000B"
+					type: "xp"
+					xp: 15
+				}
+			]
+			subtitle: "Craft an infusion crystal"
+			tasks: [
+				{
+					id: "7B34010400020001"
+					item: {
+						count: 1
+						id: "mysticalagriculture:infusion_crystal"
+					}
+					type: "item"
+				}
+			]
+			title: "Infusion Crystal"
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B34010300020000"]
+			description: [
+				"The mod's multiblock crafting station: an altar in the middle"
+				"with eight pedestals in a ring around it."
+				""
+				"Lay the ingredients on the pedestals, the base item on the"
+				"altar, and give it a redstone signal to start."
+			]
+			id: "7B34010300030000"
+			rewards: [
+				{
+					id: "7B3401050003000B"
+					type: "xp"
+					xp: 25
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3401050003000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Build the altar and eight pedestals"
+			tasks: [
+				{
+					id: "7B34010400030001"
+					item: {
+						count: 1
+						id: "mysticalagriculture:infusion_altar"
+					}
+					type: "item"
+				}
+				{
+					count: 8L
+					id: "7B34010400030002"
+					item: {
+						count: 1
+						id: "mysticalagriculture:infusion_pedestal"
+					}
+					type: "item"
+				}
+			]
+			title: "Infusion Altar"
+			x: 3.0d
+			y: -0.75d
+		}
+		{
+			dependencies: ["7B34010300030000"]
+			description: [
+				"Prosperity seed bases plus essence become seeds that grow"
+				"actual resources — stone, dirt, metals, even mob drops."
+				""
+				"Stone seeds are the cheapest proof of concept. Every material"
+				"has its own recipe at the altar."
+			]
+			id: "7B34010300040000"
+			rewards: [
+				{
+					id: "7B3401050004000B"
+					type: "xp"
+					xp: 30
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3401050004000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Infuse your first resource seeds"
+			tasks: [
+				{
+					id: "7B34010400040001"
+					item: {
+						count: 1
+						id: "mysticalagriculture:stone_seeds"
+					}
+					type: "item"
+				}
+			]
+			title: "Resource Seeds"
+			x: 4.5d
+			y: -2.25d
+		}
+		{
+			dependencies: ["7B34010300030000"]
+			description: [
+				"The crop that grows the fuel. Planted inferium seeds yield"
+				"essence forever, no mining required."
+				""
+				"A field of these funds every infusion you will ever run —"
+				"plant them before anything else."
+			]
+			id: "7B34010300050000"
+			rewards: [
+				{
+					id: "7B3401050005000B"
+					type: "xp"
+					xp: 30
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3401050005000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Infuse inferium seeds"
+			tasks: [
+				{
+					id: "7B34010400050001"
+					item: {
+						count: 1
+						id: "mysticalagriculture:inferium_seeds"
+					}
+					type: "item"
+				}
+			]
+			title: "Inferium Seeds"
+			x: 4.5d
+			y: -0.75d
+		}
+		{
+			dependencies: ["7B34010300020000"]
+			description: [
+				"Four inferium and the crystal make one prudentium — the"
+				"second of five essence tiers."
+				""
+				"Each tier unlocks stronger seeds, better farmland and a new"
+				"grade of gear."
+			]
+			id: "7B34010300060000"
+			rewards: [
+				{
+					id: "7B3401050006000B"
+					type: "xp"
+					xp: 20
+				}
+			]
+			subtitle: "Combine inferium into prudentium"
+			tasks: [
+				{
+					count: 4L
+					id: "7B34010400060001"
+					item: {
+						count: 1
+						id: "mysticalagriculture:prudentium_essence"
+					}
+					type: "item"
+				}
+			]
+			title: "Prudentium Essence"
+			x: 3.0d
+			y: 0.75d
+		}
+		{
+			dependencies: ["7B34010300060000"]
+			description: [
+				"Sixteen inferium per piece now. The ladder gets steep, which"
+				"is the mod's polite way of telling you to plant more crops."
+				""
+				"Tertium marks the point where a real inferium farm beats"
+				"mining for it."
+			]
+			id: "7B34010300070000"
+			rewards: [
+				{
+					id: "7B3401050007000B"
+					type: "xp"
+					xp: 30
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3401050007000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Climb to tier three"
+			tasks: [
+				{
+					count: 4L
+					id: "7B34010400070001"
+					item: {
+						count: 1
+						id: "mysticalagriculture:tertium_essence"
+					}
+					type: "item"
+				}
+			]
+			title: "Tertium Essence"
+			x: 4.5d
+			y: 0.75d
+		}
+		{
+			dependencies: ["7B34010300070000"]
+			description: [
+				"Sixty-four inferium each. Growth accelerators under your"
+				"farmland start paying for themselves around here."
+				""
+				"Imperium gear is also the first set worth enchanting"
+				"seriously."
+			]
+			id: "7B34010300080000"
+			rewards: [
+				{
+					id: "7B3401050008000B"
+					type: "xp"
+					xp: 40
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3401050008000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Climb to tier four"
+			tasks: [
+				{
+					count: 4L
+					id: "7B34010400080001"
+					item: {
+						count: 1
+						id: "mysticalagriculture:imperium_essence"
+					}
+					type: "item"
+				}
+			]
+			title: "Imperium Essence"
+			x: 6.0d
+			y: 0.75d
+		}
+		{
+			dependencies: ["7B34010300080000"]
+			description: [
+				"The top of the standard ladder: 256 inferium per essence."
+				""
+				"Supremium makes the best farmland, the strongest gear, and"
+				"the master infusion crystal — infinite uses, zero regrets."
+			]
+			id: "7B34010300090000"
+			rewards: [
+				{
+					id: "7B3401050009000B"
+					type: "xp"
+					xp: 50
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3401050009000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Reach the top tier"
+			tasks: [
+				{
+					count: 4L
+					id: "7B34010400090001"
+					item: {
+						count: 1
+						id: "mysticalagriculture:supremium_essence"
+					}
+					type: "item"
+				}
+			]
+			title: "Supremium Essence"
+			x: 7.5d
+			y: 0.75d
+		}
+		{
+			dependencies: ["7B34010300010000"]
+			description: [
+				"Essence farmland grows mystical crops faster than plain dirt,"
+				"and growth accelerators stacked beneath push speed further."
+				""
+				"Higher essence tiers make better versions of both, and crops"
+				"move over freely when you outgrow the inferium set."
+			]
+			id: "7B340103000A0000"
+			rewards: [
+				{
+					id: "7B340105000A000B"
+					type: "xp"
+					xp: 20
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B340105000A000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Upgrade your farmland"
+			tasks: [
+				{
+					count: 4L
+					id: "7B340104000A0001"
+					item: {
+						count: 1
+						id: "mysticalagriculture:inferium_farmland"
+					}
+					type: "item"
+				}
+				{
+					id: "7B340104000A0002"
+					item: {
+						count: 1
+						id: "mysticalagriculture:inferium_growth_accelerator"
+					}
+					type: "item"
+				}
+			]
+			title: "Better Dirt"
+			x: 1.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B34010300010000"]
+			description: [
+				"Sprinkles water to speed crop growth in an area, exactly like"
+				"you would hope."
+				""
+				"Fill it, hold right-click over the field. Essence upgrades"
+				"widen the area as you climb the tiers."
+			]
+			id: "7B340103000B0000"
+			rewards: [
+				{
+					id: "7B340105000B000B"
+					type: "xp"
+					xp: 15
+				}
+			]
+			subtitle: "Craft a watering can"
+			tasks: [
+				{
+					id: "7B340104000B0001"
+					item: {
+						count: 1
+						id: "mysticalagriculture:watering_can"
+					}
+					type: "item"
+				}
+			]
+			title: "Watering Can"
+			x: 1.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B34010300020000"]
+			description: [
+				"Essence ingots make full tool and armor sets at every tier."
+				""
+				"Inferium gear is roughly iron with better durability. It is a"
+				"stepping stone — each tier reforges into the next."
+			]
+			id: "7B340103000C0000"
+			rewards: [
+				{
+					id: "7B340105000C000B"
+					type: "xp"
+					xp: 25
+				}
+			]
+			subtitle: "Forge essence gear"
+			tasks: [
+				{
+					id: "7B340104000C0001"
+					item: {
+						count: 1
+						id: "mysticalagriculture:inferium_pickaxe"
+					}
+					type: "item"
+				}
+				{
+					id: "7B340104000C0002"
+					item: {
+						count: 1
+						id: "mysticalagriculture:inferium_sword"
+					}
+					type: "item"
+				}
+			]
+			title: "Inferium Tools"
+			x: 3.0d
+			y: 2.25d
+		}
+		{
+			dependencies: ["7B34010300090000"]
+			description: [
+				"Past supremium lies awakened supremium, made here with the"
+				"four elemental essences instead of a simple upgrade."
+				""
+				"This altar is the gate to endgame gear. Grow air, earth,"
+				"water and fire crops to feed it."
+			]
+			id: "7B340103000D0000"
+			rewards: [
+				{
+					id: "7B340105000D000B"
+					type: "xp"
+					xp: 60
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B340105000D000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Build the awakening altar"
+			tasks: [
+				{
+					id: "7B340104000D0001"
+					item: {
+						count: 1
+						id: "mysticalagriculture:awakening_altar"
+					}
+					type: "item"
+				}
+				{
+					count: 4L
+					id: "7B340104000D0002"
+					item: {
+						count: 1
+						id: "mysticalagriculture:awakening_pedestal"
+					}
+					type: "item"
+				}
+				{
+					count: 4L
+					id: "7B340104000D0003"
+					item: {
+						count: 1
+						id: "mysticalagriculture:essence_vessel"
+					}
+					type: "item"
+				}
+			]
+			title: "The Awakening"
+			x: 9.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B34010300090000"]
+			description: [
+				"A chestplate forged from the highest standard essence."
+				""
+				"Supremium armor rivals netherite and takes augments that add"
+				"abilities like flight and water breathing."
+				""
+				"One piece proves the farm works. The full set is just more"
+				"harvests."
+			]
+			id: "7B340103000E0000"
+			rewards: [
+				{
+					id: "7B340105000E000B"
+					type: "xp"
+					xp: 100
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B340105000E000C"
+					table_id: 8863084092434939908L
+					type: "random"
+				}
+			]
+			subtitle: "Forge a supremium chestplate"
+			tasks: [
+				{
+					id: "7B340104000E0001"
+					item: {
+						count: 1
+						id: "mysticalagriculture:supremium_chestplate"
+					}
+					type: "item"
+				}
+			]
+			title: "Supremium Plate"
+			x: 9.0d
+			y: 0.0d
+		}
+	]
+	subtitle: "Grow your resources"
+	title: "Mystical Agriculture"
+}

@@ -1,0 +1,418 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "gear"
+	filename: "mob_grinding_utils"
+	group: "7B00000100000006"
+	icon: {
+		id: "mob_grinding_utils:fan"
+	}
+	id: "7B3B010200000001"
+	images: [ ]
+	order_index: 15
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"A block that blows entities away from itself — the whole"
+				"foundation of mob logistics."
+				""
+				"Feed it a redstone signal and point it at something you"
+				"want somewhere else."
+			]
+			id: "7B3B010300010000"
+			rewards: [
+				{
+					id: "7B3B01050001000B"
+					type: "xp"
+					xp: 10
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3B01050001000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a fan"
+			tasks: [
+				{
+					id: "7B3B010400010001"
+					item: {
+						count: 1
+						id: "mob_grinding_utils:fan"
+					}
+					type: "item"
+				}
+			]
+			title: "Fan"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B3B010300010000"]
+			description: [
+				"The stock airstream is one block wide, which suits very"
+				"orderly mobs only."
+				""
+				"Width and height upgrades stack inside the fan to cover a"
+				"whole kill chamber. A speed upgrade exists too."
+			]
+			id: "7B3B010300020000"
+			rewards: [
+				{
+					id: "7B3B01050002000B"
+					type: "xp"
+					xp: 15
+				}
+			]
+			subtitle: "Widen and heighten the stream"
+			tasks: [
+				{
+					id: "7B3B010400020001"
+					item: {
+						count: 1
+						id: "mob_grinding_utils:fan_upgrade_width"
+					}
+					type: "item"
+				}
+				{
+					id: "7B3B010400020002"
+					item: {
+						count: 1
+						id: "mob_grinding_utils:fan_upgrade_height"
+					}
+					type: "item"
+				}
+			]
+			title: "Fan Upgrades"
+			x: 1.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B3B010300010000"]
+			description: [
+				"A spinning saw blade that kills whatever the fans push into"
+				"it — and it counts as a player kill."
+				""
+				"Player-only drops, XP orbs, the lot. Upgrade slots make it"
+				"considerably nastier."
+			]
+			id: "7B3B010300030000"
+			rewards: [
+				{
+					id: "7B3B01050003000B"
+					type: "xp"
+					xp: 20
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3B01050003000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft the mob masher"
+			tasks: [
+				{
+					id: "7B3B010400030001"
+					item: {
+						count: 1
+						id: "mob_grinding_utils:saw"
+					}
+					type: "item"
+				}
+			]
+			title: "Mob Masher"
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B3B010300030000"]
+			description: [
+				"Looting rolls extra drops exactly like the enchantment;"
+				"beheading takes skulls, wither skeletons included."
+				""
+				"Sharpness, smite and fire upgrades round out the set if the"
+				"masher feels slow."
+			]
+			id: "7B3B010300040000"
+			rewards: [
+				{
+					id: "7B3B01050004000B"
+					type: "xp"
+					xp: 30
+				}
+			]
+			subtitle: "Add looting and beheading"
+			tasks: [
+				{
+					id: "7B3B010400040001"
+					item: {
+						count: 1
+						id: "mob_grinding_utils:saw_upgrade_looting"
+					}
+					type: "item"
+				}
+				{
+					id: "7B3B010400040002"
+					item: {
+						count: 1
+						id: "mob_grinding_utils:saw_upgrade_beheading"
+					}
+					type: "item"
+				}
+			]
+			title: "Saw Upgrades"
+			x: 3.0d
+			y: -0.75d
+		}
+		{
+			dependencies: ["7B3B010300030000"]
+			description: [
+				"Vacuums up drops and loose XP orbs in a wide radius and"
+				"pipes them out the bottom."
+				""
+				"Items go to inventories, XP becomes a fluid — park a tank"
+				"under it and nothing is wasted."
+			]
+			id: "7B3B010300050000"
+			rewards: [
+				{
+					id: "7B3B01050005000B"
+					type: "xp"
+					xp: 30
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3B01050005000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft an absorption hopper"
+			tasks: [
+				{
+					id: "7B3B010400050001"
+					item: {
+						count: 1
+						id: "mob_grinding_utils:absorption_hopper"
+					}
+					type: "item"
+				}
+			]
+			title: "Absorption Hopper"
+			x: 3.0d
+			y: 0.75d
+		}
+		{
+			dependencies: ["7B3B010300050000"]
+			description: [
+				"The tank banks fluid XP by the bucket; the tap bolts onto"
+				"it and pours the levels straight back into you."
+				""
+				"Stand close, open the tap, watch the bar climb."
+			]
+			id: "7B3B010300060000"
+			rewards: [
+				{
+					id: "7B3B01050006000B"
+					type: "xp"
+					xp: 40
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3B01050006000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Store fluid XP and tap it back"
+			tasks: [
+				{
+					id: "7B3B010400060001"
+					item: {
+						count: 1
+						id: "mob_grinding_utils:tank"
+					}
+					type: "item"
+				}
+				{
+					id: "7B3B010400060002"
+					item: {
+						count: 1
+						id: "mob_grinding_utils:xp_tap"
+					}
+					type: "item"
+				}
+			]
+			title: "Liquid XP"
+			x: 4.5d
+			y: 0.75d
+		}
+		{
+			dependencies: ["7B3B010300010000"]
+			description: [
+				"Moves mobs along like a one-way footpath, no pushing"
+				"required."
+				""
+				"Handy where fans would scatter things — and a required part"
+				"of the XP solidifier."
+			]
+			id: "7B3B010300070000"
+			rewards: [
+				{
+					id: "7B3B01050007000B"
+					type: "xp"
+					xp: 25
+				}
+			]
+			subtitle: "Craft an entity conveyor"
+			tasks: [
+				{
+					id: "7B3B010400070001"
+					item: {
+						count: 1
+						id: "mob_grinding_utils:entity_conveyor"
+					}
+					type: "item"
+				}
+			]
+			title: "Entity Conveyor"
+			x: 1.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B3B010300060000", "7B3B010300070000"]
+			description: [
+				"Presses fluid XP into portable form: moulds turn the fluid"
+				"into solid blocks or edible jelly babies."
+				""
+				"Solid XP keeps forever and feeds the entity spawner, if you"
+				"go that far."
+			]
+			id: "7B3B010300080000"
+			rewards: [
+				{
+					id: "7B3B01050008000B"
+					type: "xp"
+					xp: 50
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3B01050008000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Solidify your XP"
+			tasks: [
+				{
+					id: "7B3B010400080001"
+					item: {
+						count: 1
+						id: "mob_grinding_utils:xpsolidifier"
+					}
+					type: "item"
+				}
+				{
+					id: "7B3B010400080002"
+					item: {
+						count: 1
+						id: "mob_grinding_utils:solid_xp_mould_blank"
+					}
+					type: "item"
+				}
+			]
+			title: "XP Solidifier"
+			x: 6.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B3B010300060000"]
+			description: [
+				"Swab any mob for a DNA sample, mix it into chicken feed"
+				"with seeds and liquid XP, and feed it to a chicken."
+				""
+				"The chicken lays a spawn egg of the swabbed mob. Entirely"
+				"renewable, mildly unethical."
+			]
+			id: "7B3B010300090000"
+			rewards: [
+				{
+					id: "7B3B01050009000B"
+					type: "xp"
+					xp: 50
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3B01050009000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Swab a mob and mix chicken feed"
+			tasks: [
+				{
+					id: "7B3B010400090001"
+					item: {
+						count: 1
+						id: "mob_grinding_utils:mob_swab"
+					}
+					type: "item"
+				}
+				{
+					id: "7B3B010400090002"
+					item: {
+						count: 1
+						id: "mob_grinding_utils:gm_chicken_feed"
+					}
+					type: "item"
+				}
+			]
+			title: "Chicken Genetics"
+			x: 6.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B3B010300090000"]
+			description: [
+				"Feed a chicken cursed feed while it stands on dirt and the"
+				"dirt turns dreadful: hostile mobs spawn on it constantly,"
+				"light levels be damned."
+				""
+				"Floor a kill chamber with it, aim the fans, and the masher"
+				"never goes hungry again."
+			]
+			id: "7B3B0103000A0000"
+			rewards: [
+				{
+					id: "7B3B0105000A000B"
+					type: "xp"
+					xp: 100
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3B0105000A000C"
+					table_id: 8863084092434939908L
+					type: "random"
+				}
+			]
+			subtitle: "Curse the ground itself"
+			tasks: [
+				{
+					id: "7B3B0104000A0001"
+					item: {
+						count: 1
+						id: "mob_grinding_utils:dreadful_dirt"
+					}
+					type: "item"
+				}
+			]
+			title: "Dreadful Dirt"
+			x: 7.5d
+			y: 0.0d
+		}
+	]
+	subtitle: "Mobs in, resources out"
+	title: "Mob Grinding Utils"
+}

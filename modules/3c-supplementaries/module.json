@@ -1,0 +1,26 @@
+{
+  "id": "3c-supplementaries",
+  "module_number": 60,
+  "chapter_number": 1,
+  "name": "Supplementaries",
+  "description": "Rope, sacks, cranks and cog blocks -- the small hardware vanilla never shipped, plus a globe for the mantelpiece.",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "requires_mods": [
+    "supplementaries"
+  ],
+  "requires_modules": [
+    "00-core"
+  ],
+  "chapter_group": "mods",
+  "chapters": [
+    {
+      "number": 1,
+      "file": "supplementaries.snbt",
+      "title": "Supplementaries"
+    }
+  ],
+  "allowed_external_dependencies": []
+}

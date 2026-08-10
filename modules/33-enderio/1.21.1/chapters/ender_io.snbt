@@ -1,0 +1,555 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "hexagon"
+	filename: "ender_io"
+	group: "7B00000100000006"
+	icon: {
+		id: "enderio:alloy_smelter"
+	}
+	id: "7B33010200000001"
+	images: [ ]
+	order_index: 9
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"Ender IO's founding dust is not mined, it is burned into"
+				"existence. Light a fire on bedrock and let it go out on its"
+				"own; most fires leave one to three grains behind. Deepslate"
+				"works too, at worse odds."
+				""
+				"A flint and steel is the only infrastructure required. Collect"
+				"a stack early — chassis, capacitors and gears all want grains."
+			]
+			id: "7B33010300010000"
+			rewards: [
+				{
+					id: "7B3301050001000B"
+					type: "xp"
+					xp: 10
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3301050001000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Burn a fire out on bedrock"
+			tasks: [
+				{
+					id: "7B33010400010001"
+					item: {
+						count: 8
+						id: "enderio:grains_of_infinity"
+					}
+					type: "item"
+				}
+			]
+			title: "Grains of Infinity"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B33010300010000"]
+			description: [
+				"Iron framing around a core of grains: the empty shell every"
+				"Ender IO machine is built from."
+				""
+				"Craft a few at once. The generator, smelter and mill each need"
+				"one, and the soul machines use an ensouled variant of the same"
+				"idea."
+			]
+			id: "7B33010300020000"
+			rewards: [
+				{
+					id: "7B3301050002000B"
+					type: "xp"
+					xp: 15
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3301050002000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a void chassis"
+			tasks: [
+				{
+					id: "7B33010400020001"
+					item: {
+						count: 1
+						id: "enderio:void_chassis"
+					}
+					type: "item"
+				}
+			]
+			title: "Void Chassis"
+			x: 1.5d
+			y: 0.75d
+		}
+		{
+			dependencies: ["7B33010300020000"]
+			description: [
+				"The starter generator. Feed it anything a furnace would burn"
+				"and it turns fuel into FE — slowly, but for almost nothing."
+				""
+				"It keeps one or two machines alive. Drop a better capacitor in"
+				"the upgrade slot when you need more speed and a deeper buffer."
+			]
+			id: "7B33010300030000"
+			rewards: [
+				{
+					id: "7B3301050003000B"
+					type: "xp"
+					xp: 20
+				}
+			]
+			subtitle: "Craft a stirling generator"
+			tasks: [
+				{
+					id: "7B33010400030001"
+					item: {
+						count: 1
+						id: "enderio:stirling_generator"
+					}
+					type: "item"
+				}
+			]
+			title: "Stirling Generator"
+			x: 3.0d
+			y: -0.75d
+		}
+		{
+			dependencies: ["7B33010300020000"]
+			description: [
+				"The machine this chapter orbits. It fuses up to three"
+				"ingredients into the alloys every other Ender IO recipe"
+				"expects."
+				""
+				"It handles ordinary furnace recipes too, three at a time, so"
+				"it earns its power draw even between alloy batches."
+			]
+			id: "7B33010300040000"
+			rewards: [
+				{
+					id: "7B3301050004000B"
+					type: "xp"
+					xp: 25
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3301050004000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Craft an alloy smelter"
+			tasks: [
+				{
+					id: "7B33010400040001"
+					item: {
+						count: 1
+						id: "enderio:alloy_smelter"
+					}
+					type: "item"
+				}
+			]
+			title: "Alloy Smelter"
+			x: 3.0d
+			y: 0.75d
+		}
+		{
+			dependencies: ["7B33010300020000"]
+			description: [
+				"A powered crusher. Ores in, doubled output and bonus"
+				"byproducts out — cobblestone in, gravel and flint, and so on"
+				"down a long list."
+				""
+				"Slot in grinding balls made from your alloys to push yields"
+				"higher for a small energy premium."
+			]
+			id: "7B33010300050000"
+			rewards: [
+				{
+					id: "7B3301050005000B"
+					type: "xp"
+					xp: 25
+				}
+			]
+			subtitle: "Craft a SAG mill"
+			tasks: [
+				{
+					id: "7B33010400050001"
+					item: {
+						count: 1
+						id: "enderio:sag_mill"
+					}
+					type: "item"
+				}
+			]
+			title: "SAG Mill"
+			x: 3.0d
+			y: 2.25d
+		}
+		{
+			dependencies: ["7B33010300040000"]
+			description: [
+				"Copper and iron, fused one-to-one into two ingots of the"
+				"metal wiring runs on. Energy conduits are mostly this."
+				""
+				"It is the cheapest alloy in the book, so make it in bulk —"
+				"the energetic line and the capacitor banks both start here."
+			]
+			id: "7B33010300060000"
+			rewards: [
+				{
+					id: "7B3301050006000B"
+					type: "xp"
+					xp: 30
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3301050006000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Alloy smelt 8 conductive alloy ingots"
+			tasks: [
+				{
+					id: "7B33010400060001"
+					item: {
+						count: 8
+						id: "enderio:conductive_alloy_ingot"
+					}
+					type: "item"
+				}
+			]
+			title: "Conductive Alloy"
+			x: 4.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B33010300060000"]
+			description: [
+				"Conductive alloy cooked again with gold and redstone. This is"
+				"the mid-tier metal: upgrades, capacitors and better conduits"
+				"all draw on it."
+				""
+				"Each batch returns two ingots, so eight is four smelts. Keep"
+				"gold flowing — the whole upper tier is gold-hungry."
+			]
+			id: "7B33010300070000"
+			rewards: [
+				{
+					id: "7B3301050007000B"
+					type: "xp"
+					xp: 40
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3301050007000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Alloy smelt 8 energetic alloy ingots"
+			tasks: [
+				{
+					id: "7B33010400070001"
+					item: {
+						count: 8
+						id: "enderio:energetic_alloy_ingot"
+					}
+					type: "item"
+				}
+			]
+			title: "Energetic Alloy"
+			x: 6.0d
+			y: -0.75d
+		}
+		{
+			dependencies: ["7B33010300070000"]
+			description: [
+				"Energetic alloy plus an ender pearl and glowstone dust: the"
+				"top of the alloy ladder, humming slightly."
+				""
+				"Vibrant crystals made from its nuggets gate the powered"
+				"spawner and the best capacitors, so none of this is wasted"
+				"effort."
+			]
+			id: "7B33010300080000"
+			rewards: [
+				{
+					id: "7B3301050008000B"
+					type: "xp"
+					xp: 50
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3301050008000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Alloy smelt 8 vibrant alloy ingots"
+			tasks: [
+				{
+					id: "7B33010400080001"
+					item: {
+						count: 8
+						id: "enderio:vibrant_alloy_ingot"
+					}
+					type: "item"
+				}
+			]
+			title: "Vibrant Alloy"
+			x: 7.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B33010300060000"]
+			description: [
+				"Clay, sand and gravel make binder composite; smelt it, then"
+				"press the binder around alloy. Conductive gives energy and"
+				"fluid lines, pulsating gives item lines."
+				""
+				"Different conduit types share one block space, so a single"
+				"run can carry power, items and fluids down the same wall."
+			]
+			id: "7B33010300090000"
+			rewards: [
+				{
+					id: "7B3301050009000B"
+					type: "xp"
+					xp: 40
+				}
+			]
+			subtitle: "Smelt binder and craft a batch of conduits"
+			tasks: [
+				{
+					id: "7B33010400090001"
+					item: {
+						count: 8
+						id: "enderio:conduit_binder"
+					}
+					type: "item"
+				}
+				{
+					id: "7B33010400090002"
+					item: {
+						count: 8
+						id: "enderio:conduit"
+					}
+					type: "item"
+				}
+			]
+			title: "Conduits"
+			x: 6.0d
+			y: 0.75d
+		}
+		{
+			dependencies: ["7B33010300040000"]
+			description: [
+				"Soul sand fused with gold. The result is the metal of"
+				"Ender IO's soul machinery — vials, chains and the ensouled"
+				"chassis."
+				""
+				"Run the smelts while you gather the rest; the soul binder"
+				"wants a pile of it plus an ensouled chassis of the same"
+				"metal."
+			]
+			id: "7B330103000A0000"
+			rewards: [
+				{
+					id: "7B330105000A000B"
+					type: "xp"
+					xp: 30
+				}
+			]
+			subtitle: "Alloy smelt 8 soularium ingots"
+			tasks: [
+				{
+					id: "7B330104000A0001"
+					item: {
+						count: 8
+						id: "enderio:soularium_ingot"
+					}
+					type: "item"
+				}
+			]
+			title: "Soularium"
+			x: 4.5d
+			y: 2.25d
+		}
+		{
+			dependencies: ["7B330103000A0000", "7B33010300070000"]
+			description: [
+				"The deep end starts here. Around an ensouled chassis and a"
+				"z-logic controller, this machine binds captured souls into"
+				"items."
+				""
+				"Catch a mob in a soul vial, feed vial and item in with power,"
+				"and the soul comes out attached. Broken spawners get"
+				"retargeted the same way."
+			]
+			id: "7B330103000B0000"
+			rewards: [
+				{
+					id: "7B330105000B000B"
+					type: "xp"
+					xp: 60
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B330105000B000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Build a soul binder"
+			tasks: [
+				{
+					id: "7B330104000B0001"
+					item: {
+						count: 1
+						id: "enderio:soul_binder"
+					}
+					type: "item"
+				}
+			]
+			title: "Soul Binder"
+			x: 7.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B330103000B0000", "7B33010300080000"]
+			description: [
+				"Break a vanilla spawner and it drops broken. Bind the mob you"
+				"want into it at the soul binder, then build the spawner"
+				"around an ensouled chassis."
+				""
+				"The result runs anywhere you can deliver FE — the mob farm"
+				"that moves when you do."
+			]
+			id: "7B330103000C0000"
+			rewards: [
+				{
+					id: "7B330105000C000B"
+					type: "xp"
+					xp: 75
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B330105000C000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Build a powered spawner"
+			tasks: [
+				{
+					id: "7B330104000C0001"
+					item: {
+						count: 1
+						id: "enderio:powered_spawner"
+					}
+					type: "item"
+				}
+			]
+			title: "Powered Spawner"
+			x: 9.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B33010300010000"]
+			description: [
+				"Grains, copper and gold make the basic capacitor — the"
+				"upgrade item every machine accepts and the heart of energy"
+				"storage."
+				""
+				"Banks placed together merge into one battery. This basic tier"
+				"buffers a starter base; better tiers are coming."
+			]
+			id: "7B330103000D0000"
+			rewards: [
+				{
+					id: "7B330105000D000B"
+					type: "xp"
+					xp: 30
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B330105000D000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft capacitors and a basic capacitor bank"
+			tasks: [
+				{
+					id: "7B330104000D0001"
+					item: {
+						count: 2
+						id: "enderio:basic_capacitor"
+					}
+					type: "item"
+				}
+				{
+					id: "7B330104000D0002"
+					item: {
+						count: 1
+						id: "enderio:basic_capacitor_bank"
+					}
+					type: "item"
+				}
+			]
+			title: "Capacitor Bank"
+			x: 3.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["7B330103000D0000", "7B33010300080000"]
+			description: [
+				"The top-tier battery: octadic capacitors and advanced banks"
+				"folded around a vibrant crystal."
+				""
+				"One block holds an enormous FE buffer, and a wall of them"
+				"will idle through anything your generators can throw at it."
+				"This is the chapter's victory lap."
+			]
+			id: "7B330103000E0000"
+			rewards: [
+				{
+					id: "7B330105000E000B"
+					type: "xp"
+					xp: 100
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B330105000E000C"
+					table_id: 8863084092434939908L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a vibrant capacitor bank"
+			tasks: [
+				{
+					id: "7B330104000E0001"
+					item: {
+						count: 1
+						id: "enderio:vibrant_capacitor_bank"
+					}
+					type: "item"
+				}
+			]
+			title: "Vibrant Capacitor Bank"
+			x: 9.0d
+			y: -3.0d
+		}
+	]
+	subtitle: "Alloys, conduits and soul-bound machines"
+	title: "Ender IO"
+}

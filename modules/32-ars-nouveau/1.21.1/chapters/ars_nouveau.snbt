@@ -1,0 +1,554 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "diamond"
+	filename: "ars_nouveau"
+	group: "7B00000100000002"
+	icon: {
+		id: "ars_nouveau:novice_spell_book"
+	}
+	id: "7B32010200000001"
+	images: [ ]
+	order_index: 1
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"A book plus the full set of iron tools you were carrying anyway."
+				""
+				"The spell book casts anything you teach it and levels up rather"
+				"than wearing out. Everything else in this chapter exists to make"
+				"the spells inside it stronger, cheaper, or stranger."
+			]
+			id: "7B32010300010000"
+			rewards: [
+				{
+					id: "7B3201050001000B"
+					type: "xp"
+					xp: 10
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3201050001000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Trade your iron tools for magic"
+			tasks: [
+				{
+					id: "7B32010400010001"
+					item: {
+						count: 1
+						id: "ars_nouveau:novice_spell_book"
+					}
+					type: "item"
+				}
+			]
+			title: "Novice Spell Book"
+			x: 0.0d
+			y: -0.75d
+		}
+		{
+			dependencies: ["7B32010300010000"]
+			description: [
+				"Archwood slabs and logs over gold nuggets, so you will be finding"
+				"an archwood tree first. Grab a sapling while you are there."
+				""
+				"New glyphs are written here: the table takes a handful of themed"
+				"items and some experience, and hands back a glyph any book learns."
+			]
+			id: "7B32010300020000"
+			rewards: [
+				{
+					id: "7B3201050002000B"
+					type: "xp"
+					xp: 15
+				}
+			]
+			subtitle: "Craft a scribes table"
+			tasks: [
+				{
+					id: "7B32010400020001"
+					item: {
+						count: 1
+						id: "ars_nouveau:scribes_table"
+					}
+					type: "item"
+				}
+			]
+			title: "Scribes Table"
+			x: 1.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B32010300020000"]
+			description: [
+				"A lantern, a torch, and a little experience at the scribes table."
+				""
+				"Light conjures a lasting magical light source wherever you aim"
+				"it. Cave exploration stops involving torch spam."
+			]
+			id: "7B32010300030000"
+			rewards: [
+				{
+					id: "7B3201050003000B"
+					type: "xp"
+					xp: 25
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3201050003000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Scribe the Light glyph"
+			tasks: [
+				{
+					id: "7B32010400030001"
+					item: {
+						count: 1
+						id: "ars_nouveau:glyph_light"
+					}
+					type: "item"
+				}
+			]
+			title: "First Glyph"
+			x: 3.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B32010300010000"]
+			description: [
+				"Archwood planks around gold. The chamber slowly soaks whatever"
+				"lies inside with source drawn from the world around it."
+				""
+				"This is where amethyst becomes source gems and gems become"
+				"elemental essences. You will never stop using it."
+			]
+			id: "7B32010300040000"
+			rewards: [
+				{
+					id: "7B3201050004000B"
+					type: "xp"
+					xp: 15
+				}
+			]
+			subtitle: "Craft an imbuement chamber"
+			tasks: [
+				{
+					id: "7B32010400040001"
+					item: {
+						count: 1
+						id: "ars_nouveau:imbuement_chamber"
+					}
+					type: "item"
+				}
+			]
+			title: "Imbuement Chamber"
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B32010300040000"]
+			description: [
+				"Drop amethyst shards or lapis into the chamber and wait; they"
+				"charge into source gems, the currency of everything arcane."
+				""
+				"Gems become sourcestone, pedestals, relays and half the recipes"
+				"ahead. Keep the chamber fed."
+			]
+			id: "7B32010300050000"
+			rewards: [
+				{
+					id: "7B3201050005000B"
+					type: "xp"
+					xp: 25
+				}
+			]
+			subtitle: "Imbue 8 source gems"
+			tasks: [
+				{
+					id: "7B32010400050001"
+					item: {
+						count: 8
+						id: "ars_nouveau:source_gem"
+					}
+					type: "item"
+				}
+			]
+			title: "Source Gems"
+			x: 3.0d
+			y: 0.0d
+		}
+		{
+			description: [
+				"Found wild beneath archwood trees. They are food, starbuncle"
+				"bait, and the cheapest fuel for source production."
+				""
+				"Plant a hedge of them now; your source jars will thank you later."
+			]
+			id: "7B32010300060000"
+			rewards: [
+				{
+					id: "7B3201050006000B"
+					type: "xp"
+					xp: 10
+				}
+			]
+			subtitle: "Pick 16 sourceberries"
+			tasks: [
+				{
+					id: "7B32010400060001"
+					item: {
+						count: 16
+						id: "ars_nouveau:sourceberry_bush"
+					}
+					type: "item"
+				}
+			]
+			title: "Sourceberries"
+			x: 0.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B32010300050000", "7B32010300060000"]
+			description: [
+				"Source has to live somewhere. A jar holds ten thousand of it and"
+				"sits politely beside whatever fills it."
+				""
+				"The agronomic sourcelink converts nearby crop growth into source."
+				"Ring it with your sourceberry hedge and the farm powers the magic."
+			]
+			id: "7B32010300070000"
+			rewards: [
+				{
+					id: "7B3201050007000B"
+					type: "xp"
+					xp: 30
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3201050007000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a source jar and sourcelink"
+			tasks: [
+				{
+					id: "7B32010400070001"
+					item: {
+						count: 1
+						id: "ars_nouveau:source_jar"
+					}
+					type: "item"
+				}
+				{
+					id: "7B32010400070002"
+					item: {
+						count: 1
+						id: "ars_nouveau:agronomic_sourcelink"
+					}
+					type: "item"
+				}
+			]
+			title: "Source Economy"
+			x: 4.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B32010300050000"]
+			description: [
+				"The apparatus sits on an arcane core and pulls ingredients from"
+				"arcane pedestals around it. Most of the mod's gear is made here."
+				""
+				"You will want eight pedestals eventually; four will do to start."
+			]
+			id: "7B32010300080000"
+			rewards: [
+				{
+					id: "7B3201050008000B"
+					type: "xp"
+					xp: 40
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3201050008000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Build the apparatus and its core"
+			tasks: [
+				{
+					id: "7B32010400080001"
+					item: {
+						count: 1
+						id: "ars_nouveau:enchanting_apparatus"
+					}
+					type: "item"
+				}
+				{
+					id: "7B32010400080002"
+					item: {
+						count: 1
+						id: "ars_nouveau:arcane_core"
+					}
+					type: "item"
+				}
+			]
+			title: "Enchanting Apparatus"
+			x: 4.5d
+			y: -0.75d
+		}
+		{
+			dependencies: ["7B32010300080000"]
+			description: [
+				"Charge any seed with four source gems at the apparatus and it"
+				"becomes a magebloom crop. The flowers process into fiber."
+				""
+				"Fiber pads out mage armor and spins into the threads that"
+				"enchant it. A small plot covers everything."
+			]
+			id: "7B32010300090000"
+			rewards: [
+				{
+					id: "7B3201050009000B"
+					type: "xp"
+					xp: 50
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3201050009000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Harvest 8 magebloom fiber"
+			tasks: [
+				{
+					id: "7B32010400090001"
+					item: {
+						count: 8
+						id: "ars_nouveau:magebloom_fiber"
+					}
+					type: "item"
+				}
+			]
+			title: "Magebloom"
+			x: 6.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B32010300080000"]
+			description: [
+				"Your novice book plus obsidian, diamonds, quartz and blaze rods"
+				"at the apparatus."
+				""
+				"The upgrade raises your mana ceiling and unlocks tier-two"
+				"glyphs. Every spell you have written carries over."
+			]
+			id: "7B320103000A0000"
+			rewards: [
+				{
+					id: "7B320105000A000B"
+					type: "xp"
+					xp: 60
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B320105000A000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Upgrade to an apprentice book"
+			tasks: [
+				{
+					id: "7B320104000A0001"
+					item: {
+						count: 1
+						id: "ars_nouveau:apprentice_spell_book"
+					}
+					type: "item"
+				}
+			]
+			title: "Apprentice Spell Book"
+			x: 6.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B32010300080000"]
+			description: [
+				"Tame a wild starbuncle with a gold nugget and it leaves you its"
+				"shards; the apparatus turns those into a charm that summons it"
+				"for keeps."
+				""
+				"Starbuncles ferry items between inventories. Yours will happily"
+				"run base logistics while you are off doing wizardry."
+			]
+			id: "7B320103000B0000"
+			rewards: [
+				{
+					id: "7B320105000B000B"
+					type: "xp"
+					xp: 50
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B320105000B000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Befriend a starbuncle"
+			tasks: [
+				{
+					id: "7B320104000B0001"
+					item: {
+						count: 1
+						id: "ars_nouveau:starbuncle_charm"
+					}
+					type: "item"
+				}
+			]
+			title: "Starbuncle Charm"
+			x: 6.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B32010300090000"]
+			description: [
+				"A golden chestplate wrapped in four magebloom fiber at the"
+				"apparatus."
+				""
+				"Mage armor repairs itself with mana and holds enchantment"
+				"threads. The sorcerer set favors mana; heavier sets come later."
+			]
+			id: "7B320103000C0000"
+			rewards: [
+				{
+					id: "7B320105000C000B"
+					type: "xp"
+					xp: 70
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B320105000C000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Craft the sorcerer robes"
+			tasks: [
+				{
+					id: "7B320104000C0001"
+					item: {
+						count: 1
+						id: "ars_nouveau:sorcerer_robes"
+					}
+					type: "item"
+				}
+			]
+			title: "Mage Armor"
+			x: 7.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B320103000A0000"]
+			description: [
+				"Wilden dens dot the wilderness. Guardians drop spikes, hunters"
+				"drop horns, stalkers drop wings."
+				""
+				"The three parts craft a ritual that summons the Wilden Chimera,"
+				"the boss standing between you and the final book."
+			]
+			id: "7B320103000D0000"
+			rewards: [
+				{
+					id: "7B320105000D000B"
+					type: "xp"
+					xp: 80
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B320105000D000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Hunt the wilden for their parts"
+			tasks: [
+				{
+					id: "7B320104000D0001"
+					item: {
+						count: 1
+						id: "ars_nouveau:wilden_spike"
+					}
+					type: "item"
+				}
+				{
+					id: "7B320104000D0002"
+					item: {
+						count: 1
+						id: "ars_nouveau:wilden_horn"
+					}
+					type: "item"
+				}
+				{
+					id: "7B320104000D0003"
+					item: {
+						count: 1
+						id: "ars_nouveau:wilden_wing"
+					}
+					type: "item"
+				}
+			]
+			title: "The Wilden"
+			x: 7.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B320103000D0000"]
+			description: [
+				"The chimera falls and leaves a wilden tribute. The apparatus"
+				"folds it into your apprentice book with ender pearls, emeralds,"
+				"a totem of undying and a nether star."
+				""
+				"Top-tier mana and every glyph unlocked. The rest of the mod is"
+				"yours to break."
+			]
+			id: "7B320103000E0000"
+			rewards: [
+				{
+					id: "7B320105000E000B"
+					type: "xp"
+					xp: 100
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B320105000E000C"
+					table_id: 8863084092434939908L
+					type: "random"
+				}
+			]
+			subtitle: "Upgrade to the archmage book"
+			tasks: [
+				{
+					id: "7B320104000E0001"
+					item: {
+						count: 1
+						id: "ars_nouveau:archmage_spell_book"
+					}
+					type: "item"
+				}
+			]
+			title: "Archmage Spell Book"
+			x: 9.0d
+			y: -1.5d
+		}
+	]
+	subtitle: "Source, glyphs and spell books"
+	title: "Ars Nouveau"
+}

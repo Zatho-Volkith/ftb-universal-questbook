@@ -1,0 +1,26 @@
+{
+  "id": "39-iron-furnaces",
+  "module_number": 57,
+  "chapter_number": 1,
+  "name": "Iron Furnaces",
+  "description": "A furnace tier ladder from iron to netherite, recipe and factory augments, and the rainbow furnace at the top.",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "requires_mods": [
+    "ironfurnaces"
+  ],
+  "requires_modules": [
+    "00-core"
+  ],
+  "chapter_group": "tech",
+  "chapters": [
+    {
+      "number": 1,
+      "file": "iron_furnaces.snbt",
+      "title": "Iron Furnaces"
+    }
+  ],
+  "allowed_external_dependencies": []
+}

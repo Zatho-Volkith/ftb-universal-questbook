@@ -1,0 +1,514 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "octagon"
+	filename: "extreme_reactors"
+	group: "7B00000100000006"
+	icon: {
+		id: "bigreactors:basic_reactorcontroller"
+	}
+	id: "7B35010200000001"
+	images: [ ]
+	order_index: 11
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"The fuel. Yellorite ore spawns through the overworld like the"
+				"iron you have been ignoring it for; smelt it straight to"
+				"ingots."
+				""
+				"Eight is enough to run a first reactor for a surprisingly"
+				"long time — Extreme Reactors sips fuel at small scales."
+			]
+			id: "7B35010300010000"
+			rewards: [
+				{
+					id: "7B3501050001000B"
+					type: "xp"
+					xp: 10
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3501050001000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Smelt 8 yellorium ingots"
+			tasks: [
+				{
+					id: "7B35010400010001"
+					item: {
+						count: 8
+						id: "bigreactors:yellorium_ingot"
+					}
+					type: "item"
+				}
+			]
+			title: "Yellorium"
+			x: 0.0d
+			y: -0.75d
+		}
+		{
+			description: [
+				"Coal or charcoal through a furnace again. Graphite is the"
+				"structural half of the mod — casings, rods and moderator"
+				"blocks."
+				""
+				"Charcoal works as well as coal, so a tree farm covers your"
+				"reactor program forever."
+			]
+			id: "7B35010300020000"
+			rewards: [
+				{
+					id: "7B3501050002000B"
+					type: "xp"
+					xp: 10
+				}
+			]
+			subtitle: "Smelt 16 graphite ingots"
+			tasks: [
+				{
+					id: "7B35010400020001"
+					item: {
+						count: 16
+						id: "bigreactors:graphite_ingot"
+					}
+					type: "item"
+				}
+			]
+			title: "Graphite"
+			x: 0.0d
+			y: 0.75d
+		}
+		{
+			dependencies: ["7B35010300020000"]
+			description: [
+				"Iron, graphite and sand press into the reactor's shell. The"
+				"frame must be casing; wall faces can swap to glass if you"
+				"want to watch the fuel burn."
+				""
+				"Sixteen casing and a little glass covers most of a small"
+				"3x3x3 build — the rest of its faces go to working parts."
+			]
+			id: "7B35010300030000"
+			rewards: [
+				{
+					id: "7B3501050003000B"
+					type: "xp"
+					xp: 20
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3501050003000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Craft reactor casing and reactor glass"
+			tasks: [
+				{
+					id: "7B35010400030001"
+					item: {
+						count: 16
+						id: "bigreactors:basic_reactorcasing"
+					}
+					type: "item"
+				}
+				{
+					id: "7B35010400030002"
+					item: {
+						count: 4
+						id: "bigreactors:basic_reactorglass"
+					}
+					type: "item"
+				}
+			]
+			title: "Casing and Glass"
+			x: 1.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B35010300010000", "7B35010300030000"]
+			description: [
+				"The brain. One per reactor: it shows core temperature, burn"
+				"rate and output, and gives you the control rod sliders."
+				""
+				"The recipe wants yellorium and a diamond, which is the most"
+				"this mod will ever ask of you at the basic tier."
+			]
+			id: "7B35010300040000"
+			rewards: [
+				{
+					id: "7B3501050004000B"
+					type: "xp"
+					xp: 30
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3501050004000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a basic reactor controller"
+			tasks: [
+				{
+					id: "7B35010400040001"
+					item: {
+						count: 1
+						id: "bigreactors:basic_reactorcontroller"
+					}
+					type: "item"
+				}
+			]
+			title: "Reactor Controller"
+			x: 3.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B35010300010000", "7B35010300030000"]
+			description: [
+				"Fuel rods stack into interior columns that hold the"
+				"yellorium; each column is capped by a control rod on the"
+				"reactor's top face."
+				""
+				"Insert the control rods to throttle the burn. Four fuel rods"
+				"make a respectable first core — taller columns run hotter."
+			]
+			id: "7B35010300050000"
+			rewards: [
+				{
+					id: "7B3501050005000B"
+					type: "xp"
+					xp: 30
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3501050005000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft fuel rods and a control rod"
+			tasks: [
+				{
+					id: "7B35010400050001"
+					item: {
+						count: 4
+						id: "bigreactors:basic_reactorfuelrod"
+					}
+					type: "item"
+				}
+				{
+					id: "7B35010400050002"
+					item: {
+						count: 1
+						id: "bigreactors:basic_reactorcontrolrod"
+					}
+					type: "item"
+				}
+			]
+			title: "Fuel and Control Rods"
+			x: 3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B35010300030000"]
+			description: [
+				"The socket your cables plug into. A passive tap converts the"
+				"reactor's heat directly to FE and hands it to whatever cable"
+				"or conduit touches it."
+				""
+				"One tap on any face is enough; add more to feed several"
+				"networks from the same core."
+			]
+			id: "7B35010300060000"
+			rewards: [
+				{
+					id: "7B3501050006000B"
+					type: "xp"
+					xp: 25
+				}
+			]
+			subtitle: "Craft a passive FE power tap"
+			tasks: [
+				{
+					id: "7B35010400060001"
+					item: {
+						count: 1
+						id: "bigreactors:basic_reactorpowertapfe_passive"
+					}
+					type: "item"
+				}
+			]
+			title: "Power Tap"
+			x: 3.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["7B35010300040000", "7B35010300050000", "7B35010300060000"]
+			description: [
+				"An access port loads fuel in and waste out — hopper it, pipe"
+				"it, or hand-feed it. With casing, controller, rods and tap in"
+				"place, the multiblock seals and the controller UI lights up."
+				""
+				"Feed it yellorium, pull the control rods, and watch the FE"
+				"flow. Passive cooling is inefficient but wonderfully quiet."
+			]
+			id: "7B35010300070000"
+			rewards: [
+				{
+					id: "7B3501050007000B"
+					type: "xp"
+					xp: 50
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3501050007000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Add an access port and complete the reactor"
+			tasks: [
+				{
+					id: "7B35010400070001"
+					item: {
+						count: 1
+						id: "bigreactors:basic_reactorsolidaccessport"
+					}
+					type: "item"
+				}
+			]
+			title: "First Criticality"
+			x: 4.5d
+			y: 0.75d
+		}
+		{
+			dependencies: ["7B35010300070000"]
+			description: [
+				"Burned fuel leaves cyanite behind. Pull it from the access"
+				"port's waste side before it clogs your fuel columns."
+				""
+				"Cyanite is not a dead end — it is the whole turbine tier, so"
+				"every ingot your reactor exhales is turbine casing later."
+			]
+			id: "7B35010300080000"
+			rewards: [
+				{
+					id: "7B3501050008000B"
+					type: "xp"
+					xp: 50
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3501050008000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Recover 8 cyanite ingots from waste"
+			tasks: [
+				{
+					id: "7B35010400080001"
+					item: {
+						count: 8
+						id: "bigreactors:cyanite_ingot"
+					}
+					type: "item"
+				}
+			]
+			title: "Cyanite"
+			x: 6.0d
+			y: 0.75d
+		}
+		{
+			dependencies: ["7B35010300010000"]
+			description: [
+				"A small multiblock that melts solids into the fluids the big"
+				"machines drink: liquid yellorium fuel, coolants, and mixed"
+				"exotics."
+				""
+				"A handful of casing, a controller, injectors and ports make"
+				"the minimal box. It is the on-ramp to fluid-fueled builds."
+			]
+			id: "7B35010300090000"
+			rewards: [
+				{
+					id: "7B3501050009000B"
+					type: "xp"
+					xp: 25
+				}
+			]
+			subtitle: "Build the fluidizer's casing and controller"
+			tasks: [
+				{
+					id: "7B35010400090001"
+					item: {
+						count: 4
+						id: "bigreactors:fluidizercasing"
+					}
+					type: "item"
+				}
+				{
+					id: "7B35010400090002"
+					item: {
+						count: 1
+						id: "bigreactors:fluidizercontroller"
+					}
+					type: "item"
+				}
+			]
+			title: "Fluidizer"
+			x: 1.5d
+			y: -2.25d
+		}
+		{
+			dependencies: ["7B35010300080000"]
+			description: [
+				"Cyanite pays for the turbine's skin. Same multiblock rules as"
+				"the reactor: casing frame, controller on a face, ports where"
+				"you need them."
+				""
+				"Turbines trade steam for far more FE than passive cooling"
+				"ever yields — this shell is where the real numbers start."
+			]
+			id: "7B350103000A0000"
+			rewards: [
+				{
+					id: "7B350105000A000B"
+					type: "xp"
+					xp: 60
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B350105000A000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Craft turbine casing and its controller"
+			tasks: [
+				{
+					id: "7B350104000A0001"
+					item: {
+						count: 16
+						id: "bigreactors:basic_turbinecasing"
+					}
+					type: "item"
+				}
+				{
+					id: "7B350104000A0002"
+					item: {
+						count: 1
+						id: "bigreactors:basic_turbinecontroller"
+					}
+					type: "item"
+				}
+			]
+			title: "Turbine Shell"
+			x: 7.5d
+			y: 0.75d
+		}
+		{
+			dependencies: ["7B350103000A0000"]
+			description: [
+				"Two fluid ports close the loop — steam in, water back out —"
+				"and a power tap carries the generated FE away."
+				""
+				"Steam comes from an actively cooled reactor: rebuild yours at"
+				"reinforced tier with coolant ports and it trades direct FE"
+				"output for serious steam volume."
+			]
+			id: "7B350103000B0000"
+			rewards: [
+				{
+					id: "7B350105000B000B"
+					type: "xp"
+					xp: 75
+				}
+			]
+			subtitle: "Add fluid ports and a turbine power tap"
+			tasks: [
+				{
+					id: "7B350104000B0001"
+					item: {
+						count: 2
+						id: "bigreactors:basic_turbinefluidport_forge_passive"
+					}
+					type: "item"
+				}
+				{
+					id: "7B350104000B0002"
+					item: {
+						count: 1
+						id: "bigreactors:basic_turbinepowertapfe_passive"
+					}
+					type: "item"
+				}
+			]
+			title: "Steam Loop"
+			x: 9.0d
+			y: 0.75d
+		}
+		{
+			dependencies: ["7B350103000B0000"]
+			description: [
+				"A bearing anchors a shaft down the turbine's spine; blades"
+				"fan off it to catch the steam. Rotor mass and blade count"
+				"against steam flow is the whole tuning game."
+				""
+				"Spin it toward 900 RPM and hold it there. When the coils sing"
+				"and the FE graph flattens out, you have finished this"
+				"chapter."
+			]
+			id: "7B350103000C0000"
+			rewards: [
+				{
+					id: "7B350105000C000B"
+					type: "xp"
+					xp: 100
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B350105000C000C"
+					table_id: 8863084092434939908L
+					type: "random"
+				}
+			]
+			subtitle: "Craft the bearing, shafts and blades"
+			tasks: [
+				{
+					id: "7B350104000C0001"
+					item: {
+						count: 1
+						id: "bigreactors:basic_turbinerotorbearing"
+					}
+					type: "item"
+				}
+				{
+					id: "7B350104000C0002"
+					item: {
+						count: 4
+						id: "bigreactors:basic_turbinerotorshaft"
+					}
+					type: "item"
+				}
+				{
+					id: "7B350104000C0003"
+					item: {
+						count: 8
+						id: "bigreactors:basic_turbinerotorblade"
+					}
+					type: "item"
+				}
+			]
+			title: "The Rotor"
+			x: 10.5d
+			y: 0.75d
+		}
+	]
+	subtitle: "Big reactors, bigger turbines"
+	title: "Extreme Reactors"
+}

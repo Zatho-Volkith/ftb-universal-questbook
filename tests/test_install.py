@@ -22,7 +22,7 @@ MC = "1.21.1"
 FAMILIES = {
     "farmers_delight.snbt": ("20-farmersdelight", 34),
     "productive_bees.snbt": ("22-productivebees", 28),
-    "applied_energistics.snbt": ("2a-ae2", 63),
+    "applied_energistics.snbt": ("2a-ae2", 70),
     "quality_of_life.snbt": ("30-quality-of-life", 38),
     "croptopia.snbt": ("21-croptopia", 22),
     "umapyoi.snbt": ("28-umapyoi", 18),
@@ -30,7 +30,7 @@ FAMILIES = {
 MERGED_BOXES = {
     "farmers_delight.snbt": (0.0, 9.0, -3.0, 13.5),
     "productive_bees.snbt": (0.0, 6.0, -1.5, 12.0),
-    "applied_energistics.snbt": (-1.5, 12.0, -3.0, 27.0),
+    "applied_energistics.snbt": (-1.5, 12.0, -3.0, 33.0),
     "quality_of_life.snbt": (0.0, 12.0, -1.5, 21.0),
     "croptopia.snbt": (0.0, 7.5, -3.0, 9.0),
     "umapyoi.snbt": (0.0, 6.0, -1.5, 7.5),

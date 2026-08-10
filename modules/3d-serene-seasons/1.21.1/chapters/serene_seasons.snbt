@@ -1,0 +1,288 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "circle"
+	filename: "serene_seasons"
+	group: "7B00000100000004"
+	icon: {
+		id: "sereneseasons:calendar"
+	}
+	id: "7B3D010200000001"
+	images: [ ]
+	order_index: 5
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"A clock and some paper. The calendar tracks the season and how"
+				"deep into it you are."
+				""
+				"Seasons decide what grows, when rain turns to snow, and how"
+				"long you have until harvest. Knowing the date stops being"
+				"trivia and starts being farm planning."
+			]
+			id: "7B3D010300010000"
+			rewards: [
+				{
+					id: "7B3D01050001000B"
+					type: "xp"
+					xp: 10
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3D01050001000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a calendar"
+			tasks: [
+				{
+					id: "7B3D010400010001"
+					item: {
+						count: 1
+						id: "sereneseasons:calendar"
+					}
+					type: "item"
+				}
+			]
+			title: "The Calendar"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B3D010300010000"]
+			description: [
+				"A daylight-detector of a block that emits redstone according"
+				"to the current season."
+				""
+				"Wire it to lamps, gates or greenhouse hatches and the farm"
+				"reacts to the calendar on its own."
+			]
+			id: "7B3D010300020000"
+			rewards: [
+				{
+					id: "7B3D01050002000B"
+					type: "xp"
+					xp: 20
+				}
+			]
+			subtitle: "Craft a season sensor"
+			tasks: [
+				{
+					id: "7B3D010400020001"
+					item: {
+						count: 1
+						id: "sereneseasons:season_sensor"
+					}
+					type: "item"
+				}
+			]
+			title: "Season Sensor"
+			x: 1.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B3D010300010000"]
+			description: [
+				"Spring is planting weather: mild, wet, and kind to seedlings."
+				"Get wheat in the ground the moment the thaw hits."
+				""
+				"Every crop has fertile seasons; sow outside them and the plant"
+				"simply refuses to grow. Wheat forgives more than most."
+			]
+			id: "7B3D010300030000"
+			rewards: [
+				{
+					id: "7B3D01050003000B"
+					type: "xp"
+					xp: 20
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3D01050003000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Harvest 16 wheat"
+			tasks: [
+				{
+					id: "7B3D010400030001"
+					item: {
+						count: 16
+						id: "minecraft:wheat"
+					}
+					type: "item"
+				}
+			]
+			title: "Spring Sowing"
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B3D010300030000"]
+			description: [
+				"Long days and warm nights -- summer is peak growing season for"
+				"almost everything."
+				""
+				"Sweet berry bushes crop continuously while the sun cooperates."
+				"Stock up; they slow right down when the leaves turn."
+			]
+			id: "7B3D010300040000"
+			rewards: [
+				{
+					id: "7B3D01050004000B"
+					type: "xp"
+					xp: 30
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3D01050004000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Pick 16 sweet berries"
+			tasks: [
+				{
+					id: "7B3D010400040001"
+					item: {
+						count: 16
+						id: "minecraft:sweet_berries"
+					}
+					type: "item"
+				}
+			]
+			title: "Summer Berries"
+			x: 3.0d
+			y: 0.75d
+		}
+		{
+			dependencies: ["7B3D010300040000"]
+			description: [
+				"Autumn is the last full growing season before the frost, and"
+				"the classic harvest crops love it."
+				""
+				"Root vegetables and gourds keep; leafy things do not."
+				"Prioritize what stores."
+			]
+			id: "7B3D010300050000"
+			rewards: [
+				{
+					id: "7B3D01050005000B"
+					type: "xp"
+					xp: 40
+				}
+			]
+			subtitle: "Bring in pumpkins and carrots"
+			tasks: [
+				{
+					id: "7B3D010400050001"
+					item: {
+						count: 8
+						id: "minecraft:pumpkin"
+					}
+					type: "item"
+				}
+				{
+					id: "7B3D010400050002"
+					item: {
+						count: 16
+						id: "minecraft:carrot"
+					}
+					type: "item"
+				}
+			]
+			title: "Autumn Harvest"
+			x: 4.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B3D010300050000"]
+			description: [
+				"In winter, ordinary crops stop growing outdoors entirely. A"
+				"farm with no pantry is a famine with scenery."
+				""
+				"Bake ahead and bale the surplus -- the animals still need"
+				"feeding when the fields go white."
+			]
+			id: "7B3D010300060000"
+			rewards: [
+				{
+					id: "7B3D01050006000B"
+					type: "xp"
+					xp: 50
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3D01050006000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Store bread and hay for winter"
+			tasks: [
+				{
+					id: "7B3D010400060001"
+					item: {
+						count: 16
+						id: "minecraft:bread"
+					}
+					type: "item"
+				}
+				{
+					id: "7B3D010400060002"
+					item: {
+						count: 8
+						id: "minecraft:hay_block"
+					}
+					type: "item"
+				}
+			]
+			title: "Winter Stores"
+			x: 6.0d
+			y: 0.75d
+		}
+		{
+			dependencies: ["7B3D010300060000"]
+			description: [
+				"Crops under glass ignore the calendar: a glass roof a few"
+				"blocks above the soil counts as shelter and keeps plants"
+				"growing straight through winter."
+				""
+				"Build it once and the seasons become scenery. The farm never"
+				"sleeps again."
+			]
+			id: "7B3D010300070000"
+			rewards: [
+				{
+					id: "7B3D01050007000B"
+					type: "xp"
+					xp: 60
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3D01050007000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Glaze a greenhouse with 32 glass"
+			tasks: [
+				{
+					id: "7B3D010400070001"
+					item: {
+						count: 32
+						id: "minecraft:glass"
+					}
+					type: "item"
+				}
+			]
+			title: "The Greenhouse"
+			x: 7.5d
+			y: 0.0d
+		}
+	]
+	subtitle: "Farm with the calendar, not against it"
+	title: "Serene Seasons"
+}

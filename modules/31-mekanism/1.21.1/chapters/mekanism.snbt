@@ -1,0 +1,607 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "gear"
+	filename: "mekanism"
+	group: "7B00000100000006"
+	icon: {
+		id: "mekanism:metallurgic_infuser"
+	}
+	id: "7B31010200000001"
+	images: [ ]
+	order_index: 8
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"A soft blue metal vanilla never heard of and Mekanism cannot"
+				"live without."
+				""
+				"It spawns generously through the upper half of the world, so"
+				"one honest mining trip funds your first machines."
+			]
+			id: "7B31010300010000"
+			rewards: [
+				{
+					id: "7B3101050001000B"
+					type: "xp"
+					xp: 10
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3101050001000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Smelt eight osmium ingots"
+			tasks: [
+				{
+					count: 8L
+					id: "7B31010400010001"
+					item: {
+						count: 1
+						id: "mekanism:ingot_osmium"
+					}
+					type: "item"
+				}
+			]
+			title: "Osmium"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B31010300010000"]
+			description: [
+				"A furnace that folds one material into another: redstone into"
+				"iron for alloy, carbon into iron for steel."
+				""
+				"Nearly every recipe in the mod traces back to this block. Feed"
+				"it power from any FE source and it gets to work."
+			]
+			id: "7B31010300020000"
+			rewards: [
+				{
+					id: "7B3101050002000B"
+					type: "xp"
+					xp: 15
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3101050002000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a metallurgic infuser"
+			tasks: [
+				{
+					id: "7B31010400020001"
+					item: {
+						count: 1
+						id: "mekanism:metallurgic_infuser"
+					}
+					type: "item"
+				}
+			]
+			title: "Metallurgic Infuser"
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B31010300020000"]
+			description: [
+				"Redstone folded into iron — the first rung of the alloy ladder"
+				"and an ingredient in half the machines ahead."
+				""
+				"Enrich your redstone first and each dust stretches eight times"
+				"as far in the infuser."
+			]
+			id: "7B31010300030000"
+			rewards: [
+				{
+					id: "7B3101050003000B"
+					type: "xp"
+					xp: 20
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3101050003000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Infuse eight infused alloys"
+			tasks: [
+				{
+					count: 8L
+					id: "7B31010400030001"
+					item: {
+						count: 1
+						id: "mekanism:alloy_infused"
+					}
+					type: "item"
+				}
+			]
+			title: "Infused Alloy"
+			x: 3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B31010300030000"]
+			description: [
+				"The chassis every proper machine bolts onto: a steel frame"
+				"with an osmium core and glass panels."
+				""
+				"Steel comes from the infuser too — iron plus carbon, twice"
+				"over. Keep a stack of it moving and casings stop being a chore."
+			]
+			id: "7B31010300040000"
+			rewards: [
+				{
+					id: "7B3101050004000B"
+					type: "xp"
+					xp: 25
+				}
+			]
+			subtitle: "Craft a steel casing"
+			tasks: [
+				{
+					id: "7B31010400040001"
+					item: {
+						count: 1
+						id: "mekanism:steel_casing"
+					}
+					type: "item"
+				}
+			]
+			title: "Steel Casing"
+			x: 4.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B31010300040000"]
+			description: [
+				"One raw ore in, two dusts out — your ore supply just doubled."
+				""
+				"It also makes enriched redstone and carbon, which slash the"
+				"infuser's appetite, and enriched obsidian for the alloys at"
+				"the top of the ladder."
+			]
+			id: "7B31010300050000"
+			rewards: [
+				{
+					id: "7B3101050005000B"
+					type: "xp"
+					xp: 30
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3101050005000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft an enrichment chamber"
+			tasks: [
+				{
+					id: "7B31010400050001"
+					item: {
+						count: 1
+						id: "mekanism:enrichment_chamber"
+					}
+					type: "item"
+				}
+			]
+			title: "Enrichment Chamber"
+			x: 6.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B31010300040000"]
+			description: [
+				"The chamber's opposite number: it grinds ingots back to dust,"
+				"cobble down to gravel and sand, and plants into bio fuel."
+				""
+				"You will want its dusts for the electrolytic core later, so"
+				"park it next to the enrichment chamber."
+			]
+			id: "7B31010300060000"
+			rewards: [
+				{
+					id: "7B3101050006000B"
+					type: "xp"
+					xp: 30
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3101050006000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a crusher"
+			tasks: [
+				{
+					id: "7B31010400060001"
+					item: {
+						count: 1
+						id: "mekanism:crusher"
+					}
+					type: "item"
+				}
+			]
+			title: "Crusher"
+			x: 6.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B31010300040000"]
+			description: [
+				"A furnace that runs on FE instead of coal."
+				""
+				"On its own it merely matches vanilla speed — the point is the"
+				"upgrade slots, and the factory versions that smelt a whole"
+				"ore line at once."
+			]
+			id: "7B31010300070000"
+			rewards: [
+				{
+					id: "7B3101050007000B"
+					type: "xp"
+					xp: 30
+				}
+			]
+			subtitle: "Craft an energized smelter"
+			tasks: [
+				{
+					id: "7B31010400070001"
+					item: {
+						count: 1
+						id: "mekanism:energized_smelter"
+					}
+					type: "item"
+				}
+			]
+			title: "Energized Smelter"
+			x: 6.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B31010300030000"]
+			description: [
+				"A pocket battery of infused alloy, gold and redstone."
+				""
+				"It charges your portable gear, but mostly it is an ingredient:"
+				"energy cubes and a surprising number of machines want one"
+				"baked in."
+			]
+			id: "7B31010300080000"
+			rewards: [
+				{
+					id: "7B3101050008000B"
+					type: "xp"
+					xp: 25
+				}
+			]
+			subtitle: "Craft an energy tablet"
+			tasks: [
+				{
+					id: "7B31010400080001"
+					item: {
+						count: 1
+						id: "mekanism:energy_tablet"
+					}
+					type: "item"
+				}
+			]
+			title: "Energy Tablet"
+			x: 4.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B31010300080000"]
+			description: [
+				"The cube banks FE; universal cables move it, and they speak"
+				"every mod's power dialect on both ends."
+				""
+				"Mekanism itself generates nothing without its Generators"
+				"sibling — plug in whatever your pack burns, pedals or splits."
+			]
+			id: "7B31010300090000"
+			rewards: [
+				{
+					id: "7B3101050009000B"
+					type: "xp"
+					xp: 40
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3101050009000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft an energy cube and eight cables"
+			tasks: [
+				{
+					id: "7B31010400090001"
+					item: {
+						count: 1
+						id: "mekanism:basic_energy_cube"
+					}
+					type: "item"
+				}
+				{
+					count: 8L
+					id: "7B31010400090002"
+					item: {
+						count: 1
+						id: "mekanism:basic_universal_cable"
+					}
+					type: "item"
+				}
+			]
+			title: "Power Grid"
+			x: 6.0d
+			y: -2.25d
+		}
+		{
+			dependencies: ["7B31010300050000"]
+			description: [
+				"The same machine, widened to three parallel slots."
+				""
+				"Your existing enrichment chamber is an ingredient, not a"
+				"casualty — factories are how every Mekanism machine scales"
+				"without multiplying blocks."
+			]
+			id: "7B310103000A0000"
+			rewards: [
+				{
+					id: "7B310105000A000B"
+					type: "xp"
+					xp: 45
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B310105000A000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Upgrade the chamber into a factory"
+			tasks: [
+				{
+					id: "7B310104000A0001"
+					item: {
+						count: 1
+						id: "mekanism:basic_enriching_factory"
+					}
+					type: "item"
+				}
+			]
+			title: "Enriching Factory"
+			x: 7.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B310103000A0000"]
+			description: [
+				"Five slots wide, built around advanced circuits — infused"
+				"alloy layered onto the basic ones."
+				""
+				"From here each tier swallows the last, so nothing you built"
+				"earlier is ever wasted."
+			]
+			id: "7B310103000B0000"
+			rewards: [
+				{
+					id: "7B310105000B000B"
+					type: "xp"
+					xp: 60
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B310105000B000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Craft an advanced enriching factory"
+			tasks: [
+				{
+					id: "7B310104000B0001"
+					item: {
+						count: 1
+						id: "mekanism:advanced_enriching_factory"
+					}
+					type: "item"
+				}
+			]
+			title: "Advanced Factory"
+			x: 9.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B31010300030000"]
+			description: [
+				"The top of the ladder: infused alloy takes diamond to become"
+				"reinforced, then refined obsidian to become atomic."
+				""
+				"Refined obsidian means crushed obsidian, enriched, then"
+				"compressed with osmium — plan a production line, not a batch."
+			]
+			id: "7B310103000C0000"
+			rewards: [
+				{
+					id: "7B310105000C000B"
+					type: "xp"
+					xp: 70
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B310105000C000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Forge four atomic alloys"
+			tasks: [
+				{
+					count: 4L
+					id: "7B310104000C0001"
+					item: {
+						count: 1
+						id: "mekanism:alloy_atomic"
+					}
+					type: "item"
+				}
+			]
+			title: "Atomic Alloy"
+			x: 4.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B310103000C0000"]
+			description: [
+				"A mining robot in a box: give it a filter and a radius and it"
+				"teleports matching blocks straight into its buffer."
+				""
+				"Filter by ore tag rather than block, and let it replace what"
+				"it takes with cobble so the landscape keeps its dignity."
+			]
+			id: "7B310103000D0000"
+			rewards: [
+				{
+					id: "7B310105000D000B"
+					type: "xp"
+					xp: 90
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B310105000D000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Build the digital miner"
+			tasks: [
+				{
+					id: "7B310104000D0001"
+					item: {
+						count: 1
+						id: "mekanism:digital_miner"
+					}
+					type: "item"
+				}
+			]
+			title: "Digital Miner"
+			x: 6.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["7B31010300060000"]
+			description: [
+				"Splits water into hydrogen and oxygen — your first step into"
+				"Mekanism's chemical side."
+				""
+				"The electrolytic core wants osmium, iron and gold dusts, which"
+				"is exactly what your crusher is for."
+			]
+			id: "7B310103000E0000"
+			rewards: [
+				{
+					id: "7B310105000E000B"
+					type: "xp"
+					xp: 50
+				}
+			]
+			subtitle: "Craft an electrolytic separator"
+			tasks: [
+				{
+					id: "7B310104000E0001"
+					item: {
+						count: 1
+						id: "mekanism:electrolytic_separator"
+					}
+					type: "item"
+				}
+			]
+			title: "Electrolytic Separator"
+			x: 7.5d
+			y: 2.25d
+		}
+		{
+			dependencies: ["7B31010300080000"]
+			description: [
+				"Turns gases into fluids and back again, one button to flip"
+				"the direction."
+				""
+				"Whenever a recipe wants the liquid form of something you only"
+				"have as gas — or the reverse — this is the adapter."
+			]
+			id: "7B310103000F0000"
+			rewards: [
+				{
+					id: "7B310105000F000B"
+					type: "xp"
+					xp: 55
+				}
+			]
+			subtitle: "Craft a rotary condensentrator"
+			tasks: [
+				{
+					id: "7B310104000F0001"
+					item: {
+						count: 1
+						id: "mekanism:rotary_condensentrator"
+					}
+					type: "item"
+				}
+			]
+			title: "Rotary Condensentrator"
+			x: 6.0d
+			y: -3.75d
+		}
+		{
+			dependencies: ["7B310103000B0000"]
+			description: [
+				"Seven slots of enrichment behind elite circuits and"
+				"reinforced alloy."
+				""
+				"This is the industrial base the rest of Mekanism assumes you"
+				"have: from here the mod opens into chemistry, fission and the"
+				"Meka-suit."
+			]
+			id: "7B31010300100000"
+			rewards: [
+				{
+					id: "7B3101050010000B"
+					type: "xp"
+					xp: 100
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B3101050010000C"
+					table_id: 8863084092434939908L
+					type: "random"
+				}
+			]
+			subtitle: "Craft an elite enriching factory"
+			tasks: [
+				{
+					id: "7B31010400100001"
+					item: {
+						count: 1
+						id: "mekanism:elite_enriching_factory"
+					}
+					type: "item"
+				}
+			]
+			title: "Elite Factory"
+			x: 10.5d
+			y: 0.0d
+		}
+	]
+	subtitle: "Osmium in, industry out"
+	title: "Mekanism"
+}
