@@ -1,0 +1,26 @@
+{
+  "id": "2d-toms-storage",
+  "module_number": 45,
+  "chapter_number": 1,
+  "name": "Tom's Simple Storage",
+  "description": "An inventory connector merges your chests, a terminal searches them all, and cables, hoppers and wireless terminals grow it into a real network.",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "requires_mods": [
+    "toms_storage"
+  ],
+  "requires_modules": [
+    "00-core"
+  ],
+  "chapter_group": "tech",
+  "chapters": [
+    {
+      "number": 1,
+      "file": "toms_storage.snbt",
+      "title": "Tom's Simple Storage"
+    }
+  ],
+  "allowed_external_dependencies": []
+}

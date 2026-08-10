@@ -1,0 +1,30 @@
+{
+  "id": "2ah-ars-energistique",
+  "module_number": 42,
+  "chapter_number": 9,
+  "name": "Ars Énergistique",
+  "description": "Source cells, acceptors, and spell tunnels for the ME network.",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "requires_mods": [
+    "ae2",
+    "arseng",
+    "ars_nouveau"
+  ],
+  "requires_modules": [
+    "00-core",
+    "2a-ae2"
+  ],
+  "chapter_group": "tech",
+  "chapters": [
+    {
+      "number": 9,
+      "file": "ars_energistique.snbt",
+      "title": "Ars Énergistique"
+    }
+  ],
+  "allowed_external_dependencies": [],
+  "extends": "2a-ae2"
+}

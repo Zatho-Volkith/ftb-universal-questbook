@@ -1,0 +1,278 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "croptopia_delight"
+	group: "7B00000100000004"
+	icon: {
+		id: "croptopia:the_big_breakfast"
+	}
+	id: "7B21020200000001"
+	images: [ ]
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"Croptopia Delight teaches the Farmer's Delight workstations to"
+				"speak croptopia."
+				""
+				"The cutting board and skillet are where most of the new recipes"
+				"happen, so set them up first."
+			]
+			id: "7B21020300010000"
+			rewards: [
+				{
+					id: "7B2102050001000B"
+					type: "xp"
+					xp: 15
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2102050001000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a cutting board and a skillet"
+			tasks: [
+				{
+					id: "7B21020400010001"
+					item: {
+						count: 1
+						id: "farmersdelight:cutting_board"
+					}
+					type: "item"
+				}
+				{
+					id: "7B21020400010002"
+					item: {
+						count: 1
+						id: "farmersdelight:skillet"
+					}
+					type: "item"
+				}
+			]
+			title: "A Wider Kitchen"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B21020300010000"]
+			description: [
+				"Corn and tomatoes turn up in half of croptopia's savoury dishes."
+				""
+				"Get a few plants of each going now and the later quests cook"
+				"themselves."
+			]
+			id: "7B21020300020000"
+			rewards: [
+				{
+					id: "7B2102050002000B"
+					type: "xp"
+					xp: 15
+				}
+			]
+			subtitle: "Grow corn and tomatoes"
+			tasks: [
+				{
+					count: 4L
+					id: "7B21020400020001"
+					item: {
+						count: 1
+						id: "croptopia:corn"
+					}
+					type: "item"
+				}
+				{
+					count: 4L
+					id: "7B21020400020002"
+					item: {
+						count: 1
+						id: "croptopia:tomato"
+					}
+					type: "item"
+				}
+			]
+			title: "Stocking the Pantry"
+			x: 1.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B21020300010000"]
+			description: [
+				"Bacon and eggs, done properly in a hot pan."
+				""
+				"A skillet over a stove cooks faster than any campfire and never"
+				"burns the food."
+			]
+			id: "7B21020300030000"
+			rewards: [
+				{
+					id: "7B2102050003000B"
+					type: "xp"
+					xp: 20
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2102050003000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Fry bacon and eggs"
+			tasks: [
+				{
+					id: "7B21020400030001"
+					item: {
+						count: 1
+						id: "croptopia:cooked_bacon"
+					}
+					type: "item"
+				}
+				{
+					id: "7B21020400030002"
+					item: {
+						count: 1
+						id: "croptopia:sunny_side_eggs"
+					}
+					type: "item"
+				}
+			]
+			title: "Skillet Sizzle"
+			x: 1.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B21020300020000"]
+			description: [
+				"The cooking pot batch-cooks croptopia's stews and soups from"
+				"whatever the garden gives you."
+				""
+				"Beef stew is a solid first pot meal -- filling and cheap."
+			]
+			id: "7B21020300040000"
+			rewards: [
+				{
+					id: "7B2102050004000B"
+					type: "xp"
+					xp: 30
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2102050004000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Cook a stew in the cooking pot"
+			tasks: [
+				{
+					id: "7B21020400040001"
+					item: {
+						count: 1
+						id: "farmersdelight:cooking_pot"
+					}
+					type: "item"
+				}
+				{
+					id: "7B21020400040002"
+					item: {
+						count: 1
+						id: "croptopia:beef_stew"
+					}
+					type: "item"
+				}
+			]
+			title: "Simmering Pot"
+			x: 3.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B21020300030000"]
+			description: [
+				"Slice, toast, spread, repeat."
+				""
+				"Butter and jam keep the breakfast table interesting long after"
+				"plain bread stops being food."
+			]
+			id: "7B21020300050000"
+			rewards: [
+				{
+					id: "7B2102050005000B"
+					type: "xp"
+					xp: 25
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2102050005000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Make buttered toast and toast with jam"
+			tasks: [
+				{
+					id: "7B21020400050001"
+					item: {
+						count: 1
+						id: "croptopia:buttered_toast"
+					}
+					type: "item"
+				}
+				{
+					id: "7B21020400050002"
+					item: {
+						count: 1
+						id: "croptopia:toast_with_jam"
+					}
+					type: "item"
+				}
+			]
+			title: "Toast and Jam"
+			x: 3.0d
+			y: 1.5d
+		}
+		{
+			dependencies: [
+				"7B21020300040000"
+				"7B21020300050000"
+			]
+			description: [
+				"Everything the kitchen can do, on one plate."
+				""
+				"The big breakfast pulls together meat, eggs, toast and produce"
+				"from across both mods. Serve it and call the chapter done."
+			]
+			id: "7B21020300060000"
+			rewards: [
+				{
+					id: "7B2102050006000B"
+					type: "xp"
+					xp: 70
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2102050006000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Plate the big breakfast"
+			tasks: [
+				{
+					id: "7B21020400060001"
+					item: {
+						count: 1
+						id: "croptopia:the_big_breakfast"
+					}
+					type: "item"
+				}
+			]
+			title: "The Big Breakfast"
+			x: 4.5d
+			y: 0.0d
+		}
+	]
+	subtitle: "Croptopia meets the Farmer's Delight kitchen"
+	title: "Croptopia Delight"
+}

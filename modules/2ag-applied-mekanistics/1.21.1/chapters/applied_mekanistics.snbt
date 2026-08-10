@@ -1,0 +1,228 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "applied_mekanistics"
+	group: "7B00000100000006"
+	icon: {
+		id: "appmek:chemical_cell_housing"
+	}
+	id: "7B2A080200000001"
+	images: [ ]
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"AE2 stores items and fluids. Mekanism runs on chemicals."
+				""
+				"This housing is the shell of every chemical cell, and the"
+				"bridge between the two mods."
+			]
+			id: "7B2A080300010000"
+			rewards: [
+				{
+					id: "7B2A08050001000B"
+					type: "xp"
+					xp: 30
+				}
+			]
+			subtitle: "Craft a chemical cell housing"
+			tasks: [
+				{
+					id: "7B2A080400010001"
+					item: {
+						count: 1
+						id: "appmek:chemical_cell_housing"
+					}
+					type: "item"
+				}
+			]
+			title: "Chemical Cell Housing"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B2A080300010000"]
+			description: [
+				"Your first chemical storage on the network."
+				""
+				"Hydrogen, oxygen, brine, whatever Mekanism's pipes carry now"
+				"sits in a drive bay next to your items."
+			]
+			id: "7B2A080300020000"
+			rewards: [
+				{
+					id: "7B2A08050002000B"
+					type: "xp"
+					xp: 40
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A08050002000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a 1k chemical storage cell"
+			tasks: [
+				{
+					id: "7B2A080400020001"
+					item: {
+						count: 1
+						id: "appmek:chemical_storage_cell_1k"
+					}
+					type: "item"
+				}
+			]
+			title: "First Reserves"
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B2A080300020000"]
+			description: [
+				"Four times the volume in the same drive slot."
+				""
+				"Enough headroom to buffer a whole ore processing line."
+			]
+			id: "7B2A080300030000"
+			rewards: [
+				{
+					id: "7B2A08050003000B"
+					type: "xp"
+					xp: 50
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A08050003000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a 4k chemical storage cell"
+			tasks: [
+				{
+					id: "7B2A080400030001"
+					item: {
+						count: 1
+						id: "appmek:chemical_storage_cell_4k"
+					}
+					type: "item"
+				}
+			]
+			title: "Bigger Tanks"
+			x: 3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B2A080300030000"]
+			description: [
+				"The mid tier, sized for fissile fuel stockpiles and the long"
+				"chemical chains of late Mekanism."
+			]
+			id: "7B2A080300040000"
+			rewards: [
+				{
+					id: "7B2A08050004000B"
+					type: "xp"
+					xp: 60
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A08050004000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a 16k chemical storage cell"
+			tasks: [
+				{
+					id: "7B2A080400040001"
+					item: {
+						count: 1
+						id: "appmek:chemical_storage_cell_16k"
+					}
+					type: "item"
+				}
+			]
+			title: "Pressurised"
+			x: 4.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B2A080300040000"]
+			description: [
+				"A serious buffer for a serious processing plant."
+				""
+				"If even this runs dry, a 256k tier waits beyond it."
+			]
+			id: "7B2A080300050000"
+			rewards: [
+				{
+					id: "7B2A08050005000B"
+					type: "xp"
+					xp: 80
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A08050005000C"
+					table_id: 8863084092434939908L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a 64k chemical storage cell"
+			tasks: [
+				{
+					id: "7B2A080400050001"
+					item: {
+						count: 1
+						id: "appmek:chemical_storage_cell_64k"
+					}
+					type: "item"
+				}
+			]
+			title: "Chemical Vault"
+			x: 6.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B2A080300020000"]
+			description: [
+				"A chemical tank you can carry."
+				""
+				"Ferry gases between outposts without laying a single pipe,"
+				"then slot it into any drive to empty it."
+			]
+			id: "7B2A080300060000"
+			rewards: [
+				{
+					id: "7B2A08050006000B"
+					type: "xp"
+					xp: 50
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A08050006000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a portable chemical cell"
+			tasks: [
+				{
+					id: "7B2A080400060001"
+					item: {
+						count: 1
+						id: "appmek:portable_chemical_cell_1k"
+					}
+					type: "item"
+				}
+			]
+			title: "Gas To Go"
+			x: 3.0d
+			y: 1.5d
+		}
+	]
+	subtitle: "Mekanism chemicals on the ME network"
+	title: "Applied Mekanistics"
+}

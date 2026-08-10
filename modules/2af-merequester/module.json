@@ -1,0 +1,29 @@
+{
+  "id": "2af-merequester",
+  "module_number": 42,
+  "chapter_number": 7,
+  "name": "ME Requester",
+  "description": "Requesters that keep every stock level topped up from autocrafting.",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "requires_mods": [
+    "ae2",
+    "merequester"
+  ],
+  "requires_modules": [
+    "00-core",
+    "2a-ae2"
+  ],
+  "chapter_group": "tech",
+  "chapters": [
+    {
+      "number": 7,
+      "file": "merequester.snbt",
+      "title": "ME Requester"
+    }
+  ],
+  "allowed_external_dependencies": [],
+  "extends": "2a-ae2"
+}

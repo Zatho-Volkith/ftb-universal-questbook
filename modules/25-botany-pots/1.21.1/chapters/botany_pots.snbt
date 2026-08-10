@@ -1,0 +1,472 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "circle"
+	filename: "botany_pots"
+	group: "7B00000100000004"
+	icon: {
+		id: "botanypots:terracotta_botany_pot"
+	}
+	id: "7B25010200000001"
+	images: [ ]
+	order_index: 2
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"A whole crop plot in one block."
+				""
+				"Soil goes in, a seed goes on top, and it grows right there on"
+				"your shelf. Right-click a finished crop to harvest it."
+			]
+			id: "7B25010300010000"
+			rewards: [
+				{
+					id: "7B2501050001000B"
+					type: "xp"
+					xp: 15
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2501050001000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a botany pot"
+			tasks: [
+				{
+					id: "7B25010400010001"
+					item: {
+						count: 1
+						id: "botanypots:terracotta_botany_pot"
+					}
+					type: "item"
+				}
+			]
+			title: "The Botany Pot"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B25010300010000"]
+			description: [
+				"Prove the pot earns its shelf space."
+				""
+				"Plant wheat on dirt and harvest it as it ripens. One block,"
+				"zero field maintenance."
+			]
+			id: "7B25010300020000"
+			rewards: [
+				{
+					id: "7B2501050002000B"
+					type: "xp"
+					xp: 15
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2501050002000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Harvest wheat from a pot"
+			tasks: [
+				{
+					count: 16L
+					id: "7B25010400020001"
+					item: {
+						count: 1
+						id: "minecraft:wheat"
+					}
+					type: "item"
+				}
+			]
+			title: "First Harvest"
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B25010300010000"]
+			description: [
+				"The same pot in nicer clothes."
+				""
+				"Every terracotta, glazed and concrete colour has a matching"
+				"pot. Pick one that suits the room."
+			]
+			id: "7B25010300030000"
+			rewards: [
+				{
+					id: "7B2501050003000B"
+					type: "xp"
+					xp: 15
+				}
+			]
+			subtitle: "Craft a decorative pot"
+			tasks: [
+				{
+					id: "7B25010400030001"
+					item: {
+						count: 1
+						id: "botanypots:white_glazed_terracotta_botany_pot"
+					}
+					type: "item"
+				}
+			]
+			title: "Dressed Up"
+			x: 1.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B25010300010000"]
+			description: [
+				"Different plants want different ground."
+				""
+				"Pots accept more than dirt: sand for desert plants, soul sand"
+				"for nether crops, and more besides. Stock the options."
+			]
+			id: "7B25010300040000"
+			rewards: [
+				{
+					id: "7B2501050004000B"
+					type: "xp"
+					xp: 20
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2501050004000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Gather three soils"
+			tasks: [
+				{
+					count: 8L
+					id: "7B25010400040001"
+					item: {
+						count: 1
+						id: "minecraft:dirt"
+					}
+					type: "item"
+				}
+				{
+					count: 8L
+					id: "7B25010400040002"
+					item: {
+						count: 1
+						id: "minecraft:sand"
+					}
+					type: "item"
+				}
+				{
+					count: 8L
+					id: "7B25010400040003"
+					item: {
+						count: 1
+						id: "minecraft:soul_sand"
+					}
+					type: "item"
+				}
+			]
+			title: "Soil Survey"
+			x: 1.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B25010300040000"]
+			description: [
+				"Brewing stock without the nether commute."
+				""
+				"Soul sand in a pot grows nether wart safely at home. Your"
+				"potion shelf will thank you."
+			]
+			id: "7B25010300050000"
+			rewards: [
+				{
+					id: "7B2501050005000B"
+					type: "xp"
+					xp: 30
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2501050005000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Grow nether wart in a pot"
+			tasks: [
+				{
+					count: 16L
+					id: "7B25010400050001"
+					item: {
+						count: 1
+						id: "minecraft:nether_wart"
+					}
+					type: "item"
+				}
+			]
+			title: "Nether Greenhouse"
+			x: 3.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B25010300040000"]
+			description: [
+				"A cactus farm that fits on a table."
+				""
+				"Sand in the pot, cactus on the sand. Endless green dye"
+				"without leaving the house."
+			]
+			id: "7B25010300060000"
+			rewards: [
+				{
+					id: "7B2501050006000B"
+					type: "xp"
+					xp: 25
+				}
+			]
+			subtitle: "Grow cactus in a pot"
+			tasks: [
+				{
+					count: 16L
+					id: "7B25010400060001"
+					item: {
+						count: 1
+						id: "minecraft:cactus"
+					}
+					type: "item"
+				}
+			]
+			title: "Desert Rows"
+			x: 3.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["7B25010300020000"]
+			description: [
+				"The pot that harvests itself."
+				""
+				"The hopper variant drops finished crops into the inventory"
+				"below it. Sit a chest under it and walk away."
+			]
+			id: "7B25010300070000"
+			rewards: [
+				{
+					id: "7B2501050007000B"
+					type: "xp"
+					xp: 40
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2501050007000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a hopper botany pot"
+			tasks: [
+				{
+					id: "7B25010400070001"
+					item: {
+						count: 1
+						id: "botanypots:terracotta_hopper_botany_pot"
+					}
+					type: "item"
+				}
+			]
+			title: "Hopper Botany Pot"
+			x: 3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B25010300020000"]
+			description: [
+				"Prickly outside, productive inside."
+				""
+				"A berry bush in a pot keeps producing without planting a"
+				"thorny hedge across the yard."
+			]
+			id: "7B25010300080000"
+			rewards: [
+				{
+					id: "7B2501050008000B"
+					type: "xp"
+					xp: 25
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2501050008000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Harvest potted sweet berries"
+			tasks: [
+				{
+					count: 32L
+					id: "7B25010400080001"
+					item: {
+						count: 1
+						id: "minecraft:sweet_berries"
+					}
+					type: "item"
+				}
+			]
+			title: "Berry Bush"
+			x: 3.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B25010300070000"]
+			description: [
+				"Automation, starch edition."
+				""
+				"A hopper pot full of potatoes feeds itself into storage. Set"
+				"it up once and never plant a field again."
+			]
+			id: "7B25010300090000"
+			rewards: [
+				{
+					id: "7B2501050009000B"
+					type: "xp"
+					xp: 40
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2501050009000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Automate potatoes"
+			tasks: [
+				{
+					count: 64L
+					id: "7B25010400090001"
+					item: {
+						count: 1
+						id: "minecraft:potato"
+					}
+					type: "item"
+				}
+			]
+			title: "Spud Line"
+			x: 4.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B25010300070000"]
+			description: [
+				"Another pot, another staple."
+				""
+				"Add carrots to the automated line. Animal feed and stews are"
+				"covered for good."
+			]
+			id: "7B250103000A0000"
+			rewards: [
+				{
+					id: "7B250105000A000B"
+					type: "xp"
+					xp: 40
+				}
+			]
+			subtitle: "Automate carrots"
+			tasks: [
+				{
+					count: 64L
+					id: "7B250104000A0001"
+					item: {
+						count: 1
+						id: "minecraft:carrot"
+					}
+					type: "item"
+				}
+			]
+			title: "Root Cellar"
+			x: 4.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B25010300070000"]
+			description: [
+				"Light you can farm."
+				""
+				"Cave vines in a pot yield glow berries - food that doubles"
+				"as a light source."
+			]
+			id: "7B250103000B0000"
+			rewards: [
+				{
+					id: "7B250105000B000B"
+					type: "xp"
+					xp: 45
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B250105000B000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Harvest potted glow berries"
+			tasks: [
+				{
+					count: 32L
+					id: "7B250104000B0001"
+					item: {
+						count: 1
+						id: "minecraft:glow_berries"
+					}
+					type: "item"
+				}
+			]
+			title: "Glow Harvest"
+			x: 4.5d
+			y: 1.5d
+		}
+		{
+			dependencies: [
+				"7B25010300090000"
+				"7B250103000A0000"
+			]
+			description: [
+				"A farm that runs while you are elsewhere."
+				""
+				"A bank of hopper pots over a shared chest replaces every"
+				"field you ever tilled. Quiet, compact, and always on."
+			]
+			id: "7B250103000C0000"
+			rewards: [
+				{
+					id: "7B250105000C000B"
+					type: "xp"
+					xp: 70
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B250105000C000C"
+					table_id: 8863084092434939908L
+					type: "random"
+				}
+			]
+			subtitle: "Build a bank of hopper pots"
+			tasks: [
+				{
+					count: 4L
+					id: "7B250104000C0001"
+					item: {
+						count: 1
+						id: "botanypots:terracotta_hopper_botany_pot"
+					}
+					type: "item"
+				}
+			]
+			title: "Set and Forget"
+			x: 6.0d
+			y: 0.0d
+		}
+	]
+	subtitle: "A farm on the windowsill"
+	title: "Botany Pots"
+}

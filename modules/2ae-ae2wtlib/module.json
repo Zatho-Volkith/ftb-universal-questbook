@@ -1,0 +1,29 @@
+{
+  "id": "2ae-ae2wtlib",
+  "module_number": 42,
+  "chapter_number": 6,
+  "name": "AE2 Wireless Terminals",
+  "description": "One universal terminal, infinite range, and your network in your pocket.",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "requires_mods": [
+    "ae2",
+    "ae2wtlib"
+  ],
+  "requires_modules": [
+    "00-core",
+    "2a-ae2"
+  ],
+  "chapter_group": "tech",
+  "chapters": [
+    {
+      "number": 6,
+      "file": "ae2wtlib.snbt",
+      "title": "AE2 Wireless Terminals"
+    }
+  ],
+  "allowed_external_dependencies": [],
+  "extends": "2a-ae2"
+}

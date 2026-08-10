@@ -1,0 +1,464 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "rsquare"
+	filename: "functional_storage"
+	group: "7B00000100000006"
+	icon: {
+		id: "functionalstorage:storage_controller"
+	}
+	id: "7B2C010200000001"
+	images: [ ]
+	order_index: 5
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"One item type, in bulk, with the count on the face."
+				""
+				"Click the front to deposit, click again to take. For anything"
+				"you have hundreds of, a drawer beats a chest every time."
+			]
+			id: "7B2C010300010000"
+			rewards: [
+				{
+					id: "7B2C01050001000B"
+					type: "xp"
+					xp: 15
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2C01050001000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Craft an oak drawer"
+			tasks: [
+				{
+					id: "7B2C010400010001"
+					item: {
+						count: 1
+						id: "functionalstorage:oak_1"
+					}
+					type: "item"
+				}
+			]
+			title: "First Drawer"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B2C010300010000"]
+			description: [
+				"The same block, split two or four ways."
+				""
+				"More item types per drawer, less depth per slot — the right"
+				"size for things you keep in moderate amounts."
+			]
+			id: "7B2C010300020000"
+			rewards: [
+				{
+					id: "7B2C01050002000B"
+					type: "xp"
+					xp: 20
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2C01050002000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a 2-slot and a 4-slot drawer"
+			tasks: [
+				{
+					id: "7B2C010400020001"
+					item: {
+						count: 1
+						id: "functionalstorage:oak_2"
+					}
+					type: "item"
+				}
+				{
+					id: "7B2C010400020002"
+					item: {
+						count: 1
+						id: "functionalstorage:oak_4"
+					}
+					type: "item"
+				}
+			]
+			title: "Divided Drawers"
+			x: 1.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B2C010300010000"]
+			description: [
+				"The two tools of the drawer trade."
+				""
+				"The linking tool ties drawers to a controller in bulk; the"
+				"configuration tool adjusts a drawer without breaking it."
+			]
+			id: "7B2C010300030000"
+			rewards: [
+				{
+					id: "7B2C01050003000B"
+					type: "xp"
+					xp: 20
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2C01050003000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Craft the linking and configuration tools"
+			tasks: [
+				{
+					id: "7B2C010400030001"
+					item: {
+						count: 1
+						id: "functionalstorage:linking_tool"
+					}
+					type: "item"
+				}
+				{
+					id: "7B2C010400030002"
+					item: {
+						count: 1
+						id: "functionalstorage:configuration_tool"
+					}
+					type: "item"
+				}
+			]
+			title: "Tools of the Trade"
+			x: 1.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B2C010300020000"]
+			description: [
+				"One drawer for an item and its compressed forms together."
+				""
+				"Put in nuggets, take out blocks — the drawer does the"
+				"arithmetic for you."
+			]
+			id: "7B2C010300040000"
+			rewards: [
+				{
+					id: "7B2C01050004000B"
+					type: "xp"
+					xp: 30
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2C01050004000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a compacting drawer"
+			tasks: [
+				{
+					id: "7B2C010400040001"
+					item: {
+						count: 1
+						id: "functionalstorage:compacting_drawer"
+					}
+					type: "item"
+				}
+			]
+			title: "Compacting Drawer"
+			x: 3.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["7B2C010300030000"]
+			description: [
+				"Every linked drawer, reachable through one block."
+				""
+				"Point your hoppers and pipes at the controller and items sort"
+				"themselves into the right drawer."
+			]
+			id: "7B2C010300050000"
+			rewards: [
+				{
+					id: "7B2C01050005000B"
+					type: "xp"
+					xp: 40
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2C01050005000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a storage controller"
+			tasks: [
+				{
+					id: "7B2C010400050001"
+					item: {
+						count: 1
+						id: "functionalstorage:storage_controller"
+					}
+					type: "item"
+				}
+			]
+			title: "Storage Controller"
+			x: 3.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B2C010300050000"]
+			description: [
+				"Another access point for the same drawer network."
+				""
+				"Place extensions where the controller cannot reach and the"
+				"wall of drawers keeps growing."
+			]
+			id: "7B2C010300060000"
+			rewards: [
+				{
+					id: "7B2C01050006000B"
+					type: "xp"
+					xp: 40
+				}
+			]
+			subtitle: "Craft a controller extension"
+			tasks: [
+				{
+					id: "7B2C010400060001"
+					item: {
+						count: 1
+						id: "functionalstorage:controller_extension"
+					}
+					type: "item"
+				}
+			]
+			title: "Wider Reach"
+			x: 4.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B2C010300020000"]
+			description: [
+				"The first capacity multiplier."
+				""
+				"Slot it into a drawer and the same block holds noticeably"
+				"more of its item."
+			]
+			id: "7B2C010300070000"
+			rewards: [
+				{
+					id: "7B2C01050007000B"
+					type: "xp"
+					xp: 20
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2C01050007000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a copper upgrade"
+			tasks: [
+				{
+					id: "7B2C010400070001"
+					item: {
+						count: 1
+						id: "functionalstorage:copper_upgrade"
+					}
+					type: "item"
+				}
+			]
+			title: "Copper Capacity"
+			x: 3.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B2C010300070000"]
+			description: [
+				"A serious jump in drawer depth."
+				""
+				"With one of these, a single drawer swallows the output of an"
+				"automated farm."
+			]
+			id: "7B2C010300080000"
+			rewards: [
+				{
+					id: "7B2C01050008000B"
+					type: "xp"
+					xp: 40
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2C01050008000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a diamond upgrade"
+			tasks: [
+				{
+					id: "7B2C010400080001"
+					item: {
+						count: 1
+						id: "functionalstorage:diamond_upgrade"
+					}
+					type: "item"
+				}
+			]
+			title: "Diamond Capacity"
+			x: 4.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B2C010300080000"]
+			description: [
+				"The largest capacity multiplier there is."
+				""
+				"At this depth you stop measuring contents in stacks and start"
+				"measuring in sessions."
+			]
+			id: "7B2C010300090000"
+			rewards: [
+				{
+					id: "7B2C01050009000B"
+					type: "xp"
+					xp: 60
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2C01050009000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a netherite upgrade"
+			tasks: [
+				{
+					id: "7B2C010400090001"
+					item: {
+						count: 1
+						id: "functionalstorage:netherite_upgrade"
+					}
+					type: "item"
+				}
+			]
+			title: "Netherite Capacity"
+			x: 6.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B2C010300020000"]
+			description: [
+				"A full drawer destroys further input instead of jamming."
+				""
+				"Essential under cobble generators and mob farms that never"
+				"stop producing."
+			]
+			id: "7B2C0103000A0000"
+			rewards: [
+				{
+					id: "7B2C0105000A000B"
+					type: "xp"
+					xp: 25
+				}
+			]
+			subtitle: "Craft a void upgrade"
+			tasks: [
+				{
+					id: "7B2C0104000A0001"
+					item: {
+						count: 1
+						id: "functionalstorage:void_upgrade"
+					}
+					type: "item"
+				}
+			]
+			title: "Void Upgrade"
+			x: 3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B2C010300030000"]
+			description: [
+				"Linked ender drawers share a single inventory, wherever they"
+				"sit."
+				""
+				"Fill one at the quarry and empty its twin at base."
+			]
+			id: "7B2C0103000B0000"
+			rewards: [
+				{
+					id: "7B2C0105000B000B"
+					type: "xp"
+					xp: 40
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2C0105000B000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft an ender drawer"
+			tasks: [
+				{
+					id: "7B2C0104000B0001"
+					item: {
+						count: 1
+						id: "functionalstorage:ender_drawer"
+					}
+					type: "item"
+				}
+			]
+			title: "Ender Drawer"
+			x: 3.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["7B2C010300060000"]
+			description: [
+				"Bulk storage for things that refuse to stack."
+				""
+				"Tools, armor and enchanted books vanish into the cabinet by"
+				"the hundreds, out of your chests for good."
+			]
+			id: "7B2C0103000C0000"
+			rewards: [
+				{
+					id: "7B2C0105000C000B"
+					type: "xp"
+					xp: 80
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2C0105000C000C"
+					table_id: 8863084092434939908L
+					type: "random"
+				}
+			]
+			subtitle: "Craft an armory cabinet"
+			tasks: [
+				{
+					id: "7B2C0104000C0001"
+					item: {
+						count: 1
+						id: "functionalstorage:armory_cabinet"
+					}
+					type: "item"
+				}
+			]
+			title: "Armory Cabinet"
+			x: 6.0d
+			y: 1.5d
+		}
+	]
+	subtitle: "A wall of drawers for everything"
+	title: "Functional Storage"
+}

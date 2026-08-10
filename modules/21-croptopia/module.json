@@ -1,0 +1,26 @@
+{
+  "id": "21-croptopia",
+  "module_number": 33,
+  "chapter_number": 1,
+  "name": "Croptopia",
+  "description": "Wild seeds through the kitchen tools - knife, pan, pot, press and mortar - into juices, jams, bakes and a supreme pizza.",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "requires_mods": [
+    "croptopia"
+  ],
+  "requires_modules": [
+    "00-core"
+  ],
+  "chapter_group": "food",
+  "chapters": [
+    {
+      "number": 1,
+      "file": "croptopia.snbt",
+      "title": "Croptopia"
+    }
+  ],
+  "allowed_external_dependencies": []
+}

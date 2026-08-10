@@ -1,0 +1,590 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "circle"
+	filename: "croptopia"
+	group: "7B00000100000004"
+	icon: {
+		id: "croptopia:cooking_pot"
+	}
+	id: "7B21010200000001"
+	images: [ ]
+	order_index: 1
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"Break tall grass and you will find more than wheat seeds."
+				""
+				"Dozens of new crops hide in the greenery. Start with a tomato"
+				"and put a proper garden together."
+			]
+			id: "7B21010300010000"
+			rewards: [
+				{
+					id: "7B2101050001000B"
+					type: "xp"
+					xp: 10
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2101050001000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Gather tomato seeds"
+			tasks: [
+				{
+					id: "7B21010400010001"
+					item: {
+						count: 1
+						id: "croptopia:tomato_seed"
+					}
+					type: "item"
+				}
+			]
+			title: "Gone Foraging"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B21010300010000"]
+			description: [
+				"Sweet, quick to grow, and the base of smoothies and jam."
+				""
+				"Keep a row of them; the desserts ahead will drain your stock."
+			]
+			id: "7B21010300020000"
+			rewards: [
+				{
+					id: "7B2101050002000B"
+					type: "xp"
+					xp: 15
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2101050002000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Gather strawberry seeds"
+			tasks: [
+				{
+					id: "7B21010400020001"
+					item: {
+						count: 1
+						id: "croptopia:strawberry_seed"
+					}
+					type: "item"
+				}
+			]
+			title: "Berry Rows"
+			x: 1.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B21010300010000"]
+			description: [
+				"A tall grain that feeds people and recipes alike."
+				""
+				"Corn turns up in bread, chips and salads. Plant plenty."
+			]
+			id: "7B21010300030000"
+			rewards: [
+				{
+					id: "7B2101050003000B"
+					type: "xp"
+					xp: 15
+				}
+			]
+			subtitle: "Gather corn seeds"
+			tasks: [
+				{
+					id: "7B21010400030001"
+					item: {
+						count: 1
+						id: "croptopia:corn_seed"
+					}
+					type: "item"
+				}
+			]
+			title: "Field Corn"
+			x: 1.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B21010300010000"]
+			description: [
+				"Every kitchen starts with a blade."
+				""
+				"The knife slices, dices and portions. Most Croptopia recipes"
+				"ask for it sooner or later, so keep it close."
+			]
+			id: "7B21010300040000"
+			rewards: [
+				{
+					id: "7B2101050004000B"
+					type: "xp"
+					xp: 20
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2101050004000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a knife"
+			tasks: [
+				{
+					id: "7B21010400040001"
+					item: {
+						count: 1
+						id: "croptopia:knife"
+					}
+					type: "item"
+				}
+			]
+			title: "The Kitchen Knife"
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B21010300010000"]
+			description: [
+				"No seasoning, no supper."
+				""
+				"Salt turns up in a surprising share of the recipe book. Mine"
+				"salt ore and keep a stack on the shelf."
+			]
+			id: "7B21010300050000"
+			rewards: [
+				{
+					id: "7B2101050005000B"
+					type: "xp"
+					xp: 15
+				}
+			]
+			subtitle: "Collect salt"
+			tasks: [
+				{
+					count: 4L
+					id: "7B21010400050001"
+					item: {
+						count: 1
+						id: "croptopia:salt"
+					}
+					type: "item"
+				}
+			]
+			title: "Salt of the Earth"
+			x: 1.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["7B21010300040000"]
+			description: [
+				"For everything that needs a hot surface and a little oil."
+				""
+				"Fried eggs, toast, burgers - the pan covers the fast, greasy"
+				"end of the menu."
+			]
+			id: "7B21010300060000"
+			rewards: [
+				{
+					id: "7B2101050006000B"
+					type: "xp"
+					xp: 25
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2101050006000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a frying pan"
+			tasks: [
+				{
+					id: "7B21010400060001"
+					item: {
+						count: 1
+						id: "croptopia:frying_pan"
+					}
+					type: "item"
+				}
+			]
+			title: "The Frying Pan"
+			x: 3.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B21010300040000"]
+			description: [
+				"Soups, stews and sauces simmer in here."
+				""
+				"The slow end of the kitchen: fill it, wait, and ladle out"
+				"something hearty."
+			]
+			id: "7B21010300070000"
+			rewards: [
+				{
+					id: "7B2101050007000B"
+					type: "xp"
+					xp: 25
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2101050007000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a cooking pot"
+			tasks: [
+				{
+					id: "7B21010400070001"
+					item: {
+						count: 1
+						id: "croptopia:cooking_pot"
+					}
+					type: "item"
+				}
+			]
+			title: "The Cooking Pot"
+			x: 3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B21010300040000"]
+			description: [
+				"Squeezes the wet out of the solid."
+				""
+				"Juices, oils and nut butters all come off the press. Fruit"
+				"goes in, drinkable things come out."
+			]
+			id: "7B21010300080000"
+			rewards: [
+				{
+					id: "7B2101050008000B"
+					type: "xp"
+					xp: 25
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2101050008000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a food press"
+			tasks: [
+				{
+					id: "7B21010400080001"
+					item: {
+						count: 1
+						id: "croptopia:food_press"
+					}
+					type: "item"
+				}
+			]
+			title: "The Food Press"
+			x: 3.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B21010300040000"]
+			description: [
+				"Grind it fine."
+				""
+				"Turns grain into flour, beans into grounds, and whole spices"
+				"into something a recipe can use."
+			]
+			id: "7B21010300090000"
+			rewards: [
+				{
+					id: "7B2101050009000B"
+					type: "xp"
+					xp: 25
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2101050009000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a mortar and pestle"
+			tasks: [
+				{
+					id: "7B21010400090001"
+					item: {
+						count: 1
+						id: "croptopia:mortar_and_pestle"
+					}
+					type: "item"
+				}
+			]
+			title: "Mortar and Pestle"
+			x: 3.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["7B21010300090000"]
+			description: [
+				"The quiet backbone of baking."
+				""
+				"Grind grain into flour and the oven half of the menu opens:"
+				"dough, bread, pies and cakes all start here."
+			]
+			id: "7B210103000A0000"
+			rewards: [
+				{
+					id: "7B210105000A000B"
+					type: "xp"
+					xp: 30
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B210105000A000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Grind some flour"
+			tasks: [
+				{
+					count: 4L
+					id: "7B210104000A0001"
+					item: {
+						count: 1
+						id: "croptopia:flour"
+					}
+					type: "item"
+				}
+			]
+			title: "Flour Power"
+			x: 4.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["7B21010300060000"]
+			description: [
+				"Breakfast, solved."
+				""
+				"An egg in a hot pan is the simplest meal in the mod - cheap,"
+				"fast, and better than eating your ingredients raw."
+			]
+			id: "7B210103000B0000"
+			rewards: [
+				{
+					id: "7B210105000B000B"
+					type: "xp"
+					xp: 30
+				}
+			]
+			subtitle: "Fry some eggs"
+			tasks: [
+				{
+					id: "7B210104000B0001"
+					item: {
+						count: 1
+						id: "croptopia:sunny_side_eggs"
+					}
+					type: "item"
+				}
+			]
+			title: "Sunny Side Up"
+			x: 4.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B21010300080000"]
+			description: [
+				"Press fruit, pour a glass."
+				""
+				"Juices turn orchard surplus into quick, drinkable food. Apple"
+				"is the classic; the press takes most fruit."
+			]
+			id: "7B210103000C0000"
+			rewards: [
+				{
+					id: "7B210105000C000B"
+					type: "xp"
+					xp: 30
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B210105000C000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Press apple juice"
+			tasks: [
+				{
+					id: "7B210104000C0001"
+					item: {
+						count: 1
+						id: "croptopia:apple_juice"
+					}
+					type: "item"
+				}
+			]
+			title: "Juice Bar"
+			x: 4.5d
+			y: 1.5d
+		}
+		{
+			dependencies: [
+				"7B21010300020000"
+				"7B21010300070000"
+			]
+			description: [
+				"Berries, sugar, and a slow simmer."
+				""
+				"Jam keeps the harvest sweet, and spreads onto toast later if"
+				"you feel civilised."
+			]
+			id: "7B210103000D0000"
+			rewards: [
+				{
+					id: "7B210105000D000B"
+					type: "xp"
+					xp: 35
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B210105000D000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Make strawberry jam"
+			tasks: [
+				{
+					id: "7B210104000D0001"
+					item: {
+						count: 1
+						id: "croptopia:strawberry_jam"
+					}
+					type: "item"
+				}
+			]
+			title: "Jam Session"
+			x: 4.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["7B21010300070000"]
+			description: [
+				"A bowl that earns its keep."
+				""
+				"Pot dishes stretch cheap vegetables into filling meals - the"
+				"honest way to feed a base."
+			]
+			id: "7B210103000E0000"
+			rewards: [
+				{
+					id: "7B210105000E000B"
+					type: "xp"
+					xp: 40
+				}
+			]
+			subtitle: "Cook potato soup"
+			tasks: [
+				{
+					id: "7B210104000E0001"
+					item: {
+						count: 1
+						id: "croptopia:potato_soup"
+					}
+					type: "item"
+				}
+			]
+			title: "Supper Pot"
+			x: 4.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B210103000A0000"]
+			description: [
+				"Flour becomes dough, dough becomes dessert."
+				""
+				"A proper bake takes several steps and several stations. The"
+				"pie is proof your kitchen works end to end."
+			]
+			id: "7B210103000F0000"
+			rewards: [
+				{
+					id: "7B210105000F000B"
+					type: "xp"
+					xp: 60
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B210105000F000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Bake an apple pie"
+			tasks: [
+				{
+					id: "7B210104000F0001"
+					item: {
+						count: 1
+						id: "croptopia:apple_pie"
+					}
+					type: "item"
+				}
+			]
+			title: "Baker's Pride"
+			x: 6.0d
+			y: 3.0d
+		}
+		{
+			dependencies: [
+				"7B210103000E0000"
+				"7B210103000F0000"
+			]
+			description: [
+				"Everything on it."
+				""
+				"The supreme pizza pulls from the whole kitchen: dough, cheese,"
+				"meat and vegetables from every corner of your farm."
+			]
+			id: "7B21010300100000"
+			rewards: [
+				{
+					id: "7B2101050010000B"
+					type: "xp"
+					xp: 100
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2101050010000C"
+					table_id: 8863084092434939908L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a supreme pizza"
+			tasks: [
+				{
+					id: "7B21010400100001"
+					item: {
+						count: 1
+						id: "croptopia:supreme_pizza"
+					}
+					type: "item"
+				}
+			]
+			title: "The Full Spread"
+			x: 7.5d
+			y: 1.5d
+		}
+	]
+	subtitle: "Half a thousand things to eat"
+	title: "Croptopia"
+}

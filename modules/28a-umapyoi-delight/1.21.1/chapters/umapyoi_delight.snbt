@@ -1,0 +1,275 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "umapyoi_delight"
+	group: "7B00000100000002"
+	icon: {
+		id: "umapyoidelight:g1_plate"
+	}
+	id: "7B28020200000001"
+	images: [ ]
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"Umamusume run on carrots, and this addon runs on cooking them."
+				""
+				"Start simple: a carrot on a stick, held over the fire until it"
+				"smells right."
+			]
+			id: "7B28020300010000"
+			rewards: [
+				{
+					id: "7B2802050001000B"
+					type: "xp"
+					xp: 15
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2802050001000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Grill a carrot on a stick"
+			tasks: [
+				{
+					id: "7B28020400010001"
+					item: {
+						count: 1
+						id: "umapyoidelight:grilled_stick_carrot"
+					}
+					type: "item"
+				}
+			]
+			title: "First Carrots"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B28020300010000"]
+			description: [
+				"Whole carrots become cut carrot on the cutting board, and cut"
+				"carrot is the base of half the menu."
+				""
+				"Keep a stack prepped -- the fancier dishes eat through it fast."
+			]
+			id: "7B28020300020000"
+			rewards: [
+				{
+					id: "7B2802050002000B"
+					type: "xp"
+					xp: 20
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2802050002000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Cut carrots on a cutting board"
+			tasks: [
+				{
+					id: "7B28020400020001"
+					item: {
+						count: 1
+						id: "farmersdelight:cutting_board"
+					}
+					type: "item"
+				}
+				{
+					count: 4L
+					id: "7B28020400020002"
+					item: {
+						count: 1
+						id: "umapyoidelight:cut_carrot"
+					}
+					type: "item"
+				}
+			]
+			title: "Mise en Place"
+			x: 1.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B28020300010000"]
+			description: [
+				"Carrots alone do not make a menu."
+				""
+				"Strawberries and garlic grow wild out in the world; bring some"
+				"home and get them into farmland."
+			]
+			id: "7B28020300030000"
+			rewards: [
+				{
+					id: "7B2802050003000B"
+					type: "xp"
+					xp: 20
+				}
+			]
+			subtitle: "Gather strawberries and garlic"
+			tasks: [
+				{
+					id: "7B28020400030001"
+					item: {
+						count: 1
+						id: "umapyoidelight:strawberry"
+					}
+					type: "item"
+				}
+				{
+					id: "7B28020400030002"
+					item: {
+						count: 1
+						id: "umapyoidelight:garlic"
+					}
+					type: "item"
+				}
+			]
+			title: "Beyond the Carrot"
+			x: 1.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B28020300020000"]
+			description: [
+				"Carrots and potatoes, simmered slow in the cooking pot until"
+				"they stop being vegetables and start being dinner."
+			]
+			id: "7B28020300040000"
+			rewards: [
+				{
+					id: "7B2802050004000B"
+					type: "xp"
+					xp: 30
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2802050004000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Simmer a carrot potato pot-au-feu"
+			tasks: [
+				{
+					id: "7B28020400040001"
+					item: {
+						count: 1
+						id: "farmersdelight:cooking_pot"
+					}
+					type: "item"
+				}
+				{
+					id: "7B28020400040002"
+					item: {
+						count: 1
+						id: "umapyoidelight:carrot_potato_potaufeu"
+					}
+					type: "item"
+				}
+			]
+			title: "Pot-au-Feu"
+			x: 3.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B28020300030000"]
+			description: [
+				"Every umamusume has a favourite dish, and the kitchen knows"
+				"them all."
+				""
+				"Yakisoba, garlic ramen and a proper cup of coffee -- three house"
+				"specials named for the girls who love them."
+			]
+			id: "7B28020300050000"
+			rewards: [
+				{
+					id: "7B2802050005000B"
+					type: "xp"
+					xp: 40
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2802050005000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Cook three house specials"
+			tasks: [
+				{
+					id: "7B28020400050001"
+					item: {
+						count: 1
+						id: "umapyoidelight:gold_ship_yakisoba"
+					}
+					type: "item"
+				}
+				{
+					id: "7B28020400050002"
+					item: {
+						count: 1
+						id: "umapyoidelight:garlic_ramen"
+					}
+					type: "item"
+				}
+				{
+					id: "7B28020400050003"
+					item: {
+						count: 1
+						id: "umapyoidelight:manhattan_cafe_coffee"
+					}
+					type: "item"
+				}
+			]
+			title: "House Specials"
+			x: 3.0d
+			y: 1.5d
+		}
+		{
+			dependencies: [
+				"7B28020300040000"
+				"7B28020300050000"
+			]
+			description: [
+				"A Grade 1 winner gets a Grade 1 dinner."
+				""
+				"The G1 plate is the kitchen's victory lap -- everything you have"
+				"learned to cook, served on one plate."
+			]
+			id: "7B28020300060000"
+			rewards: [
+				{
+					id: "7B2802050006000B"
+					type: "xp"
+					xp: 70
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2802050006000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Serve the G1 plate"
+			tasks: [
+				{
+					id: "7B28020400060001"
+					item: {
+						count: 1
+						id: "umapyoidelight:g1_plate"
+					}
+					type: "item"
+				}
+			]
+			title: "The G1 Plate"
+			x: 4.5d
+			y: 0.0d
+		}
+	]
+	subtitle: "Carrot cuisine for hungry horse girls"
+	title: "Umapyoi Delight"
+}

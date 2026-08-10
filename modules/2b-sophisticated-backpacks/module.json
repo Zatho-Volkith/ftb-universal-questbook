@@ -1,0 +1,26 @@
+{
+  "id": "2b-sophisticated-backpacks",
+  "module_number": 43,
+  "chapter_number": 1,
+  "name": "Sophisticated Backpacks",
+  "description": "A backpack that grows with you: pickup and magnet upgrades, filters, feeding and restock, the material tiers, and the everlasting upgrade as capstone.",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "requires_mods": [
+    "sophisticatedbackpacks"
+  ],
+  "requires_modules": [
+    "00-core"
+  ],
+  "chapter_group": "tech",
+  "chapters": [
+    {
+      "number": 1,
+      "file": "sophisticated_backpacks.snbt",
+      "title": "Sophisticated Backpacks"
+    }
+  ],
+  "allowed_external_dependencies": []
+}

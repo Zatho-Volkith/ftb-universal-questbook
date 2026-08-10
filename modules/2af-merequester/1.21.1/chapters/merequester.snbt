@@ -1,0 +1,158 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "merequester"
+	group: "7B00000100000006"
+	icon: {
+		id: "merequester:requester"
+	}
+	id: "7B2A070200000001"
+	images: [ ]
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"A requester is only as good as the crafts behind it."
+				""
+				"Pattern providers push jobs into your machines. Every recipe"
+				"you encode is something a requester can keep in stock."
+			]
+			id: "7B2A070300010000"
+			rewards: [
+				{
+					id: "7B2A07050001000B"
+					type: "xp"
+					xp: 20
+				}
+			]
+			subtitle: "Craft a pattern provider"
+			tasks: [
+				{
+					id: "7B2A070400010001"
+					item: {
+						count: 1
+						id: "ae2:pattern_provider"
+					}
+					type: "item"
+				}
+			]
+			title: "Groundwork"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B2A070300010000"]
+			description: [
+				"Set an item and a number; the block does the rest."
+				""
+				"Whenever stock dips below the mark, it fires the autocrafting"
+				"job to top it back up. No more running dry mid-build."
+			]
+			id: "7B2A070300020000"
+			rewards: [
+				{
+					id: "7B2A07050002000B"
+					type: "xp"
+					xp: 50
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A07050002000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a requester"
+			tasks: [
+				{
+					id: "7B2A070400020001"
+					item: {
+						count: 1
+						id: "merequester:requester"
+					}
+					type: "item"
+				}
+			]
+			title: "Standing Orders"
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B2A070300020000"]
+			description: [
+				"Every requester on the network, one screen."
+				""
+				"Edit stock targets and watch job status without chasing down"
+				"each block."
+			]
+			id: "7B2A070300030000"
+			rewards: [
+				{
+					id: "7B2A07050003000B"
+					type: "xp"
+					xp: 40
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A07050003000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a requester terminal"
+			tasks: [
+				{
+					id: "7B2A070400030001"
+					item: {
+						count: 1
+						id: "merequester:requester_terminal"
+					}
+					type: "item"
+				}
+			]
+			title: "Requester Terminal"
+			x: 3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B2A070300030000"]
+			description: [
+				"The same overview, unchained from the cable."
+				""
+				"Adjust stock levels from the far end of the base while the"
+				"network keeps the shelves full."
+			]
+			id: "7B2A070300040000"
+			rewards: [
+				{
+					id: "7B2A07050004000B"
+					type: "xp"
+					xp: 60
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A07050004000C"
+					table_id: 8863084092434939908L
+					type: "random"
+				}
+			]
+			subtitle: "Craft the wireless requester terminal"
+			tasks: [
+				{
+					id: "7B2A070400040001"
+					item: {
+						count: 1
+						id: "merequester:wireless_requester_terminal"
+					}
+					type: "item"
+				}
+			]
+			title: "Remote Requisition"
+			x: 4.5d
+			y: 0.0d
+		}
+	]
+	subtitle: "Stock levels that keep themselves"
+	title: "ME Requester"
+}

@@ -1,0 +1,523 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "circle"
+	filename: "aquaculture"
+	group: "7B00000100000004"
+	icon: {
+		id: "aquaculture:iron_fishing_rod"
+	}
+	id: "7B26010200000001"
+	images: [ ]
+	order_index: 3
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"Sturdier than sticks and string."
+				""
+				"Aquaculture rods accept hooks and bait, and open up a sea"
+				"full of new fish to catch."
+			]
+			id: "7B26010300010000"
+			rewards: [
+				{
+					id: "7B2601050001000B"
+					type: "xp"
+					xp: 15
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2601050001000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Craft an iron fishing rod"
+			tasks: [
+				{
+					id: "7B26010400010001"
+					item: {
+						count: 1
+						id: "aquaculture:iron_fishing_rod"
+					}
+					type: "item"
+				}
+			]
+			title: "A Better Rod"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B26010300010000"]
+			description: [
+				"A small upgrade with a long reach."
+				""
+				"Slot a hook into your rod to improve it. Iron is the plain"
+				"workhorse; fancier hooks add their own tricks."
+			]
+			id: "7B26010300020000"
+			rewards: [
+				{
+					id: "7B2601050002000B"
+					type: "xp"
+					xp: 20
+				}
+			]
+			subtitle: "Craft an iron hook"
+			tasks: [
+				{
+					id: "7B26010400020001"
+					item: {
+						count: 1
+						id: "aquaculture:iron_hook"
+					}
+					type: "item"
+				}
+			]
+			title: "On the Hook"
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B26010300010000"]
+			description: [
+				"Bait grows on dirt."
+				""
+				"The worm farm turns dirt into a steady supply of worms, and"
+				"a baited hook means quicker, better bites."
+			]
+			id: "7B26010300030000"
+			rewards: [
+				{
+					id: "7B2601050003000B"
+					type: "xp"
+					xp: 20
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2601050003000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Set up a worm farm"
+			tasks: [
+				{
+					id: "7B26010400030001"
+					item: {
+						count: 1
+						id: "aquaculture:worm_farm"
+					}
+					type: "item"
+				}
+				{
+					count: 8L
+					id: "7B26010400030002"
+					item: {
+						count: 1
+						id: "aquaculture:worm"
+					}
+					type: "item"
+				}
+			]
+			title: "Worm Farm"
+			x: 1.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B26010300010000"]
+			description: [
+				"One slot for the whole hobby."
+				""
+				"Rods, hooks, bait and fillet knife all live in the box."
+				"Grab it and you are ready for the water."
+			]
+			id: "7B26010300040000"
+			rewards: [
+				{
+					id: "7B2601050004000B"
+					type: "xp"
+					xp: 30
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2601050004000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a tackle box"
+			tasks: [
+				{
+					id: "7B26010400040001"
+					item: {
+						count: 1
+						id: "aquaculture:tackle_box"
+					}
+					type: "item"
+				}
+			]
+			title: "Tackle Box"
+			x: 1.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B26010300020000"]
+			description: [
+				"Fresh water, fresh catch."
+				""
+				"Each water type holds its own fish. Cast into rivers and"
+				"lakes for bluegill, a small panfish that bites readily."
+			]
+			id: "7B26010300050000"
+			rewards: [
+				{
+					id: "7B2601050005000B"
+					type: "xp"
+					xp: 25
+				}
+			]
+			subtitle: "Catch a bluegill"
+			tasks: [
+				{
+					id: "7B26010400050001"
+					item: {
+						count: 1
+						id: "aquaculture:bluegill"
+					}
+					type: "item"
+				}
+			]
+			title: "River Haul"
+			x: 3.0d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B26010300020000"]
+			description: [
+				"The open ocean fights back."
+				""
+				"Cast into salt water for bigger fish. A tuna is a proper"
+				"haul, and fillets generously."
+			]
+			id: "7B26010300060000"
+			rewards: [
+				{
+					id: "7B2601050006000B"
+					type: "xp"
+					xp: 25
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2601050006000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
+			]
+			subtitle: "Catch a tuna"
+			tasks: [
+				{
+					id: "7B26010400060001"
+					item: {
+						count: 1
+						id: "aquaculture:tuna"
+					}
+					type: "item"
+				}
+			]
+			title: "Blue Water"
+			x: 3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B26010300020000"]
+			description: [
+				"Some catches bite first."
+				""
+				"Jungle waters hold piranha. Land one for the trophy wall -"
+				"carefully."
+			]
+			id: "7B26010300070000"
+			rewards: [
+				{
+					id: "7B2601050007000B"
+					type: "xp"
+					xp: 25
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2601050007000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Catch a piranha"
+			tasks: [
+				{
+					id: "7B26010400070001"
+					item: {
+						count: 1
+						id: "aquaculture:piranha"
+					}
+					type: "item"
+				}
+			]
+			title: "Danger Waters"
+			x: 3.0d
+			y: 1.5d
+		}
+		{
+			dependencies: [
+				"7B26010300050000"
+				"7B26010300060000"
+			]
+			description: [
+				"Turn the catch into dinner."
+				""
+				"The fillet knife breaks whole fish down into raw fillets -"
+				"more meals per fish than cooking them whole."
+			]
+			id: "7B26010300080000"
+			rewards: [
+				{
+					id: "7B2601050008000B"
+					type: "xp"
+					xp: 30
+				}
+			]
+			subtitle: "Craft an iron fillet knife"
+			tasks: [
+				{
+					id: "7B26010400080001"
+					item: {
+						count: 1
+						id: "aquaculture:iron_fillet_knife"
+					}
+					type: "item"
+				}
+			]
+			title: "Fillet Knife"
+			x: 4.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B26010300080000"]
+			description: [
+				"The reason you fish."
+				""
+				"Cook your fillets over any fire. A stack of them keeps an"
+				"expedition fed for days."
+			]
+			id: "7B26010300090000"
+			rewards: [
+				{
+					id: "7B2601050009000B"
+					type: "xp"
+					xp: 30
+				}
+			]
+			subtitle: "Cook eight fillets"
+			tasks: [
+				{
+					count: 8L
+					id: "7B26010400090001"
+					item: {
+						count: 1
+						id: "aquaculture:fish_fillet_cooked"
+					}
+					type: "item"
+				}
+			]
+			title: "Fish Fry"
+			x: 6.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B26010300060000"]
+			description: [
+				"A finer rod for a serious angler."
+				""
+				"Gold takes the rod line up a tier and takes enchantments"
+				"well. Same hooks, same bait, better days on the water."
+			]
+			id: "7B260103000A0000"
+			rewards: [
+				{
+					id: "7B260105000A000B"
+					type: "xp"
+					xp: 40
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B260105000A000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a gold fishing rod"
+			tasks: [
+				{
+					id: "7B260104000A0001"
+					item: {
+						count: 1
+						id: "aquaculture:gold_fishing_rod"
+					}
+					type: "item"
+				}
+			]
+			title: "Golden Cast"
+			x: 4.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B260103000A0000"]
+			description: [
+				"Built for the long haul."
+				""
+				"The diamond rod shrugs off wear that would snap lesser rods."
+				"Pair it with a good hook and fish the day away."
+			]
+			id: "7B260103000B0000"
+			rewards: [
+				{
+					id: "7B260105000B000B"
+					type: "xp"
+					xp: 50
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B260105000B000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a diamond fishing rod"
+			tasks: [
+				{
+					id: "7B260104000B0001"
+					item: {
+						count: 1
+						id: "aquaculture:diamond_fishing_rod"
+					}
+					type: "item"
+				}
+			]
+			title: "Diamond Cast"
+			x: 6.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B260103000B0000"]
+			description: [
+				"The sea pays its debts."
+				""
+				"Neptunium does not come from any ore - it comes out of the"
+				"water, on the end of a patient angler's line."
+			]
+			id: "7B260103000C0000"
+			rewards: [
+				{
+					id: "7B260105000C000B"
+					type: "xp"
+					xp: 60
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B260105000C000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Obtain a neptunium ingot"
+			tasks: [
+				{
+					id: "7B260104000C0001"
+					item: {
+						count: 1
+						id: "aquaculture:neptunium_ingot"
+					}
+					type: "item"
+				}
+			]
+			title: "Neptune's Metal"
+			x: 7.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B260103000C0000"]
+			description: [
+				"The last rod you will ever craft."
+				""
+				"The neptunium rod is the peak of the craft - the reward for"
+				"pulling a metal out of the sea one catch at a time."
+			]
+			id: "7B260103000D0000"
+			rewards: [
+				{
+					id: "7B260105000D000B"
+					type: "xp"
+					xp: 80
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B260105000D000C"
+					table_id: 8863084092434939908L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a neptunium fishing rod"
+			tasks: [
+				{
+					id: "7B260104000D0001"
+					item: {
+						count: 1
+						id: "aquaculture:neptunium_fishing_rod"
+					}
+					type: "item"
+				}
+			]
+			title: "Rod of the Deep"
+			x: 9.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B260103000C0000"]
+			description: [
+				"A blade from the bottom of the sea."
+				""
+				"Neptunium gear is tough, and the sword strikes hard at the"
+				"creatures of the water it came from."
+			]
+			id: "7B260103000E0000"
+			rewards: [
+				{
+					id: "7B260105000E000B"
+					type: "xp"
+					xp: 100
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B260105000E000C"
+					table_id: 8863084092434939909L
+					type: "random"
+				}
+			]
+			subtitle: "Forge a neptunium sword"
+			tasks: [
+				{
+					id: "7B260104000E0001"
+					item: {
+						count: 1
+						id: "aquaculture:neptunium_sword"
+					}
+					type: "item"
+				}
+			]
+			title: "Neptune's Edge"
+			x: 9.0d
+			y: 3.0d
+		}
+	]
+	subtitle: "There are other fish in the sea"
+	title: "Aquaculture"
+}

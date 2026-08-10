@@ -1,0 +1,26 @@
+{
+  "id": "2c-functional-storage",
+  "module_number": 44,
+  "chapter_number": 1,
+  "name": "Functional Storage",
+  "description": "Drawers for bulk single-item storage: sizes, tools, the compacting drawer, controller and extensions, capacity upgrades, and the armory cabinet capstone.",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "requires_mods": [
+    "functionalstorage"
+  ],
+  "requires_modules": [
+    "00-core"
+  ],
+  "chapter_group": "tech",
+  "chapters": [
+    {
+      "number": 1,
+      "file": "functional_storage.snbt",
+      "title": "Functional Storage"
+    }
+  ],
+  "allowed_external_dependencies": []
+}

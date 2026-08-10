@@ -1,0 +1,241 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "ae2wtlib"
+	group: "7B00000100000006"
+	icon: {
+		id: "ae2wtlib:wireless_universal_terminal"
+	}
+	id: "7B2A060200000001"
+	images: [ ]
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"An antenna for your ME network."
+				""
+				"Place it on a cable and it broadcasts a wireless signal. Feed it"
+				"more channels for more range."
+			]
+			id: "7B2A060300010000"
+			rewards: [
+				{
+					id: "7B2A06050001000B"
+					type: "xp"
+					xp: 20
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A06050001000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Place a wireless access point"
+			tasks: [
+				{
+					id: "7B2A060400010001"
+					item: {
+						count: 1
+						id: "ae2:wireless_access_point"
+					}
+					type: "item"
+				}
+			]
+			title: "Access Point"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B2A060300010000"]
+			description: [
+				"Your item grid, in your pocket."
+				""
+				"Link it at the access point, keep it charged, and browse the"
+				"network from anywhere in range."
+			]
+			id: "7B2A060300020000"
+			rewards: [
+				{
+					id: "7B2A06050002000B"
+					type: "xp"
+					xp: 30
+				}
+			]
+			subtitle: "Craft a wireless terminal"
+			tasks: [
+				{
+					id: "7B2A060400020001"
+					item: {
+						count: 1
+						id: "ae2:wireless_terminal"
+					}
+					type: "item"
+				}
+			]
+			title: "Cutting the Cord"
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B2A060300020000"]
+			description: [
+				"Every wireless terminal fused into one item."
+				""
+				"One hotbar slot covers your whole network. Combine further"
+				"terminals with it to unlock their screens too."
+			]
+			id: "7B2A060300030000"
+			rewards: [
+				{
+					id: "7B2A06050003000B"
+					type: "xp"
+					xp: 50
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A06050003000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Craft the wireless universal terminal"
+			tasks: [
+				{
+					id: "7B2A060400030001"
+					item: {
+						count: 1
+						id: "ae2wtlib:wireless_universal_terminal"
+					}
+					type: "item"
+				}
+			]
+			title: "Universal Terminal"
+			x: 3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B2A060300030000"]
+			description: [
+				"Encode patterns and reshuffle providers without walking back"
+				"to the controller room."
+				""
+				"Fold both into the universal terminal and the entire"
+				"autocrafting suite travels with you."
+			]
+			id: "7B2A060300040000"
+			rewards: [
+				{
+					id: "7B2A06050004000B"
+					type: "xp"
+					xp: 50
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A06050004000C"
+					table_id: 8863084092434939907L
+					type: "random"
+				}
+			]
+			subtitle: "Craft both wireless pattern terminals"
+			tasks: [
+				{
+					id: "7B2A060400040001"
+					item: {
+						count: 1
+						id: "ae2wtlib:wireless_pattern_encoding_terminal"
+					}
+					type: "item"
+				}
+				{
+					id: "7B2A060400040002"
+					item: {
+						count: 1
+						id: "ae2wtlib:wireless_pattern_access_terminal"
+					}
+					type: "item"
+				}
+			]
+			title: "Pattern Screens"
+			x: 4.5d
+			y: -1.5d
+		}
+		{
+			dependencies: ["7B2A060300030000"]
+			description: [
+				"Drops leap straight into the terminal."
+				""
+				"Slot it into the universal terminal and set filters for what"
+				"gets pulled in as you walk."
+			]
+			id: "7B2A060300050000"
+			rewards: [
+				{
+					id: "7B2A06050005000B"
+					type: "xp"
+					xp: 40
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A06050005000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a magnet card"
+			tasks: [
+				{
+					id: "7B2A060400050001"
+					item: {
+						count: 1
+						id: "ae2wtlib:magnet_card"
+					}
+					type: "item"
+				}
+			]
+			title: "Magnet Card"
+			x: 4.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7B2A060300030000"]
+			description: [
+				"Severs the last tether: range."
+				""
+				"With this card installed, the universal terminal reaches your"
+				"network from any distance, in any dimension."
+			]
+			id: "7B2A060300060000"
+			rewards: [
+				{
+					id: "7B2A06050006000B"
+					type: "xp"
+					xp: 80
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2A06050006000C"
+					table_id: 8863084092434939908L
+					type: "random"
+				}
+			]
+			subtitle: "Craft a quantum bridge card"
+			tasks: [
+				{
+					id: "7B2A060400060001"
+					item: {
+						count: 1
+						id: "ae2wtlib:quantum_bridge_card"
+					}
+					type: "item"
+				}
+			]
+			title: "Quantum Bridge Card"
+			x: 6.0d
+			y: 0.0d
+		}
+	]
+	subtitle: "Your network, from anywhere"
+	title: "AE2 Wireless Terminals"
+}

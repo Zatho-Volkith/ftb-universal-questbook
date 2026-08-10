@@ -1,0 +1,30 @@
+{
+  "id": "2ag-applied-mekanistics",
+  "module_number": 42,
+  "chapter_number": 8,
+  "name": "Applied Mekanistics",
+  "description": "Mekanism chemicals stored, carried, and piped on the ME network.",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "requires_mods": [
+    "ae2",
+    "appmek",
+    "mekanism"
+  ],
+  "requires_modules": [
+    "00-core",
+    "2a-ae2"
+  ],
+  "chapter_group": "tech",
+  "chapters": [
+    {
+      "number": 8,
+      "file": "applied_mekanistics.snbt",
+      "title": "Applied Mekanistics"
+    }
+  ],
+  "allowed_external_dependencies": [],
+  "extends": "2a-ae2"
+}

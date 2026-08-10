@@ -1,0 +1,26 @@
+{
+  "id": "26-aquaculture",
+  "module_number": 38,
+  "chapter_number": 1,
+  "name": "Aquaculture",
+  "description": "Iron rod and hooks through bait, tackle and fillet knives to the fish of every water, ending in neptunium pulled from the sea.",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "requires_mods": [
+    "aquaculture"
+  ],
+  "requires_modules": [
+    "00-core"
+  ],
+  "chapter_group": "food",
+  "chapters": [
+    {
+      "number": 1,
+      "file": "aquaculture.snbt",
+      "title": "Aquaculture"
+    }
+  ],
+  "allowed_external_dependencies": []
+}

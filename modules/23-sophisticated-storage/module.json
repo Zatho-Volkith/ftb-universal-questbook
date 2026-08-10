@@ -1,0 +1,26 @@
+{
+  "id": "23-sophisticated-storage",
+  "module_number": 35,
+  "chapter_number": 1,
+  "name": "Sophisticated Storage",
+  "description": "Barrels and chests with upgrade slots: stack upgrades, material tiers, utility upgrades, and a controller network as the automation capstone.",
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "requires_mods": [
+    "sophisticatedstorage"
+  ],
+  "requires_modules": [
+    "00-core"
+  ],
+  "chapter_group": "tech",
+  "chapters": [
+    {
+      "number": 1,
+      "file": "sophisticated_storage.snbt",
+      "title": "Sophisticated Storage"
+    }
+  ],
+  "allowed_external_dependencies": []
+}

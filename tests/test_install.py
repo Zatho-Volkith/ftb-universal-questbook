@@ -22,15 +22,20 @@ MC = "1.21.1"
 FAMILIES = {
     "farmers_delight.snbt": ("20-farmersdelight", 34),
     "productive_bees.snbt": ("22-productivebees", 28),
-    "applied_energistics.snbt": ("2a-ae2", 41),
+    "applied_energistics.snbt": ("2a-ae2", 63),
     "quality_of_life.snbt": ("30-quality-of-life", 38),
+    "croptopia.snbt": ("21-croptopia", 22),
+    "umapyoi.snbt": ("28-umapyoi", 18),
 }
 MERGED_BOXES = {
     "farmers_delight.snbt": (0.0, 9.0, -3.0, 13.5),
     "productive_bees.snbt": (0.0, 6.0, -1.5, 12.0),
-    "applied_energistics.snbt": (-1.5, 12.0, -3.0, 15.0),
+    "applied_energistics.snbt": (-1.5, 12.0, -3.0, 27.0),
     "quality_of_life.snbt": (0.0, 12.0, -1.5, 21.0),
+    "croptopia.snbt": (0.0, 7.5, -3.0, 9.0),
+    "umapyoi.snbt": (0.0, 6.0, -1.5, 7.5),
 }
+FULL_CHAPTER_COUNT = 23
 
 
 def fresh_quests_dir() -> Path:
@@ -65,7 +70,7 @@ def test_full_install_shape():
     quests = fresh_quests_dir()
     do_install(quests)
     chapters = sorted(p.name for p in (quests / "chapters").glob("*.snbt"))
-    assert len(chapters) == 15, chapters
+    assert len(chapters) == FULL_CHAPTER_COUNT, chapters
     addon_files = {"waystones.snbt", "mega_cells.snbt", "expanded_delight.snbt",
                    "bee_breeding.snbt", "applied_flux.snbt"}
     assert not addon_files & set(chapters), "addon chapter installed standalone"
@@ -153,7 +158,7 @@ def test_completionist_ids_and_dependencies():
     assert ae2["dependencies"] == ["7B2A010200000001"]
     assert ae2["tasks"] == [{"id": "7B0901042A010001", "type": "checkmark"}]
     final = by_id["7B090103FFFF0000"]
-    assert len(final["dependencies"]) == 14
+    assert len(final["dependencies"]) == FULL_CHAPTER_COUNT - 1
     assert set(final["dependencies"]) == set(by_id) - {final["id"]}
 
 
