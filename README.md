@@ -88,7 +88,10 @@ modules/
       chapters/getting_started.snbt
 tools/
   install.py                  install modules into an instance
+  compose.py                  merge add-on quests into parent chapters
   import_chapter.py           pull a chapter back out of an instance
+  import_wizard.py            guided, step-by-step version of the above
+  webui.py                    the same import flow, in your browser (repo-only)
   wizard.py                   interactive installer shipped in the bundle
   validate.py                 lint the library
   testbed.py                  build and run a throwaway server to verify
@@ -102,6 +105,8 @@ tools/
 tests/
   test_validate.py            asserts each validator check actually fires
   test_import.py              asserts importing is stable and idempotent
+  test_install.py             asserts install-time merging and cleanup
+  test_webui.py               drives the import web UI end to end
 ```
 
 Module content sits under a Minecraft version folder (`1.21.1/`) so a 1.20.1
@@ -146,20 +151,36 @@ are also in `library.json` and every module's `module.json`.
 | `05-the-end` | The End | 13 | vanilla |
 | `06-building` | Building & Decoration | 13 | vanilla |
 | `07-enchanting-and-brewing` | Enchanting & Brewing | 13 | vanilla |
+| `08-welcome` | Welcome | 6 | vanilla |
+| `09-completionist` | Completionist | *(generated at install)* | vanilla |
 | `20-farmersdelight` | Farmer's Delight | 12 | `farmersdelight` |
 | `20a-expanded-delight` | └ Expanded Delight | 6 | `+ expandeddelight` |
 | `20b-nethers-delight` | └ Nether's Delight | 6 | `+ mynethersdelight` |
 | `20c-oceans-delight` | └ Ocean's Delight | 5 | `+ oceansdelight` |
 | `20d-enders-delight` | └ Ender's Delight | 5 | `+ endersdelight` |
+| `21-croptopia` | Croptopia | 16 | `croptopia` |
+| `21a-croptopia-delight` | └ Croptopia Delight | 6 | `+ croptopiadelight, farmersdelight` |
 | `22-productivebees` | Productive Bees | 12 | `productivebees` |
 | `22a-bee-breeding` | └ Bee Breeding | 16 | `(same mod)` |
+| `23-sophisticated-storage` | Sophisticated Storage | 14 | `sophisticatedstorage` |
+| `25-botany-pots` | Botany Pots | 12 | `botanypots` |
+| `26-aquaculture` | Aquaculture | 14 | `aquaculture` |
 | `28-umapyoi` | Umapyoi | 12 | `umapyoi` |
+| `28a-umapyoi-delight` | └ Umapyoi Delight | 6 | `+ umapyoidelight, farmersdelight` |
 | `29-refinedstorage` | Refined Storage | 19 | `refinedstorage` |
 | `2a-ae2` | Applied Energistics 2 | 20 | `ae2` |
 | `2aa-megacells` | └ MEGA Cells | 5 | `+ megacells` |
 | `2ab-extendedae` | └ Extended AE | 5 | `+ extendedae` |
 | `2ac-advanced-ae` | └ Advanced AE | 6 | `+ advanced_ae` |
 | `2ad-appflux` | └ Applied Flux | 5 | `+ appflux` |
+| `2ae-ae2wtlib` | └ AE2 Wireless Terminals | 6 | `+ ae2wtlib` |
+| `2af-merequester` | └ ME Requester | 4 | `+ merequester` |
+| `2ag-applied-mekanistics` | └ Applied Mekanistics | 6 | `+ appmek, mekanism` |
+| `2ah-ars-energistique` | └ Ars Énergistique | 6 | `+ arseng, ars_nouveau` |
+| `2b-sophisticated-backpacks` | Sophisticated Backpacks | 12 | `sophisticatedbackpacks` |
+| `2c-functional-storage` | Functional Storage | 12 | `functionalstorage` |
+| `2d-toms-storage` | Tom's Simple Storage | 10 | `toms_storage` |
+| `2e-farming-for-blockheads` | Farming for Blockheads | 9 | `farmingforblockheads` |
 | `30-quality-of-life` | Quality of Life | 8 | vanilla |
 | `30a-waystones` | └ Waystones | 4 | `+ waystones` |
 | `30b-explorers-compass` | └ Explorer's Compass | 2 | `+ explorerscompass` |
@@ -171,14 +192,14 @@ are also in `library.json` and every module's `module.json`.
 | `30h-lootr` | └ Lootr | 3 | `+ lootr` |
 | `30i-easy-villagers` | └ Easy Villagers | 5 | `+ easy_villagers` |
 
-**286 quests across 15 in-game chapters on a full install.** Add-on modules do
+**427 quests across 23 in-game chapters on a full install.** Add-on modules do
 not appear as chapters of their own: the installer merges each one's quests
 into its parent's chapter, in a cluster below the parent's tree, and only for
 the add-on mods actually present. Two chapters are special: **Welcome** (six
 checkmark quests on how the book works) sits ungrouped at the top, and
 **Completionist** is generated at install time — one quest per installed
 chapter that completes itself when that chapter does, plus a finale for
-finishing everything. 107 quests are vanilla-only and work in any 1.21.1
+finishing everything. 107 authored quests are vanilla-only and work in any 1.21.1
 pack; the rest install only when their mods are present.
 
 ### Task types
@@ -258,11 +279,20 @@ python3 tools/import_chapter.py --instance ~/.minecraft --list
 python3 tools/import_chapter.py --instance ~/.minecraft \
     --chapter refined_storage --into 29-refinedstorage
 
-# adopt a brand new chapter as a module
+# adopt a brand new chapter as a module -- the slug encodes the module
+# number (2f = 0x2F = 47) and the chapter group is suggested from its items
 python3 tools/import_chapter.py --instance ~/.minecraft \
-    --chapter mekanism --new 2b-mekanism --module 43 \
-    --name "Mekanism" --group automation
+    --chapter mekanism --new 2f-mekanism --name "Mekanism"
 ```
+
+Prefer it guided? `python3 tools/import_wizard.py` walks the same flow step
+by step, and `python3 tools/webui.py` serves it as a local web page (both are
+repo-only tools — the player bundle does not ship them). Both recover text
+that FTB Quests migrated into the instance's `lang/en_us.snbt` — a chapter
+authored in a played world would otherwise import with every title and
+description missing — and both can split a merged family chapter back into
+its source modules, so you can polish a whole family's layout in game and
+re-import it in one step.
 
 What makes this more than a file copy is the ID scheme. The in-game editor
 mints **random** hex IDs; everything here is **computed** from where the object

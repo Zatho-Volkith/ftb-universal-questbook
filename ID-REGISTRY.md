@@ -71,17 +71,21 @@ every book that has it installed.
 | `07` | `07-enchanting-and-brewing` | vanilla | shipped |
 | `08` | `08-welcome` — how the book works | vanilla | shipped |
 | `09` | `09-completionist` — quests generated at install | vanilla | shipped |
-| `20` | `20-farmersdelight` | `farmersdelight` | shipped |
-| `21` | *(reserved)* Croptopia | `croptopia` | planned |
+| `20` | `20-farmersdelight` + 4 add-ons | `farmersdelight` | shipped |
+| `21` | `21-croptopia` + `21a-croptopia-delight` | `croptopia` | shipped |
 | `22` | `22-productivebees` + `22a-bee-breeding` | `productivebees` | shipped |
-| `23` | *(reserved)* Sophisticated Storage | `sophisticatedstorage` | planned |
-| `24` | *(reserved)* Waystones | `waystones` | planned |
-| `25` | *(reserved)* Botany Pots | `botanypots` | planned |
-| `26` | *(reserved)* Aquaculture | `aquaculture` | planned |
+| `23` | `23-sophisticated-storage` | `sophisticatedstorage` | shipped |
+| `24` | *(released — never reuse)* Waystones ships as `30a-waystones`; this number was reserved before the QoL family existed | — | released |
+| `25` | `25-botany-pots` | `botanypots` | shipped |
+| `26` | `26-aquaculture` | `aquaculture` | shipped |
 | `27` | *(reserved)* Supplementaries | `supplementaries` | planned |
-| `28` | `28-umapyoi` | `umapyoi` | shipped |
+| `28` | `28-umapyoi` + `28a-umapyoi-delight` | `umapyoi` | shipped |
 | `29` | `29-refinedstorage` | `refinedstorage` | shipped |
-| `2A` | `2a-ae2` + 4 add-ons | `ae2` | shipped |
+| `2A` | `2a-ae2` + 8 add-ons | `ae2` | shipped |
+| `2B` | `2b-sophisticated-backpacks` | `sophisticatedbackpacks` | shipped |
+| `2C` | `2c-functional-storage` | `functionalstorage` | shipped |
+| `2D` | `2d-toms-storage` | `toms_storage` | shipped |
+| `2E` | `2e-farming-for-blockheads` | `farmingforblockheads` | shipped |
 | `30` | `30-quality-of-life` + 9 add-ons | vanilla parent | shipped |
 
 ## Addons merge into their parent's chapter at install time
@@ -117,6 +121,20 @@ the ceiling is nowhere near.
 |-----------|--------|---------|-----------|----------|
 | `20-farmersdelight` | `20` | `01` | `7B2001…` | `farmersdelight` |
 | `20a-expanded-delight` | `20` | `02` | `7B2002…` | `+ expandeddelight` |
+
+The AE2 family (module `2A`) allocates its chapter slots the same way:
+
+| Directory | Chapter | ID prefix | Requires beyond `ae2` |
+|-----------|---------|-----------|-----------------------|
+| `2a-ae2` | `01` | `7B2A01…` | — |
+| `2aa-megacells` | `02` | `7B2A02…` | `megacells` |
+| `2ab-extendedae` | `03` | `7B2A03…` | `extendedae` |
+| `2ac-advanced-ae` | `04` | `7B2A04…` | `advanced_ae` |
+| `2ad-appflux` | `05` | `7B2A05…` | `appflux` |
+| `2ae-ae2wtlib` | `06` | `7B2A06…` | `ae2wtlib` |
+| `2af-merequester` | `07` | `7B2A07…` | `merequester` |
+| `2ag-applied-mekanistics` | `08` | `7B2A08…` | `appmek`, `mekanism` |
+| `2ah-ars-energistique` | `09` | `7B2A09…` | `arseng`, `ars_nouveau` |
 | `20b-nethers-delight` | `20` | `03` | `7B2003…` | `+ mynethersdelight` |
 | `20c-oceans-delight` | `20` | `04` | `7B2004…` | `+ oceansdelight` |
 | `20d-enders-delight` | `20` | `05` | `7B2005…` | `+ endersdelight` |
