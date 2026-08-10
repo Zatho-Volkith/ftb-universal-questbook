@@ -116,6 +116,10 @@ def make_fixture_instance() -> Path:
             "type": "minecraft:crafting_shapeless",
             "ingredients": [{"item": "testdraftmod:widget"}],
             "result": {"id": "testdraftmod:gadget"}}))
+    # An API library ships no recipes of its own -- it must not be offered
+    # for drafting.
+    with zipfile.ZipFile(instance / "mods" / "testlibmod-1.0.jar", "w") as jar:
+        jar.writestr("fabric.mod.json", jsonlib.dumps({"id": "testlibmod"}))
     return instance
 
 
@@ -218,6 +222,8 @@ def main() -> int:
                            token=token)
     check("scan lists draftable mods",
           "testdraftmod" in payload.get("draftable", []), str(payload)[:300])
+    check("recipe-less library mods are not offered for drafting",
+          "testlibmod" not in payload.get("draftable", []), str(payload)[:300])
 
     status, payload = call(port, "/api/draft",
                            {"instance": str(instance), "mod": "testdraftmod",

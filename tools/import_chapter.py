@@ -926,12 +926,34 @@ def apply_import(plan: ImportPlan, repo_root: Path = REPO_ROOT,
 
 def draftable_mods(instance: Path, mc_version: str = "1.21.1",
                    repo_root: Path = REPO_ROOT) -> list[str]:
-    """Mods in the instance the library has no chapter for yet."""
+    """Mods in the instance the library has no chapter for -- and that a
+    draft could actually be built from.
+
+    Drafts derive from a mod's own recipes, so a mod that ships none (API
+    libraries like architectury or balm, client-side utilities) is left off
+    the list instead of being offered and refused.
+    """
+    import zipfile
     import install
+    import derive_chapter as dc
     modules = known_modules(mc_version, repo_root)
     covered = {mod for manifest in modules.values()
                for mod in manifest.get("requires_mods") or []}
-    return sorted(install.detect_mods(instance) - covered - {"minecraft"})
+    candidates = install.detect_mods(instance) - covered - {"minecraft"}
+
+    with_recipes: set[str] = set()
+    mods_dir = instance / "mods"
+    if mods_dir.is_dir():
+        for jar in sorted(mods_dir.glob("*.jar")):
+            try:
+                with zipfile.ZipFile(jar) as archive:
+                    for name in archive.namelist():
+                        match = dc.RECIPE_PATH.match(name)
+                        if match:
+                            with_recipes.add(match.group(1))
+            except (zipfile.BadZipFile, OSError):
+                continue
+    return sorted(candidates & with_recipes)
 
 
 def _group_key_for(mod: str, repo_root: Path) -> str:

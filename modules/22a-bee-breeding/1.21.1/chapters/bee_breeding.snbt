@@ -35,11 +35,15 @@
 					type: "random"
 				}
 			]
-			subtitle: "Find bees in the world"
+			subtitle: "Harvest honeycomb from the bees you find"
 			tasks: [
 				{
 					id: "7B22020400010001"
-					type: "checkmark"
+					item: {
+						count: 3
+						id: "minecraft:honeycomb"
+					}
+					type: "item"
 				}
 			]
 			title: "Wild Stock"
@@ -68,11 +72,20 @@
 					type: "random"
 				}
 			]
-			subtitle: "Find a crystalline bee"
+			subtitle: "Find a crystalline bee and collect its comb"
 			tasks: [
 				{
 					id: "7B22020400020001"
-					type: "checkmark"
+					item: {
+						components: {
+							"productivebees:bee_type": "productivebees:crystalline"
+						}
+						count: 1
+						id: "productivebees:configurable_honeycomb"
+					}
+					match_components: "fuzzy"
+					title: "Crystalline Comb"
+					type: "item"
 				}
 			]
 			title: "The Crystalline Bee"
@@ -128,11 +141,20 @@
 					type: "random"
 				}
 			]
-			subtitle: "Breed crystalline + ashy mining"
+			subtitle: "Breed crystalline + ashy mining, then collect its comb"
 			tasks: [
 				{
 					id: "7B22020400040001"
-					type: "checkmark"
+					item: {
+						components: {
+							"productivebees:bee_type": "productivebees:iron"
+						}
+						count: 1
+						id: "productivebees:configurable_honeycomb"
+					}
+					match_components: "fuzzy"
+					title: "Iron Comb"
+					type: "item"
 				}
 			]
 			title: "Iron Bee"
@@ -154,12 +176,27 @@
 					type: "xp"
 					xp: 30
 				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2202050005000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
 			]
-			subtitle: "Breed crystalline + ashy mining"
+			subtitle: "Breed crystalline + ashy mining, then collect its comb"
 			tasks: [
 				{
 					id: "7B22020400050001"
-					type: "checkmark"
+					item: {
+						components: {
+							"productivebees:bee_type": "productivebees:copper"
+						}
+						count: 1
+						id: "productivebees:configurable_honeycomb"
+					}
+					match_components: "fuzzy"
+					title: "Copper Comb"
+					type: "item"
 				}
 			]
 			title: "Copper Bee"
@@ -180,12 +217,27 @@
 					type: "xp"
 					xp: 30
 				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2202050006000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
 			]
-			subtitle: "Breed crystalline + ashy mining"
+			subtitle: "Breed crystalline + ashy mining, then collect its comb"
 			tasks: [
 				{
 					id: "7B22020400060001"
-					type: "checkmark"
+					item: {
+						components: {
+							"productivebees:bee_type": "productivebees:tin"
+						}
+						count: 1
+						id: "productivebees:configurable_honeycomb"
+					}
+					match_components: "fuzzy"
+					title: "Tin Comb"
+					type: "item"
 				}
 			]
 			title: "Tin Bee"
@@ -209,15 +261,24 @@
 				{
 					exclude_from_claim_all: true
 					id: "7B2202050007000C"
-					table_id: 8863084092434939906L
+					table_id: 8863084092434939907L
 					type: "random"
 				}
 			]
-			subtitle: "Breed crystalline + mason"
+			subtitle: "Breed crystalline + mason, then collect its comb"
 			tasks: [
 				{
 					id: "7B22020400070001"
-					type: "checkmark"
+					item: {
+						components: {
+							"productivebees:bee_type": "productivebees:gold"
+						}
+						count: 1
+						id: "productivebees:configurable_honeycomb"
+					}
+					match_components: "fuzzy"
+					title: "Gold Comb"
+					type: "item"
 				}
 			]
 			title: "Gold Bee"
@@ -239,12 +300,27 @@
 					type: "xp"
 					xp: 30
 				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2202050008000C"
+					table_id: 8863084092434939905L
+					type: "random"
+				}
 			]
-			subtitle: "Breed magmatic + leafcutter"
+			subtitle: "Breed magmatic + leafcutter, then collect its comb"
 			tasks: [
 				{
 					id: "7B22020400080001"
-					type: "checkmark"
+					item: {
+						components: {
+							"productivebees:bee_type": "productivebees:coal"
+						}
+						count: 1
+						id: "productivebees:configurable_honeycomb"
+					}
+					match_components: "fuzzy"
+					title: "Coal Comb"
+					type: "item"
 				}
 			]
 			title: "Coal Bee"
@@ -261,12 +337,27 @@
 					type: "xp"
 					xp: 35
 				}
+				{
+					exclude_from_claim_all: true
+					id: "7B2202050009000C"
+					table_id: 8863084092434939906L
+					type: "random"
+				}
 			]
-			subtitle: "Breed iron + sweat"
+			subtitle: "Breed iron + sweat, then collect its comb"
 			tasks: [
 				{
 					id: "7B22020400090001"
-					type: "checkmark"
+					item: {
+						components: {
+							"productivebees:bee_type": "productivebees:zinc"
+						}
+						count: 1
+						id: "productivebees:configurable_honeycomb"
+					}
+					match_components: "fuzzy"
+					title: "Zinc Comb"
+					type: "item"
 				}
 			]
 			title: "Zinc Bee"
@@ -294,11 +385,20 @@
 					type: "random"
 				}
 			]
-			subtitle: "Breed iron + coal"
+			subtitle: "Breed iron + coal, then collect its comb"
 			tasks: [
 				{
 					id: "7B220204000A0001"
-					type: "checkmark"
+					item: {
+						components: {
+							"productivebees:bee_type": "productivebees:steel"
+						}
+						count: 1
+						id: "productivebees:configurable_honeycomb"
+					}
+					match_components: "fuzzy"
+					title: "Steel Comb"
+					type: "item"
 				}
 			]
 			title: "Steel Bee"
@@ -326,11 +426,20 @@
 					type: "random"
 				}
 			]
-			subtitle: "Breed copper + zinc"
+			subtitle: "Breed copper + zinc, then collect its comb"
 			tasks: [
 				{
 					id: "7B220204000B0001"
-					type: "checkmark"
+					item: {
+						components: {
+							"productivebees:bee_type": "productivebees:brass"
+						}
+						count: 1
+						id: "productivebees:configurable_honeycomb"
+					}
+					match_components: "fuzzy"
+					title: "Brass Comb"
+					type: "item"
 				}
 			]
 			title: "Brass Bee"
@@ -360,11 +469,20 @@
 					type: "random"
 				}
 			]
-			subtitle: "Breed copper + tin"
+			subtitle: "Breed copper + tin, then collect its comb"
 			tasks: [
 				{
 					id: "7B220204000C0001"
-					type: "checkmark"
+					item: {
+						components: {
+							"productivebees:bee_type": "productivebees:bronze"
+						}
+						count: 1
+						id: "productivebees:configurable_honeycomb"
+					}
+					match_components: "fuzzy"
+					title: "Bronze Comb"
+					type: "item"
 				}
 			]
 			title: "Bronze Bee"
@@ -392,11 +510,20 @@
 					type: "random"
 				}
 			]
-			subtitle: "Breed magmatic + nomad"
+			subtitle: "Breed magmatic + nomad, then collect its comb"
 			tasks: [
 				{
 					id: "7B220204000D0001"
-					type: "checkmark"
+					item: {
+						components: {
+							"productivebees:bee_type": "productivebees:blazing"
+						}
+						count: 1
+						id: "productivebees:configurable_honeycomb"
+					}
+					match_components: "fuzzy"
+					title: "Blazing Comb"
+					type: "item"
 				}
 			]
 			title: "Blazing Bee"
@@ -424,11 +551,20 @@
 					type: "random"
 				}
 			]
-			subtitle: "Breed glowing + chocolate mining"
+			subtitle: "Breed glowing + chocolate mining, then collect its comb"
 			tasks: [
 				{
 					id: "7B220204000E0001"
-					type: "checkmark"
+					item: {
+						components: {
+							"productivebees:bee_type": "productivebees:redstone"
+						}
+						count: 1
+						id: "productivebees:configurable_honeycomb"
+					}
+					match_components: "fuzzy"
+					title: "Redstone Comb"
+					type: "item"
 				}
 			]
 			title: "Redstone Bee"
@@ -452,11 +588,20 @@
 					type: "random"
 				}
 			]
-			subtitle: "Breed redstone + blue banded"
+			subtitle: "Breed redstone + blue banded, then collect its comb"
 			tasks: [
 				{
 					id: "7B220204000F0001"
-					type: "checkmark"
+					item: {
+						components: {
+							"productivebees:bee_type": "productivebees:lapis"
+						}
+						count: 1
+						id: "productivebees:configurable_honeycomb"
+					}
+					match_components: "fuzzy"
+					title: "Lapis Comb"
+					type: "item"
 				}
 			]
 			title: "Lapis Bee"
@@ -485,11 +630,20 @@
 					type: "random"
 				}
 			]
-			subtitle: "Breed ender + lapis"
+			subtitle: "Breed ender + lapis, then collect its comb"
 			tasks: [
 				{
 					id: "7B22020400100001"
-					type: "checkmark"
+					item: {
+						components: {
+							"productivebees:bee_type": "productivebees:diamond"
+						}
+						count: 1
+						id: "productivebees:configurable_honeycomb"
+					}
+					match_components: "fuzzy"
+					title: "Diamond Comb"
+					type: "item"
 				}
 			]
 			title: "Diamond Bee"

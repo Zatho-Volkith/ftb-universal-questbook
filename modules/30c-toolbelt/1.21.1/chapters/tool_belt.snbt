@@ -95,11 +95,15 @@
 					type: "random"
 				}
 			]
-			subtitle: "How the belt grows"
+			subtitle: "Stock up on pouches"
 			tasks: [
 				{
 					id: "7B30040400030001"
-					type: "checkmark"
+					item: {
+						count: 2
+						id: "toolbelt:pouch"
+					}
+					type: "item"
 				}
 			]
 			title: "More Room"

@@ -160,12 +160,6 @@
 					type: "xp"
 					xp: 100
 				}
-				{
-					exclude_from_claim_all: true
-					id: "7B0801050006000C"
-					table_id: 8863084092434939908L
-					type: "random"
-				}
 			]
 			subtitle: "Go play"
 			tasks: [
