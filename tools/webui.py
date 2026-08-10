@@ -50,7 +50,7 @@ class ImportSession:
         self.token = secrets.token_hex(16)
         self.plan: ic.ImportPlan | None = None
 
-    def quests_dir(self, raw: str) -> Path:
+    def quests_dir(self, raw: str, must_exist: bool = True) -> Path:
         instance, problem = resolve_instance(normalise_path(raw))
         if not instance:
             raise ic.Problem(problem)
@@ -62,7 +62,7 @@ class ImportSession:
                     f"{instance} is outside your home directory. Start the "
                     f"server with --allow-any-path if that is intentional.")
         quests = instance / ic.QUESTS_SUBPATH
-        if not quests.is_dir():
+        if must_exist and not quests.is_dir():
             raise ic.Problem(f"no questbook at {quests}")
         return quests
 
@@ -137,10 +137,26 @@ class Handler(BaseHTTPRequestHandler):
         body = self._body()
         try:
             if self.path == "/api/scan":
-                quests = self.session.quests_dir(str(body.get("instance", "")))
-                candidates = ic.scan(quests, MC_VERSION, self.session.repo_root)
+                # A missing or empty questbook is a normal state for a fresh
+                # instance, not an error -- explain it instead of failing.
+                quests = self.session.quests_dir(str(body.get("instance", "")),
+                                                 must_exist=False)
+                candidates = ic.scan(quests, MC_VERSION,
+                                     self.session.repo_root) \
+                    if quests.is_dir() else []
+                note = None
+                if not quests.is_dir():
+                    note = (f"This instance has no questbook yet (nothing at "
+                            f"{quests}). Launch the pack once with FTB Quests "
+                            f"installed -- or install this library into it -- "
+                            f"then author a chapter in game and come back.")
+                elif not candidates:
+                    note = ("The questbook here has no chapters to import "
+                            "yet. Author one in game first: open the book, "
+                            "enter edit mode, add a chapter.")
                 self._reply(200, {"quests_dir": quests,
-                                  "chapters": [asdict(c) for c in candidates]})
+                                  "chapters": [asdict(c) for c in candidates],
+                                  "note": note})
             elif self.path == "/api/suggest":
                 quests = self.session.quests_dir(str(body.get("instance", "")))
                 import snbt
@@ -308,6 +324,11 @@ async function scan() {
   const out = $("s1out");
   try {
     const data = await api("/api/scan", { instance: $("instance").value });
+    if (data.note) {
+      out.innerHTML = `<div class="warn">${data.note}</div>`;
+      $("s2").disabled = true;
+      return;
+    }
     out.innerHTML = `<span class="ok">✓ ${data.quests_dir}</span>`;
     const list = $("chapters");
     list.innerHTML = "";

@@ -128,11 +128,31 @@ def main() -> int:
     status, payload = call(port, "/api/apply", {"confirm": True}, token=token)
     check("apply before preview is refused", status == 422, str(payload))
 
+    # -- fresh and empty instances are explained, not errors ----------------
+    fresh = Path(tempfile.mkdtemp()) / "fresh-instance"
+    (fresh / "mods").mkdir(parents=True)          # no config folder at all
+    status, payload = call(port, "/api/scan", {"instance": str(fresh)},
+                           token=token)
+    check("fresh instance scan succeeds with a note", status == 200
+          and payload["chapters"] == [] and "no questbook yet"
+          in (payload.get("note") or ""), str(payload))
+
+    blank = Path(tempfile.mkdtemp()) / "blank-instance"
+    (blank / "config" / "ftbquests" / "quests" / "chapters").mkdir(parents=True)
+    status, payload = call(port, "/api/scan", {"instance": str(blank)},
+                           token=token)
+    check("blank questbook scan succeeds with a note", status == 200
+          and payload["chapters"] == [] and "no chapters"
+          in (payload.get("note") or ""), str(payload))
+    shutil.rmtree(fresh.parent, ignore_errors=True)
+    shutil.rmtree(blank.parent, ignore_errors=True)
+
     # -- the flow the page drives ------------------------------------------
     status, payload = call(port, "/api/scan", {"instance": str(instance)},
                            token=token)
     check("scan finds the chapter", status == 200
-          and payload["chapters"][0]["stem"] == "imported", str(payload))
+          and payload["chapters"][0]["stem"] == "imported"
+          and payload.get("note") is None, str(payload))
 
     status, payload = call(port, "/api/suggest",
                            {"instance": str(instance), "chapter": "imported"},

@@ -53,8 +53,11 @@ def step_instance() -> Path:
             continue
         quests_dir = instance / ic.QUESTS_SUBPATH
         if not quests_dir.is_dir():
-            print(red(f"  {CROSS} no questbook at {quests_dir}"))
-            print(dim("    (the instance has to have FTB Quests content in it)"))
+            print(yellow(f"  {CROSS} no questbook in this instance yet "
+                         f"(nothing at {quests_dir})"))
+            print(dim("    Launch the pack once with FTB Quests installed --"))
+            print(dim("    or install this library into it -- then author a"))
+            print(dim("    chapter in game and come back."))
             continue
         print(green(f"  {TICK} {quests_dir}"))
         return quests_dir
@@ -64,7 +67,9 @@ def step_chapter(quests_dir: Path) -> ic.Candidate:
     heading(2, STEPS, "Which chapter?")
     candidates = ic.scan(quests_dir, MC_VERSION)
     if not candidates:
-        print(red("  no chapters in this instance."))
+        print(yellow("  The questbook here has no chapters to import yet."))
+        print(dim("    Author one in game first: open the book, enter edit"))
+        print(dim("    mode, add a chapter. Then run this again."))
         raise SystemExit(1)
     while True:
         print()
