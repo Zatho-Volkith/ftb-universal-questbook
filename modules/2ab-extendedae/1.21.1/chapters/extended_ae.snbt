@@ -2,13 +2,13 @@
 	default_hide_dependency_lines: false
 	default_quest_shape: ""
 	filename: "extended_ae"
-	group: "7B00000100000007"
+	group: "7B00000100000006"
 	icon: {
 		id: "extendedae:entro_ingot"
 	}
 	id: "7B2A030200000001"
 	images: [ ]
-	order_index: 43
+	order_index: 0
 	quest_links: [ ]
 	quests: [
 		{

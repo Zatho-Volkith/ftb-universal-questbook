@@ -76,6 +76,12 @@ modules/<module>/1.21.1/chapters/*.snbt        ->  quests/chapters/
 modules/<module>/1.21.1/reward_tables/*.snbt   ->  quests/reward_tables/
 ```
 
+Two things only the installer can do, which a manual copy loses: add-on
+modules install as separate chapters instead of merging into their parent's
+chapter, and the Completionist chapter stays empty (its quests are generated
+at install time from the chapters actually present). The book still works;
+it is just more cluttered and one chapter short.
+
 Then **merge** `modules/00-core/1.21.1/chapter_groups/groups.snbt` into
 `quests/chapter_groups.snbt`, adding its entries to the existing
 `chapter_groups` list rather than replacing the file. Chapters whose group is
@@ -85,7 +91,13 @@ reason the installer exists.
 ## After installing
 
 Existing files are backed up as `<name>.snbt.bak-<timestamp>` before being
-replaced, and files that are already identical are left alone.
+replaced, and files that are already identical are left alone. Upgrading from
+an older version of this library that installed add-ons as separate chapters
+removes those standalone chapter files (after backing them up) — their quests
+now live inside the parent chapter, with the same IDs, so progress carries
+over. If you later remove a mod from the pack, its merged chapter lingers
+until you reinstall or delete it; that is true of every chapter, not just
+merged ones.
 
 These chapters are authored for **flexible** progression — quests branch rather
 than unlocking in a fixed line. The installer will tell you if your `data.snbt`

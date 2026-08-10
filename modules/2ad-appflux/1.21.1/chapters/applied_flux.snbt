@@ -2,13 +2,13 @@
 	default_hide_dependency_lines: false
 	default_quest_shape: ""
 	filename: "applied_flux"
-	group: "7B00000100000007"
+	group: "7B00000100000006"
 	icon: {
 		id: "appflux:redstone_crystal"
 	}
 	id: "7B2A050200000001"
 	images: [ ]
-	order_index: 45
+	order_index: 0
 	quest_links: [ ]
 	quests: [
 		{

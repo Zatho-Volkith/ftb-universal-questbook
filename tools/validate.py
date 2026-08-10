@@ -38,11 +38,17 @@ import sys
 from dataclasses import dataclass, field
 from pathlib import Path
 
+import compose
 import qid
 import snbt
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = Path(__file__).resolve().parent / "data"
+
+#: Shapes FTB Quests ships with. Anything else needs a theme file the
+#: installing pack will not have.
+QUEST_SHAPES = {"", "default", "circle", "square", "rsquare", "diamond",
+                "pentagon", "hexagon", "octagon", "heart", "gear"}
 
 ERROR, WARNING = "error", "warning"
 
@@ -581,6 +587,16 @@ def check_chapter_groups(modules: list[LoadedModule], report: Report) -> None:
             rel = str(path.relative_to(REPO_ROOT))
             declared = tree.get("group")
             if key is None:
+                # No chapter_group means deliberately ungrouped -- the chapter
+                # sits above every group heading. FTB's convention for that is
+                # an empty group string.
+                if declared != "":
+                    report.error(
+                        rel,
+                        f"module has no chapter_group, so its chapter must "
+                        f"declare group \"\" to install ungrouped -- it "
+                        f"declares {declared!r}"
+                    )
                 continue
             if declared != groups[key]:
                 report.error(
@@ -614,6 +630,83 @@ def check_chapter_groups(modules: list[LoadedModule], report: Report) -> None:
                     f"mod {own_mods[0]!r} is not in mod-categories.json, so "
                     f"nothing can classify it automatically. Add it."
                 )
+
+
+def check_shapes(modules: list[LoadedModule], report: Report) -> None:
+    """Every quest shape must be one FTB Quests ships with."""
+    for module in modules:
+        for path, tree in module.chapters.items():
+            rel = str(path.relative_to(REPO_ROOT))
+            shape = tree.get("default_quest_shape")
+            if isinstance(shape, str) and shape not in QUEST_SHAPES:
+                report.error(rel,
+                             f"default_quest_shape {shape!r} is not a built-in "
+                             f"shape (known: {', '.join(sorted(QUEST_SHAPES))})")
+            for quest in tree.get("quests") or []:
+                if not isinstance(quest, dict):
+                    continue
+                shape = quest.get("shape")
+                if isinstance(shape, str) and shape not in QUEST_SHAPES:
+                    report.error(f"{rel} :: quest {quest.get('id')}",
+                                 f"shape {shape!r} is not a built-in shape")
+
+
+def check_group_registry(mc_version: str, report: Report) -> None:
+    """The three group registries must agree, field for field.
+
+    library.json is the author-facing list, 00-core's groups.snbt is what
+    actually installs, and 00-core's provides_chapter_groups documents the
+    module. They have drifted before; any disagreement means some player
+    sees a different heading than the docs promise.
+    """
+    library_path = REPO_ROOT / "library.json"
+    core_manifest_path = REPO_ROOT / "modules" / "00-core" / "module.json"
+    snbt_paths = list((REPO_ROOT / "modules" / "00-core" / mc_version
+                       / "chapter_groups").glob("*.snbt"))
+    if not (library_path.exists() and core_manifest_path.exists() and snbt_paths):
+        return
+
+    library = {g["id"]: g for g in
+               json.loads(library_path.read_text(encoding="utf-8"))
+               .get("chapter_groups", [])}
+    provides = json.loads(core_manifest_path.read_text(encoding="utf-8")) \
+        .get("provides_chapter_groups", {})
+    shipped: dict[str, dict] = {}
+    for path in snbt_paths:
+        for group in snbt.load(str(path)).get("chapter_groups", []):
+            if isinstance(group, dict):
+                shipped[group.get("id")] = group
+
+    lib_rel = "library.json"
+    core_rel = "modules/00-core/module.json"
+
+    provided_by_id = {info.get("id"): (key, info) for key, info in provides.items()}
+    for ident, entry in library.items():
+        if ident not in shipped:
+            report.error(lib_rel, f"group {entry['key']!r} ({ident}) is not in "
+                                  f"00-core's groups.snbt, so it never installs")
+        elif shipped[ident].get("title") != entry["title"] or \
+                _num(shipped[ident].get("order_index")) != entry.get("order_index"):
+            report.error(lib_rel,
+                         f"group {entry['key']!r} ({ident}) disagrees with "
+                         f"00-core's groups.snbt on title or order_index")
+        if ident not in provided_by_id:
+            report.error(core_rel, f"provides_chapter_groups is missing group "
+                                   f"{entry['key']!r} ({ident})")
+        else:
+            key, info = provided_by_id[ident]
+            if key != entry["key"] or info.get("title") != entry["title"]:
+                report.error(core_rel,
+                             f"provides_chapter_groups entry {key!r} disagrees "
+                             f"with library.json for {ident}")
+    for ident in set(shipped) | set(provided_by_id):
+        if ident not in library:
+            report.error(lib_rel, f"group {ident} is shipped or documented by "
+                                  f"00-core but absent from library.json")
+
+
+def _num(value):
+    return int(value.value) if isinstance(value, snbt.Num) else value
 
 
 #: Half-width of the box a quest icon occupies, in grid units. FTB draws a
@@ -658,63 +751,122 @@ def _implied_by_siblings(quest_deps: list[str], target: str,
     return target in seen
 
 
+def _layout_findings(rel: str, tree: dict, report: Report) -> None:
+    """Layout checks for one chapter tree, authored or composed."""
+    quests = [q for q in tree.get("quests") or [] if isinstance(q, dict)]
+    # When the chapter hides dependency lines nothing is drawn, so line
+    # geometry cannot mislead anyone -- only overlap still matters.
+    check_lines = not tree.get("default_hide_dependency_lines", False)
+
+    positions: dict[tuple[float, float], str] = {}
+    place: dict[str, tuple[float, float]] = {}
+    title: dict[str, str] = {}
+    deps: dict[str, list[str]] = {}
+
+    for quest in quests:
+        qid = str(quest.get("id"))
+        title[qid] = str(quest.get("title") or qid)
+        deps[qid] = [str(d) for d in quest.get("dependencies") or []]
+
+        x, y = quest.get("x"), quest.get("y")
+        if x is None or y is None:
+            continue
+        key = (
+            float(x.value if isinstance(x, snbt.Num) else x),
+            float(y.value if isinstance(y, snbt.Num) else y),
+        )
+        place[qid] = key
+        if key in positions:
+            report.warn(
+                f"{rel} :: quest {quest.get('id')}",
+                f"sits at the same position ({key[0]}, {key[1]}) as quest "
+                f"{positions[key]} -- they will overlap in the book"
+            )
+        else:
+            positions[key] = str(quest.get("id"))
+
+    if not check_lines:
+        return
+
+    # A dependency line drawn under an unrelated quest reads as though
+    # that quest were part of the chain. In a wide chapter this is the
+    # difference between a readable tree and a plate of spaghetti.
+    for qid in title:
+        local = [d for d in deps[qid] if d in title]
+        for dep in local:
+            if _implied_by_siblings(local, dep, deps):
+                report.warn(
+                    f"{rel} :: quest {title[qid]!r}",
+                    f"depends on {title[dep]!r}, which another of its "
+                    f"dependencies already requires -- the edge is "
+                    f"redundant and draws a line across the chapter"
+                )
+            if qid not in place or dep not in place:
+                continue
+            for other in title:
+                if other in (qid, dep) or other not in place:
+                    continue
+                if _passes_under(place[dep], place[qid], place[other]):
+                    report.warn(
+                        f"{rel} :: quest {title[qid]!r}",
+                        f"its dependency line from {title[dep]!r} passes "
+                        f"under {title[other]!r} -- move one of them"
+                    )
+
+
 def check_layout(modules: list[LoadedModule], report: Report) -> None:
     for module in modules:
         for path, tree in module.chapters.items():
-            rel = str(path.relative_to(REPO_ROOT))
-            quests = [q for q in tree.get("quests") or [] if isinstance(q, dict)]
+            _layout_findings(str(path.relative_to(REPO_ROOT)), tree, report)
 
-            positions: dict[tuple[float, float], str] = {}
-            place: dict[str, tuple[float, float]] = {}
-            title: dict[str, str] = {}
-            deps: dict[str, list[str]] = {}
 
-            for quest in quests:
-                qid = str(quest.get("id"))
-                title[qid] = str(quest.get("title") or qid)
-                deps[qid] = [str(d) for d in quest.get("dependencies") or []]
+def check_composed_families(modules: list[LoadedModule], ids: dict[str, str],
+                            report: Report) -> None:
+    """Hold what the installer will actually build to the authored standards.
 
-                x, y = quest.get("x"), quest.get("y")
-                if x is None or y is None:
-                    continue
-                key = (
-                    float(x.value if isinstance(x, snbt.Num) else x),
-                    float(y.value if isinstance(y, snbt.Num) else y),
-                )
-                place[qid] = key
-                if key in positions:
-                    report.warn(
-                        f"{rel} :: quest {quest.get('id')}",
-                        f"sits at the same position ({key[0]}, {key[1]}) as quest "
-                        f"{positions[key]} -- they will overlap in the book"
-                    )
-                else:
-                    positions[key] = str(quest.get("id"))
+    validate.py otherwise only sees repo files, but the installed book
+    contains composed artifacts: each family merged into one chapter, and a
+    generated completionist chapter. Simulate both here -- with every addon
+    present, the worst case -- so a layout or ID problem surfaces in CI
+    rather than in someone's pack.
+    """
+    by_slug = {m.slug: m for m in modules}
+    for parent_slug, addon_slugs in compose.family_map(by_slug).items():
+        parent = by_slug.get(parent_slug)
+        if parent is None or not parent.chapters:
+            continue
+        parent_tree = next(iter(parent.chapters.values()))
+        addon_trees = [next(iter(by_slug[slug].chapters.values()))
+                       for slug in addon_slugs if by_slug[slug].chapters]
+        merged = compose.compose_family(parent_tree, addon_trees)
+        _layout_findings(f"<merged> {parent_slug} (+ {', '.join(addon_slugs)})",
+                         merged, report)
 
-            # A dependency line drawn under an unrelated quest reads as though
-            # that quest were part of the chain. In a wide chapter this is the
-            # difference between a readable tree and a plate of spaghetti.
-            for qid in title:
-                local = [d for d in deps[qid] if d in title]
-                for dep in local:
-                    if _implied_by_siblings(local, dep, deps):
-                        report.warn(
-                            f"{rel} :: quest {title[qid]!r}",
-                            f"depends on {title[dep]!r}, which another of its "
-                            f"dependencies already requires -- the edge is "
-                            f"redundant and draws a line across the chapter"
-                        )
-                    if qid not in place or dep not in place:
-                        continue
-                    for other in title:
-                        if other in (qid, dep) or other not in place:
-                            continue
-                        if _passes_under(place[dep], place[qid], place[other]):
-                            report.warn(
-                                f"{rel} :: quest {title[qid]!r}",
-                                f"its dependency line from {title[dep]!r} passes "
-                                f"under {title[other]!r} -- move one of them"
-                            )
+    targets = [
+        compose.Target(chapter_id=str(tree.get("id")),
+                       title=str(tree.get("title") or module.slug),
+                       icon=tree.get("icon") or {},
+                       group_order=0, order_index=0)
+        for module in modules
+        if module.slug != "09-completionist"
+        for tree in module.chapters.values()
+    ]
+    seen: set[str] = set()
+    for quest in compose.completionist_quests(targets):
+        for trail, node in walk(quest):
+            ident = node.get("id")
+            if not isinstance(ident, str) or ":" in ident:
+                continue  # item references (icons) carry ids too; skip them
+            where = f"<completionist> {trail}"
+            if not qid.is_valid_id(ident):
+                report.error(where, f"generated ID {ident!r} is malformed")
+            elif ident in seen:
+                report.error(where, f"generated ID {ident} is minted twice")
+            elif ident in ids:
+                report.error(where,
+                             f"generated ID {ident} collides with an authored "
+                             f"object in {ids[ident]}")
+            seen.add(ident)
 
 
 # --------------------------------------------------------------------------
@@ -753,7 +905,10 @@ def main(argv: list[str] | None = None) -> int:
     check_task_types(modules, report)
     check_text_formatting(modules, report)
     check_chapter_groups(modules, report)
+    check_group_registry(args.mc_version, report)
+    check_shapes(modules, report)
     check_layout(modules, report)
+    check_composed_families(modules, ids, report)
     if known:
         check_items(modules, known, sources, report)
 

@@ -41,27 +41,27 @@
       "note": "Crops, cooking, animals and the kitchen."
     },
     "exploration": {
-      "group": "exploration",
+      "group": "mods",
       "label": "Exploration",
       "note": "Mods that add places to go and things to find -- new dimensions, structures, biomes. Not minimaps or waypoints; those are qol."
     },
     "automation": {
-      "group": "automation",
+      "group": "tech",
       "label": "Automation",
       "note": "Mods with a real production chain -- machines, power, tiers. Not single-block conveniences; those are qol."
     },
     "storage": {
-      "group": "storage",
+      "group": "tech",
       "label": "Storage",
       "note": "Chests, backpacks, networks and sorting."
     },
     "adventure": {
-      "group": "adventure",
+      "group": "mods",
       "label": "Adventure",
       "note": "Combat, progression systems, dimensions and bosses."
     },
     "building": {
-      "group": "building",
+      "group": "mods",
       "label": "Building",
       "note": "Decorative blocks and building tools."
     },

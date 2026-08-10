@@ -39,6 +39,18 @@
     "mods": {
       "id": "7B00000100000002",
       "title": "Universal \u00b7 Mod Content"
+    },
+    "food": {
+      "id": "7B00000100000004",
+      "title": "Universal \u00b7 Food and Farming"
+    },
+    "tech": {
+      "id": "7B00000100000006",
+      "title": "Universal \u00b7 Tech and Automation"
+    },
+    "qol": {
+      "id": "7B00000100000003",
+      "title": "Universal \u00b7 Quality of Life"
     }
   }
 }

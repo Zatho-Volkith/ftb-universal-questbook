@@ -69,6 +69,8 @@ every book that has it installed.
 | `05` | `05-the-end` | vanilla | shipped |
 | `06` | `06-building` | vanilla | shipped |
 | `07` | `07-enchanting-and-brewing` | vanilla | shipped |
+| `08` | `08-welcome` — how the book works | vanilla | shipped |
+| `09` | `09-completionist` — quests generated at install | vanilla | shipped |
 | `20` | `20-farmersdelight` | `farmersdelight` | shipped |
 | `21` | *(reserved)* Croptopia | `croptopia` | planned |
 | `22` | `22-productivebees` + `22a-bee-breeding` | `productivebees` | shipped |
@@ -81,6 +83,26 @@ every book that has it installed.
 | `29` | `29-refinedstorage` | `refinedstorage` | shipped |
 | `2A` | `2a-ae2` + 4 add-ons | `ae2` | shipped |
 | `30` | `30-quality-of-life` + 9 add-ons | vanilla parent | shipped |
+
+## Addons merge into their parent's chapter at install time
+
+An addon module still owns its chapter slot and every ID inside it, but the
+installed book does not contain a chapter object for it. `install.py` merges
+each addon's quests into the parent's chapter file, offset into a clear band
+below the parent's tree (`tools/compose.py`). The quest, task and reward IDs
+are installed byte-identical to the repo files -- only positions shift -- so
+player progress keyed on those IDs survives, and the addon's chapter object
+(`7B MM CC 02 …`) is simply never shipped.
+
+## Completionist owner encoding
+
+Module `09` mints its quests at install time, one per installed chapter. The
+16-bit owner field encodes the target chapter: `owner = MM << 8 | CC` of the
+target's ID. The quest tracking the AE2 chapter (`7B2A010200000001`) is
+therefore always `7B0901032A010000`, no matter which modules are installed --
+progress survives any reinstall. Owner `FFFF` is reserved for the final
+"Master of the Book" quest. Rewards use the usual `000B`/`000C` indices;
+each quest carries one checkmark task at index `0001` under its owner.
 
 ## Addons: chapter slots, not module numbers
 
@@ -123,6 +145,15 @@ since the chapter byte is the only thing keeping two addons' IDs apart.
 |--------|----|---------|
 | chapter group `vanilla` | `7B00000100000001` | — |
 | chapter group `mods` | `7B00000100000002` | — |
+| chapter group `qol` | `7B00000100000003` | — |
+| chapter group `food` | `7B00000100000004` | — |
+| chapter group `tech` (formerly `automation`) | `7B00000100000006` | — |
+| *(retired, reserved forever)* `exploration`, `storage`, `adventure`, `building` | `7B00000100000005`, `07`, `08`, `09` | — |
+
+The retired group IDs must never be reissued: installs prune them from
+players' books by exact ID (`install.LIBRARY_GROUP_IDS`), so a new group
+minted under one of them would be deleted on its next install. The canonical
+title for `mods` is **Universal · Mod Content**.
 | reward table `common` | `7B00000600000001` | `8863084092434939905L` |
 | reward table `uncommon` | `7B00000600000002` | `8863084092434939906L` |
 | reward table `rare` | `7B00000600000003` | `8863084092434939907L` |

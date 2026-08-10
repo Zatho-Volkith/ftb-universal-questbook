@@ -220,11 +220,13 @@ def main(argv: list[str] | None = None) -> int:
     # installer/tools/install.py alongside installer/modules/.
     installer_dir = bundle / "installer"
     (installer_dir / "tools").mkdir(parents=True)
-    for name in ("install.py", "snbt.py", "qid.py"):
+    for name in ("install.py", "snbt.py", "qid.py", "compose.py"):
         shutil.copy2(REPO_ROOT / "tools" / name, installer_dir / "tools" / name)
     shutil.copy2(REPO_ROOT / "tools" / "wizard.py",
                  installer_dir / "install-questbook.py")
     shutil.copy2(REPO_ROOT / "library.json", installer_dir / "library.json")
+    if (REPO_ROOT / "VERSION").exists():
+        shutil.copy2(REPO_ROOT / "VERSION", bundle / "VERSION")
     for module in modules:
         shutil.copytree(REPO_ROOT / "modules" / module,
                         installer_dir / "modules" / module,

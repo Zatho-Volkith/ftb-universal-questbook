@@ -1,0 +1,23 @@
+{
+  "id": "09-completionist",
+  "module_number": 9,
+  "chapter_number": 1,
+  "name": "Completionist",
+  "description": "One quest per installed chapter, completing when that chapter does. The quests are generated at install time; the repo ships only the empty shell.",
+  "requires_mods": [],
+  "requires_modules": [
+    "00-core"
+  ],
+  "version": "1.0.0",
+  "mc_versions": [
+    "1.21.1"
+  ],
+  "chapters": [
+    {
+      "number": 1,
+      "file": "completionist.snbt",
+      "title": "Completionist"
+    }
+  ],
+  "allowed_external_dependencies": []
+}

@@ -160,11 +160,24 @@ python3 tools/extract_item_ids.py path/to/mods -o tools/data/mod-items-1.21.1.js
 python3 tools/validate.py --module 22-productivebees --strict
 ```
 
-## Adding an add-on chapter
+## Adding an add-on module
 
 When a mod has its own ecosystem — Farmer's Delight has several Delight
-addons, Productive Bees has built-in support for a long list of worldgen mods —
-each addon gets its own chapter that only installs when that mod is present.
+addons, AE2 has half a dozen extensions — each addon is authored as its own
+module that only installs when that mod is present.
+
+**An addon does not become a chapter of its own in the installed book.**
+`install.py` merges its quests into the parent's chapter, offset into a clear
+band below the parent's tree (`tools/compose.py` owns the placement). Author
+the addon exactly like a standalone chapter — a self-contained tree rooted at
+`(0, 0)` on the 1.5-unit grid — and keep it tight: the band packer wraps at 12
+grid units of width, so a tree wider than that forces an oversized band. Do
+not depend on parent quests, and do not add images or quest links that assume
+a position relative to the parent; only the offset is applied. The chapter
+file's own `group`, `order_index`, `title` and icon are never installed (the
+parent's win), but the validator still requires them to be consistent.
+`validate.py` also simulates the full merge of every family and fails on any
+overlap the composed layout would produce.
 
 An addon does **not** claim a new module number. It shares its parent's and
 takes a different chapter number:
@@ -200,6 +213,20 @@ python3 tools/qid.py new 32 2 quest 1      # -> 7B20020300010000
 
 The wizard picks this up automatically: addons render indented under their
 parent, ticked when their mod is detected and greyed out when it is not.
+
+## Ungrouped chapters and quest shapes
+
+A module with **no `chapter_group` key** installs above every group heading —
+that is how the Welcome and Completionist chapters sit at the top of the book.
+Its chapter file must declare `group: ""` (the validator enforces the pairing).
+
+`default_quest_shape` gives a chapter a visual identity; the validator accepts
+only the shapes FTB Quests ships with (`circle`, `square`, `rsquare`,
+`diamond`, `pentagon`, `hexagon`, `octagon`, `heart`, `gear`). Current
+assignments: Farmer's Delight `circle`, Productive Bees `hexagon`, AE2
+`diamond`, Refined Storage `square`, Umapyoi `pentagon`, Quality of Life and
+Welcome `rsquare`, Completionist `gear`. Addon chapters inherit the parent's
+shape when merged, so leave theirs as `""`.
 
 ## 7. Test in a real instance
 

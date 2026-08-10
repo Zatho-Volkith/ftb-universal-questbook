@@ -29,11 +29,17 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 
+import compose
 import qid
 import snbt
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 QUESTS_SUBPATH = Path("config/ftbquests/quests")
+
+# Every chapter-group ID this library has ever shipped. Groups the current
+# install does not reference are pruned from the target, but only out of this
+# fixed set -- an arbitrary "7B..." match could be someone else's group.
+LIBRARY_GROUP_IDS = {f"7B000001000000{n:02X}" for n in range(1, 10)}
 
 _MODID_LINE = re.compile(r'^\s*modId\s*=\s*"([^"]+)"')
 
@@ -209,9 +215,15 @@ def existing_ids(quests_dir: Path) -> dict[str, str]:
     return found
 
 
-def merge_chapter_groups(quests_dir: Path, incoming: list[dict],
-                         dry_run: bool) -> tuple[int, int]:
-    """Add our groups to the target's chapter_groups.snbt without touching theirs."""
+def merge_chapter_groups(quests_dir: Path,
+                         incoming: list[dict]) -> tuple[int, int, int]:
+    """Add our groups to the target's chapter_groups.snbt without touching theirs.
+
+    Also drops library-owned groups this install no longer references --
+    after chapters move between groups, the old heading would otherwise sit
+    empty in the book forever. Only IDs from LIBRARY_GROUP_IDS are ever
+    removed; anything else in the file belongs to the pack.
+    """
     target = quests_dir / "chapter_groups.snbt"
     if target.exists():
         try:
@@ -242,15 +254,22 @@ def merge_chapter_groups(quests_dir: Path, incoming: list[dict],
             existing.update(group)
             refreshed += 1
 
-    if (added or refreshed) and not dry_run:
+    keep_ids = {g["id"] for g in incoming}
+    stale = [g for g in groups
+             if isinstance(g, dict)
+             and g.get("id") in LIBRARY_GROUP_IDS
+             and g.get("id") not in keep_ids]
+    for group in stale:
+        groups.remove(group)
+
+    if added or refreshed or stale:
         if target.exists():
             backup(target)
         snbt.dump(document, str(target))
-    return added + refreshed, len(groups)
+    return added + refreshed, len(stale), len(groups)
 
 
-def prune_lang_entries(quests_dir: Path, module_numbers: set[int],
-                       dry_run: bool) -> int:
+def prune_lang_entries(quests_dir: Path, module_numbers: set[int]) -> int:
     """Drop translation entries belonging to the modules we are installing.
 
     FTB Quests does not leave authored files alone. On first load it migrates
@@ -291,28 +310,192 @@ def prune_lang_entries(quests_dir: Path, module_numbers: set[int],
 
         if not doomed:
             continue
-        if not dry_run:
-            backup(lang_file)
-            for key in doomed:
-                del document[key]
-            snbt.dump(document, str(lang_file))
+        backup(lang_file)
+        for key in doomed:
+            del document[key]
+        snbt.dump(document, str(lang_file))
         removed_total += len(doomed)
 
     return removed_total
 
 
-def backup(path: Path, replacement: Path | None = None) -> Path | None:
-    """Copy a file aside before overwriting it.
-
-    Skipped when the incoming file is byte-identical, so reinstalling the same
-    version repeatedly does not bury the quests folder in .bak files.
-    """
-    if replacement is not None and path.read_bytes() == replacement.read_bytes():
-        return None
+def backup(path: Path) -> Path:
+    """Copy a file aside before overwriting or removing it."""
     stamp = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S")
     destination = path.with_suffix(path.suffix + f".bak-{stamp}")
     shutil.copy2(path, destination)
     return destination
+
+
+# --------------------------------------------------------------------------
+
+@dataclass
+class PlannedFile:
+    dest_rel: str      # path under the quests folder, e.g. "chapters/ae2.snbt"
+    payload: bytes
+    source_desc: str
+
+
+@dataclass
+class Plan:
+    """Everything an install will do, computed before anything is written."""
+    files: list[PlannedFile]
+    superseded: dict[str, str]    # chapter filename -> the library chapter ID
+                                  # that proves the file is ours to remove
+    groups: list[dict]            # group entries the planned chapters reference
+    module_numbers: set[int]
+    merges: dict[str, list[str]]  # parent slug -> addon slugs merged in
+
+
+def _as_int(value) -> int:
+    return int(value.value if isinstance(value, snbt.Num) else value)
+
+
+def build_plan(chosen: list[Module], modules: dict[str, Module]) -> Plan:
+    """Compute the exact files an install will write.
+
+    Addon modules do not become chapters of their own: each family's addons
+    are merged into the parent's chapter file via compose.compose_family.
+    The completionist chapter, if chosen, gets its quests generated here from
+    every other chapter in the plan.
+    """
+    by_slug = {m.slug: m for m in chosen}
+    families = compose.family_map(by_slug)
+    addon_slugs = {slug for addons in families.values() for slug in addons}
+    for parent in families:
+        assert parent in by_slug, f"addon chosen without its parent {parent}"
+
+    groups_available: list[dict] = []
+    for module in chosen:
+        groups_dir = module.version_root / "chapter_groups"
+        if groups_dir.is_dir():
+            for source in sorted(groups_dir.glob("*.snbt")):
+                document = snbt.load(str(source))
+                groups_available.extend(document.get("chapter_groups", []))
+    group_order = {g["id"]: _as_int(g.get("order_index", 0))
+                   for g in groups_available if isinstance(g, dict)}
+
+    # (module, dest name, parsed tree, raw bytes or None). Raw bytes are kept
+    # for chapters that install unchanged, so those copies stay byte-stable.
+    chapters: list[tuple[Module, str, dict, bytes | None]] = []
+    files: list[PlannedFile] = []
+
+    for module in chosen:
+        if module.slug in addon_slugs:
+            continue  # its chapter rides along inside the parent's file
+        chapters_dir = module.version_root / "chapters"
+        if not chapters_dir.is_dir():
+            continue
+        for source in sorted(chapters_dir.glob("*.snbt")):
+            tree = snbt.load(str(source))
+            if module.slug in families:
+                addon_trees = []
+                for slug in families[module.slug]:
+                    addon_dir = by_slug[slug].version_root / "chapters"
+                    for addon_file in sorted(addon_dir.glob("*.snbt")):
+                        addon_trees.append(snbt.load(str(addon_file)))
+                tree = compose.compose_family(tree, addon_trees)
+                chapters.append((module, source.name, tree, None))
+            else:
+                chapters.append((module, source.name, tree, source.read_bytes()))
+
+    # The completionist tracks every other chapter in this very plan.
+    for i, (module, name, tree, _raw) in enumerate(chapters):
+        if module.slug != "09-completionist":
+            continue
+        targets = [
+            compose.Target(
+                chapter_id=other["id"],
+                title=other["title"],
+                icon=other["icon"],
+                group_order=group_order.get(other.get("group"), 0),
+                order_index=_as_int(other["order_index"]),
+            )
+            for m, _n, other, _r in chapters if m.slug != module.slug
+        ]
+        tree["quests"] = compose.completionist_quests(targets)
+        chapters[i] = (module, name, tree, None)
+
+    for module, name, tree, raw in chapters:
+        payload = raw if raw is not None else (snbt.dumps(tree) + "\n").encode()
+        files.append(PlannedFile(f"chapters/{name}", payload, module.slug))
+
+    for module in chosen:
+        tables_dir = module.version_root / "reward_tables"
+        if not tables_dir.is_dir():
+            continue
+        for source in sorted(tables_dir.glob("*.snbt")):
+            files.append(PlannedFile(f"reward_tables/{source.name}",
+                                     source.read_bytes(), module.slug))
+
+    # Chapters that a previous version of this library installed standalone
+    # and this install supersedes: every addon chapter of every chosen parent,
+    # chosen or not (a removed mod's chapter is exactly as stale).
+    superseded: dict[str, str] = {}
+    for module in chosen:
+        if module.extends:
+            continue
+        for other in modules.values():
+            if other.extends != module.slug:
+                continue
+            for source in (other.version_root / "chapters").glob("*.snbt"):
+                superseded[source.name] = qid.qid(
+                    other.number, other.chapter_number, "chapter", 0, 1)
+
+    referenced = {tree.get("group") for _m, _n, tree, _r in chapters}
+    groups = [g for g in groups_available
+              if isinstance(g, dict) and g.get("id") in referenced]
+
+    return Plan(
+        files=files,
+        superseded=superseded,
+        groups=groups,
+        module_numbers={m.number for m in chosen},
+        merges={parent: list(addons) for parent, addons in families.items()},
+    )
+
+
+def apply_plan(quests_dir: Path, plan: Plan) -> dict[str, int]:
+    """Write a plan into the target quests folder."""
+    quests_dir.mkdir(parents=True, exist_ok=True)
+
+    written = 0
+    for planned in plan.files:
+        destination = quests_dir / planned.dest_rel
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        if destination.exists():
+            if destination.read_bytes() == planned.payload:
+                continue  # already up to date
+            backup(destination)
+        destination.write_bytes(planned.payload)
+        written += 1
+
+    removed = 0
+    for name, expected_id in plan.superseded.items():
+        path = quests_dir / "chapters" / name
+        if not path.exists():
+            continue
+        try:
+            tree = snbt.load(str(path))
+        except (snbt.SNBTError, OSError):
+            continue
+        if isinstance(tree, dict) and tree.get("id") == expected_id:
+            backup(path)
+            path.unlink()
+            removed += 1
+
+    merged, pruned_groups, total_groups = merge_chapter_groups(
+        quests_dir, plan.groups)
+    pruned_lang = prune_lang_entries(quests_dir, plan.module_numbers)
+
+    return {
+        "written": written,
+        "removed": removed,
+        "groups_merged": merged,
+        "groups_pruned": pruned_groups,
+        "groups_total": total_groups,
+        "lang_pruned": pruned_lang,
+    }
 
 
 # --------------------------------------------------------------------------
@@ -420,17 +603,14 @@ def main(argv: list[str] | None = None) -> int:
 
             collect(tree)
 
+    plan = build_plan(chosen, modules)
+
     # Ours are 7B-prefixed and computed, so a clash normally just means this
     # library is already installed and we are about to overwrite our own files.
     # It is only worth reporting when the ID turns up in a file we are *not*
     # replacing -- that means someone copied our content somewhere unexpected.
-    will_replace = {
-        path.name
-        for module in chosen
-        for kind in ("chapters", "reward_tables")
-        for path in (module.version_root / kind).glob("*.snbt")
-        if (module.version_root / kind).is_dir()
-    }
+    will_replace = {Path(planned.dest_rel).name for planned in plan.files}
+    will_replace.update(plan.superseded)
     # chapter_groups.snbt is merged rather than replaced, but our group IDs
     # living there is expected, not a collision.
     will_replace.add("chapter_groups.snbt")
@@ -441,8 +621,13 @@ def main(argv: list[str] | None = None) -> int:
 
     # -- report ------------------------------------------------------------
     print(f"\ntarget: {quests_dir}")
-    print(f"installing {len(chosen)} module(s):")
+    print(f"installing {len(chosen)} module(s) as {len(plan.files)} file(s):")
+    merged_into = {slug: parent
+                   for parent, addons in plan.merges.items() for slug in addons}
     for module in chosen:
+        if module.slug in merged_into:
+            print(f"  {module.slug:<28} merged into {merged_into[module.slug]}")
+            continue
         counts = {
             kind: len(list((module.version_root / kind).glob("*.snbt")))
             for kind in ("chapters", "reward_tables", "chapter_groups")
@@ -450,6 +635,14 @@ def main(argv: list[str] | None = None) -> int:
         }
         detail = ", ".join(f"{v} {k}" for k, v in counts.items() if v)
         print(f"  {module.slug:<28} {detail}")
+    stale_present = [name for name in sorted(plan.superseded)
+                     if (quests_dir / "chapters" / name).exists()]
+    if stale_present:
+        print(f"\nremoving {len(stale_present)} standalone add-on chapter(s) "
+              f"from an earlier version (their quests now live in the parent "
+              f"chapter):")
+        for name in stale_present:
+            print(f"  chapters/{name}")
     if skipped:
         print(f"\nskipping {len(skipped)} module(s) whose mods are not installed:")
         for module, missing in skipped:
@@ -467,61 +660,18 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     # -- write -------------------------------------------------------------
-    copied = 0
-    groups_to_add: list[dict] = []
+    stats = apply_plan(quests_dir, plan)
 
-    for module in chosen:
-        for kind in ("chapters", "reward_tables"):
-            source_dir = module.version_root / kind
-            if not source_dir.is_dir():
-                continue
-            destination_dir = quests_dir / kind
-            destination_dir.mkdir(parents=True, exist_ok=True)
-            for source in sorted(source_dir.glob("*.snbt")):
-                destination = destination_dir / source.name
-                if destination.exists():
-                    if destination.read_bytes() == source.read_bytes():
-                        continue  # already up to date
-                    backup(destination, source)
-                shutil.copy2(source, destination)
-                copied += 1
-
-        groups_dir = module.version_root / "chapter_groups"
-        if groups_dir.is_dir():
-            for source in sorted(groups_dir.glob("*.snbt")):
-                document = snbt.load(str(source))
-                groups_to_add.extend(document.get("chapter_groups", []))
-
-    # Register only the groups the installed chapters actually reference.
-    # 00-core defines every group the library knows about, but somebody
-    # installing two chapters should not end up with nine headings in their
-    # book, seven of them empty.
-    referenced: set[str] = set()
-    for module in chosen:
-        chapters_dir = module.version_root / "chapters"
-        if not chapters_dir.is_dir():
-            continue
-        for path in sorted(chapters_dir.glob("*.snbt")):
-            try:
-                group = snbt.load(str(path)).get("group")
-            except snbt.SNBTError:
-                continue
-            if isinstance(group, str) and group:
-                referenced.add(group)
-    groups_to_add = [g for g in groups_to_add
-                     if isinstance(g, dict) and g.get("id") in referenced]
-
-    quests_dir.mkdir(parents=True, exist_ok=True)
-    added, total = merge_chapter_groups(quests_dir, groups_to_add, args.dry_run)
-    pruned = prune_lang_entries(
-        quests_dir, {m.number for m in chosen}, args.dry_run
-    )
-
-    print(f"\ncopied {copied} file(s)")
-    print(f"chapter groups: {added} added, {total} now registered")
-    if pruned:
-        print(f"cleared {pruned} stale translation entr(ies) so the updated "
-              f"text takes effect")
+    print(f"\nwrote {stats['written']} file(s)")
+    if stats["removed"]:
+        print(f"removed {stats['removed']} superseded add-on chapter file(s)")
+    print(f"chapter groups: {stats['groups_merged']} added, "
+          f"{stats['groups_total']} now registered"
+          + (f", {stats['groups_pruned']} stale removed"
+             if stats["groups_pruned"] else ""))
+    if stats["lang_pruned"]:
+        print(f"cleared {stats['lang_pruned']} stale translation entr(ies) so "
+              f"the updated text takes effect")
 
     data_file = quests_dir / "data.snbt"
     if not data_file.exists():

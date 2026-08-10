@@ -171,8 +171,15 @@ are also in `library.json` and every module's `module.json`.
 | `30h-lootr` | └ Lootr | 3 | `+ lootr` |
 | `30i-easy-villagers` | └ Easy Villagers | 5 | `+ easy_villagers` |
 
-**265 quests across 31 chapters.** 101 are vanilla-only and
-work in any 1.21.1 pack; the rest install only when their mods are present.
+**286 quests across 15 in-game chapters on a full install.** Add-on modules do
+not appear as chapters of their own: the installer merges each one's quests
+into its parent's chapter, in a cluster below the parent's tree, and only for
+the add-on mods actually present. Two chapters are special: **Welcome** (six
+checkmark quests on how the book works) sits ungrouped at the top, and
+**Completionist** is generated at install time — one quest per installed
+chapter that completes itself when that chapter does, plus a finale for
+finishing everything. 107 quests are vanilla-only and work in any 1.21.1
+pack; the rest install only when their mods are present.
 
 ### Task types
 
@@ -293,8 +300,10 @@ afterwards — the tool prints both commands when it finishes.
 ### Add-ons
 
 Mods with their own ecosystems — Farmer's Delight especially — get add-on
-chapters that hang off the parent module. The installer detects which are
-present and offers exactly those:
+modules that hang off the parent. The installer detects which are present,
+offers exactly those, and **merges their quests into the parent's chapter**
+rather than adding chapters of their own — one Farmer's Delight chapter with
+an Expanded Delight cluster inside it, not five sidebar entries:
 
 ```
 [✓] 8   Farmer's Delight             12  farmersdelight
@@ -303,6 +312,9 @@ present and offers exactly those:
 [✓] 11    └ Ocean's Delight           5  + oceansdelight
 ```
 
+The merge only moves quest positions; every ID installs byte-identical to the
+repo, so player progress survives updates, and an upgrade from an older
+split-chapter install cleans up the standalone add-on chapters it replaced.
 Add-ons share their parent's module number and are told apart by chapter
 number, so a mod can have dozens without eating into the 256 module slots.
 See [ID-REGISTRY.md](ID-REGISTRY.md#addons-chapter-slots-not-module-numbers).

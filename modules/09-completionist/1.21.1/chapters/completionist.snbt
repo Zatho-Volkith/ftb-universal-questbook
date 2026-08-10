@@ -1,0 +1,16 @@
+{
+	default_hide_dependency_lines: true
+	default_quest_shape: "gear"
+	filename: "completionist"
+	group: ""
+	icon: {
+		id: "minecraft:nether_star"
+	}
+	id: "7B09010200000001"
+	images: [ ]
+	order_index: 1
+	quest_links: [ ]
+	quests: [ ]
+	subtitle: "One quest per finished chapter"
+	title: "Completionist"
+}

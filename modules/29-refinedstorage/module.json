@@ -14,7 +14,7 @@
   "requires_modules": [
     "00-core"
   ],
-  "chapter_group": "storage",
+  "chapter_group": "tech",
   "chapters": [
     {
       "number": 1,

@@ -14,50 +14,26 @@
     {
       "key": "mods",
       "id": "7B00000100000002",
-      "title": "Universal \u00b7 Other Mods",
+      "title": "Universal \u00b7 Mod Content",
       "order_index": 2
-    },
-    {
-      "key": "qol",
-      "id": "7B00000100000003",
-      "title": "Universal \u00b7 Quality of Life",
-      "order_index": 3
     },
     {
       "key": "food",
       "id": "7B00000100000004",
       "title": "Universal \u00b7 Food and Farming",
+      "order_index": 3
+    },
+    {
+      "key": "tech",
+      "id": "7B00000100000006",
+      "title": "Universal \u00b7 Tech and Automation",
       "order_index": 4
     },
     {
-      "key": "exploration",
-      "id": "7B00000100000005",
-      "title": "Universal \u00b7 Exploration",
+      "key": "qol",
+      "id": "7B00000100000003",
+      "title": "Universal \u00b7 Quality of Life",
       "order_index": 5
-    },
-    {
-      "key": "automation",
-      "id": "7B00000100000006",
-      "title": "Universal \u00b7 Automation",
-      "order_index": 6
-    },
-    {
-      "key": "storage",
-      "id": "7B00000100000007",
-      "title": "Universal \u00b7 Storage",
-      "order_index": 7
-    },
-    {
-      "key": "adventure",
-      "id": "7B00000100000008",
-      "title": "Universal \u00b7 Adventure",
-      "order_index": 8
-    },
-    {
-      "key": "building",
-      "id": "7B00000100000009",
-      "title": "Universal \u00b7 Building",
-      "order_index": 9
     }
   ],
   "reward_tables": {

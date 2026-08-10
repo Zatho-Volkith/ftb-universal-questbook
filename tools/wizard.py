@@ -324,8 +324,13 @@ def step_choose(modules: dict[str, install.Module], mod_ids: set[str]) -> list[i
         # Show only the mods this addon needs beyond its parent's.
         extra = [m for m in module.requires_mods
                  if not parent or m not in parent.requires_mods]
-        key = module.manifest.get("chapter_group") or "mods"
-        order, label = GROUPS.get(key, (99, key.title()))
+        key = module.manifest.get("chapter_group")
+        if key is None:
+            # Ungrouped modules (the welcome and completionist chapters) sit
+            # at the top of the book, above every group heading.
+            order, label = 0, "Book"
+        else:
+            order, label = GROUPS.get(key, (99, key.title()))
         rows.append({"module": module, "missing": missing, "quests": quests,
                      "title": title, "on": not missing,
                      "is_addon": parent is not None,
@@ -388,12 +393,13 @@ def step_choose(modules: dict[str, install.Module], mod_ids: set[str]) -> list[i
             else:
                 print(f"  {mark} {body}")
         chosen = sum(r["quests"] for r in rows if r["on"])
-        count = sum(1 for r in rows if r["on"])
+        count = sum(1 for r in rows if r["on"] and not r["is_addon"])
         print(dim("  " + "-" * 58))
         print(f"  selected: {bold(str(count))} chapters, {bold(str(chosen))} quests")
         addons_on = sum(1 for r in rows if r["on"] and r["is_addon"])
         if addons_on:
-            print(dim(f"  ({addons_on} of those are add-ons detected in your pack)"))
+            print(dim(f"  ({addons_on} add-on(s) will merge into their parent"
+                      f" chapters)"))
         # Mods with no chapter never appear in the list above, so without this
         # the wizard looks like it failed to detect them.
         if uncovered:
@@ -455,12 +461,16 @@ def step_review(instance: Path, chosen: list[install.Module], info: dict) -> boo
     print(f"  writing to : {quests_dir}")
     print()
     total = 0
-    for module in sorted(chosen, key=lambda m: m.number):
+    for module in sorted(chosen, key=lambda m: (m.number, m.chapter_number)):
         if module.is_required:
             continue
         quests, title = chapter_summary(module)
         total += quests
-        print(f"    {TICK} {title:<30} {quests:>3} quests")
+        if module.extends:
+            print(dim(f"      └ {title:<28} {quests:>3} quests, merged into "
+                      f"the chapter above"))
+        else:
+            print(f"    {TICK} {title:<30} {quests:>3} quests")
     print(dim(f"    + shared reward tables and chapter groups"))
     print()
     print(f"  {bold(str(total))} quests in total")
@@ -474,54 +484,22 @@ def step_review(instance: Path, chosen: list[install.Module], info: dict) -> boo
     return confirm(bold("Install now?"), default=True)
 
 
-def step_install(quests_dir: Path, chosen: list[install.Module]) -> None:
+def step_install(quests_dir: Path, chosen: list[install.Module],
+                 modules: dict[str, install.Module]) -> None:
     heading(4, 4, "Installing")
-    import shutil
 
-    copied = 0
-    groups_to_add: list[dict] = []
-    for module in chosen:
-        for kind in ("chapters", "reward_tables"):
-            source_dir = module.version_root / kind
-            if not source_dir.is_dir():
-                continue
-            destination_dir = quests_dir / kind
-            destination_dir.mkdir(parents=True, exist_ok=True)
-            for source in sorted(source_dir.glob("*.snbt")):
-                destination = destination_dir / source.name
-                if destination.exists():
-                    if destination.read_bytes() == source.read_bytes():
-                        continue
-                    install.backup(destination, source)
-                shutil.copy2(source, destination)
-                copied += 1
-        groups_dir = module.version_root / "chapter_groups"
-        if groups_dir.is_dir():
-            for source in sorted(groups_dir.glob("*.snbt")):
-                groups_to_add.extend(snbt.load(str(source)).get("chapter_groups", []))
+    plan = install.build_plan(chosen, modules)
+    stats = install.apply_plan(quests_dir, plan)
 
-    # Only register groups the installed chapters actually use, so nobody ends
-    # up with empty headings for content they did not install.
-    referenced = set()
-    for module in chosen:
-        chapters_dir = module.version_root / "chapters"
-        if chapters_dir.is_dir():
-            for path in sorted(chapters_dir.glob("*.snbt")):
-                group = snbt.load(str(path)).get("group")
-                if isinstance(group, str) and group:
-                    referenced.add(group)
-    groups_to_add = [g for g in groups_to_add if g.get("id") in referenced]
-
-    quests_dir.mkdir(parents=True, exist_ok=True)
-    added, total = install.merge_chapter_groups(quests_dir, groups_to_add, False)
-    pruned = install.prune_lang_entries(
-        quests_dir, {m.number for m in chosen}, False
-    )
-
-    print(f"  {green(TICK)} copied {copied} quest file(s)")
-    print(f"  {green(TICK)} chapter groups: {added} written, {total} registered")
-    if pruned:
-        print(f"  {green(TICK)} cleared {pruned} stale text entr(ies) so updates show")
+    print(f"  {green(TICK)} wrote {stats['written']} quest file(s)")
+    if stats["removed"]:
+        print(f"  {green(TICK)} removed {stats['removed']} superseded add-on "
+              f"chapter file(s) — their quests now live in the parent chapter")
+    print(f"  {green(TICK)} chapter groups: {stats['groups_merged']} written, "
+          f"{stats['groups_total']} registered")
+    if stats["lang_pruned"]:
+        print(f"  {green(TICK)} cleared {stats['lang_pruned']} stale text "
+              f"entr(ies) so updates show")
 
     data_file = quests_dir / "data.snbt"
     if data_file.exists():
@@ -547,7 +525,11 @@ def main() -> int:
     quests = 0
     for module in modules.values():
         quests += chapter_summary(module)[0]
-    print(f"  Minecraft {MC_VERSION} · {len(modules) - 1} chapters · {quests} quests")
+    chapters = sum(1 for m in modules.values()
+                   if not m.is_required and not m.extends)
+    addons = sum(1 for m in modules.values() if m.extends)
+    print(f"  Minecraft {MC_VERSION} · {chapters} chapters "
+          f"({addons} add-on modules merge in) · {quests} quests")
     print(dim("  Nothing is written until you confirm."))
 
     instance, info = step_find_instance()
@@ -562,7 +544,7 @@ def main() -> int:
         print("\ncancelled — nothing was written.")
         return 0
 
-    step_install(info["quests_dir"], chosen)
+    step_install(info["quests_dir"], chosen, modules)
 
     print()
     print(green(bold("  Done.")))

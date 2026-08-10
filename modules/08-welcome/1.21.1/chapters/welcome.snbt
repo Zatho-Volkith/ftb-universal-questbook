@@ -1,0 +1,184 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: "rsquare"
+	filename: "welcome"
+	group: ""
+	icon: {
+		id: "minecraft:book"
+	}
+	id: "7B08010200000001"
+	images: [ ]
+	order_index: 0
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"This book is not written for one modpack. It is a library of"
+				"chapters, and the installer picked the ones that fit the mods"
+				"this pack actually has."
+				""
+				"Tick this off and the next quest appears."
+			]
+			id: "7B08010300010000"
+			rewards: [
+				{
+					id: "7B0801050001000B"
+					type: "xp"
+					xp: 10
+				}
+			]
+			subtitle: "Tick the box"
+			tasks: [
+				{
+					id: "7B08010400010001"
+					type: "checkmark"
+				}
+			]
+			title: "Welcome!"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B08010300010000"]
+			description: [
+				"Quests here branch instead of forming a single line. If one"
+				"asks for something you do not feel like getting, go around it"
+				"-- almost nothing is locked behind anything else."
+			]
+			id: "7B08010300020000"
+			rewards: [
+				{
+					id: "7B0801050002000B"
+					type: "xp"
+					xp: 10
+				}
+			]
+			subtitle: "Do quests in any order"
+			tasks: [
+				{
+					id: "7B08010400020001"
+					type: "checkmark"
+				}
+			]
+			title: "Branch, Don't March"
+			x: 1.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B08010300020000"]
+			description: [
+				"A finished quest shows a claimable reward -- click it to"
+				"collect. Most quests also roll a loot table."
+				""
+				"The tables come in five tiers, common through legendary, and"
+				"the tier scales with how deep into a chapter you are."
+			]
+			id: "7B08010300030000"
+			rewards: [
+				{
+					id: "7B0801050003000B"
+					type: "xp"
+					xp: 10
+				}
+			]
+			subtitle: "Click a completed quest"
+			tasks: [
+				{
+					id: "7B08010400030001"
+					type: "checkmark"
+				}
+			]
+			title: "Claiming Rewards"
+			x: 3.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B08010300030000"]
+			description: [
+				"Every chapter in the sidebar exists because the matching mod"
+				"is in this pack. A mod's add-ons do not get chapters of their"
+				"own: their quests appear inside the main chapter, in their"
+				"own cluster below the core tree."
+			]
+			id: "7B08010300040000"
+			rewards: [
+				{
+					id: "7B0801050004000B"
+					type: "xp"
+					xp: 10
+				}
+			]
+			subtitle: "Chapters match your mods"
+			tasks: [
+				{
+					id: "7B08010400040001"
+					type: "checkmark"
+				}
+			]
+			title: "A Book That Fits"
+			x: 4.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B08010300040000"]
+			description: [
+				"The Completionist chapter holds one quest per chapter in this"
+				"book. Each unlocks the moment you finish every quest in the"
+				"chapter it tracks -- tick it off and it pays out."
+			]
+			id: "7B08010300050000"
+			rewards: [
+				{
+					id: "7B0801050005000B"
+					type: "xp"
+					xp: 10
+				}
+			]
+			subtitle: "Free loot for finishing chapters"
+			tasks: [
+				{
+					id: "7B08010400050001"
+					type: "checkmark"
+				}
+			]
+			title: "The Completionist"
+			x: 6.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7B08010300050000"]
+			description: [
+				"That is everything worth knowing."
+				""
+				"Close the book, punch a tree, and check back when you have"
+				"something to turn in."
+			]
+			id: "7B08010300060000"
+			rewards: [
+				{
+					id: "7B0801050006000B"
+					type: "xp"
+					xp: 100
+				}
+				{
+					exclude_from_claim_all: true
+					id: "7B0801050006000C"
+					table_id: 8863084092434939908L
+					type: "random"
+				}
+			]
+			subtitle: "Go play"
+			tasks: [
+				{
+					id: "7B08010400060001"
+					type: "checkmark"
+				}
+			]
+			title: "Go Play"
+			x: 7.5d
+			y: 0.0d
+		}
+	]
+	subtitle: "How this book works"
+	title: "Welcome"
+}

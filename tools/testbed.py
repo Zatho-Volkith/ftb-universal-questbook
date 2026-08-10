@@ -132,8 +132,18 @@ def download(url: str, destination: Path, label: str) -> None:
     print(f"  {label}: {size_mb:.0f} MB")
 
 
-def reference_jars() -> list[Path]:
-    """Find the reference mod jars, which live outside the repo."""
+def reference_jars(extra: list[Path] | None = None) -> list[Path]:
+    """Find the reference mod jars, which live outside the repo.
+
+    An explicit --reference directory (e.g. a launcher instance's mods
+    folder) replaces the default search entirely -- mixing it with the old
+    folders would stage two versions of the same mod.
+    """
+    if extra:
+        jars: list[Path] = []
+        for directory in extra:
+            jars.extend(sorted(Path(directory).expanduser().rglob("*.jar")))
+        return jars
     candidates = [
         REPO_ROOT.parent / "Refrence mods",   # as spelled in this project
         REPO_ROOT.parent / "Reference mods",
@@ -210,14 +220,14 @@ def cmd_setup(args: argparse.Namespace) -> int:
     return 0
 
 
-def stage_mods(all_mods: bool, extra_patterns: list[str] | None = None
-               ) -> tuple[int, list[str]]:
+def stage_mods(all_mods: bool, extra_patterns: list[str] | None = None,
+               reference: list[Path] | None = None) -> tuple[int, list[str]]:
     mods_dir = SERVER_DIR / "mods"
     if mods_dir.exists():
         shutil.rmtree(mods_dir)
     mods_dir.mkdir(parents=True)
 
-    jars = reference_jars()
+    jars = reference_jars(reference)
     if not jars:
         die("no reference mod jars found -- expected a 'Refrence mods' folder "
             "next to the repository")
@@ -324,7 +334,7 @@ def cmd_run(args: argparse.Namespace) -> int:
         die("the Minecraft EULA has not been accepted; see "
             "`python3 tools/testbed.py setup --help`")
 
-    staged, missing = stage_mods(args.all_mods, args.mods)
+    staged, missing = stage_mods(args.all_mods, args.mods, args.reference)
     print(f"staged {staged} mod jar(s)"
           + (" (all reference mods)" if args.all_mods else " (FTB Quests + dependencies)"))
     if missing:
@@ -437,6 +447,9 @@ def main(argv: list[str] | None = None) -> int:
     run.add_argument("--mods", nargs="*", default=None,
                      help="also stage reference jars whose filename contains "
                           "these strings (e.g. farmersdelight productivebees)")
+    run.add_argument("--reference", nargs="*", type=Path, default=None,
+                     help="take jars from these folders (e.g. a launcher "
+                          "instance's mods dir) instead of 'Refrence mods'")
     run.add_argument("--timeout", type=int, default=300)
     run.add_argument("--expect-quests", type=int, default=None,
                      help="fail unless exactly this many quests load")

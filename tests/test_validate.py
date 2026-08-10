@@ -176,6 +176,33 @@ def _(root):
     edit(root / MINING, 'subtitle: "Down, and further down"', 'subtitle: "Down and further&"')
 
 
+@case("composed family inherits an addon overlap", r"<merged> 20-farmersdelight")
+def _(root):
+    # Overlap two quests inside 20a; the simulated install-time merge of the
+    # Farmer's Delight family must report it under the <merged> label too.
+    edit(root / ADDON_CHAPTER, "x: 1.5d\n\t\t\ty: -1.5d", "x: 0.0d\n\t\t\ty: 0.0d")
+
+
+@case("shape FTB does not ship", r"is not a built-in\s+shape")
+def _(root):
+    edit(root / "modules/20-farmersdelight/1.21.1/chapters/farmers_delight.snbt",
+         'default_quest_shape: "circle"', 'default_quest_shape: "blob"')
+
+
+@case("ungrouped module whose chapter names a group", r"must\s+declare group")
+def _(root):
+    edit(root / "modules/08-welcome/1.21.1/chapters/welcome.snbt",
+         'group: ""', 'group: "7B00000100000001"')
+
+
+@case("group registry drift", r"disagrees\s+with library\.json")
+def _(root):
+    # Reintroduce the historical drift: 00-core documenting a different title
+    # than library.json ships.
+    edit(root / "modules/00-core/module.json",
+         'Universal \\u00b7 Mod Content', 'Universal \\u00b7 Other Mods')
+
+
 def run(root: Path) -> str:
     result = subprocess.run(
         [sys.executable, str(root / "tools" / "validate.py")],
